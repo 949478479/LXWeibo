@@ -1,0 +1,83 @@
+//
+//  UIView+LXExtension.h
+//
+//  Created by 从今以后 on 15/9/11.
+//  Copyright © 2015年 从今以后. All rights reserved.
+//
+
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIView (LXExtension)
+
+@property (nonatomic, assign) CGSize  lx_size;
+@property (nonatomic, assign) CGFloat lx_width;
+@property (nonatomic, assign) CGFloat lx_height;
+
+@property (nonatomic, assign) CGPoint lx_origin;
+@property (nonatomic, assign) CGFloat lx_originX;
+@property (nonatomic, assign) CGFloat lx_originY;
+
+/**
+ *  @c self.layer.cornerRadius
+ */
+@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
+/**
+ *  @c self.layer.borderWidth
+ */
+@property (nonatomic, assign) IBInspectable CGFloat borderWidth;
+/**
+ *  @c self.layer.borderColor
+ */
+@property (nullable, nonatomic, strong) IBInspectable UIColor *borderColor;
+
+///------------------------------------------------------------------------------------------------
+/// @name UINib 相关方法
+///------------------------------------------------------------------------------------------------
+
+/**
+ *  返回 UINib 对象.即 [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil].
+ */
++ (UINib *)lx_nib;
+
+/**
+ *  返回类名字符串.即 NSStringFromClass([self class]).
+ */
++ (NSString *)lx_nibName;
+
+/**
+ *  根据同名 xib 文件实例化视图.即 [self lx_instantiateFromNibWithOwner:nil options:nil].
+ *
+ *  @see +lx_instantiateFromNibWithOwner:options:
+ */
++ (instancetype)lx_instantiateFromNib;
+
+/**
+ *  根据同名 xib 文件实例化视图.即 [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil].
+ */
++ (instancetype)lx_instantiateFromNibWithOwner:(nullable id)ownerOrNil
+                                       options:(nullable NSDictionary *)optionsOrNil;
+
+///------------------------------------------------------------------------------------------------
+/// @name 其他
+///------------------------------------------------------------------------------------------------
+
+/**
+ *  获取视图所属的视图控制器,即响应链上最近的 @c UIViewController.
+ */
+- (nullable __kindof UIViewController *)lx_viewController;
+
+/**
+ *  获取视图所属的导航控制器,即响应链上最近的 @c UINavigationController.
+ */
+- (nullable __kindof UINavigationController *)lx_navigationController;
+
+/**
+ *  执行晃动动画.
+ */
+- (void)lx_shakeAnimation;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -23,16 +23,17 @@
     dispatch_once(&onceToken, ^{
         LXMethodSwizzling([self class], @selector(textRectForBounds:), @selector(lx_textRectForBounds:));
         LXMethodSwizzling([self class], @selector(editingRectForBounds:), @selector(lx_editingRectForBounds:));
+        LXMethodSwizzling([self class], @selector(leftViewRectForBounds:), @selector(lx_leftViewRectForBounds:));
     });
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - 添加左侧图标
+#pragma mark - 添加左视图
 
-- (void)setLeftImage:(UIImage *)leftImage
+- (void)setLeftViewImage:(UIImage *)leftViewImage
 {
-    UIImageView *leftView = [[UIImageView alloc] initWithImage:leftImage];
+    UIImageView *leftView = [[UIImageView alloc] initWithImage:leftViewImage];
     leftView.lx_size      = CGSizeMake(self.lx_height, self.lx_height);
     leftView.contentMode  = UIViewContentModeCenter;
 
@@ -40,7 +41,7 @@
     self.leftViewMode = UITextFieldViewModeAlways;
 }
 
-- (UIImage *)leftImage
+- (UIImage *)leftViewImage
 {
     if ([self.leftView isKindOfClass:[UIImageView class]]) {
         return ((UIImageView *)self.leftView).image;
@@ -50,7 +51,35 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - 设置编辑区域范围
+#pragma mark - 调整 frame 的辅助函数
+
+static inline CGRect LXAdjustRectForOldRectAndNewRect(CGRect oldRect, CGRect newRect)
+{
+    if (CGRectIsNull(newRect)) {
+        return oldRect;
+    }
+
+    CGSize  oldSize   = oldRect.size;
+    CGPoint oldOrigin = oldRect.origin;
+
+    CGSize  newSize   = newRect.size;
+    CGPoint newOrigin = newRect.origin;
+
+    return (CGRect) {
+        {
+            newOrigin.x >= 0 ? newOrigin.x : oldOrigin.x,
+            newOrigin.y >= 0 ? newOrigin.y : oldOrigin.y,
+        },
+        {
+            newSize.width >= 0 ? newSize.width : oldSize.width - (newOrigin.x - oldOrigin.x),
+            newSize.height >= 0 ? newSize.height : oldSize.height - (newOrigin.y - oldOrigin.y),
+        },
+    };
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 设置编辑区域 frame
 
 - (void)setEditingRect:(CGRect)editingRect
 {
@@ -72,31 +101,12 @@
     CGRect oldRect = [self lx_editingRectForBounds:bounds];
     CGRect newRect = [self editingRect];
 
-    if (CGRectIsNull(newRect)) {
-        return oldRect;
-    }
-
-    CGSize  oldSize   = oldRect.size;
-    CGPoint oldOrigin = oldRect.origin;
-
-    CGSize  newSize   = newRect.size;
-    CGPoint newOrigin = newRect.origin;
-
-    return (CGRect) {
-        {
-            newOrigin.x ?: oldOrigin.x,
-            newOrigin.y ?: oldOrigin.y
-        },
-        {
-            newSize.width ?: oldSize.width - (newOrigin.x - oldOrigin.x),
-            newSize.height ?: oldSize.height - (newOrigin.y - oldOrigin.y)
-        },
-    };
+    return LXAdjustRectForOldRectAndNewRect(oldRect, newRect);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - 设置文本区域范围
+#pragma mark - 设置文本区域 frame
 
 - (void)setTextRect:(CGRect)textRect
 {
@@ -118,6 +128,33 @@
     CGRect oldRect = [self lx_textRectForBounds:bounds];
     CGRect newRect = [self textRect];
 
+    return LXAdjustRectForOldRectAndNewRect(oldRect, newRect);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 设置左视图 frame
+
+- (void)setLeftViewRect:(CGRect)leftViewRect
+{
+    objc_setAssociatedObject(self,
+                             @selector(leftViewRect),
+                             [NSValue valueWithCGRect:leftViewRect],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGRect)leftViewRect
+{
+    NSValue *rectValue = objc_getAssociatedObject(self, _cmd);
+
+    return rectValue ? [rectValue CGRectValue] : CGRectNull;
+}
+
+- (CGRect)lx_leftViewRectForBounds:(CGRect)bounds
+{
+    CGRect oldRect = [self lx_leftViewRectForBounds:bounds];
+    CGRect newRect = [self leftViewRect];
+
     if (CGRectIsNull(newRect)) {
         return oldRect;
     }
@@ -130,12 +167,12 @@
 
     return (CGRect) {
         {
-            newOrigin.x ?: oldOrigin.x,
-            newOrigin.y ?: oldOrigin.y
+            newOrigin.x >= 0 ? newOrigin.x : oldOrigin.x,
+            newOrigin.y >= 0 ? newOrigin.y : oldOrigin.y,
         },
         {
-            newSize.width ?: oldSize.width - (newOrigin.x - oldOrigin.x),
-            newSize.height ?: oldSize.height - (newOrigin.y - oldOrigin.y)
+            newSize.width >= 0 ? newSize.width : oldSize.width,
+            newSize.height >= 0 ? newSize.height : oldSize.height,
         },
     };
 }

@@ -9,6 +9,10 @@
 
 @implementation UIColor (LXExtension)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 十六进制颜色
+
 + (instancetype)lx_colorWithHex:(NSUInteger)hex alpha:(CGFloat)alpha
 {
     NSAssert(hex >= 0x000000 && hex <= 0xFFFFFF, @"传入的颜色值不正确.");
@@ -50,6 +54,18 @@
 + (instancetype)lx_colorWithHexString:(NSString *)hexString
 {
     return [self lx_colorWithHexString:hexString alpha:1];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 随机色
+
++ (instancetype)lx_randomColor
+{
+    return [self colorWithRed:arc4random_uniform(256)/255.0
+                        green:arc4random_uniform(256)/255.0
+                         blue:arc4random_uniform(256)/255.0
+                        alpha:1];
 }
 
 @end

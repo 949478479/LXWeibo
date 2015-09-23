@@ -10,7 +10,7 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" userLabel="主 TabBar Controller" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" backgroundImage="tabbar_background" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
@@ -201,10 +201,10 @@
             </objects>
             <point key="canvasLocation" x="518" y="921"/>
         </scene>
-        <!--发现-->
+        <!--Discover View Controller-->
         <scene sceneID="Oq0-kw-gip">
             <objects>
-                <viewController id="acG-lV-XrI" sceneMemberID="viewController">
+                <viewController id="acG-lV-XrI" customClass="LXDiscoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jrf-X6-RQg"/>
                         <viewControllerLayoutGuide type="bottom" id="zXK-BJ-3eW"/>
@@ -214,7 +214,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="发现" id="J8X-R1-mJ4"/>
+                    <navigationItem key="navigationItem" id="J8X-R1-mJ4">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="searchbar_textfield_background" clearButtonMode="whileEditing" id="8bP-Zt-vcZ" customClass="LXSearchField">
+                            <rect key="frame" x="20" y="7" width="280" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请输入搜索内容"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchField" destination="8bP-Zt-vcZ" id="iiH-gD-I0I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HYX-eS-uuD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,6 +263,8 @@
         <image name="navigationbar_more_highlighted" width="30" height="30"/>
         <image name="navigationbar_pop" width="30" height="30"/>
         <image name="navigationbar_pop_highlighted" width="30" height="30"/>
+        <image name="searchbar_textfield_background" width="9" height="32"/>
+        <image name="tabbar_background" width="1" height="44"/>
         <image name="tabbar_discover" width="30" height="30"/>
         <image name="tabbar_discover_selected" width="30" height="30"/>
         <image name="tabbar_home" width="30" height="30"/>

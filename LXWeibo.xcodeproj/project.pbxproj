@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
+		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
+		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
 		18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706DFA1BB23BDA00F12441 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		18706E011BB23BDA00F12441 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706DFC1BB23BDA00F12441 /* main.m */; settings = {ASSET_TAGS = (); }; };
 		18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18706DFE1BB23BDA00F12441 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
@@ -25,9 +28,15 @@
 		18706E331BB245A200F12441 /* UIView+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E271BB245A200F12441 /* UIView+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18706E361BB245B800F12441 /* UIColor+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E351BB245B800F12441 /* UIColor+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E3A1BB24B1100F12441 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
+		18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E3D1BB27A7200F12441 /* LXDiscoverViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181A15101BB2927400D2A53D /* LXSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSearchField.h; sourceTree = "<group>"; };
+		181A15111BB2927400D2A53D /* LXSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSearchField.m; sourceTree = "<group>"; };
+		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
+		181A15151BB2ADD500D2A53D /* LXPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPlaceholderView.h; sourceTree = "<group>"; };
+		181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPlaceholderView.m; sourceTree = "<group>"; };
 		18706DC61BB23AE800F12441 /* LXWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18706DF91BB23BDA00F12441 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18706DFA1BB23BDA00F12441 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,6 +71,8 @@
 		18706E351BB245B800F12441 /* UIColor+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LXExtension.m"; sourceTree = "<group>"; };
 		18706E391BB24B1100F12441 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		18706E3A1BB24B1100F12441 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		18706E3C1BB27A7200F12441 /* LXDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDiscoverViewController.h; sourceTree = "<group>"; };
+		18706E3D1BB27A7200F12441 /* LXDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDiscoverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +86,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181A15181BB2C2F900D2A53D /* SearchField */ = {
+			isa = PBXGroup;
+			children = (
+				181A15101BB2927400D2A53D /* LXSearchField.h */,
+				181A15111BB2927400D2A53D /* LXSearchField.m */,
+				181A15151BB2ADD500D2A53D /* LXPlaceholderView.h */,
+				181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */,
+				181A15131BB2929400D2A53D /* LXPlaceholderView.xib */,
+			);
+			name = SearchField;
+			sourceTree = "<group>";
+		};
 		18706DBD1BB23AE800F12441 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +159,8 @@
 		18706DE61BB23BDA00F12441 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18706E3C1BB27A7200F12441 /* LXDiscoverViewController.h */,
+				18706E3D1BB27A7200F12441 /* LXDiscoverViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -150,6 +175,7 @@
 		18706DE81BB23BDA00F12441 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				181A15181BB2C2F900D2A53D /* SearchField */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -422,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
+				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
 				18706E0D1BB23C9400F12441 /* Main.storyboard in Resources */,
 				18706E2B1BB245A200F12441 /* MBProgressHUD.bundle in Resources */,
 			);
@@ -441,6 +468,7 @@
 				18706E2D1BB245A200F12441 /* NSObject+LXExtension.m in Sources */,
 				18706E011BB23BDA00F12441 /* main.m in Sources */,
 				18706E2E1BB245A200F12441 /* NSString+LXExtension.m in Sources */,
+				18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */,
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
 				18706E2C1BB245A200F12441 /* NSNotificationCenter+LXExtension.m in Sources */,
 				18706E331BB245A200F12441 /* UIView+LXExtension.m in Sources */,
@@ -449,6 +477,8 @@
 				18706E301BB245A200F12441 /* UIImage+LXExtension.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
 				18706E2F1BB245A200F12441 /* UIButton+LXExtension.m in Sources */,
+				181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */,
+				181A15121BB2927400D2A53D /* LXSearchField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +618,7 @@
 				18706DE21BB23AE800F12441 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

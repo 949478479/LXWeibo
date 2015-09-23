@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat lx_originX;
 @property (nonatomic, assign) CGFloat lx_originY;
 
+@property (nonatomic, assign) CGFloat lx_centerX;
+@property (nonatomic, assign) CGFloat lx_centerY;
+
 /**
  *  @c self.layer.cornerRadius
  */

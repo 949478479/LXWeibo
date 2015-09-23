@@ -91,6 +91,30 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#pragma mark - center
+
+- (void)setLx_centerX:(CGFloat)lx_centerX
+{
+    self.center = CGPointMake(lx_centerX, self.center.y);
+}
+
+- (CGFloat)lx_centerX
+{
+    return self.center.x;
+}
+
+- (void)setLx_centerY:(CGFloat)lx_centerY
+{
+    self.center = CGPointMake(self.center.x, lx_centerY);
+}
+
+- (CGFloat)lx_centerY
+{
+    return self.center.y;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - 图层圆角/边框宽度/边框颜色
 
 - (void)setCornerRadius:(CGFloat)cornerRadius

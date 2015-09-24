@@ -81,8 +81,8 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 - (CGRect)adjustRectForBounds:(CGRect)bounds
 {
     CGFloat offsetX = _placeholderView.placeholderLabel.lx_originX;
-    bounds.origin.x   += offsetX;
-    bounds.size.width -= offsetX;
+    bounds.origin.x   += offsetX; // 原点向右偏移到占位文字开始处.
+    bounds.size.width -= offsetX; // 由于原点偏移,因此宽度需去掉偏移量,否则右侧会超出.
     return bounds;
 }
 
@@ -100,6 +100,7 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 
 - (void)animatePlaceholderView
 {
+    // 调整约束,让占位视图紧贴左侧或者居中.
     _centerXConstraint.constant = self.isFirstResponder ?
         (self.lx_width - _placeholderView.lx_width) / 2 : 0;
 
@@ -121,6 +122,7 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 {
     BOOL returnValue = [super resignFirstResponder];
 
+    // 搜索框有内容时,注销响应者时不要执行动画.即让放大镜图标保持在左侧.
     if (!self.hasText) {
         [self animatePlaceholderView];
     }

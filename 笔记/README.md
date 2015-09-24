@@ -1,6 +1,6 @@
 # 搜索框的实现
 
-#[](https://github.com/949478479/LXWeibo/blob/screenshot/LXSearchField%26UISearchBar.gif)
+[](https://github.com/949478479/LXWeibo/blob/screenshot/LXSearchField%26UISearchBar.gif)
 
 系统自带的`UISearchBar`加了背景图片后非常难看,而新浪提供了放大镜小图标,于是使用`UITextField`做了个搜索框.
 

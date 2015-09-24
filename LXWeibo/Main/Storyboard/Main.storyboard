@@ -25,43 +25,6 @@
             </objects>
             <point key="canvasLocation" x="82" y="582"/>
         </scene>
-        <!--首页-->
-        <scene sceneID="q3c-VV-39B">
-            <objects>
-                <viewController id="ejG-3O-qN5" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="T5L-6M-65r"/>
-                        <viewControllerLayoutGuide type="bottom" id="NoJ-hQ-7rc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eHH-MS-DxW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="首页" id="EfY-vL-j0S">
-                        <barButtonItem key="leftBarButtonItem" id="W1C-fg-eX0">
-                            <button key="customView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h6N-MM-ZPd">
-                                <rect key="frame" x="16" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="navigationbar_friendsearch"/>
-                                <state key="highlighted" image="navigationbar_friendsearch_highlighted"/>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" id="rXy-eu-qw2">
-                            <button key="customView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5sk-g8-kcL">
-                                <rect key="frame" x="274" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="navigationbar_pop"/>
-                                <state key="highlighted" image="navigationbar_pop_highlighted"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Xr-0y-O5m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="911" y="-1059"/>
-        </scene>
         <!--首页 Navigation Controller-->
         <scene sceneID="kng-Z4-jT0">
             <objects>
@@ -74,12 +37,75 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ejG-3O-qN5" kind="relationship" relationship="rootViewController" id="h4G-nP-DFQ"/>
+                        <segue destination="Yi2-N8-q1f" kind="relationship" relationship="rootViewController" id="Jsr-xj-LEv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXZ-3k-f7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="-1059"/>
+            <point key="canvasLocation" x="518" y="-1058.9999999999995"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="474-JM-Qg3">
+            <objects>
+                <tableViewController id="Yi2-N8-q1f" customClass="LXHomeViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3ZI-N7-luR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="BVj-gb-rzI">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BVj-gb-rzI" id="mTH-xq-Mnk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Yi2-N8-q1f" id="o7M-Kn-aCB"/>
+                            <outlet property="delegate" destination="Yi2-N8-q1f" id="hmg-lk-Uip"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="MeS-aS-kMQ">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" id="uFB-l3-TAg">
+                            <button key="customView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BPv-jT-xSv">
+                                <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" image="navigationbar_friendsearch"/>
+                                <state key="highlighted" image="navigationbar_friendsearch_highlighted"/>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vAN-90-cVy">
+                            <rect key="frame" x="136" y="11" width="49" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="首页" image="navigationbar_arrow_up">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="navigationbar_arrow_down"/>
+                            <connections>
+                                <action selector="titleButtonDidTapped:" destination="Yi2-N8-q1f" eventType="touchUpInside" id="Qce-jG-wJz"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" id="A2o-7k-qDb">
+                            <button key="customView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tQd-7d-iJH">
+                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="navigationbar_pop"/>
+                                <state key="highlighted" image="navigationbar_pop_highlighted"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="titleButton" destination="vAN-90-cVy" id="qLp-hZ-BaP"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ngm-KZ-XcE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="-1058.9999999999995"/>
         </scene>
         <!--消息-->
         <scene sceneID="NuO-6J-2yx">
@@ -100,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0Y-n4-jjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="-413"/>
+            <point key="canvasLocation" x="911" y="-412.99999999999989"/>
         </scene>
         <!--消息 Navigation Controller-->
         <scene sceneID="Z3f-K4-tOo">
@@ -119,12 +145,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSj-6I-saX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="-413"/>
+            <point key="canvasLocation" x="518" y="-412.99999999999989"/>
         </scene>
         <!--设置-->
         <scene sceneID="ddP-El-btN">
             <objects>
-                <viewController id="ddF-h0-cgL" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="ddF-h0-cgL" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B2K-ZO-N0O"/>
                         <viewControllerLayoutGuide type="bottom" id="3ZQ-tM-krb"/>
@@ -201,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="518" y="921"/>
         </scene>
-        <!--Discover View Controller-->
+        <!--发现 View Controller-->
         <scene sceneID="Oq0-kw-gip">
             <objects>
-                <viewController id="acG-lV-XrI" customClass="LXDiscoverViewController" sceneMemberID="viewController">
+                <viewController id="acG-lV-XrI" userLabel="发现 View Controller" customClass="LXDiscoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jrf-X6-RQg"/>
                         <viewControllerLayoutGuide type="bottom" id="zXK-BJ-3eW"/>
@@ -255,6 +281,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="navigationbar_arrow_down" width="13" height="7"/>
+        <image name="navigationbar_arrow_up" width="13" height="7"/>
         <image name="navigationbar_back" width="30" height="30"/>
         <image name="navigationbar_back_highlighted" width="30" height="30"/>
         <image name="navigationbar_friendsearch" width="30" height="30"/>

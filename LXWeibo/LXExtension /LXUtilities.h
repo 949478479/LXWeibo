@@ -44,6 +44,7 @@ NSString * LXCachesDirectory();
 AppDelegate * LXAppDelegate();
 
 UIWindow * LXKeyWindow();
+UIWindow * LXTopWindow();
 
 ///------------------------------------------------------------------------------------------------
 /// @name 方法交换

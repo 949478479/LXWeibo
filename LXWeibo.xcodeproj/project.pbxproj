@@ -29,6 +29,8 @@
 		18706E361BB245B800F12441 /* UIColor+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E351BB245B800F12441 /* UIColor+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E3A1BB24B1100F12441 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E3D1BB27A7200F12441 /* LXDiscoverViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0AD1BB394E500060A9A /* LXHomeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1889A0B71BB3A4A100060A9A /* LXPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0B61BB3A4A100060A9A /* LXPopoverView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,10 @@
 		18706E3A1BB24B1100F12441 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		18706E3C1BB27A7200F12441 /* LXDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDiscoverViewController.h; sourceTree = "<group>"; };
 		18706E3D1BB27A7200F12441 /* LXDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDiscoverViewController.m; sourceTree = "<group>"; };
+		1889A0AC1BB394E500060A9A /* LXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHomeViewController.h; sourceTree = "<group>"; };
+		1889A0AD1BB394E500060A9A /* LXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHomeViewController.m; sourceTree = "<group>"; };
+		1889A0B51BB3A4A100060A9A /* LXPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXPopoverView.h; path = LXWeibo/Main/Home/View/LXPopoverView.h; sourceTree = SOURCE_ROOT; };
+		1889A0B61BB3A4A100060A9A /* LXPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXPopoverView.m; path = LXWeibo/Main/Home/View/LXPopoverView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				18706E091BB23C9400F12441 /* Storyboard */,
+				1889A0A71BB393C700060A9A /* Home */,
 				18706DE41BB23BDA00F12441 /* Discover */,
-				18706DE91BB23BDA00F12441 /* Home */,
 				18706DEE1BB23BDA00F12441 /* Message */,
 				18706DF31BB23BDA00F12441 /* Profile */,
 			);
@@ -176,45 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				181A15181BB2C2F900D2A53D /* SearchField */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18706DE91BB23BDA00F12441 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				18706DEA1BB23BDA00F12441 /* Behavior */,
-				18706DEB1BB23BDA00F12441 /* Controller */,
-				18706DEC1BB23BDA00F12441 /* Model */,
-				18706DED1BB23BDA00F12441 /* View */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		18706DEA1BB23BDA00F12441 /* Behavior */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Behavior;
-			sourceTree = "<group>";
-		};
-		18706DEB1BB23BDA00F12441 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		18706DEC1BB23BDA00F12441 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18706DED1BB23BDA00F12441 /* View */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,6 +356,42 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		1889A0A71BB393C700060A9A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0AF1BB3A04100060A9A /* View */,
+				1889A0A81BB393C700060A9A /* Controller */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1889A0A81BB393C700060A9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0AC1BB394E500060A9A /* LXHomeViewController.h */,
+				1889A0AD1BB394E500060A9A /* LXHomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1889A0AF1BB3A04100060A9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0BA1BB3D08800060A9A /* PopoverView */,
+			);
+			name = View;
+			path = Controller/View;
+			sourceTree = "<group>";
+		};
+		1889A0BA1BB3D08800060A9A /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0B51BB3A4A100060A9A /* LXPopoverView.h */,
+				1889A0B61BB3A4A100060A9A /* LXPopoverView.m */,
+			);
+			name = PopoverView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -415,6 +418,7 @@
 		18706DBE1BB23AE800F12441 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LX;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "从今以后";
 				TargetAttributes = {
@@ -470,10 +474,12 @@
 				18706E2E1BB245A200F12441 /* NSString+LXExtension.m in Sources */,
 				18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */,
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
+				1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */,
 				18706E2C1BB245A200F12441 /* NSNotificationCenter+LXExtension.m in Sources */,
 				18706E331BB245A200F12441 /* UIView+LXExtension.m in Sources */,
 				18706E321BB245A200F12441 /* UITextField+LXExtension.m in Sources */,
 				18706E311BB245A200F12441 /* UIStoryboard+LXExtension.m in Sources */,
+				1889A0B71BB3A4A100060A9A /* LXPopoverView.m in Sources */,
 				18706E301BB245A200F12441 /* UIImage+LXExtension.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
 				18706E2F1BB245A200F12441 /* UIButton+LXExtension.m in Sources */,
@@ -569,11 +575,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/LXWeibo/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.LXWeibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = (
 					"-Wextra",
 					"-Wall",
@@ -586,11 +594,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/LXWeibo/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.LXWeibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = (
 					"-Wextra",
 					"-Wall",

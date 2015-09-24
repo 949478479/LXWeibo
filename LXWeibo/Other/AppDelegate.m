@@ -27,8 +27,17 @@
     UITabBar *tabBar = [UITabBar appearance];
     tabBar.tintColor = [UIColor lx_colorWithHexString:@"E66C0C"];
 
+    UITabBarItem *tabBarItem = [UITabBarItem appearance];
+    [tabBarItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:11] }
+                              forState:UIControlStateNormal];
+
     UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
     barButtonItem.tintColor        = tabBar.tintColor;
+    [barButtonItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:14] }
+                                 forState:UIControlStateNormal];
+
+    UINavigationBar *navigationBar = [UINavigationBar appearance];
+    [navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont boldSystemFontOfSize:18] }];
 }
 
 @end

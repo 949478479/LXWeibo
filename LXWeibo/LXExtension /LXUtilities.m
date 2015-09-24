@@ -40,7 +40,7 @@ AppDelegate * LXAppDelegate()
     return [UIApplication sharedApplication].delegate;
 }
 
-#pragma mark - 主窗口
+#pragma mark - 窗口
 
 UIWindow * LXKeyWindow()
 {
@@ -49,6 +49,15 @@ UIWindow * LXKeyWindow()
     NSCAssert(keyWindow, @"AppDelegate 的 window 属性为 nil.");
 
     return keyWindow;
+}
+
+UIWindow * LXTopWindow()
+{
+    UIWindow *topWindow = [UIApplication sharedApplication].windows.lastObject ?: LXAppDelegate().window;
+
+    NSCAssert(topWindow, @"AppDelegate 的 window 属性为 nil.");
+
+    return topWindow;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

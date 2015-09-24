@@ -6,14 +6,16 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
+#import "LXTabBar.h"
 #import "LXUtilities.h"
 #import "LXPopoverView.h"
 #import "LXHomeViewController.h"
 
 @interface LXHomeViewController () <LXPopoverViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UIButton *titleButton;
 @property (nonatomic, strong) LXPopoverView *popover;
+
+@property (nonatomic, weak) IBOutlet UIButton *titleButton;
 
 @end
 

@@ -13,7 +13,6 @@
 		18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706DFA1BB23BDA00F12441 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		18706E011BB23BDA00F12441 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706DFC1BB23BDA00F12441 /* main.m */; settings = {ASSET_TAGS = (); }; };
 		18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18706DFE1BB23BDA00F12441 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
-		18706E0D1BB23C9400F12441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18706E0B1BB23C9400F12441 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		18706E281BB245A200F12441 /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E111BB245A200F12441 /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
 		18706E291BB245A200F12441 /* LXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E131BB245A200F12441 /* LXUtilities.m */; settings = {ASSET_TAGS = (); }; };
 		18706E2A1BB245A200F12441 /* MBProgressHUD+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E161BB245A200F12441 /* MBProgressHUD+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
@@ -31,6 +30,9 @@
 		18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706E3D1BB27A7200F12441 /* LXDiscoverViewController.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0AD1BB394E500060A9A /* LXHomeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0B71BB3A4A100060A9A /* LXPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0B61BB3A4A100060A9A /* LXPopoverView.m */; settings = {ASSET_TAGS = (); }; };
+		1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1889A0BC1BB3D82400060A9A /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C01BB3D85000060A9A /* LXTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C91BB4096C00060A9A /* LXTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,6 @@
 		18706DFB1BB23BDA00F12441 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18706DFC1BB23BDA00F12441 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18706DFE1BB23BDA00F12441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18706E0B1BB23C9400F12441 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18706E101BB245A200F12441 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
 		18706E111BB245A200F12441 /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
 		18706E121BB245A200F12441 /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
@@ -79,6 +80,11 @@
 		1889A0AD1BB394E500060A9A /* LXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHomeViewController.m; sourceTree = "<group>"; };
 		1889A0B51BB3A4A100060A9A /* LXPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXPopoverView.h; path = LXWeibo/Main/Home/View/LXPopoverView.h; sourceTree = SOURCE_ROOT; };
 		1889A0B61BB3A4A100060A9A /* LXPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXPopoverView.m; path = LXWeibo/Main/Home/View/LXPopoverView.m; sourceTree = SOURCE_ROOT; };
+		1889A0BC1BB3D82400060A9A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1889A0BF1BB3D85000060A9A /* LXTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTabBar.h; sourceTree = "<group>"; };
+		1889A0C01BB3D85000060A9A /* LXTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBar.m; sourceTree = "<group>"; };
+		1889A0C81BB4096C00060A9A /* LXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTabBarController.h; sourceTree = "<group>"; };
+		1889A0C91BB4096C00060A9A /* LXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +141,7 @@
 		18706DE31BB23BDA00F12441 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				18706E091BB23C9400F12441 /* Storyboard */,
+				18706E091BB23C9400F12441 /* Common */,
 				1889A0A71BB393C700060A9A /* Home */,
 				18706DE41BB23BDA00F12441 /* Discover */,
 				18706DEE1BB23BDA00F12441 /* Message */,
@@ -283,12 +289,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		18706E091BB23C9400F12441 /* Storyboard */ = {
+		18706E091BB23C9400F12441 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				18706E0B1BB23C9400F12441 /* Main.storyboard */,
+				1889A0BB1BB3D82400060A9A /* Storyboard */,
+				1889A0C41BB4020700060A9A /* Controller */,
+				1889A0BE1BB3D83000060A9A /* View */,
 			);
-			path = Storyboard;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		18706E0E1BB245A200F12441 /* LXExtension  */ = {
@@ -392,6 +400,32 @@
 			name = PopoverView;
 			sourceTree = "<group>";
 		};
+		1889A0BB1BB3D82400060A9A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0BC1BB3D82400060A9A /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		1889A0BE1BB3D83000060A9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0BF1BB3D85000060A9A /* LXTabBar.h */,
+				1889A0C01BB3D85000060A9A /* LXTabBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1889A0C41BB4020700060A9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0C81BB4096C00060A9A /* LXTabBarController.h */,
+				1889A0C91BB4096C00060A9A /* LXTabBarController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -452,8 +486,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
+				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
-				18706E0D1BB23C9400F12441 /* Main.storyboard in Resources */,
 				18706E2B1BB245A200F12441 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,11 +506,13 @@
 				18706E2D1BB245A200F12441 /* NSObject+LXExtension.m in Sources */,
 				18706E011BB23BDA00F12441 /* main.m in Sources */,
 				18706E2E1BB245A200F12441 /* NSString+LXExtension.m in Sources */,
+				1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */,
 				18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */,
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
 				1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */,
 				18706E2C1BB245A200F12441 /* NSNotificationCenter+LXExtension.m in Sources */,
 				18706E331BB245A200F12441 /* UIView+LXExtension.m in Sources */,
+				1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */,
 				18706E321BB245A200F12441 /* UITextField+LXExtension.m in Sources */,
 				18706E311BB245A200F12441 /* UIStoryboard+LXExtension.m in Sources */,
 				1889A0B71BB3A4A100060A9A /* LXPopoverView.m in Sources */,

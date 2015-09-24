@@ -9,6 +9,10 @@
 #import "LXUtilities.h"
 #import "AppDelegate.h"
 
+static const CGFloat kLXTabBarItemTitleFontSize    = 11;
+static const CGFloat kLXBarButtonItemTitleFontSize = 14;
+static const CGFloat kLXNavigationBarTitleFontSize = 18;
+
 @interface AppDelegate ()
 
 @end
@@ -19,6 +23,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self configureAppearance];
+
     return YES;
 }
 
@@ -28,16 +33,16 @@
     tabBar.tintColor = [UIColor lx_colorWithHexString:@"E66C0C"];
 
     UITabBarItem *tabBarItem = [UITabBarItem appearance];
-    [tabBarItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:11] }
+    [tabBarItem setTitleTextAttributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:kLXTabBarItemTitleFontSize] }
                               forState:UIControlStateNormal];
 
     UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
     barButtonItem.tintColor        = tabBar.tintColor;
-    [barButtonItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:14] }
+    [barButtonItem setTitleTextAttributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:kLXBarButtonItemTitleFontSize] }
                                  forState:UIControlStateNormal];
 
     UINavigationBar *navigationBar = [UINavigationBar appearance];
-    [navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont boldSystemFontOfSize:18] }];
+    [navigationBar setTitleTextAttributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:kLXNavigationBarTitleFontSize] }];
 }
 
 @end

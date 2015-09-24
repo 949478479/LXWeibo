@@ -8,9 +8,9 @@
         <!--主 TabBar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" userLabel="主 TabBar Controller" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" userLabel="主 TabBar Controller" customClass="LXTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" backgroundImage="tabbar_background" id="W28-zg-YXA">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" backgroundImage="tabbar_background" id="W28-zg-YXA" customClass="LXTabBar">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="518" y="-1058.9999999999995"/>
         </scene>
-        <!--Home View Controller-->
+        <!--首页 View Controller-->
         <scene sceneID="474-JM-Qg3">
             <objects>
-                <tableViewController id="Yi2-N8-q1f" customClass="LXHomeViewController" sceneMemberID="viewController">
+                <tableViewController id="Yi2-N8-q1f" userLabel="首页 View Controller" customClass="LXHomeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3ZI-N7-luR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

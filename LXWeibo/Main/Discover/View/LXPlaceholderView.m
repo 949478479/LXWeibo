@@ -17,10 +17,4 @@
 
 @implementation LXPlaceholderView
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    // 让占位视图把点击事件漏给父视图,即输入框.这样点击到占位视图时也能正常激活第一响应者.
-    return nil;
-}
-
 @end

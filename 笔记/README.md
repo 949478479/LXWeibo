@@ -133,4 +133,14 @@ _placeholderView.userInteractionEnabled = NO;
 }
 ```
 
+为了方便使用,还为`LXSearchField`定义个`placeholder`属性,这样能在`IB`中能设置占位文字.
+
+本想通过覆写父类的`setPlaceholder:`方法实现的,但是发现没有效果,只好重写了`placeholder`属性.
+
+```objective-c
+@property (nullable, nonatomic, copy) IBInspectable NSString *placeholder;
+```
+
+![](https://github.com/949478479/LXWeibo/blob/screenshot/Placeholder-IB.png)
+
 最后还有个诡异的问题一直没解决.最开始设置搜索框距离屏幕两侧各 8 点.结果发现一旦输入文字超过搜索框范围后,第一次注销响应者时,搜索框会神奇地变宽,变成距离屏幕两侧各 8 点.试了下直接设置成距离屏幕两侧各 8 点就不会再额外变宽了.

@@ -1,6 +1,6 @@
 # 搜索框的实现
 
-#[]()
+#[](https://github.com/949478479/LXWeibo/blob/screenshot/LXSearchField%26UISearchBar.gif)
 
 系统自带的`UISearchBar`加了背景图片后非常难看,而新浪提供了放大镜小图标,于是使用`UITextField`做了个搜索框.
 
@@ -8,7 +8,7 @@
 
 但是占位文字也是动画的,这个就不知道怎么搞了.于是自定义了一个`UIView`,作为占位视图:
 
-![]()
+![](https://github.com/949478479/LXWeibo/blob/screenshot/LXPlaceholderView.png)
 
 然后在自定义的`UITextField`子类`LXSearchField`的`awakeFromNib`方法中添加这个占位视图作为子控件:
 
@@ -50,7 +50,7 @@
 
 如图:
 
-![]()
+![](https://github.com/949478479/LXWeibo/blob/screenshot/LXSearchField.png)
 
 然后重写`becomeFirstResponder`和`resignFirstResponder`两个方法,在激活和注销搜索框时,执行占位视图的动画:
 

@@ -1,0 +1,136 @@
+# 搜索框的实现
+
+#[]()
+
+系统自带的`UISearchBar`加了背景图片后非常难看,而新浪提供了放大镜小图标,于是使用`UITextField`做了个搜索框.
+
+原生的`UISearchBar`自带一个小动画效果,为了模仿这个效果,最开始的思路是对`leftView`做动画.
+
+但是占位文字也是动画的,这个就不知道怎么搞了.于是自定义了一个`UIView`,作为占位视图:
+
+![]()
+
+然后在自定义的`UITextField`子类`LXSearchField`的`awakeFromNib`方法中添加这个占位视图作为子控件:
+
+```objective-c
+#pragma mark - 安装自定义的 PlaceholderView
+
+- (void)configurePlaceholderView
+{
+    LXPlaceholderView *placeholderView = [LXPlaceholderView lx_instantiateFromNib];
+    {
+        placeholderView.placeholderLabel.text = _placeholder;
+        [self addSubview:placeholderView];
+        _placeholderView = placeholderView;
+    }
+
+    {
+        placeholderView.translatesAutoresizingMaskIntoConstraints = NO;
+
+        NSInteger attributes[2] = { NSLayoutAttributeCenterX, NSLayoutAttributeCenterY };
+        
+        for (uint i = 0; i < 2; ++i) {
+            NSLayoutConstraint *centerConstraint =
+                [NSLayoutConstraint constraintWithItem:self
+                                             attribute:attributes[i]
+                                             relatedBy:NSLayoutRelationEqual
+                                                toItem:placeholderView
+                                             attribute:attributes[i]
+                                            multiplier:1
+                                              constant:0];
+            centerConstraint.active = YES;
+
+            if (i == 0) {
+                _centerXConstraint = centerConstraint;
+            }
+        }
+    }
+}
+```
+
+如图:
+
+![]()
+
+然后重写`becomeFirstResponder`和`resignFirstResponder`两个方法,在激活和注销搜索框时,执行占位视图的动画:
+
+```objective-c
+#pragma mark - PlaceholderView 动画
+
+- (void)animatePlaceholderView
+{
+    // 调整约束,让占位视图紧贴左侧或者居中.
+    _centerXConstraint.constant = self.isFirstResponder ?
+        (self.lx_width - _placeholderView.lx_width) / 2 : 0;
+
+    [UIView animateWithDuration:kLXAnimationDuration animations:^{
+        [self layoutIfNeeded];
+    }];
+}
+
+- (BOOL)becomeFirstResponder
+{
+    BOOL returnValue = [super becomeFirstResponder];
+
+    [self animatePlaceholderView];
+
+    return returnValue;
+}
+
+- (BOOL)resignFirstResponder
+{
+    BOOL returnValue = [super resignFirstResponder];
+    
+    // 搜索框有内容时,注销响应者时不要执行动画.即让放大镜图标保持在左侧.
+    if (!self.hasText) {
+        [self animatePlaceholderView];
+    }
+
+    return returnValue;
+}
+```
+
+如果点击位置在占位视图,搜索框是无法激活的,因此需要关闭占位视图的交互,将点击事件"漏"给搜索框:
+
+```objective-c
+_placeholderView.userInteractionEnabled = NO;
+```
+
+同时,还需要对`UIControlEventEditingChanged`事件进行监听,一旦输入了内容,就隐藏占位文字:
+
+```objective-c
+#pragma mark - 监听输入情况
+
+- (void)searchFieldEditingChanged:(UITextField *)sender
+{
+    _placeholderView.placeholderLabel.hidden = sender.hasText;
+}
+```
+
+这时候点击搜索框,可以看到动画什么的都搞定了,但是输入光标依旧紧贴在最左侧.
+
+`UITextField`提供了几个方法改变内部区域的位置,这里实现`textRectForBounds:`和`editingRectForBounds:`方法:
+
+```objective-c
+#pragma mark - 调整内部输入区域 frame
+
+- (CGRect)adjustRectForBounds:(CGRect)bounds
+{
+    CGFloat offsetX = _placeholderView.placeholderLabel.lx_originX;
+    bounds.origin.x   += offsetX; // 原点向右偏移到占位文字开始处.
+    bounds.size.width -= offsetX; // 由于原点偏移,因此宽度需去掉偏移量,否则右侧会超出.
+    return bounds;
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds
+{
+    return [self adjustRectForBounds:[super textRectForBounds:bounds]];
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds
+{
+    return [self adjustRectForBounds:[super textRectForBounds:bounds]];
+}
+```
+
+最后还有个诡异的问题一直没解决.最开始设置搜索框距离屏幕两侧各 8 点.结果发现一旦输入文字超过搜索框范围后,第一次注销响应者时,搜索框会神奇地变宽,变成距离屏幕两侧各 8 点.试了下直接设置成距离屏幕两侧各 8 点就不会再额外变宽了.

@@ -99,4 +99,17 @@
     return [[self class] lx_variables];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 调试
+
+- (NSString *)lx_description
+{
+    NSMutableDictionary *varInfo = [NSMutableDictionary new];
+    for (NSString *varName in self.lx_variables) {
+        varInfo[varName] = [self valueForKey:varName] ?: [NSNull null];
+    }
+    return [NSString stringWithFormat:@"<%@: %p>\n%@", self.class, self, varInfo];
+}
+
 @end

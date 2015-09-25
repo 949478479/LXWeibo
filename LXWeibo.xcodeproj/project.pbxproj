@@ -33,6 +33,8 @@
 		1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1889A0BC1BB3D82400060A9A /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C01BB3D85000060A9A /* LXTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C91BB4096C00060A9A /* LXTabBarController.m */; settings = {ASSET_TAGS = (); }; };
+		1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0CC1BB40DE100060A9A /* LXTitleButton.m */; settings = {ASSET_TAGS = (); }; };
+		18EBB41D1BB5457C00CD4BA4 /* LXMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB41C1BB5457C00CD4BA4 /* LXMulticastDelegate.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,10 @@
 		1889A0C01BB3D85000060A9A /* LXTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBar.m; sourceTree = "<group>"; };
 		1889A0C81BB4096C00060A9A /* LXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTabBarController.h; sourceTree = "<group>"; };
 		1889A0C91BB4096C00060A9A /* LXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBarController.m; sourceTree = "<group>"; };
+		1889A0CB1BB40DE100060A9A /* LXTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXTitleButton.h; path = LXWeibo/Main/Home/View/LXTitleButton.h; sourceTree = SOURCE_ROOT; };
+		1889A0CC1BB40DE100060A9A /* LXTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXTitleButton.m; path = LXWeibo/Main/Home/View/LXTitleButton.m; sourceTree = SOURCE_ROOT; };
+		18EBB41B1BB5457C00CD4BA4 /* LXMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMulticastDelegate.h; sourceTree = "<group>"; };
+		18EBB41C1BB5457C00CD4BA4 /* LXMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMulticastDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +330,8 @@
 				18706E271BB245A200F12441 /* UIView+LXExtension.m */,
 				18706E341BB245B800F12441 /* UIColor+LXExtension.h */,
 				18706E351BB245B800F12441 /* UIColor+LXExtension.m */,
+				18EBB41B1BB5457C00CD4BA4 /* LXMulticastDelegate.h */,
+				18EBB41C1BB5457C00CD4BA4 /* LXMulticastDelegate.m */,
 			);
 			path = "LXExtension ";
 			sourceTree = "<group>";
@@ -386,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				1889A0BA1BB3D08800060A9A /* PopoverView */,
+				1889A0CE1BB40E0B00060A9A /* TitleButton */,
 			);
 			name = View;
 			path = Controller/View;
@@ -424,6 +433,15 @@
 				1889A0C91BB4096C00060A9A /* LXTabBarController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		1889A0CE1BB40E0B00060A9A /* TitleButton */ = {
+			isa = PBXGroup;
+			children = (
+				1889A0CB1BB40DE100060A9A /* LXTitleButton.h */,
+				1889A0CC1BB40DE100060A9A /* LXTitleButton.m */,
+			);
+			name = TitleButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,12 +523,14 @@
 				18706E281BB245A200F12441 /* NSObject+DLIntrospection.m in Sources */,
 				18706E2D1BB245A200F12441 /* NSObject+LXExtension.m in Sources */,
 				18706E011BB23BDA00F12441 /* main.m in Sources */,
+				1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */,
 				18706E2E1BB245A200F12441 /* NSString+LXExtension.m in Sources */,
 				1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */,
 				18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */,
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
 				1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */,
 				18706E2C1BB245A200F12441 /* NSNotificationCenter+LXExtension.m in Sources */,
+				18EBB41D1BB5457C00CD4BA4 /* LXMulticastDelegate.m in Sources */,
 				18706E331BB245A200F12441 /* UIView+LXExtension.m in Sources */,
 				1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */,
 				18706E321BB245A200F12441 /* UITextField+LXExtension.m in Sources */,

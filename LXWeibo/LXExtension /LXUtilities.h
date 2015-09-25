@@ -25,6 +25,8 @@
 #import "NSNotificationCenter+LXExtension.h"
 //#import "MBProgressHUD+LXExtension.h"
 
+#import "LXMulticastDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 ///------------------------------------------------------------------------------------------------
@@ -153,7 +155,7 @@ _Pragma("clang diagnostic pop")
 /**
  *  生成单例接口的宏.
  *
- *  单例使用 dispatch_once 函数实现,限制了 +allocWithZone: 和 -copyWithZone: 方法.
+ *  单例使用 dispatch_once 函数实现,禁用了 +allocWithZone: 和 -copyWithZone: 方法.
  *
  *  @param methodName 单例方法名.
  */
@@ -174,13 +176,15 @@ sharedInstance = [[super allocWithZone:NULL] init]; \
 return sharedInstance; \
 } \
 \
-+ (instancetype)allocWithZone:(struct _NSZone *)zone \
++ (instancetype)allocWithZone:(__unused struct _NSZone *)zone \
 { \
+NSAssert(NO, @"使用单例方法直接获取单例,不要另行创建单例."); \
 return [self methodName]; \
 } \
 \
-- (id)copyWithZone:(NSZone *)zone \
+- (id)copyWithZone:(__unused NSZone *)zone \
 { \
+NSAssert(NO, @"使用单例方法直接获取单例,不要另行创建单例."); \
 return self; \
 }
 

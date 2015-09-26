@@ -6,8 +6,8 @@
 
 前提是开启`Size Class`选项,否则连线时没有`popover presentation`的选项.下面两图分别是未开启和开启的情况:
 
-![]()
-![]()
+![](https://github.com/949478479/LXWeibo/blob/screenshot/SegueWithoutSizeClass.png)
+![](https://github.com/949478479/LXWeibo/blob/screenshot/SegueWithSizeClass.png)
 
 然后可以在`prepareForSegue:sender:`方法里拿到目标控制器,设置其`popoverPresentationController`的`delegate`:
 

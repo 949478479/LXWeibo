@@ -40,24 +40,24 @@ NS_ASSUME_NONNULL_BEGIN
 ///------------------------------------------------------------------------------------------------
 
 /**
- *  返回 UINib 对象.即 [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil].
+ *  返回 @c UINib 对象.即 @c [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil].
  */
 + (UINib *)lx_nib;
 
 /**
- *  返回类名字符串.即 NSStringFromClass([self class]).
+ *  返回类名字符串.即 @c NSStringFromClass([self class]).
  */
 + (NSString *)lx_nibName;
 
 /**
- *  根据同名 xib 文件实例化视图.即 [self lx_instantiateFromNibWithOwner:nil options:nil].
+ *  使用和类名同名的 @c xib 文件实例化视图.
  *
  *  @see +lx_instantiateFromNibWithOwner:options:
  */
 + (instancetype)lx_instantiateFromNib;
 
 /**
- *  根据同名 xib 文件实例化视图.即 [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil].
+ *  使用和类名同名的 @c xib 文件实例化视图.
  */
 + (instancetype)lx_instantiateFromNibWithOwner:(nullable id)ownerOrNil
                                        options:(nullable NSDictionary *)optionsOrNil;

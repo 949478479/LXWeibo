@@ -16,8 +16,8 @@
 
 - (CGRect)lx_boundingRectWithSize:(CGSize)size font:(UIFont *)font
 {
-    NSAssert(font, @"font 为 nil.");
-    NSAssert(size.width && size.height, @"不合法的参数 size => %@", NSStringFromCGSize(size));
+    NSAssert(font, @"参数 font 为 nil.");
+    NSAssert(size.width && size.height, @"参数 size 的宽高必须大于 0. => %@", NSStringFromCGSize(size));
 
     CGRect rect = [self boundingRectWithSize:size
                                      options:NSStringDrawingUsesLineFragmentOrigin

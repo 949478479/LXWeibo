@@ -18,13 +18,31 @@
                   name:(nullable NSString *)aName
                 object:(nullable id)anObject
 {
-    NSAssert(observer, @"参数 observer 为 nil.");
-    NSAssert(aSelector, @"参数 aSelector 为 nil.");
-
     [[self defaultCenter] addObserver:observer
                              selector:aSelector
                                  name:aName
                                object:anObject];
+}
+
++ (id <NSObject>)lx_addObserverForName:(nullable NSString *)name
+                                object:(nullable id)obj
+                            usingBlock:(void (^)(NSNotification *note))block
+{
+    return [self lx_addObserverForName:name
+                                object:obj
+                                 queue:[NSOperationQueue mainQueue]
+                            usingBlock:block];
+}
+
++ (id <NSObject>)lx_addObserverForName:(nullable NSString *)name
+                                object:(nullable id)obj
+                                 queue:(nullable NSOperationQueue *)queue
+                            usingBlock:(void (^)(NSNotification *note))block
+{
+    return [[self defaultCenter] addObserverForName:name
+                                             object:obj
+                                              queue:queue
+                                         usingBlock:block];
 }
 
 + (void)lx_addObserverForKeyboardShowAndHide:(id)observer
@@ -48,18 +66,30 @@
 
 + (void)lx_removeObserver:(id)observer
 {
-    NSAssert(observer, @"参数 observer 为 nil.");
-
     [[self defaultCenter] removeObserver:observer];
 }
 
 + (void)removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject
 {
-    NSAssert(observer, @"参数 observer 为 nil.");
-    
     [[self defaultCenter] removeObserver:observer
                                     name:aName
                                   object:anObject];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 发送通知
+
++ (void)lx_postNotificationName:(NSString *)aName object:(nullable id)anObject
+{
+    [[self defaultCenter] postNotificationName:aName object:anObject];
+}
+
++ (void)lx_postNotificationName:(NSString *)aName
+                         object:(nullable id)anObject
+                       userInfo:(nullable NSDictionary *)aUserInfo
+{
+    [[self defaultCenter] postNotificationName:aName object:anObject userInfo:aUserInfo];
 }
 
 @end

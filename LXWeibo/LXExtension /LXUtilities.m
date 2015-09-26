@@ -60,6 +60,19 @@ UIWindow * LXTopWindow()
     return topWindow;
 }
 
+UIViewController * LXTopViewController()
+{
+    UIViewController *rootVC = LXKeyWindow().rootViewController;
+    UIViewController *topVC  = rootVC.presentedViewController;
+
+    return topVC ?: rootVC;
+}
+
+BOOL LXDeviceIsPad()
+{
+    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - runtime

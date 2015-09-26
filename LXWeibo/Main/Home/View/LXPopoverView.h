@@ -19,10 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXPopoverView : UIView
 
-@property (nonatomic, strong) UIView *contentView;
-@property (nullable, nonatomic, strong) UIViewController *contentVC;
+@property (nonatomic, readonly, strong) UIView *contentView;
 
-@property (nullable, nonatomic, copy) NSArray<UIView *> *passthroughViews;
+@property (nullable, nonatomic, readonly, strong) UIViewController *contentVC;
+
+@property (nullable, nonatomic, copy) NSArray<__kindof UIView *> *passthroughViews;
 
 @property (nullable, nonatomic, weak) id<LXPopoverViewDelegate> delegate;
 

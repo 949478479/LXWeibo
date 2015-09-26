@@ -12,17 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIStoryboard (LXExtension)
 
 /**
- *  设置主窗口的根控制器为指定的 storyboard 中的 initial 控制器.
+ *  设置主窗口的根控制器为指定的 @c storyboard 中的 @c initial 控制器.
  *
- *  @param storyboardName storyboard 文件名称.
+ *  @param storyboardName @c storyboard 文件名称.
  */
 + (void)lx_showInitialVCWithStoryboardName:(NSString *)storyboardName;
 
 /**
- *  实例化指定的 storyboard 中对应 identifier 的控制器.
+ *  实例化指定的 @c storyboard 中对应 @c identifier 的控制器.
  *
- *  @param storyboardName storyboard 文件名称.
- *  @param identifier     控制器的 identifier. 若传 nil, 则实例化 storyboard 中的 initial 控制器.
+ *  @param storyboardName @c storyboard 文件名称.
+ *  @param identifier     控制器的 @c identifier. 若传 @c nil, 则实例化 @c storyboard 中的 @c initial 控制器.
  *
  *  @return 实例化的控制器实例.
  */

@@ -11,16 +11,38 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (LXExtension)
 
-/**
- *  缩放图片到目标尺寸(非等比例).
- */
-- (UIImage *)lx_resizedImageWithTargetSize:(CGSize)targetSize;
+///------------------------------------------------------------------------------------------------
+/// @name 图片缩放
+///------------------------------------------------------------------------------------------------
 
 /**
- *  返回图片用 UIViewContentModeScaleAspectFit 模式适应 boundingRect 的图片的 frame.
+ *  缩放图片到目标尺寸.
+ *
+ *  @param targetSize  目标尺寸.若模式为 @c UIViewContentModeScaleAspectFit, 则最终图片尺寸可能和目标尺寸不同,即不包括未填充区域.
+ *  @param contentMode 缩放模式.支持 @c UIViewContentModeScaleAspectFit 或 @c UIViewContentModeScaleAspectFill. 若指定其它值,则按 @c UIViewContentModeScaleToFill 处理.
+ */
+- (UIImage *)lx_resizedImageWithTargetSize:(CGSize)targetSize
+                               contentMode:(UIViewContentMode)contentMode;
+
+/**
+ *  返回图片根据 @c UIViewContentModeScaleAspectFit 模式适应 @c boundingRect 的 frame.
  */
 - (CGRect)lx_rectForScaleAspectFitInsideBoundingRect:(CGRect)boundingRect;
 
+///------------------------------------------------------------------------------------------------
+/// @name 图片裁剪
+///------------------------------------------------------------------------------------------------
+
+/**
+ *  生成带边框的圆形图片.图片最终尺寸为裁剪尺寸加上二倍边框宽度.
+ *
+ *  @param bounds      相对于图片的裁剪区域.宽高必须相等且大于 @c 0.
+ *  @param borderWidth 边框宽度.不能是负数.若传入 @c 0, 则无边框.
+ *  @param borderColor 边框颜色.若传入 @c nil, 则为不透明黑色.
+ */
+- (UIImage *)lx_roundedImageWithBounds:(CGRect)bounds
+                           borderWidth:(CGFloat)borderWidth
+                           borderColor:(nullable UIColor *)borderColor;
 @end
 
 NS_ASSUME_NONNULL_END

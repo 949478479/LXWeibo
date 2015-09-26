@@ -36,7 +36,7 @@
     return self;
 }
 
-#pragma mark - 添加/移除代理
+#pragma mark - 添加/移除代理成员
 
 - (void)addDelegate:(id)delegate
 {

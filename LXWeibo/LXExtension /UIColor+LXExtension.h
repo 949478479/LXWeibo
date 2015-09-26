@@ -16,22 +16,22 @@ NS_ASSUME_NONNULL_BEGIN
 ///------------------------------------------------------------------------------------------------
 
 /**
- *  用十六进制的颜色值创建颜色.例如,传入 0xFFFFFF 将创建白色.
+ *  用十六进制的颜色值创建透明度为 @c 1 的 @c UIColor.例如,传入 @c 0xFFFFFF 将创建白色.
  */
 + (instancetype)lx_colorWithHex:(NSUInteger)hex;
 
 /**
- *  用十六进制的颜色值创建颜色.例如,传入 0xFFFFFF 将创建白色.
+ *  用十六进制的颜色值创建透明度为 @c 0~1 的 @c UIColor.例如,传入 @c 0xFFFFFF 将创建白色.
  */
 + (instancetype)lx_colorWithHex:(NSUInteger)hex alpha:(CGFloat)alpha;
 
 /**
- *  用十六进制的颜色值字符串创建颜色.例如,传入 @"#FFFFFF" 或 @"FFFFFF" 将创建白色.
+ *  用十六进制的颜色值字符串创建透明度为 @c 1 的 @c UIColor.例如,传入 @c @"#FFFFFF" 或 @c @"FFFFFF" 将创建白色.
  */
 + (instancetype)lx_colorWithHexString:(NSString *)hexString;
 
 /**
- *  用十六进制的颜色值字符串创建颜色.例如,传入 @"#FFFFFF" 或 @"FFFFFF" 将创建白色.
+ *  用十六进制的颜色值字符串创建透明度为 @c 0~1 的 @c UIColor.例如,传入 @c @"#FFFFFF" 或 @c @"FFFFFF" 将创建白色.
  */
 + (instancetype)lx_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///------------------------------------------------------------------------------------------------
 
 /**
- *  获取 alpha 值为 1 的随机色.
+ *  生成 @c alpha 为 @c 1 的随机色.
  */
 + (instancetype)lx_randomColor;
 

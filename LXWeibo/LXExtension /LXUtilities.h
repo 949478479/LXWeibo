@@ -25,7 +25,8 @@
 #import "NSNotificationCenter+LXExtension.h"
 //#import "MBProgressHUD+LXExtension.h"
 
-#import "LXMulticastDelegate.h"
+//#import "LXImagePicker.h"
+//#import "LXMulticastDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -47,6 +48,10 @@ AppDelegate * LXAppDelegate();
 
 UIWindow * LXKeyWindow();
 UIWindow * LXTopWindow();
+
+UIViewController * LXTopViewController();
+
+BOOL LXDeviceIsPad();
 
 ///------------------------------------------------------------------------------------------------
 /// @name 方法交换

@@ -34,6 +34,7 @@
 		1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C01BB3D85000060A9A /* LXTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C91BB4096C00060A9A /* LXTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0CC1BB40DE100060A9A /* LXTitleButton.m */; settings = {ASSET_TAGS = (); }; };
+		18E6273C1BB67BCC00BA2E9D /* LXImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E6273B1BB67BCC00BA2E9D /* LXImagePicker.m */; settings = {ASSET_TAGS = (); }; };
 		18EBB41D1BB5457C00CD4BA4 /* LXMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB41C1BB5457C00CD4BA4 /* LXMulticastDelegate.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		1889A0C91BB4096C00060A9A /* LXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBarController.m; sourceTree = "<group>"; };
 		1889A0CB1BB40DE100060A9A /* LXTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXTitleButton.h; path = LXWeibo/Main/Home/View/LXTitleButton.h; sourceTree = SOURCE_ROOT; };
 		1889A0CC1BB40DE100060A9A /* LXTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXTitleButton.m; path = LXWeibo/Main/Home/View/LXTitleButton.m; sourceTree = SOURCE_ROOT; };
+		18E6273A1BB67BCC00BA2E9D /* LXImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXImagePicker.h; sourceTree = "<group>"; };
+		18E6273B1BB67BCC00BA2E9D /* LXImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXImagePicker.m; sourceTree = "<group>"; };
 		18EBB41B1BB5457C00CD4BA4 /* LXMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMulticastDelegate.h; sourceTree = "<group>"; };
 		18EBB41C1BB5457C00CD4BA4 /* LXMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMulticastDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -332,6 +335,8 @@
 				18706E351BB245B800F12441 /* UIColor+LXExtension.m */,
 				18EBB41B1BB5457C00CD4BA4 /* LXMulticastDelegate.h */,
 				18EBB41C1BB5457C00CD4BA4 /* LXMulticastDelegate.m */,
+				18E6273A1BB67BCC00BA2E9D /* LXImagePicker.h */,
+				18E6273B1BB67BCC00BA2E9D /* LXImagePicker.m */,
 			);
 			path = "LXExtension ";
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				1889A0B71BB3A4A100060A9A /* LXPopoverView.m in Sources */,
 				18706E301BB245A200F12441 /* UIImage+LXExtension.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
+				18E6273C1BB67BCC00BA2E9D /* LXImagePicker.m in Sources */,
 				18706E2F1BB245A200F12441 /* UIButton+LXExtension.m in Sources */,
 				181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */,
 				181A15121BB2927400D2A53D /* LXSearchField.m in Sources */,

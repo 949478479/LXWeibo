@@ -12,7 +12,7 @@
 
 + (void)lx_showInitialVCWithStoryboardName:(NSString *)storyboardName
 {
-    NSAssert(storyboardName.length > 0, @"storyboardName 为 nil 或空字符串.");
+    NSAssert(storyboardName.length > 0, @"参数 storyboardName 为 nil 或空字符串.");
 
     UIStoryboard *storyboard = [self storyboardWithName:storyboardName bundle:nil];
 
@@ -24,7 +24,7 @@
 + (__kindof UIViewController *)lx_instantiateInitialVCWithStoryboardName:(NSString *)storyboardName
                                                               identifier:(NSString *)identifier
 {
-    NSAssert(storyboardName.length > 0, @"storyboardName 为 nil 或空字符串.");
+    NSAssert(storyboardName.length > 0, @"参数 storyboardName 为 nil 或空字符串.");
 
     UIStoryboard *storyboard = [self storyboardWithName:storyboardName bundle:nil];
 

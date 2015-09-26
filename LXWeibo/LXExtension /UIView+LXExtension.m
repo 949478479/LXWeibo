@@ -150,7 +150,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - Nib
+#pragma mark - Nib 相关方法
 
 + (UINib *)lx_nib
 {
@@ -182,25 +182,31 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - 获取所在的控制器
+#pragma mark - 获取视图所属的控制器
 
 - (nullable __kindof UIViewController *)lx_viewController
 {
     UIResponder *nextResponder = [self nextResponder];
+
     while (nextResponder &&
            (![nextResponder isKindOfClass:[UIViewController class]] ||
-           [nextResponder isKindOfClass:[UINavigationController class]])) {
+           [nextResponder isKindOfClass:[UINavigationController class]]))
+    {
         nextResponder = nextResponder.nextResponder;
     }
+
     return (UIViewController *)nextResponder;
 }
 
 - (nullable __kindof UINavigationController *)lx_navigationController
 {
     UIResponder *nextResponder = [self nextResponder];
-    while (nextResponder && ![nextResponder isKindOfClass:[UINavigationController class]]) {
+
+    while (nextResponder && ![nextResponder isKindOfClass:[UINavigationController class]])
+    {
         nextResponder = nextResponder.nextResponder;
     }
+
     return (UINavigationController *)nextResponder;
 }
 

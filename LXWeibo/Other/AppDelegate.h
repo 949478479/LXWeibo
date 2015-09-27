@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString * const LXAppKey;
+extern NSString * const LXAppSecret;
+
 extern NSString * const LXVersionString;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

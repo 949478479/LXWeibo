@@ -8,6 +8,10 @@
 
 #import "LXUtilities.h"
 #import "AppDelegate.h"
+#import "LXOAuthInfoManager.h"
+
+NSString * const LXAppKey    = @"2547705806";
+NSString * const LXAppSecret = @"9eede02b85f083f300041d776a8c5118";
 
 NSString * const LXVersionString = @"LXVersionString";
 
@@ -70,6 +74,11 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
 
 - (void)setupRootViewController
 {
+    if (![LXOAuthInfoManager OAuthInfo]) {
+        [UIStoryboard lx_showInitialVCWithStoryboardName:@"OAuth"];
+        return;
+    }
+
     NSString *currentVersionString = LXBundleShortVersionString();
     NSString *sandboxVersionString = [NSUserDefaults lx_stringForKey:LXVersionString];
 

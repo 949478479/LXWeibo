@@ -9,6 +9,8 @@
 #import "LXUtilities.h"
 #import "AppDelegate.h"
 
+NSString * const LXVersionString = @"LXVersionString";
+
 static const CGFloat kLXTabBarItemTitleFontSize    = 11;
 static const CGFloat kLXBarButtonItemTitleFontSize = 14;
 static const CGFloat kLXNavigationBarTitleFontSize = 18;
@@ -24,25 +26,60 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
 {
     [self configureAppearance];
 
+    [self setupRootViewController];
+
     return YES;
 }
 
+#pragma mark - 配置主题
+
 - (void)configureAppearance
 {
-    UITabBar *tabBar = [UITabBar appearance];
-    tabBar.tintColor = [UIColor lx_colorWithHexString:@"E66C0C"];
-
     UITabBarItem *tabBarItem = [UITabBarItem appearance];
-    [tabBarItem setTitleTextAttributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:kLXTabBarItemTitleFontSize] }
-                              forState:UIControlStateNormal];
+    {
+        NSDictionary *attributes = @{ NSFontAttributeName :
+                                          [UIFont systemFontOfSize:kLXTabBarItemTitleFontSize] };
 
-    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
-    barButtonItem.tintColor        = tabBar.tintColor;
-    [barButtonItem setTitleTextAttributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:kLXBarButtonItemTitleFontSize] }
-                                 forState:UIControlStateNormal];
+        [tabBarItem setTitleTextAttributes:attributes
+                                  forState:UIControlStateNormal];
+    }
 
-    UINavigationBar *navigationBar = [UINavigationBar appearance];
-    [navigationBar setTitleTextAttributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:kLXNavigationBarTitleFontSize] }];
+    UIBarButtonItem *barButtonItem  = [UIBarButtonItem appearance];
+    {
+        NSDictionary *attributes = @{ NSFontAttributeName :
+                                          [UIFont systemFontOfSize:kLXBarButtonItemTitleFontSize] };
+
+        barButtonItem.tintColor = [UIColor lx_colorWithHexString:@"E66C0C"];
+        [barButtonItem setTitleTextAttributes:attributes
+                                     forState:UIControlStateNormal];
+    }
+
+    UINavigationBar *navigationBar  = [UINavigationBar appearance];
+    {
+        NSDictionary *attributes = @{ NSFontAttributeName :
+                                          [UIFont systemFontOfSize:kLXNavigationBarTitleFontSize] };
+
+        [navigationBar setTitleTextAttributes:attributes];
+    }
+
+    UITabBar *tabBar = [UITabBar appearance];
+    tabBar.tintColor = barButtonItem.tintColor;
+}
+
+#pragma mark - 设置根控制器
+
+- (void)setupRootViewController
+{
+    NSString *currentVersionString = LXBundleShortVersionString();
+    NSString *sandboxVersionString = [NSUserDefaults lx_stringForKey:LXVersionString];
+
+    NSComparisonResult result = [sandboxVersionString compare:currentVersionString
+                                                      options:NSNumericSearch];;
+
+    NSString *storyboardName = (!sandboxVersionString || result == NSOrderedAscending) ?
+        @"NewFeature" : @"Main";
+
+    [UIStoryboard lx_showInitialVCWithStoryboardName:storyboardName];
 }
 
 @end

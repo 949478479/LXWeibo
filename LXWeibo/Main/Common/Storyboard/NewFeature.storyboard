@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="K6p-mf-JHY">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--New Feature View Controller-->
+        <scene sceneID="Ek8-JG-bAc">
+            <objects>
+                <collectionViewController id="K6p-mf-JHY" customClass="LXNewFeatureViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" id="sDK-Yz-XWx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ufe-J9-DGn">
+                            <size key="itemSize" width="320" height="568"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewFeatureCell" id="lvz-dM-p4Y" customClass="LXNewFeartureCell">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_feature_4" translatesAutoresizingMaskIntoConstraints="NO" id="MFb-97-lgu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSk-GU-Weq">
+                                            <rect key="frame" x="111" y="389" width="98" height="23"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <inset key="imageEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="分享给大家" image="new_feature_share_false">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="new_feature_share_true"/>
+                                            <connections>
+                                                <action selector="shareButtonDidTap:" destination="K6p-mf-JHY" eventType="touchUpInside" id="CBb-ng-rVa"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezP-QJ-fY0">
+                                            <rect key="frame" x="108" y="432" width="105" height="36"/>
+                                            <state key="normal" title="开始微博" backgroundImage="new_feature_finish_button"/>
+                                            <state key="highlighted" backgroundImage="new_feature_finish_button_highlighted"/>
+                                            <connections>
+                                                <action selector="startButtonDidTap:" destination="K6p-mf-JHY" eventType="touchUpInside" id="3Yr-Nq-ee1"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.74691611840000005" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="MFb-97-lgu" secondAttribute="trailing" id="1to-HE-IOh"/>
+                                    <constraint firstItem="ezP-QJ-fY0" firstAttribute="centerX" secondItem="lvz-dM-p4Y" secondAttribute="centerX" id="8Pv-sv-XdI"/>
+                                    <constraint firstItem="ezP-QJ-fY0" firstAttribute="top" secondItem="aSk-GU-Weq" secondAttribute="bottom" constant="20" id="JVW-OD-pux"/>
+                                    <constraint firstAttribute="bottom" secondItem="MFb-97-lgu" secondAttribute="bottom" id="MFe-Xb-W2r"/>
+                                    <constraint firstAttribute="bottom" secondItem="ezP-QJ-fY0" secondAttribute="bottom" constant="100" id="Oyy-ht-kwr"/>
+                                    <constraint firstItem="MFb-97-lgu" firstAttribute="top" secondItem="lvz-dM-p4Y" secondAttribute="top" id="k4K-an-bLP"/>
+                                    <constraint firstItem="MFb-97-lgu" firstAttribute="leading" secondItem="lvz-dM-p4Y" secondAttribute="leading" id="kW9-dH-iGj"/>
+                                    <constraint firstItem="aSk-GU-Weq" firstAttribute="centerX" secondItem="lvz-dM-p4Y" secondAttribute="centerX" id="mgj-Zk-yHw"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="MFb-97-lgu" id="dLC-qR-WpW"/>
+                                    <outlet property="shareButton" destination="aSk-GU-Weq" id="Se9-la-cgv"/>
+                                    <outlet property="startButton" destination="ezP-QJ-fY0" id="0OG-Q6-e0U"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="K6p-mf-JHY" id="azW-oM-TMS"/>
+                            <outlet property="delegate" destination="K6p-mf-JHY" id="8aB-5U-dHt"/>
+                        </connections>
+                    </collectionView>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k14-Ad-iIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256.5" y="435.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="new_feature_4" width="320" height="480"/>
+        <image name="new_feature_finish_button" width="105" height="36"/>
+        <image name="new_feature_finish_button_highlighted" width="105" height="36"/>
+        <image name="new_feature_share_false" width="23" height="23"/>
+        <image name="new_feature_share_true" width="23" height="23"/>
+    </resources>
+</document>

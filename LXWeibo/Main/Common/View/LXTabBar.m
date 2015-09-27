@@ -31,21 +31,21 @@
 
 - (void)configureComposeButton
 {
-    _composeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.composeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
-    _composeButton.lx_normalImage      = [UIImage imageNamed:@"tabbar_compose_icon_add"];
-    _composeButton.lx_highlightedImage = [UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"];
+    self.composeButton.lx_normalImage      = [UIImage imageNamed:@"tabbar_compose_icon_add"];
+    self.composeButton.lx_highlightedImage = [UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"];
 
-    _composeButton.lx_normalBackgroundImage      = [UIImage imageNamed:@"tabbar_compose_button"];
-    _composeButton.lx_highlightedBackgroundImage = [UIImage imageNamed:@"tabbar_compose_button_highlighted"];
+    self.composeButton.lx_normalBackgroundImage      = [UIImage imageNamed:@"tabbar_compose_button"];
+    self.composeButton.lx_highlightedBackgroundImage = [UIImage imageNamed:@"tabbar_compose_button_highlighted"];
 
-    [_composeButton addTarget:self
-                       action:@selector(composeButtonDidTapped:)
-             forControlEvents:UIControlEventTouchUpInside];
+    [self.composeButton addTarget:self
+                           action:@selector(composeButtonDidTapped:)
+                 forControlEvents:UIControlEventTouchUpInside];
 
-    [_composeButton sizeToFit];
+    [self.composeButton sizeToFit];
 
-    [self addSubview:_composeButton];
+    [self addSubview:self.composeButton];
 }
 
 #pragma mark - 调整布局
@@ -54,7 +54,7 @@
 {
     [super layoutSubviews];
 
-    _composeButton.center = CGPointMake(self.lx_width / 2, self.lx_height / 2);
+    self.composeButton.center = CGPointMake(self.lx_width / 2, self.lx_height / 2);
 
     NSUInteger index  = 0;
     CGFloat itemWidth = self.lx_width / 5;

@@ -14,6 +14,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#pragma mark - 版本号
+
+NSString * LXBundleVersionString()
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+}
+
+NSString * LXBundleShortVersionString()
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - 沙盒路径
 
 NSString * LXDocumentDirectory()
@@ -33,6 +47,15 @@ NSString * LXCachesDirectory()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#pragma mark - 设备信息
+
+BOOL LXDeviceIsPad()
+{
+    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - AppDelegate
 
 AppDelegate * LXAppDelegate()
@@ -40,7 +63,9 @@ AppDelegate * LXAppDelegate()
     return [UIApplication sharedApplication].delegate;
 }
 
-#pragma mark - 窗口
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 窗口和控制器
 
 UIWindow * LXKeyWindow()
 {
@@ -66,11 +91,6 @@ UIViewController * LXTopViewController()
     UIViewController *topVC  = rootVC.presentedViewController;
 
     return topVC ?: rootVC;
-}
-
-BOOL LXDeviceIsPad()
-{
-    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

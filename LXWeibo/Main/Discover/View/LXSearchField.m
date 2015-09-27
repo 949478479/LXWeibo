@@ -41,9 +41,9 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 {
     LXPlaceholderView *placeholderView = [LXPlaceholderView lx_instantiateFromNib];
     {
-        placeholderView.placeholderLabel.text = _placeholder;
+        placeholderView.placeholderLabel.text = self.placeholder;
         [self addSubview:placeholderView];
-        _placeholderView = placeholderView;
+        self.placeholderView = placeholderView;
     }
 
     {
@@ -63,7 +63,7 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
             centerConstraint.active = YES;
 
             if (i == 0) {
-                _centerXConstraint = centerConstraint;
+                self.centerXConstraint = centerConstraint;
             }
         }
     }
@@ -73,14 +73,14 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 
 - (void)searchFieldEditingChanged:(UITextField *)sender
 {
-    _placeholderView.placeholderLabel.hidden = sender.hasText;
+    self.placeholderView.placeholderLabel.hidden = sender.hasText;
 }
 
 #pragma mark - 调整内部输入区域 frame
 
 - (CGRect)adjustRectForBounds:(CGRect)bounds
 {
-    CGFloat offsetX = _placeholderView.placeholderLabel.lx_originX;
+    CGFloat offsetX = self.placeholderView.placeholderLabel.lx_originX;
     bounds.origin.x   += offsetX; // 原点向右偏移到占位文字开始处.
     bounds.size.width -= offsetX; // 由于原点偏移,因此宽度需去掉偏移量,否则右侧会超出.
     return bounds;
@@ -101,8 +101,8 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 - (void)animatePlaceholderView
 {
     // 调整约束,让占位视图紧贴左侧或者居中.
-    _centerXConstraint.constant = self.isFirstResponder ?
-        (self.lx_width - _placeholderView.lx_width) / 2 : 0;
+    self.centerXConstraint.constant = self.isFirstResponder ?
+        (self.lx_width - self.placeholderView.lx_width) / 2 : 0;
 
     [UIView animateWithDuration:kLXAnimationDuration animations:^{
         [self layoutIfNeeded];

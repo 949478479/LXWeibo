@@ -70,14 +70,14 @@
 {
     [self dismiss];
 
-    if ([_delegate respondsToSelector:@selector(popoverViewDidDismiss:)]) {
-        [_delegate popoverViewDidDismiss:self];
+    if ([self.delegate respondsToSelector:@selector(popoverViewDidDismiss:)]) {
+        [self.delegate popoverViewDidDismiss:self];
     }
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    for (UIView *view in _passthroughViews) {
+    for (UIView *view in self.passthroughViews) {
         if (CGRectContainsPoint(view.bounds, [self convertPoint:point toView:view])) {
             return nil;
         }
@@ -89,23 +89,23 @@
 
 - (void)presentFromView:(UIView *)view
 {
-    UIWindow *topWinodw = LXTopWindow();
+    UIWindow *keyWinodw = LXKeyWindow();
 
-    self.frame = topWinodw.bounds;
+    self.frame = keyWinodw.bounds;
 
-    [topWinodw addSubview:self];
+    [keyWinodw addSubview:self];
 
-    [self addSubview:_contentView];
+    [self addSubview:self.contentView];
 
     // 将 view 的坐标由本地坐标系转换到顶层窗口坐标系.
-    CGRect viewFrameInTopWinodw = [view convertRect:view.bounds toView:topWinodw];
+    CGRect viewFrameInKeyWinodw = [view convertRect:view.bounds toView:keyWinodw];
 
     // 宽度扩充 10 点,即两侧间距各 5 点.经多次试验,高度扩充 13 点,同时 _contentView 下移 2 点,效果比较好.
-    _backgroundView.bounds     = CGRectInset(_contentView.bounds, -10, -13);
-    _backgroundView.lx_centerX = CGRectGetMidX(viewFrameInTopWinodw);
-    _backgroundView.lx_originY = CGRectGetMaxY(viewFrameInTopWinodw);
+    self.backgroundView.bounds     = CGRectInset(self.contentView.bounds, -10, -13);
+    self.backgroundView.lx_centerX = CGRectGetMidX(viewFrameInKeyWinodw);
+    self.backgroundView.lx_originY = CGRectGetMaxY(viewFrameInKeyWinodw);
 
-    _contentView.center = CGPointMake(_backgroundView.lx_centerX, _backgroundView.lx_centerY + 2);
+    self.contentView.center = CGPointMake(self.backgroundView.lx_centerX, self.backgroundView.lx_centerY + 2);
 }
 
 - (void)dismiss

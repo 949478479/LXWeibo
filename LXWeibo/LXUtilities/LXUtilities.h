@@ -22,6 +22,7 @@
 #import "NSString+LXExtension.h"
 #import "UITextField+LXExtension.h"
 #import "UIStoryboard+LXExtension.h"
+#import "NSUserDefaults+LXExtension.h"
 #import "NSNotificationCenter+LXExtension.h"
 //#import "MBProgressHUD+LXExtension.h"
 
@@ -29,6 +30,13 @@
 //#import "LXMulticastDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+///------------------------------------------------------------------------------------------------
+/// @name 版本号
+///------------------------------------------------------------------------------------------------
+
+NSString * LXBundleVersionString();
+NSString * LXBundleShortVersionString();
 
 ///------------------------------------------------------------------------------------------------
 /// @name 沙盒路径
@@ -41,6 +49,12 @@ NSString * LXLibraryDirectory();
 NSString * LXCachesDirectory();
 
 ///------------------------------------------------------------------------------------------------
+/// @name 设备信息
+///------------------------------------------------------------------------------------------------
+
+BOOL LXDeviceIsPad();
+
+///------------------------------------------------------------------------------------------------
 /// @name 其他
 ///------------------------------------------------------------------------------------------------
 
@@ -50,8 +64,6 @@ UIWindow * LXKeyWindow();
 UIWindow * LXTopWindow();
 
 UIViewController * LXTopViewController();
-
-BOOL LXDeviceIsPad();
 
 ///------------------------------------------------------------------------------------------------
 /// @name 方法交换

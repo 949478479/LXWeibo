@@ -9,6 +9,8 @@
 @import UIKit;
 @class LXTabBar;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol LXTabBarDelegate <UITabBarDelegate>
 @optional
 - (void)tabBar:(LXTabBar *)tabBar didTappedComposeButton:(UIButton *)composeButton;
@@ -17,6 +19,8 @@
 
 @interface LXTabBar : UITabBar
 
-@property (nonatomic, weak) id<LXTabBarDelegate> delegate;
+@property (nullable, nonatomic, weak) id<LXTabBarDelegate> delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

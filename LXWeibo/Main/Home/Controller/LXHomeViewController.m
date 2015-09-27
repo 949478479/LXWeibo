@@ -29,8 +29,8 @@
     {
         sender.selected = NO;
 
-        [_popover dismiss];
-        _popover = nil;
+        [self.popover dismiss];
+        self.popover = nil;
     }
     else
     {
@@ -39,12 +39,12 @@
         UITableViewController *contentVC = [UITableViewController new];
         contentVC.view.lx_size = CGSizeMake(200, 300);
 
-        _popover = [[LXPopoverView alloc] initWithViewController:contentVC];
+        self.popover = [[LXPopoverView alloc] initWithViewController:contentVC];
 
-        _popover.delegate = self;
-        _popover.passthroughViews = @[_titleButton];
+        self.popover.delegate = self;
+        self.popover.passthroughViews = @[self.titleButton];
 
-        [_popover presentFromView:_titleButton];
+        [self.popover presentFromView:self.titleButton];
     }
 }
 
@@ -52,8 +52,8 @@
 
 - (void)popoverViewDidDismiss:(LXPopoverView *)popoverView
 {
-    _popover = nil;
-    _titleButton.selected = NO;
+    self.popover = nil;
+    self.titleButton.selected = NO;
 }
 
 @end

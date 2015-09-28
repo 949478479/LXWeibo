@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-@class LXOAuthInfo;
+#import "LXOAuthInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

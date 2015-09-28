@@ -95,6 +95,31 @@ UIViewController * LXTopViewController()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#pragma mark - GCD
+
+dispatch_source_t LXGCDTimer(NSTimeInterval interval,
+                             NSTimeInterval leeway,
+                             dispatch_block_t handler,
+                             dispatch_block_t cancelHandler)
+{
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, interval * NSEC_PER_SEC, leeway * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, handler);
+    if (cancelHandler) {
+        dispatch_source_set_cancel_handler(timer, cancelHandler);
+    }
+
+    return timer;
+}
+
+void LXGCDDelay(NSTimeInterval delayInSeconds, dispatch_block_t handler)
+{
+    dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(when, dispatch_get_main_queue(), handler);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - runtime
 
 void LXMethodSwizzling(Class cls, SEL originalSelector, SEL swizzledSelector)

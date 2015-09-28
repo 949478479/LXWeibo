@@ -7,7 +7,6 @@
 //
 
 #import "LXUtilities.h"
-#import "LXOAuthInfo.h"
 #import "LXOAuthInfoManager.h"
 
 @implementation LXOAuthInfoManager

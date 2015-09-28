@@ -55,15 +55,30 @@ NSString * LXCachesDirectory();
 BOOL LXDeviceIsPad();
 
 ///------------------------------------------------------------------------------------------------
-/// @name 其他
+/// @name AppDelegate
 ///------------------------------------------------------------------------------------------------
 
 AppDelegate * LXAppDelegate();
+
+///------------------------------------------------------------------------------------------------
+/// @name 窗口和控制器
+///------------------------------------------------------------------------------------------------
 
 UIWindow * LXKeyWindow();
 UIWindow * LXTopWindow();
 
 UIViewController * LXTopViewController();
+
+///------------------------------------------------------------------------------------------------
+/// @name GCD
+///------------------------------------------------------------------------------------------------
+
+dispatch_source_t LXGCDTimer(NSTimeInterval interval,
+                             NSTimeInterval leeway,
+                             dispatch_block_t handler,
+                             _Nullable dispatch_block_t cancelHandler);
+
+void LXGCDDelay(NSTimeInterval delayInSeconds, dispatch_block_t handler);
 
 ///------------------------------------------------------------------------------------------------
 /// @name 方法交换

@@ -12,11 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXOAuthInfo : NSObject <NSCoding>
 
-/**　access_token 的生命周期,单位是秒数. */
+/** access_token 的生命周期,单位是秒数. */
 @property (nonatomic, readonly, strong) NSNumber *expires_in;
+/** access_token 的创建时间. */
 @property (nonatomic, readonly, strong) NSDate   *created_time;
+/** 当前授权用户的 UID. */
 @property (nonatomic, readonly, copy)   NSString *uid;
+/** access_token . */
 @property (nonatomic, readonly, copy)   NSString *access_token;
+/** 用户昵称. */
+@property (nonatomic, readonly, copy)   NSString *name;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict NS_DESIGNATED_INITIALIZER;
 

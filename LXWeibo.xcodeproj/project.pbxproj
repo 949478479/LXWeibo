@@ -22,6 +22,9 @@
 		1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C91BB4096C00060A9A /* LXTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0CC1BB40DE100060A9A /* LXTitleButton.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D511BBA1D3E00745192 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
+		18D22D561BBA6FB000745192 /* LXRetweetedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */; settings = {ASSET_TAGS = (); }; };
+		18D22D571BBA6FB000745192 /* LXRetweetedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
+		18D22D591BBA716700745192 /* LXOriginalStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D581BBA716700745192 /* LXOriginalStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
 		18DE61421BB775990048388C /* LXNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61411BB775990048388C /* LXNewFeatureViewController.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61451BB775F00048388C /* LXNewFeartureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61441BB775F00048388C /* LXNewFeartureCell.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61711BB790720048388C /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61521BB790720048388C /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
@@ -134,6 +137,10 @@
 		1889A0CC1BB40DE100060A9A /* LXTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXTitleButton.m; path = LXWeibo/Main/Home/View/LXTitleButton.m; sourceTree = SOURCE_ROOT; };
 		18D22D501BBA1D3E00745192 /* LXPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhoto.h; sourceTree = "<group>"; };
 		18D22D511BBA1D3E00745192 /* LXPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhoto.m; sourceTree = "<group>"; };
+		18D22D531BBA6FB000745192 /* LXRetweetedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXRetweetedStatusCell.h; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.h; sourceTree = SOURCE_ROOT; };
+		18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXRetweetedStatusCell.m; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.m; sourceTree = SOURCE_ROOT; };
+		18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXRetweetedStatusCell.xib; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.xib; sourceTree = SOURCE_ROOT; };
+		18D22D581BBA716700745192 /* LXOriginalStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXOriginalStatusCell.xib; sourceTree = SOURCE_ROOT; };
 		18DE61401BB775990048388C /* LXNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNewFeatureViewController.h; sourceTree = "<group>"; };
 		18DE61411BB775990048388C /* LXNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNewFeatureViewController.m; sourceTree = "<group>"; };
 		18DE61431BB775F00048388C /* LXNewFeartureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNewFeartureCell.h; sourceTree = "<group>"; };
@@ -883,6 +890,10 @@
 			children = (
 				18EB25901BB9368E009D9505 /* LXOriginalStatusCell.h */,
 				18EB25911BB9368E009D9505 /* LXOriginalStatusCell.m */,
+				18D22D581BBA716700745192 /* LXOriginalStatusCell.xib */,
+				18D22D531BBA6FB000745192 /* LXRetweetedStatusCell.h */,
+				18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */,
+				18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */,
 			);
 			name = StatusCell;
 			sourceTree = "<group>";
@@ -1016,6 +1027,8 @@
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
 				18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */,
 				18EB258B1BB91914009D9505 /* MJRefresh.bundle in Resources */,
+				18D22D591BBA716700745192 /* LXOriginalStatusCell.xib in Resources */,
+				18D22D571BBA6FB000745192 /* LXRetweetedStatusCell.xib in Resources */,
 				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
 				18DE61731BB790720048388C /* MBProgressHUD.bundle in Resources */,
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
@@ -1109,6 +1122,7 @@
 				18DE61451BB775F00048388C /* LXNewFeartureCell.m in Sources */,
 				18F014821BB7E930005C47F7 /* MJProperty.m in Sources */,
 				18EB24621BB8EA37009D9505 /* SDWebImagePrefetcher.m in Sources */,
+				18D22D561BBA6FB000745192 /* LXRetweetedStatusCell.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
 				181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */,
 				18EB258A1BB91914009D9505 /* MJRefreshStateHeader.m in Sources */,

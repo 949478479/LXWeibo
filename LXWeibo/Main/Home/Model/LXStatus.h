@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**	微博来源. */
 @property (nonatomic, readonly, copy) NSString *source;
 
+/** 被转发的微博. */
+@property (nullable, nonatomic, readonly, strong) LXStatus *retweeted_status;
+
 @end
 
 NS_ASSUME_NONNULL_END

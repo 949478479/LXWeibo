@@ -14,20 +14,25 @@
 #import "AFNetworking.h"
 #import "LXPopoverView.h"
 #import "LXOAuthInfoManager.h"
+#import "LXOriginalStatusCell.h"
 #import "LXHomeViewController.h"
 #import "UIImageView+WebCache.h"
 
-static NSString * const kLXStatusCellIdentifier = @"kLXStatusCellIdentifier";
-static NSString * const kLXUserInfoURLString    = @"https://api.weibo.com/2/users/show.json";
-static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/statuses/home_timeline.json";
+static NSString * const kLXOriginalStatusCellIdentifier = @"LXOriginalStatusCell";
+static NSString * const kLXUserInfoURLString            = @"https://api.weibo.com/2/users/show.json";
+static NSString * const kLXHomeStatusURLString          = @"https://api.weibo.com/2/statuses/home_timeline.json";
+static NSString * const kLXUnreadCountURLString         = @"https://rm.api.weibo.com/2/remind/unread_count.json";
 
 @interface LXHomeViewController () <LXPopoverViewDelegate>
 
 @property (nonatomic, strong) LXPopoverView *popover;
-
 @property (nonatomic, weak) IBOutlet UIButton *titleButton;
 
 @property (nonatomic, strong) NSMutableArray<LXStatus *> *statuses;
+@property (nonatomic, strong) NSMutableArray *rowHeightCache;
+@property (nonatomic, strong) LXOriginalStatusCell *templateCell;
+
+@property (nonatomic, strong) dispatch_source_t timer;
 
 @end
 
@@ -42,6 +47,12 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
     [self setupRefreshControl];
 
     [self.tableView.header beginRefreshing];
+
+    __weak __typeof(self) weakSelf = self;
+    self.timer = LXGCDTimer(60, 30, ^{
+        [weakSelf setupUnreadCount];
+    }, nil);
+    dispatch_resume(self.timer);
 }
 
 - (void)setupTitle
@@ -58,7 +69,7 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
                                          success:
      ^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary * _Nonnull responseObject) {
 
-         LXLog(@"请求完成!");
+         LXLog(@"加载用户昵称请求完成!");
 
          NSString *name = responseObject[@"name"];
 
@@ -73,7 +84,7 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
          }
          
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"%@", error);
+         LXLog(@"加载用户昵称请求出错\n%@", error);
      }];
 }
 
@@ -99,17 +110,28 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
                                          success:
      ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
-         LXLog(@"微博请求完成!");
+         LXLog(@"加载微博请求完成!");
 
-         NSArray *statuses = responseObject[@"statuses"];
-         NSMutableArray *moreStatuses = [LXStatus objectArrayWithKeyValuesArray:statuses];
+         NSArray *statusDictionaries  = responseObject[@"statuses"];
+         NSMutableArray *moreStatuses = [LXStatus objectArrayWithKeyValuesArray:statusDictionaries];
+
+         NSMutableArray *indexPaths = [NSMutableArray new];
+         {
+             NSInteger startIndex = self.statuses.count;
+             NSInteger endIndex   = startIndex + statusDictionaries.count - 1;
+             for (NSInteger row = startIndex; row <= endIndex; ++row) {
+                 [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
+             }
+         }
+
          [self.statuses addObjectsFromArray:moreStatuses];
 
          [self.tableView.footer endRefreshing];
-         [self.tableView reloadData];
+         [self.tableView insertRowsAtIndexPaths:indexPaths
+                               withRowAnimation:UITableViewRowAnimationNone];
 
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"%@", error);
+         LXLog(@"加载微博请求出错\n%@", error);
      }];
 }
 
@@ -125,26 +147,35 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
                                          success:
      ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
-         LXLog(@"微博请求完成!");
+         LXLog(@"加载微博请求完成!");
 
-         NSArray *statuses = responseObject[@"statuses"];
-         NSMutableArray *newStatuses = [LXStatus objectArrayWithKeyValuesArray:statuses];
+         NSArray *statusDictionaries = responseObject[@"statuses"];
+         NSMutableArray *newStatuses = [LXStatus objectArrayWithKeyValuesArray:statusDictionaries];
 
-         if (self.statuses) {
-             NSRange indexRange   = { 0,newStatuses.count };
-             NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:indexRange];
-             [self.statuses insertObjects:newStatuses atIndexes:indexSet];
+         if (self.statuses.count > 0) {
+
+             NSInteger startIndex = 0;
+             NSInteger endIndex   = statusDictionaries.count - 1;
+             NSMutableArray *indexPaths = [NSMutableArray new];
+
+             for (NSInteger row = startIndex; row <= endIndex; ++row) {
+                 [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
+                 [self.statuses insertObject:newStatuses[row] atIndex:row];
+                 [self.rowHeightCache insertObject:[NSNull null] atIndex:row];
+             }
+
+             [self.tableView insertRowsAtIndexPaths:indexPaths
+                                   withRowAnimation:UITableViewRowAnimationNone];
          } else {
              self.statuses = newStatuses;
+             [self.tableView reloadData];
          }
 
-         [self showNewStatusCount:statuses.count];
-
          [self.tableView.header endRefreshing];
-         [self.tableView reloadData];
+         [self showNewStatusCount:statusDictionaries.count];
 
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"%@", error);
+         LXLog(@"加载微博请求出错\n%@", error);
      }];
 }
 
@@ -184,6 +215,36 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
             }];
         }];
     }
+
+    {
+        self.navigationController.tabBarItem.badgeValue = nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
+}
+
+- (void)setupUnreadCount
+{
+    LXOAuthInfo *OAuthInfo = [LXOAuthInfoManager OAuthInfo];
+
+    NSDictionary *parameters = @{ @"uid"          : OAuthInfo.uid,
+                                  @"access_token" : OAuthInfo.access_token, };
+
+    [[AFHTTPRequestOperationManager manager] GET:kLXUnreadCountURLString
+                                      parameters:parameters
+                                         success:
+     ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+
+         NSString *unreadCount = [responseObject[@"status"] description];
+         LXLog(@"获取未读数完成! %@", unreadCount);
+         if ([unreadCount isEqualToString:@"0"]) {
+             unreadCount = nil;
+         }
+         self.navigationController.tabBarItem.badgeValue = unreadCount;
+         [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount.integerValue;
+
+     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+         LXLog(@"获取未读数出错\n%@", error);
+     }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -195,16 +256,52 @@ static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/stat
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLXStatusCellIdentifier
-                                                            forIndexPath:indexPath];
+    LXOriginalStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:kLXOriginalStatusCellIdentifier
+                                                                 forIndexPath:indexPath];
+    [cell configureWithStatus:self.statuses[indexPath.row]];
 
-    LXStatus *status = self.statuses[indexPath.row];
-
-    cell.textLabel.text = status.user.name;
-    cell.detailTextLabel.text = status.text;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:status.user.profile_image_url] 
-                      placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (LXOriginalStatusCell *)templateCell
+{
+    if (!_templateCell) {
+        _templateCell = [self.tableView dequeueReusableCellWithIdentifier:kLXOriginalStatusCellIdentifier];
+    }
+    return _templateCell;
+}
+
+- (NSMutableArray<NSNumber *> *)rowHeightCache
+{
+    if (!_rowHeightCache) {
+        _rowHeightCache = [NSMutableArray new];
+    }
+    return _rowHeightCache;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger row   = indexPath.row;
+    NSUInteger count = self.rowHeightCache.count;
+
+    if (row < count) {
+        id rowHeightNumber = self.rowHeightCache[row];
+        if (rowHeightNumber != [NSNull null]) {
+            return [rowHeightNumber doubleValue]; // 命中缓存.
+        }
+    }
+
+    CGFloat rowHeight = [self.templateCell heightWithStatus:self.statuses[indexPath.row]];
+
+    if (row < count) {
+        self.rowHeightCache[row] = @(rowHeight);
+    } else {
+        [self.rowHeightCache addObject:@(rowHeight)];
+    }
+
+    return rowHeight;
 }
 
 #pragma mark - IBAction

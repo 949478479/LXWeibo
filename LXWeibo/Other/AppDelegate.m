@@ -28,6 +28,8 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self registerUserNotificationSettings];
+
     [self configureAppearance];
 
     [self setupRootViewController];
@@ -89,6 +91,15 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
         @"NewFeature" : @"Main";
 
     [UIStoryboard lx_showInitialVCWithStoryboardName:storyboardName];
+}
+
+#pragma mark - 注册通知设置
+
+- (void)registerUserNotificationSettings
+{
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge
+                                                                             categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 }
 
 @end

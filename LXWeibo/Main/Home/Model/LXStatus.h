@@ -8,6 +8,7 @@
 
 @import Foundation;
 #import "LXUser.h"
+#import "LXPhoto.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**	微博作者. */
 @property (nonatomic, readonly, strong) LXUser *user;
-/**	字符串型的微博 ID. */
+/** 微博配图数组. */
+@property (nonatomic, readonly, copy) NSArray<LXPhoto *> *pic_urls;
+/**	字符串型的微博 @c ID. */
 @property (nonatomic, readonly, copy) NSString *idstr;
 /**	微博信息内容. */
 @property (nonatomic, readonly, copy) NSString *text;

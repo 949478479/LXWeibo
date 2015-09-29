@@ -48,11 +48,11 @@ static NSString * const kLXUnreadCountURLString         = @"https://rm.api.weibo
 
     [self.tableView.header beginRefreshing];
 
-    __weak __typeof(self) weakSelf = self;
-    self.timer = LXGCDTimer(60, 30, ^{
-        [weakSelf setupUnreadCount];
-    }, nil);
-    dispatch_resume(self.timer);
+//    __weak __typeof(self) weakSelf = self;
+//    self.timer = LXGCDTimer(60, 30, ^{
+//        [weakSelf setupUnreadCount];
+//    }, nil);
+//    dispatch_resume(self.timer);
 }
 
 - (void)setupTitle
@@ -110,7 +110,7 @@ static NSString * const kLXUnreadCountURLString         = @"https://rm.api.weibo
                                          success:
      ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
-         LXLog(@"加载微博请求完成!");
+         LXLog(@"加载更多微博请求完成!");
 
          NSArray *statusDictionaries  = responseObject[@"statuses"];
          NSMutableArray *moreStatuses = [LXStatus objectArrayWithKeyValuesArray:statusDictionaries];
@@ -131,7 +131,7 @@ static NSString * const kLXUnreadCountURLString         = @"https://rm.api.weibo
                                withRowAnimation:UITableViewRowAnimationNone];
 
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"加载微博请求出错\n%@", error);
+         LXLog(@"加载更多微博请求出错\n%@", error);
      }];
 }
 
@@ -147,9 +147,17 @@ static NSString * const kLXUnreadCountURLString         = @"https://rm.api.weibo
                                          success:
      ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
-         LXLog(@"加载微博请求完成!");
+         LXLog(@"加载最新微博请求完成!");
 
          NSArray *statusDictionaries = responseObject[@"statuses"];
+
+         [self.tableView.header endRefreshing];
+         [self showNewStatusCount:statusDictionaries.count];
+
+         if (statusDictionaries.count == 0) {
+             return;
+         }
+
          NSMutableArray *newStatuses = [LXStatus objectArrayWithKeyValuesArray:statusDictionaries];
 
          if (self.statuses.count > 0) {
@@ -164,18 +172,14 @@ static NSString * const kLXUnreadCountURLString         = @"https://rm.api.weibo
                  [self.rowHeightCache insertObject:[NSNull null] atIndex:row];
              }
 
-             [self.tableView insertRowsAtIndexPaths:indexPaths
-                                   withRowAnimation:UITableViewRowAnimationNone];
          } else {
              self.statuses = newStatuses;
-             [self.tableView reloadData];
          }
 
-         [self.tableView.header endRefreshing];
-         [self showNewStatusCount:statusDictionaries.count];
+         [self.tableView reloadData];
 
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"加载微博请求出错\n%@", error);
+         LXLog(@"加载最新微博请求出错\n%@", error);
      }];
 }
 

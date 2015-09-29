@@ -21,6 +21,7 @@
 		1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C01BB3D85000060A9A /* LXTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C91BB4096C00060A9A /* LXTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0CC1BB40DE100060A9A /* LXTitleButton.m */; settings = {ASSET_TAGS = (); }; };
+		18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D511BBA1D3E00745192 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61421BB775990048388C /* LXNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61411BB775990048388C /* LXNewFeatureViewController.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61451BB775F00048388C /* LXNewFeartureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61441BB775F00048388C /* LXNewFeartureCell.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61711BB790720048388C /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61521BB790720048388C /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
@@ -131,6 +132,8 @@
 		1889A0C91BB4096C00060A9A /* LXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBarController.m; sourceTree = "<group>"; };
 		1889A0CB1BB40DE100060A9A /* LXTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXTitleButton.h; path = LXWeibo/Main/Home/View/LXTitleButton.h; sourceTree = SOURCE_ROOT; };
 		1889A0CC1BB40DE100060A9A /* LXTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXTitleButton.m; path = LXWeibo/Main/Home/View/LXTitleButton.m; sourceTree = SOURCE_ROOT; };
+		18D22D501BBA1D3E00745192 /* LXPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhoto.h; sourceTree = "<group>"; };
+		18D22D511BBA1D3E00745192 /* LXPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhoto.m; sourceTree = "<group>"; };
 		18DE61401BB775990048388C /* LXNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNewFeatureViewController.h; sourceTree = "<group>"; };
 		18DE61411BB775990048388C /* LXNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNewFeatureViewController.m; sourceTree = "<group>"; };
 		18DE61431BB775F00048388C /* LXNewFeartureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNewFeartureCell.h; sourceTree = "<group>"; };
@@ -736,6 +739,8 @@
 				18EB24331BB8E695009D9505 /* LXUser.m */,
 				18EB24351BB8E69F009D9505 /* LXStatus.h */,
 				18EB24361BB8E69F009D9505 /* LXStatus.m */,
+				18D22D501BBA1D3E00745192 /* LXPhoto.h */,
+				18D22D511BBA1D3E00745192 /* LXPhoto.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1094,6 +1099,7 @@
 				18F014661BB7E66A005C47F7 /* AFURLSessionManager.m in Sources */,
 				18F014621BB7E66A005C47F7 /* AFSecurityPolicy.m in Sources */,
 				1889A0B71BB3A4A100060A9A /* LXPopoverView.m in Sources */,
+				18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */,
 				18EB24651BB8EA37009D9505 /* UIImage+MultiFormat.m in Sources */,
 				18EB24371BB8E69F009D9505 /* LXStatus.m in Sources */,
 				18F0148D1BB7EADC005C47F7 /* LXOAuthInfo.m in Sources */,

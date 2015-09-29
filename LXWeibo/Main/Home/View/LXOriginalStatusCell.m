@@ -11,6 +11,10 @@
 #import "UIImageView+WebCache.h"
 #import "LXOriginalStatusCell.h"
 
+static const CGFloat kLXImageSize = 76;
+static const CGFloat kLXMargin    = 8;
+static const CGFloat kLXImageRows = 3;
+
 @interface LXOriginalStatusCell ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *avatarView;
@@ -18,9 +22,10 @@
 @property (nonatomic, weak) IBOutlet UIImageView *vipView;
 @property (nonatomic, weak) IBOutlet UILabel     *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel     *sourceLabel;
-@property (nonatomic, readwrite, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UITextView  *textView;
 
-@property (nonatomic, weak) UIImageView *photoView;
+@property (nonatomic, strong) IBOutletCollection(UIImageView) NSArray *imageViews;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageContainerHeightConstraint;
 
 @end
 
@@ -28,6 +33,9 @@
 
 - (CGFloat)heightWithStatus:(LXStatus *)status
 {
+    NSUInteger row = ceil(status.pic_urls.count / kLXImageRows);
+    self.imageContainerHeightConstraint.constant = row > 0 ? row * kLXImageSize + (row - 1) * kLXMargin : 0;
+
     self.nameLabel.text   = status.user.name;
     self.timeLabel.text   = status.created_at;
     self.sourceLabel.text = status.source;
@@ -36,7 +44,7 @@
     CGFloat textViewHeight    = [self.textView sizeThatFits:(CGSize){self.textView.lx_width,CGFLOAT_MAX}].height;
     CGFloat contentViewHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
-    return textViewHeight + contentViewHeight + 1;
+    return textViewHeight + contentViewHeight + 1; // +1 是分隔线的高度.
 }
 
 - (void)configureWithStatus:(LXStatus *)status
@@ -45,8 +53,6 @@
 
     [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url]
                        placeholderImage:[UIImage imageNamed:@"avatar_default"]];
-
-
 
     if (user.isVip) {
         NSUInteger mbrank = user.mbrank;
@@ -59,6 +65,14 @@
     } else {
         self.vipView.hidden = YES;
         self.nameLabel.textColor = [UIColor blackColor];
+    }
+
+    NSUInteger count = status.pic_urls.count;
+    NSUInteger row = ceil(status.pic_urls.count / kLXImageRows);
+    self.imageContainerHeightConstraint.constant = row > 0 ? row * kLXImageSize + (row - 1) * kLXMargin : 0;
+    for (NSUInteger i = 0; i < count; ++i) {
+        [self.imageViews[i] sd_setImageWithURL:[NSURL URLWithString:status.pic_urls[i].thumbnail_pic]
+                              placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }
 
     self.nameLabel.text   = user.name;

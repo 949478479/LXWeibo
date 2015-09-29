@@ -10,4 +10,9 @@
 
 @implementation LXStatus
 
++ (NSDictionary *)objectClassInArray
+{
+    return @{ @"pic_urls" : [LXPhoto class] };
+}
+
 @end

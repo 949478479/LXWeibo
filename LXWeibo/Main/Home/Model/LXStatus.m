@@ -25,8 +25,12 @@
     // <a href=\"http://app.weibo.com/t/feed/1tqBja\" rel=\"nofollow\">360安全浏览器</a>
     NSRange range = [source rangeOfString:@"(?<=>).+(?=<)" options:NSRegularExpressionSearch];
 
-    // 个别时候来源为 @""
-    _source = range.location != NSNotFound ? [source substringWithRange:range] : source;
+    // 发现个别时候来源为 @"" .
+    if (range.location != NSNotFound) {
+        _source = [NSString stringWithFormat:@"来自 %@", [source substringWithRange:range]];
+    } else {
+        _source = source;
+    }
 }
 
 #pragma mark - 发表时间格式化处理

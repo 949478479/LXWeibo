@@ -23,6 +23,13 @@ static const NSUInteger kLXCountLimit = 10000;
 
 @implementation LXToolBar
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+//    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
+}
+
 #pragma mark - *** 公共方法 ***
 
 - (void)configureWithStatus:(LXStatus *)status

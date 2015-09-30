@@ -11,6 +11,7 @@
 #import "LXUtilities.h"
 #import "UIImageView+WebCache.h"
 #import "LXRetweetedStatusCell.h"
+#import "LXThumbnailContainerView.h"
 
 /** 配图尺寸. */
 static const CGFloat kLXImageSize = 76;
@@ -30,9 +31,7 @@ static const CGFloat kLXImageRows = 3;
 @property (nonatomic, weak) IBOutlet UILabel     *retweetedLabel;
 @property (nonatomic, weak) IBOutlet LXToolBar   *toolBar;
 
-@property (nonatomic, strong) IBOutletCollection(UIImageView) NSArray *imageViews;
-
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageContainerHeightConstraint;
+@property (nonatomic, weak) IBOutlet LXThumbnailContainerView *thumbnailContainerView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *retweetedLabelBottomConstraint;
 
 @end
@@ -47,6 +46,8 @@ static const CGFloat kLXImageRows = 3;
 {
     [super awakeFromNib];
 
+    self.thumbnailContainerView.backgroundColor = self.retweetedLabel.backgroundColor;
+
     CGFloat maxWidth = CGRectGetWidth([UIScreen mainScreen].bounds) - 2 * kLXMargin;
     self.originalLabel.preferredMaxLayoutWidth  = maxWidth;
     self.retweetedLabel.preferredMaxLayoutWidth = maxWidth;
@@ -60,12 +61,12 @@ static const CGFloat kLXImageRows = 3;
         // 有配图时将 retweetedLabel 和 imageView 容器顶部的间距约束调整回 kLXMargin.
         self.retweetedLabelBottomConstraint.constant = kLXMargin;
         // 调整 imageView 容器高度约束.每行配图高 kLXImageSize, 行之间间距为 kLXMargin.即最多 3 行 2 间距.
-        self.imageContainerHeightConstraint.constant = row * kLXImageSize + (row - 1) * kLXMargin;
+        self.thumbnailContainerView.heightConstraint.constant = row * kLXImageSize + (row - 1) * kLXMargin;
     } else {
         // 无配图时将 imageView 容器高度约束设置为 0, 由于此时 imageView 容器消失, retweetedLabel
         // 与 imageView 容器的间距约束应调整为 0, 否则和父视图的底部距离就是 2 * kLXMargin 而不是 kLXMargin.
         self.retweetedLabelBottomConstraint.constant = 0;
-        self.imageContainerHeightConstraint.constant = 0;
+        self.thumbnailContainerView.heightConstraint.constant = 0;
     }
 }
 
@@ -75,10 +76,7 @@ static const CGFloat kLXImageRows = 3;
 {
     [super prepareForReuse];
 
-    for (UIImageView *imageView in self.imageViews) {
-        imageView.image  = nil;
-        imageView.hidden = YES;
-    }
+    [self.thumbnailContainerView hidenAndClearAllThumbnailViews];
 }
 
 #pragma mark - *** 公共方法 ***
@@ -143,10 +141,9 @@ static const CGFloat kLXImageRows = 3;
     [self adjustConstraintForImageRows:ceil(picCount / kLXImageRows)];
 
     for (NSUInteger i = 0; i < picCount; ++i) {
-        UIImageView *imageView = self.imageViews[i];
-        imageView.hidden = NO;
-        [self.imageViews[i] sd_setImageWithURL:[NSURL URLWithString:retweetedStatus.pic_urls[i].thumbnail_pic]
-                              placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+        LXThumbnailView *thumbnailView = self.thumbnailContainerView.thumbnailViews[i];
+        [thumbnailView setImageWithURL:[NSURL URLWithString:retweetedStatus.pic_urls[i].thumbnail_pic]
+                      placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }
 
     [self.toolBar configureWithStatus:status];

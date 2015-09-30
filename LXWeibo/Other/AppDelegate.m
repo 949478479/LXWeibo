@@ -9,6 +9,7 @@
 #import "LXUtilities.h"
 #import "AppDelegate.h"
 #import "LXOAuthInfoManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 NSString * const LXAppKey    = @"2547705806";
 NSString * const LXAppSecret = @"9eede02b85f083f300041d776a8c5118";

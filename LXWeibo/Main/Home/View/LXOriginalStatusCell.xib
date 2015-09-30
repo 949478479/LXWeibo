@@ -54,6 +54,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是微博内容!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq7-CV-YdC">
+                                <rect key="frame" x="8" y="66" width="304" height="42"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWW-C3-u4I" userLabel="Image Container">
                                 <rect key="frame" x="0.0" y="116" width="320" height="244"/>
                                 <subviews>
@@ -144,13 +151,6 @@
                                     <constraint firstItem="XTg-Z6-qE4" firstAttribute="top" secondItem="3QS-Tg-bIV" secondAttribute="bottom" constant="8" id="yIu-i3-SGS"/>
                                 </constraints>
                             </view>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是微博内容!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq7-CV-YdC">
-                                <rect key="frame" x="8" y="66" width="304" height="42"/>
-                                <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -214,7 +214,7 @@
                 <outletCollection property="imageViews" destination="Gyd-s6-T7u" id="bt8-w3-I4m"/>
                 <outletCollection property="imageViews" destination="cKt-iu-AmK" id="hbz-H4-uaQ"/>
             </connections>
-            <point key="canvasLocation" x="381" y="291.5"/>
+            <point key="canvasLocation" x="427" y="290.5"/>
         </tableViewCell>
     </objects>
     <resources>

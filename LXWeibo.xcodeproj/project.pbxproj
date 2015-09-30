@@ -23,7 +23,6 @@
 		1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0CC1BB40DE100060A9A /* LXTitleButton.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D511BBA1D3E00745192 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D561BBA6FB000745192 /* LXRetweetedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */; settings = {ASSET_TAGS = (); }; };
-		18D22D571BBA6FB000745192 /* LXRetweetedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
 		18D22D601BBAD03F00745192 /* LXOriginalStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D5F1BBAD03F00745192 /* LXOriginalStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
 		18D22D671BBAD0DF00745192 /* LXToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D661BBAD0DF00745192 /* LXToolBar.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D691BBAD0EB00745192 /* LXToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D681BBAD0EA00745192 /* LXToolBar.xib */; settings = {ASSET_TAGS = (); }; };
@@ -110,6 +109,7 @@
 		18F014891BB7E930005C47F7 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0147E1BB7E930005C47F7 /* NSString+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18F0148D1BB7EADC005C47F7 /* LXOAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0148C1BB7EADC005C47F7 /* LXOAuthInfo.m */; settings = {ASSET_TAGS = (); }; };
 		18F014901BB7F4AC005C47F7 /* LXOAuthInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0148F1BB7F4AC005C47F7 /* LXOAuthInfoManager.m */; settings = {ASSET_TAGS = (); }; };
+		18F781301BBB90A700552BEC /* LXRetweetedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F7812F1BBB90A700552BEC /* LXRetweetedStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,7 +143,6 @@
 		18D22D511BBA1D3E00745192 /* LXPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhoto.m; sourceTree = "<group>"; };
 		18D22D531BBA6FB000745192 /* LXRetweetedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXRetweetedStatusCell.h; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.h; sourceTree = SOURCE_ROOT; };
 		18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXRetweetedStatusCell.m; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.m; sourceTree = SOURCE_ROOT; };
-		18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXRetweetedStatusCell.xib; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.xib; sourceTree = SOURCE_ROOT; };
 		18D22D5F1BBAD03F00745192 /* LXOriginalStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXOriginalStatusCell.xib; path = LXWeibo/Main/Home/View/LXOriginalStatusCell.xib; sourceTree = SOURCE_ROOT; };
 		18D22D651BBAD0DF00745192 /* LXToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXToolBar.h; path = LXWeibo/Main/Home/View/LXToolBar.h; sourceTree = SOURCE_ROOT; };
 		18D22D661BBAD0DF00745192 /* LXToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXToolBar.m; path = LXWeibo/Main/Home/View/LXToolBar.m; sourceTree = SOURCE_ROOT; };
@@ -314,6 +313,7 @@
 		18F0148C1BB7EADC005C47F7 /* LXOAuthInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXOAuthInfo.m; sourceTree = "<group>"; };
 		18F0148E1BB7F4AC005C47F7 /* LXOAuthInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXOAuthInfoManager.h; sourceTree = "<group>"; };
 		18F0148F1BB7F4AC005C47F7 /* LXOAuthInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXOAuthInfoManager.m; sourceTree = "<group>"; };
+		18F7812F1BBB90A700552BEC /* LXRetweetedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXRetweetedStatusCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -927,7 +927,7 @@
 				18D22D5F1BBAD03F00745192 /* LXOriginalStatusCell.xib */,
 				18D22D531BBA6FB000745192 /* LXRetweetedStatusCell.h */,
 				18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */,
-				18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */,
+				18F7812F1BBB90A700552BEC /* LXRetweetedStatusCell.xib */,
 			);
 			name = StatusCell;
 			sourceTree = "<group>";
@@ -1061,11 +1061,11 @@
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
 				18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */,
 				18EB258B1BB91914009D9505 /* MJRefresh.bundle in Resources */,
-				18D22D571BBA6FB000745192 /* LXRetweetedStatusCell.xib in Resources */,
 				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
 				18D22D691BBAD0EB00745192 /* LXToolBar.xib in Resources */,
 				18D22D601BBAD03F00745192 /* LXOriginalStatusCell.xib in Resources */,
 				18DE61731BB790720048388C /* MBProgressHUD.bundle in Resources */,
+				18F781301BBB90A700552BEC /* LXRetweetedStatusCell.xib in Resources */,
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
 				18DE61871BB7D8D80048388C /* NewFeature.storyboard in Resources */,
 			);

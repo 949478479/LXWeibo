@@ -9,11 +9,24 @@
 #import "LXStatus.h"
 
 @implementation LXStatus
+
+@synthesize source     = _source;
 @synthesize created_at = _created_at;
 
 + (NSDictionary *)objectClassInArray
 {
     return @{ @"pic_urls" : [LXPhoto class] };
+}
+
+#pragma mark - 微博来源处理
+
+- (void)setSource:(NSString * _Nonnull)source
+{
+    // <a href=\"http://app.weibo.com/t/feed/1tqBja\" rel=\"nofollow\">360安全浏览器</a>
+    NSRange range = [source rangeOfString:@"(?<=>).+(?=<)" options:NSRegularExpressionSearch];
+
+    // 个别时候来源为 @""
+    _source = range.location != NSNotFound ? [source substringWithRange:range] : source;
 }
 
 #pragma mark - 发表时间格式化处理

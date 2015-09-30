@@ -91,7 +91,10 @@ static const CGFloat kLXImageRows = 3;
     self.timeLabel.text      = status.created_at;
     self.sourceLabel.text    = status.source;
     self.originalLabel.text  = status.text;
-    self.retweetedLabel.text = status.retweeted_status.text;
+
+    LXStatus *retweetedStatus = status.retweeted_status;
+    self.retweetedLabel.text = [NSString stringWithFormat:@"@%@:%@",
+                                retweetedStatus.user.name, retweetedStatus.text];
 
     [self adjustConstraintForImageRows:ceil(status.retweeted_status.pic_urls.count / kLXImageRows)];
 
@@ -131,7 +134,8 @@ static const CGFloat kLXImageRows = 3;
     self.timeLabel.text      = status.created_at;
     self.sourceLabel.text    = status.source;
     self.originalLabel.text  = status.text;
-    self.retweetedLabel.text = retweetedStatus.text;
+    self.retweetedLabel.text = [NSString stringWithFormat:@"@%@:%@",
+                                retweetedStatus.user.name, retweetedStatus.text];
 
     NSUInteger picCount = status.retweeted_status.pic_urls.count;
 

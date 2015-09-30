@@ -95,6 +95,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="attitudesButton" destination="RT7-9A-wc7" id="jRp-no-peu"/>
+                <outlet property="commentsButton" destination="Pbo-jP-LgE" id="SDB-Cq-EVs"/>
+                <outlet property="repostsButton" destination="Ad8-zL-NYX" id="Fae-fy-mjh"/>
+            </connections>
             <point key="canvasLocation" x="482" y="596"/>
         </view>
     </objects>

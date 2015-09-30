@@ -7,7 +7,10 @@
 //
 
 @import UIKit;
+@class LXStatus;
 
 @interface LXToolBar : UIView
+
+- (void)configureWithStatus:(LXStatus *)status;
 
 @end

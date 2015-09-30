@@ -7,6 +7,7 @@
 //
 
 #import "LXStatus.h"
+#import "LXToolBar.h"
 #import "LXUtilities.h"
 #import "UIImageView+WebCache.h"
 #import "LXRetweetedStatusCell.h"
@@ -27,6 +28,7 @@ static const CGFloat kLXImageRows = 3;
 @property (nonatomic, weak) IBOutlet UILabel     *sourceLabel;
 @property (nonatomic, weak) IBOutlet UILabel     *originalLabel;
 @property (nonatomic, weak) IBOutlet UILabel     *retweetedLabel;
+@property (nonatomic, weak) IBOutlet LXToolBar   *toolBar;
 
 @property (nonatomic, strong) IBOutletCollection(UIImageView) NSArray *imageViews;
 
@@ -142,6 +144,8 @@ static const CGFloat kLXImageRows = 3;
         [self.imageViews[i] sd_setImageWithURL:[NSURL URLWithString:retweetedStatus.pic_urls[i].thumbnail_pic]
                               placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }
+
+    [self.toolBar configureWithStatus:status];
 }
 
 @end

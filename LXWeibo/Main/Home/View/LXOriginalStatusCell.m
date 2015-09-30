@@ -7,6 +7,7 @@
 //
 
 #import "LXStatus.h"
+#import "LXToolBar.h"
 #import "LXUtilities.h"
 #import "UIImageView+WebCache.h"
 #import "LXOriginalStatusCell.h"
@@ -26,6 +27,7 @@ static const CGFloat kLXImageRows = 3;
 @property (nonatomic, weak) IBOutlet UILabel     *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel     *sourceLabel;
 @property (nonatomic, weak) IBOutlet UILabel     *contentLabel;
+@property (nonatomic, weak) IBOutlet LXToolBar   *toolBar;
 
 @property (nonatomic, strong) IBOutletCollection(UIImageView) NSArray *imageViews;
 
@@ -136,6 +138,8 @@ static const CGFloat kLXImageRows = 3;
         [imageView sd_setImageWithURL:[NSURL URLWithString:status.pic_urls[i].thumbnail_pic]
                      placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }
+
+    [self.toolBar configureWithStatus:status];
 }
 
 @end

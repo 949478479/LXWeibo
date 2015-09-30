@@ -203,6 +203,7 @@
                 <outlet property="nameLabel" destination="Jai-bN-HMC" id="pdL-GB-FNf"/>
                 <outlet property="sourceLabel" destination="sAQ-6j-Ztz" id="mFP-eb-yd0"/>
                 <outlet property="timeLabel" destination="Tvh-zv-nr0" id="QO3-xM-5HL"/>
+                <outlet property="toolBar" destination="6Ks-5t-pHm" id="NHV-v8-Yh4"/>
                 <outlet property="vipView" destination="v9W-IX-hjX" id="Lmp-We-1dl"/>
                 <outletCollection property="imageViews" destination="Ayg-Yc-p8S" id="wLi-FB-ulQ"/>
                 <outletCollection property="imageViews" destination="Scp-5h-8fh" id="3sE-YM-py5"/>

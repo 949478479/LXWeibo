@@ -56,7 +56,7 @@
                             </label>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是微博内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb9-8S-uRz">
                                 <rect key="frame" x="8" y="66" width="304" height="17"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                                 <subviews>
                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是微博内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNK-qj-OkT">
                                         <rect key="frame" x="8" y="8" width="304" height="17"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.66902792453765869" green="0.73128575086593628" blue="0.94889926910400391" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="uRf-2Q-4qa"/>
                                         </constraints>
@@ -234,6 +234,7 @@
                 <outlet property="retweetedLabelBottomConstraint" destination="wXg-Gv-ig3" id="Juw-yX-QeB"/>
                 <outlet property="sourceLabel" destination="a1n-C0-Dbt" id="KCk-wx-6HI"/>
                 <outlet property="timeLabel" destination="Syc-Dp-jst" id="FW9-P7-uyD"/>
+                <outlet property="toolBar" destination="fOy-gt-kNe" id="SbJ-Qp-TuK"/>
                 <outlet property="vipView" destination="0WU-QW-FhN" id="fax-Ah-Gfj"/>
                 <outletCollection property="imageViews" destination="aUJ-ZM-Iuh" id="yMe-Uv-lOU"/>
                 <outletCollection property="imageViews" destination="9vX-B0-obz" id="V5G-xg-IMy"/>

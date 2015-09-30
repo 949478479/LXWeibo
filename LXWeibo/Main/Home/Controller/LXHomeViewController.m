@@ -18,6 +18,7 @@
 #import "LXRetweetedStatusCell.h"
 #import "LXHomeViewController.h"
 #import "UIImageView+WebCache.h"
+#import "MBProgressHUD+LXExtension.h"
 
 static NSString * const kLXOriginalStatusCellIdentifier  = @"LXOriginalStatusCell";
 static NSString * const kLXRetweetedStatusCellIdentifier = @"LXRetweetedStatusCell";
@@ -147,6 +148,8 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
 
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
          LXLog(@"加载更多微博请求出错\n%@", error);
+         [MBProgressHUD lx_showError:@"网络不给力..."];
+         [self.tableView.footer endRefreshing];
      }];
 }
 
@@ -195,6 +198,8 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
 
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
          LXLog(@"加载最新微博请求出错\n%@", error);
+         [MBProgressHUD lx_showError:@"网络不给力..."];
+         [self.tableView.header endRefreshing];
      }];
 }
 

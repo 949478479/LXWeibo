@@ -24,7 +24,11 @@
 		18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D511BBA1D3E00745192 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D561BBA6FB000745192 /* LXRetweetedStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D571BBA6FB000745192 /* LXRetweetedStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
-		18D22D591BBA716700745192 /* LXOriginalStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D581BBA716700745192 /* LXOriginalStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
+		18D22D601BBAD03F00745192 /* LXOriginalStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D5F1BBAD03F00745192 /* LXOriginalStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
+		18D22D671BBAD0DF00745192 /* LXToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D661BBAD0DF00745192 /* LXToolBar.m */; settings = {ASSET_TAGS = (); }; };
+		18D22D691BBAD0EB00745192 /* LXToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D22D681BBAD0EA00745192 /* LXToolBar.xib */; settings = {ASSET_TAGS = (); }; };
+		18D22D701BBADBC100745192 /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D6D1BBADBC100745192 /* XXNibBridge.m */; settings = {ASSET_TAGS = (); }; };
+		18D22D711BBADBC100745192 /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D6F1BBADBC100745192 /* XXNibConvention.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61421BB775990048388C /* LXNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61411BB775990048388C /* LXNewFeatureViewController.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61451BB775F00048388C /* LXNewFeartureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61441BB775F00048388C /* LXNewFeartureCell.m */; settings = {ASSET_TAGS = (); }; };
 		18DE61711BB790720048388C /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE61521BB790720048388C /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
@@ -140,7 +144,14 @@
 		18D22D531BBA6FB000745192 /* LXRetweetedStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXRetweetedStatusCell.h; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.h; sourceTree = SOURCE_ROOT; };
 		18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXRetweetedStatusCell.m; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.m; sourceTree = SOURCE_ROOT; };
 		18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXRetweetedStatusCell.xib; path = LXWeibo/Main/Home/View/LXRetweetedStatusCell.xib; sourceTree = SOURCE_ROOT; };
-		18D22D581BBA716700745192 /* LXOriginalStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXOriginalStatusCell.xib; sourceTree = SOURCE_ROOT; };
+		18D22D5F1BBAD03F00745192 /* LXOriginalStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXOriginalStatusCell.xib; path = LXWeibo/Main/Home/View/LXOriginalStatusCell.xib; sourceTree = SOURCE_ROOT; };
+		18D22D651BBAD0DF00745192 /* LXToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXToolBar.h; path = LXWeibo/Main/Home/View/LXToolBar.h; sourceTree = SOURCE_ROOT; };
+		18D22D661BBAD0DF00745192 /* LXToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXToolBar.m; path = LXWeibo/Main/Home/View/LXToolBar.m; sourceTree = SOURCE_ROOT; };
+		18D22D681BBAD0EA00745192 /* LXToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXToolBar.xib; path = LXWeibo/Main/Home/View/LXToolBar.xib; sourceTree = SOURCE_ROOT; };
+		18D22D6C1BBADBC100745192 /* XXNibBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibBridge.h; sourceTree = "<group>"; };
+		18D22D6D1BBADBC100745192 /* XXNibBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibBridge.m; sourceTree = "<group>"; };
+		18D22D6E1BBADBC100745192 /* XXNibConvention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibConvention.h; sourceTree = "<group>"; };
+		18D22D6F1BBADBC100745192 /* XXNibConvention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibConvention.m; sourceTree = "<group>"; };
 		18DE61401BB775990048388C /* LXNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNewFeatureViewController.h; sourceTree = "<group>"; };
 		18DE61411BB775990048388C /* LXNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNewFeatureViewController.m; sourceTree = "<group>"; };
 		18DE61431BB775F00048388C /* LXNewFeartureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNewFeartureCell.h; sourceTree = "<group>"; };
@@ -522,6 +533,7 @@
 		18706E371BB24B1100F12441 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				18D22D6B1BBADBC100745192 /* XXNibBridge */,
 				18EB24381BB8EA37009D9505 /* SDWebImage */,
 				18EB25501BB91914009D9505 /* MJRefresh */,
 				18F014671BB7E930005C47F7 /* MJExtension */,
@@ -562,6 +574,7 @@
 		1889A0AF1BB3A04100060A9A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18D22D6A1BBAD0F300745192 /* ToolBar */,
 				1889A0BA1BB3D08800060A9A /* PopoverView */,
 				1889A0CE1BB40E0B00060A9A /* TitleButton */,
 				18EB25931BB93699009D9505 /* StatusCell */,
@@ -612,6 +625,27 @@
 				1889A0CC1BB40DE100060A9A /* LXTitleButton.m */,
 			);
 			name = TitleButton;
+			sourceTree = "<group>";
+		};
+		18D22D6A1BBAD0F300745192 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				18D22D651BBAD0DF00745192 /* LXToolBar.h */,
+				18D22D661BBAD0DF00745192 /* LXToolBar.m */,
+				18D22D681BBAD0EA00745192 /* LXToolBar.xib */,
+			);
+			name = ToolBar;
+			sourceTree = "<group>";
+		};
+		18D22D6B1BBADBC100745192 /* XXNibBridge */ = {
+			isa = PBXGroup;
+			children = (
+				18D22D6C1BBADBC100745192 /* XXNibBridge.h */,
+				18D22D6D1BBADBC100745192 /* XXNibBridge.m */,
+				18D22D6E1BBADBC100745192 /* XXNibConvention.h */,
+				18D22D6F1BBADBC100745192 /* XXNibConvention.m */,
+			);
+			path = XXNibBridge;
 			sourceTree = "<group>";
 		};
 		18DE613D1BB7756E0048388C /* NewFeatrue  */ = {
@@ -890,7 +924,7 @@
 			children = (
 				18EB25901BB9368E009D9505 /* LXOriginalStatusCell.h */,
 				18EB25911BB9368E009D9505 /* LXOriginalStatusCell.m */,
-				18D22D581BBA716700745192 /* LXOriginalStatusCell.xib */,
+				18D22D5F1BBAD03F00745192 /* LXOriginalStatusCell.xib */,
 				18D22D531BBA6FB000745192 /* LXRetweetedStatusCell.h */,
 				18D22D541BBA6FB000745192 /* LXRetweetedStatusCell.m */,
 				18D22D551BBA6FB000745192 /* LXRetweetedStatusCell.xib */,
@@ -1027,9 +1061,10 @@
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
 				18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */,
 				18EB258B1BB91914009D9505 /* MJRefresh.bundle in Resources */,
-				18D22D591BBA716700745192 /* LXOriginalStatusCell.xib in Resources */,
 				18D22D571BBA6FB000745192 /* LXRetweetedStatusCell.xib in Resources */,
 				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
+				18D22D691BBAD0EB00745192 /* LXToolBar.xib in Resources */,
+				18D22D601BBAD03F00745192 /* LXOriginalStatusCell.xib in Resources */,
 				18DE61731BB790720048388C /* MBProgressHUD.bundle in Resources */,
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
 				18DE61871BB7D8D80048388C /* NewFeature.storyboard in Resources */,
@@ -1073,12 +1108,14 @@
 				18EB24341BB8E695009D9505 /* LXUser.m in Sources */,
 				18DE61801BB790720048388C /* LXUtilities.m in Sources */,
 				18DE617A1BB790720048388C /* UIImage+LXExtension.m in Sources */,
+				18D22D701BBADBC100745192 /* XXNibBridge.m in Sources */,
 				18EB245A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m in Sources */,
 				18DE618D1BB7D9AA0048388C /* LXAuthViewController.m in Sources */,
 				18F014901BB7F4AC005C47F7 /* LXOAuthInfoManager.m in Sources */,
 				18EB245E1BB8EA37009D9505 /* SDWebImageDecoder.m in Sources */,
 				18EB24611BB8EA37009D9505 /* SDWebImageManager.m in Sources */,
 				18DE617C1BB790720048388C /* UITextField+LXExtension.m in Sources */,
+				18D22D671BBAD0DF00745192 /* LXToolBar.m in Sources */,
 				18F0145E1BB7E66A005C47F7 /* AFHTTPRequestOperation.m in Sources */,
 				18EB257F1BB91914009D9505 /* MJRefreshComponent.m in Sources */,
 				18F014861BB7E930005C47F7 /* NSObject+MJCoding.m in Sources */,
@@ -1090,6 +1127,7 @@
 				18DE61421BB775990048388C /* LXNewFeatureViewController.m in Sources */,
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
 				18DE61781BB790720048388C /* UIButton+LXExtension.m in Sources */,
+				18D22D711BBADBC100745192 /* XXNibConvention.m in Sources */,
 				18EB24681BB8EA37009D9505 /* UIImageView+WebCache.m in Sources */,
 				18DE617E1BB790720048388C /* LXImagePicker.m in Sources */,
 				1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */,

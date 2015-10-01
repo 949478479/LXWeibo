@@ -67,6 +67,7 @@
 		18E61F4D1BBCE21100442735 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F381BBCE21100442735 /* UIScrollView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F4E1BBCE21100442735 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F3A1BBCE21100442735 /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F4F1BBCE21100442735 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F3C1BBCE21100442735 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18E61F531BBD1AF000442735 /* LXStatusAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F511BBD12D400442735 /* LXStatusAvatarView.m */; settings = {ASSET_TAGS = (); }; };
 		18EB24341BB8E695009D9505 /* LXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB24331BB8E695009D9505 /* LXUser.m */; settings = {ASSET_TAGS = (); }; };
 		18EB24371BB8E69F009D9505 /* LXStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB24361BB8E69F009D9505 /* LXStatus.m */; settings = {ASSET_TAGS = (); }; };
 		18EB245A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB243A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
@@ -108,9 +109,9 @@
 		18F0148D1BB7EADC005C47F7 /* LXOAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0148C1BB7EADC005C47F7 /* LXOAuthInfo.m */; settings = {ASSET_TAGS = (); }; };
 		18F014901BB7F4AC005C47F7 /* LXOAuthInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F0148F1BB7F4AC005C47F7 /* LXOAuthInfoManager.m */; settings = {ASSET_TAGS = (); }; };
 		18F781301BBB90A700552BEC /* LXStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F7812F1BBB90A700552BEC /* LXStatusCell.xib */; settings = {ASSET_TAGS = (); }; };
-		18F781331BBC2C4E00552BEC /* LXThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F781321BBC2C4E00552BEC /* LXThumbnailView.m */; settings = {ASSET_TAGS = (); }; };
-		18F781381BBC347900552BEC /* LXThumbnailContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F781371BBC347900552BEC /* LXThumbnailContainerView.m */; settings = {ASSET_TAGS = (); }; };
-		18F7813A1BBC348B00552BEC /* LXThumbnailContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F781391BBC348B00552BEC /* LXThumbnailContainerView.xib */; settings = {ASSET_TAGS = (); }; };
+		18F781331BBC2C4E00552BEC /* LXStatusThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F781321BBC2C4E00552BEC /* LXStatusThumbnailView.m */; settings = {ASSET_TAGS = (); }; };
+		18F781381BBC347900552BEC /* LXStatusThumbnailContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F781371BBC347900552BEC /* LXStatusThumbnailContainerView.m */; settings = {ASSET_TAGS = (); }; };
+		18F7813A1BBC348B00552BEC /* LXStatusThumbnailContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F781391BBC348B00552BEC /* LXStatusThumbnailContainerView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,6 +229,8 @@
 		18E61F3A1BBCE21100442735 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		18E61F3B1BBCE21100442735 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		18E61F3C1BBCE21100442735 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		18E61F501BBD12D400442735 /* LXStatusAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXStatusAvatarView.h; path = LXWeibo/Main/Home/View/LXStatusAvatarView.h; sourceTree = SOURCE_ROOT; };
+		18E61F511BBD12D400442735 /* LXStatusAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXStatusAvatarView.m; path = LXWeibo/Main/Home/View/LXStatusAvatarView.m; sourceTree = SOURCE_ROOT; };
 		18EB24321BB8E695009D9505 /* LXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUser.h; sourceTree = "<group>"; };
 		18EB24331BB8E695009D9505 /* LXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXUser.m; sourceTree = "<group>"; };
 		18EB24351BB8E69F009D9505 /* LXStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStatus.h; sourceTree = "<group>"; };
@@ -312,11 +315,11 @@
 		18F0148E1BB7F4AC005C47F7 /* LXOAuthInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXOAuthInfoManager.h; sourceTree = "<group>"; };
 		18F0148F1BB7F4AC005C47F7 /* LXOAuthInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXOAuthInfoManager.m; sourceTree = "<group>"; };
 		18F7812F1BBB90A700552BEC /* LXStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXStatusCell.xib; path = LXWeibo/Main/Home/View/LXStatusCell.xib; sourceTree = SOURCE_ROOT; };
-		18F781311BBC2C4E00552BEC /* LXThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXThumbnailView.h; path = LXWeibo/Main/Home/View/LXThumbnailView.h; sourceTree = SOURCE_ROOT; };
-		18F781321BBC2C4E00552BEC /* LXThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXThumbnailView.m; path = LXWeibo/Main/Home/View/LXThumbnailView.m; sourceTree = SOURCE_ROOT; };
-		18F781361BBC347900552BEC /* LXThumbnailContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXThumbnailContainerView.h; path = LXWeibo/Main/Home/View/LXThumbnailContainerView.h; sourceTree = SOURCE_ROOT; };
-		18F781371BBC347900552BEC /* LXThumbnailContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXThumbnailContainerView.m; path = LXWeibo/Main/Home/View/LXThumbnailContainerView.m; sourceTree = SOURCE_ROOT; };
-		18F781391BBC348B00552BEC /* LXThumbnailContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXThumbnailContainerView.xib; path = LXWeibo/Main/Home/View/LXThumbnailContainerView.xib; sourceTree = SOURCE_ROOT; };
+		18F781311BBC2C4E00552BEC /* LXStatusThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXStatusThumbnailView.h; path = LXWeibo/Main/Home/View/LXStatusThumbnailView.h; sourceTree = SOURCE_ROOT; };
+		18F781321BBC2C4E00552BEC /* LXStatusThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXStatusThumbnailView.m; path = LXWeibo/Main/Home/View/LXStatusThumbnailView.m; sourceTree = SOURCE_ROOT; };
+		18F781361BBC347900552BEC /* LXStatusThumbnailContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXStatusThumbnailContainerView.h; path = LXWeibo/Main/Home/View/LXStatusThumbnailContainerView.h; sourceTree = SOURCE_ROOT; };
+		18F781371BBC347900552BEC /* LXStatusThumbnailContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXStatusThumbnailContainerView.m; path = LXWeibo/Main/Home/View/LXStatusThumbnailContainerView.m; sourceTree = SOURCE_ROOT; };
+		18F781391BBC348B00552BEC /* LXStatusThumbnailContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LXStatusThumbnailContainerView.xib; path = LXWeibo/Main/Home/View/LXStatusThumbnailContainerView.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -869,6 +872,15 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		18E61F541BBD234600442735 /* StatusAvatar */ = {
+			isa = PBXGroup;
+			children = (
+				18E61F501BBD12D400442735 /* LXStatusAvatarView.h */,
+				18E61F511BBD12D400442735 /* LXStatusAvatarView.m */,
+			);
+			name = StatusAvatar;
+			sourceTree = "<group>";
+		};
 		18EB24311BB8E67A009D9505 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +941,7 @@
 				18D22D541BBA6FB000745192 /* LXStatusCell.m */,
 				18F7812F1BBB90A700552BEC /* LXStatusCell.xib */,
 				18F7813B1BBC431A00552BEC /* StatusThumbnail */,
+				18E61F541BBD234600442735 /* StatusAvatar */,
 			);
 			name = StatusCell;
 			sourceTree = "<group>";
@@ -1003,11 +1016,11 @@
 		18F7813B1BBC431A00552BEC /* StatusThumbnail */ = {
 			isa = PBXGroup;
 			children = (
-				18F781311BBC2C4E00552BEC /* LXThumbnailView.h */,
-				18F781321BBC2C4E00552BEC /* LXThumbnailView.m */,
-				18F781361BBC347900552BEC /* LXThumbnailContainerView.h */,
-				18F781371BBC347900552BEC /* LXThumbnailContainerView.m */,
-				18F781391BBC348B00552BEC /* LXThumbnailContainerView.xib */,
+				18F781311BBC2C4E00552BEC /* LXStatusThumbnailView.h */,
+				18F781321BBC2C4E00552BEC /* LXStatusThumbnailView.m */,
+				18F781361BBC347900552BEC /* LXStatusThumbnailContainerView.h */,
+				18F781371BBC347900552BEC /* LXStatusThumbnailContainerView.m */,
+				18F781391BBC348B00552BEC /* LXStatusThumbnailContainerView.xib */,
 			);
 			name = StatusThumbnail;
 			sourceTree = "<group>";
@@ -1079,7 +1092,7 @@
 				18F781301BBB90A700552BEC /* LXStatusCell.xib in Resources */,
 				18E61F4B1BBCE21100442735 /* MJRefresh.bundle in Resources */,
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
-				18F7813A1BBC348B00552BEC /* LXThumbnailContainerView.xib in Resources */,
+				18F7813A1BBC348B00552BEC /* LXStatusThumbnailContainerView.xib in Resources */,
 				18DE61871BB7D8D80048388C /* NewFeature.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1129,7 +1142,7 @@
 				18EB24611BB8EA37009D9505 /* SDWebImageManager.m in Sources */,
 				18DE617C1BB790720048388C /* UITextField+LXExtension.m in Sources */,
 				18E61F491BBCE21100442735 /* MJRefreshNormalHeader.m in Sources */,
-				18F781331BBC2C4E00552BEC /* LXThumbnailView.m in Sources */,
+				18F781331BBC2C4E00552BEC /* LXStatusThumbnailView.m in Sources */,
 				18D22D671BBAD0DF00745192 /* LXStatusToolBar.m in Sources */,
 				18E61F4E1BBCE21100442735 /* UIScrollView+MJRefresh.m in Sources */,
 				18F0145E1BB7E66A005C47F7 /* AFHTTPRequestOperation.m in Sources */,
@@ -1169,6 +1182,7 @@
 				18F0148D1BB7EADC005C47F7 /* LXOAuthInfo.m in Sources */,
 				18DE61761BB790720048388C /* NSString+LXExtension.m in Sources */,
 				18E61F4C1BBCE21100442735 /* MJRefreshConst.m in Sources */,
+				18E61F531BBD1AF000442735 /* LXStatusAvatarView.m in Sources */,
 				18DE61451BB775F00048388C /* LXNewFeartureCell.m in Sources */,
 				18F014821BB7E930005C47F7 /* MJProperty.m in Sources */,
 				18EB24621BB8EA37009D9505 /* SDWebImagePrefetcher.m in Sources */,
@@ -1176,7 +1190,7 @@
 				18D22D561BBA6FB000745192 /* LXStatusCell.m in Sources */,
 				18E61F3F1BBCE21100442735 /* MJRefreshComponent.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
-				18F781381BBC347900552BEC /* LXThumbnailContainerView.m in Sources */,
+				18F781381BBC347900552BEC /* LXStatusThumbnailContainerView.m in Sources */,
 				181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */,
 				18F014611BB7E66A005C47F7 /* AFNetworkReachabilityManager.m in Sources */,
 				18E61F401BBCE21100442735 /* MJRefreshFooter.m in Sources */,

@@ -10,6 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, LXUserVerifiedType) {
+    LXUserVerifiedTypeNone = -1,
+    LXUserVerifiedTypePersonal = 0,
+    LXUserVerifiedOrgEnterprice = 2,
+    LXUserVerifiedOrgMedia = 3,
+    LXUserVerifiedOrgWebsite = 5,
+    LXUserVerifiedGrassroot = 220,
+};
+
 @interface LXUser : NSObject
 
 /**	字符串型的用户 UID. */
@@ -24,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, assign) NSUInteger mbrank;
 /** 是否是会员. */
 @property (nonatomic, readonly, assign, getter=isVip) BOOL vip;
+/** 认证类型. */
+@property (nonatomic, readonly, assign) LXUserVerifiedType verified_type;
 
 @end
 

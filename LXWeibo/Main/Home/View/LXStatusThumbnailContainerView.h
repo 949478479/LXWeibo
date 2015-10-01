@@ -1,5 +1,5 @@
 //
-//  LXThumbnailContainerView.h
+//  LXStatusThumbnailContainerView.h
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/9/30.
@@ -7,15 +7,15 @@
 //
 
 @import UIKit;
-#import "LXThumbnailView.h"
+#import "LXStatusThumbnailView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXThumbnailContainerView : UIView
+@interface LXStatusThumbnailContainerView : UIView
 
 @property (nonatomic, readonly, weak) NSLayoutConstraint *heightConstraint;
 
-@property (nonatomic, readonly, strong) NSArray<LXThumbnailView *> *thumbnailViews;
+@property (nonatomic, readonly, strong) NSArray<LXStatusThumbnailView *> *thumbnailViews;
 
 - (void)hidenAndClearAllThumbnailViews;
 

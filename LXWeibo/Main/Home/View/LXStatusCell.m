@@ -10,8 +10,8 @@
 #import "LXUtilities.h"
 #import "LXStatusCell.h"
 #import "LXStatusToolBar.h"
-#import "UIImageView+WebCache.h"
-#import "LXThumbnailContainerView.h"
+#import "LXStatusAvatarView.h"
+#import "LXStatusThumbnailContainerView.h"
 
 /** 配图尺寸. */
 static const CGFloat kLXImageSize = 76;
@@ -22,18 +22,18 @@ static const CGFloat kLXImageRows = 3;
 
 @interface LXStatusCell ()
 
-@property (nonatomic, weak) IBOutlet UIImageView *avatarView;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *timeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *sourceLabel;
+@property (nonatomic, weak) IBOutlet UILabel *subTextLabel;
+@property (nonatomic, weak) IBOutlet UILabel *mainTextLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *vipView;
-@property (nonatomic, weak) IBOutlet UILabel     *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel     *timeLabel;
-@property (nonatomic, weak) IBOutlet UILabel     *sourceLabel;
-@property (nonatomic, weak) IBOutlet UILabel     *subTextLabel;
-@property (nonatomic, weak) IBOutlet UILabel     *mainTextLabel;
 @property (nonatomic, weak) IBOutlet LXStatusToolBar *toolBar;
+@property (nonatomic, weak) IBOutlet LXStatusAvatarView *avatarView;
 
 @property (nonatomic, weak) IBOutlet UIView *statusContainerView;
 
-@property (nonatomic, weak) IBOutlet LXThumbnailContainerView *thumbnailContainerView;
+@property (nonatomic, weak) IBOutlet LXStatusThumbnailContainerView *thumbnailContainerView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *statusContainerTopConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *mainTextLabelBottomConstraint;
 
@@ -86,7 +86,7 @@ static const CGFloat kLXImageRows = 3;
 
     if (retweetedStatus) { // 这是转发微博.
         self.subTextLabel.text  = status.text;
-        self.mainTextLabel.text = [NSString stringWithFormat:@"@%@:%@",
+        self.mainTextLabel.text = [NSString stringWithFormat:@"@%@：%@",
                                    retweetedStatus.user.name, retweetedStatus.text];
 
         [self adjustConstraintForImageRows:ceil(status.retweeted_status.pic_urls.count / kLXImageRows)
@@ -119,8 +119,7 @@ static const CGFloat kLXImageRows = 3;
 {
      LXUser *user = status.user;
 
-    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url]
-                       placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [self.avatarView setImageWithUser:user placeholderImage:[UIImage imageNamed:@"avatar_default"]];
 
     // 根据是否是 vip 设置 nameLabel 的字体颜色,决定是否显示 vip 图标,并设置对应具体等级的图标.
     if (user.isVip) {
@@ -144,9 +143,9 @@ static const CGFloat kLXImageRows = 3;
 {
     NSUInteger picCount = photos.count;
     for (NSUInteger i = 0; i < picCount; ++i) {
-        LXThumbnailView *thumbnailView = self.thumbnailContainerView.thumbnailViews[i];
-        [thumbnailView setImageWithURL:[NSURL URLWithString:photos[i].thumbnail_pic]
-                      placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+        LXStatusThumbnailView *thumbnailView = self.thumbnailContainerView.thumbnailViews[i];
+        [thumbnailView setImageWithPhoto:photos[i]
+                        placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }
 }
 

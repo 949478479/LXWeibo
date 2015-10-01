@@ -1,5 +1,5 @@
 //
-//  LXThumbnailView.h
+//  LXStatusThumbnailView.h
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/9/30.
@@ -7,12 +7,13 @@
 //
 
 @import UIKit;
+@class LXPhoto;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXThumbnailView : UIImageView
+@interface LXStatusThumbnailView : UIImageView
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage;
+- (void)setImageWithPhoto:(LXPhoto *)photo placeholderImage:(UIImage *)placeholderImage;
 
 @end
 

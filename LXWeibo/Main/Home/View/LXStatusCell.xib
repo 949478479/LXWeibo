@@ -17,7 +17,40 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUB-YM-zJ5" userLabel="Container View">
                         <rect key="frame" x="0.0" y="20" width="320" height="376"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="0bA-1Q-05Z">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpW-JH-lCu" userLabel="Status Container">
+                                <rect key="frame" x="0.0" y="91" width="320" height="285"/>
+                                <subviews>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是微博内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNK-qj-OkT">
+                                        <rect key="frame" x="8" y="8" width="304" height="17"/>
+                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="uRf-2Q-4qa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="uRf-2Q-4qa"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSo-OV-0he" userLabel="Image Container" customClass="LXStatusThumbnailContainerView">
+                                        <rect key="frame" x="8" y="33" width="304" height="244"/>
+                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eNK-qj-OkT" firstAttribute="top" secondItem="EpW-JH-lCu" secondAttribute="top" constant="8" id="5Hy-Uq-eSF"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZSo-OV-0he" secondAttribute="trailing" constant="8" id="8fL-r7-MlE"/>
+                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="QQp-li-a28"/>
+                                    <constraint firstAttribute="trailing" secondItem="eNK-qj-OkT" secondAttribute="trailing" constant="8" id="WFi-C4-cUq"/>
+                                    <constraint firstItem="eNK-qj-OkT" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="dON-he-Fus"/>
+                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="top" secondItem="eNK-qj-OkT" secondAttribute="bottom" constant="8" id="wXg-Gv-ig3"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="0bA-1Q-05Z" customClass="LXStatusAvatarView">
                                 <rect key="frame" x="8" y="8" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -61,39 +94,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpW-JH-lCu" userLabel="Status Container">
-                                <rect key="frame" x="0.0" y="91" width="320" height="285"/>
-                                <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是微博内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNK-qj-OkT">
-                                        <rect key="frame" x="8" y="8" width="304" height="17"/>
-                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="uRf-2Q-4qa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="uRf-2Q-4qa"/>
-                                            </mask>
-                                        </variation>
-                                    </label>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSo-OV-0he" userLabel="Image Container" customClass="LXThumbnailContainerView">
-                                        <rect key="frame" x="8" y="33" width="304" height="244"/>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="eNK-qj-OkT" firstAttribute="top" secondItem="EpW-JH-lCu" secondAttribute="top" constant="8" id="5Hy-Uq-eSF"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZSo-OV-0he" secondAttribute="trailing" constant="8" id="8fL-r7-MlE"/>
-                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="QQp-li-a28"/>
-                                    <constraint firstAttribute="trailing" secondItem="eNK-qj-OkT" secondAttribute="trailing" constant="8" id="WFi-C4-cUq"/>
-                                    <constraint firstItem="eNK-qj-OkT" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="dON-he-Fus"/>
-                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="top" secondItem="eNK-qj-OkT" secondAttribute="bottom" constant="8" id="wXg-Gv-ig3"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -138,6 +138,11 @@
                     <constraint firstItem="fOy-gt-kNe" firstAttribute="leading" secondItem="gax-Pn-z7P" secondAttribute="leading" id="veG-ah-sZc"/>
                     <constraint firstItem="bUB-YM-zJ5" firstAttribute="leading" secondItem="gax-Pn-z7P" secondAttribute="leading" id="xmH-ZQ-WMV"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2rh-DP-3Ug"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarView" destination="0bA-1Q-05Z" id="CjZ-eB-LTU"/>

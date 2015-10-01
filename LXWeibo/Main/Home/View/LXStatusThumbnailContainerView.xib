@@ -7,66 +7,66 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="932-z0-2bR" userLabel="Image Container" customClass="LXThumbnailContainerView">
+        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="932-z0-2bR" userLabel="Image Container" customClass="LXStatusThumbnailContainerView">
             <rect key="frame" x="0.0" y="0.0" width="244" height="244"/>
             <subviews>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QPX-97-ReS" userLabel="Image View 0" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QPX-97-ReS" userLabel="Image View 0" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="7iX-fn-o3j"/>
                         <constraint firstAttribute="width" constant="76" id="mBD-ps-Yci"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-Lq-bPY" userLabel="Image View 1" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-Lq-bPY" userLabel="Image View 1" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="84" y="0.0" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="DC0-fb-cFx"/>
                         <constraint firstAttribute="width" constant="76" id="Lwz-PM-ZWF"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OGn-XY-xAv" userLabel="Image View 2" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OGn-XY-xAv" userLabel="Image View 2" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="168" y="0.0" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="Fb4-Yt-zpU"/>
                         <constraint firstAttribute="width" constant="76" id="a1K-NM-02S"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hd6-LK-xc9" userLabel="Image View 3" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hd6-LK-xc9" userLabel="Image View 3" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="0.0" y="84" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="8xU-i8-xWG"/>
                         <constraint firstAttribute="width" constant="76" id="9tx-g0-ltc"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-sT-DVF" userLabel="Image View 4" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-sT-DVF" userLabel="Image View 4" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="84" y="84" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="D22-b8-mC7"/>
                         <constraint firstAttribute="width" constant="76" id="fS0-9a-4hg"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-mP-k92" userLabel="Image View 5" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-mP-k92" userLabel="Image View 5" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="168" y="84" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="PGD-YD-BjW"/>
                         <constraint firstAttribute="width" constant="76" id="q9X-rO-IUp"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBW-vB-DhI" userLabel="Image View 6" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBW-vB-DhI" userLabel="Image View 6" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="0.0" y="168" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="4vg-Yc-6do"/>
                         <constraint firstAttribute="width" constant="76" id="tRp-9E-cyN"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-iu-hHF" userLabel="Image View 7" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-iu-hHF" userLabel="Image View 7" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="84" y="168" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="76" id="62K-iS-b9j"/>
                         <constraint firstAttribute="height" constant="76" id="geu-eW-Z9F"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Phi-WW-C65" userLabel="Image View 8" customClass="LXThumbnailView">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Phi-WW-C65" userLabel="Image View 8" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="168" y="168" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="TPA-Hy-jyP"/>

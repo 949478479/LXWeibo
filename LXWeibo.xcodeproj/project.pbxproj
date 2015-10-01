@@ -68,6 +68,7 @@
 		18E61F4E1BBCE21100442735 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F3A1BBCE21100442735 /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F4F1BBCE21100442735 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F3C1BBCE21100442735 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F531BBD1AF000442735 /* LXStatusAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F511BBD12D400442735 /* LXStatusAvatarView.m */; settings = {ASSET_TAGS = (); }; };
+		18E61F571BBD5E2100442735 /* NSDate+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18EB24341BB8E695009D9505 /* LXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB24331BB8E695009D9505 /* LXUser.m */; settings = {ASSET_TAGS = (); }; };
 		18EB24371BB8E69F009D9505 /* LXStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB24361BB8E69F009D9505 /* LXStatus.m */; settings = {ASSET_TAGS = (); }; };
 		18EB245A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB243A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
@@ -231,6 +232,8 @@
 		18E61F3C1BBCE21100442735 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		18E61F501BBD12D400442735 /* LXStatusAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXStatusAvatarView.h; path = LXWeibo/Main/Home/View/LXStatusAvatarView.h; sourceTree = SOURCE_ROOT; };
 		18E61F511BBD12D400442735 /* LXStatusAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXStatusAvatarView.m; path = LXWeibo/Main/Home/View/LXStatusAvatarView.m; sourceTree = SOURCE_ROOT; };
+		18E61F551BBD5E2100442735 /* NSDate+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LXExtension.h"; sourceTree = "<group>"; };
+		18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LXExtension.m"; sourceTree = "<group>"; };
 		18EB24321BB8E695009D9505 /* LXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUser.h; sourceTree = "<group>"; };
 		18EB24331BB8E695009D9505 /* LXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXUser.m; sourceTree = "<group>"; };
 		18EB24351BB8E69F009D9505 /* LXStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStatus.h; sourceTree = "<group>"; };
@@ -721,6 +724,8 @@
 				18DE61681BB790720048388C /* UITextField+LXExtension.m */,
 				18DE61691BB790720048388C /* UIView+LXExtension.h */,
 				18DE616A1BB790720048388C /* UIView+LXExtension.m */,
+				18E61F551BBD5E2100442735 /* NSDate+LXExtension.h */,
+				18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */,
 			);
 			path = LXExtension;
 			sourceTree = "<group>";
@@ -1194,6 +1199,7 @@
 				181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */,
 				18F014611BB7E66A005C47F7 /* AFNetworkReachabilityManager.m in Sources */,
 				18E61F401BBCE21100442735 /* MJRefreshFooter.m in Sources */,
+				18E61F571BBD5E2100442735 /* NSDate+LXExtension.m in Sources */,
 				181A15121BB2927400D2A53D /* LXSearchField.m in Sources */,
 				18E61F4F1BBCE21100442735 /* UIView+MJExtension.m in Sources */,
 				18E61F451BBCE21100442735 /* MJRefreshBackGifFooter.m in Sources */,

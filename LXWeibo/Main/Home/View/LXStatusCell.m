@@ -78,9 +78,12 @@ static const CGFloat kLXImageRows = 3;
 
 - (void)setupLabelContentAndAdjustConstraintWithStatus:(LXStatus *)status
 {
-    self.nameLabel.text   = status.user.name;
-    self.timeLabel.text   = status.created_at;
-    self.sourceLabel.text = status.source;
+    // 有标识符说明不是模板 cell, 设置显示文本.模板 cell 计算行高的时候没必要设置这些单行 label 的内容.
+    if (self.reuseIdentifier) {
+        self.nameLabel.text   = status.user.name;
+        self.timeLabel.text   = status.created_at;
+        self.sourceLabel.text = status.source;
+    }
 
     LXStatus *retweetedStatus = status.retweeted_status;
 

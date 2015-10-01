@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LXStatusCell" rowHeight="480" id="ghJ-9b-GVL" customClass="LXStatusCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="480" id="ghJ-9b-GVL" customClass="LXStatusCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ghJ-9b-GVL" id="gax-Pn-z7P">
@@ -42,12 +42,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="eNK-qj-OkT" firstAttribute="top" secondItem="EpW-JH-lCu" secondAttribute="top" constant="8" id="5Hy-Uq-eSF"/>
+                                    <constraint firstItem="eNK-qj-OkT" firstAttribute="top" secondItem="EpW-JH-lCu" secondAttribute="top" constant="8" identifier="MainLabel Top" id="5Hy-Uq-eSF"/>
                                     <constraint firstAttribute="trailing" secondItem="ZSo-OV-0he" secondAttribute="trailing" constant="8" id="8fL-r7-MlE"/>
                                     <constraint firstItem="ZSo-OV-0he" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="QQp-li-a28"/>
                                     <constraint firstAttribute="trailing" secondItem="eNK-qj-OkT" secondAttribute="trailing" constant="8" id="WFi-C4-cUq"/>
                                     <constraint firstItem="eNK-qj-OkT" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="dON-he-Fus"/>
-                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="top" secondItem="eNK-qj-OkT" secondAttribute="bottom" constant="8" id="wXg-Gv-ig3"/>
+                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="top" secondItem="eNK-qj-OkT" secondAttribute="bottom" constant="8" identifier="MainLabel Bottom" id="wXg-Gv-ig3"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="0bA-1Q-05Z" customClass="LXStatusAvatarView">
@@ -100,14 +100,14 @@
                             <constraint firstItem="Pb9-8S-uRz" firstAttribute="leading" secondItem="bUB-YM-zJ5" secondAttribute="leading" constant="8" id="0bf-AQ-kpZ"/>
                             <constraint firstAttribute="trailing" secondItem="Pb9-8S-uRz" secondAttribute="trailing" constant="8" id="1vs-fb-knD"/>
                             <constraint firstItem="a1n-C0-Dbt" firstAttribute="bottom" secondItem="0bA-1Q-05Z" secondAttribute="bottom" id="GVo-jx-tQH"/>
-                            <constraint firstAttribute="bottom" secondItem="EpW-JH-lCu" secondAttribute="bottom" id="HLv-8Y-9Wq"/>
-                            <constraint firstItem="Pb9-8S-uRz" firstAttribute="top" secondItem="0bA-1Q-05Z" secondAttribute="bottom" constant="8" id="Jeu-9b-mL0"/>
-                            <constraint firstItem="EpW-JH-lCu" firstAttribute="top" secondItem="Pb9-8S-uRz" secondAttribute="bottom" constant="8" id="KUH-6n-Myy"/>
+                            <constraint firstAttribute="bottom" secondItem="EpW-JH-lCu" secondAttribute="bottom" identifier="Status Container Bottom" id="HLv-8Y-9Wq"/>
+                            <constraint firstItem="Pb9-8S-uRz" firstAttribute="top" secondItem="0bA-1Q-05Z" secondAttribute="bottom" constant="8" identifier="SubLabel Top" id="Jeu-9b-mL0"/>
+                            <constraint firstItem="EpW-JH-lCu" firstAttribute="top" secondItem="Pb9-8S-uRz" secondAttribute="bottom" constant="8" identifier="SubLabel Bottom" id="KUH-6n-Myy"/>
                             <constraint firstItem="EpW-JH-lCu" firstAttribute="leading" secondItem="bUB-YM-zJ5" secondAttribute="leading" id="R30-AZ-NC7"/>
                             <constraint firstItem="0bA-1Q-05Z" firstAttribute="top" secondItem="bUB-YM-zJ5" secondAttribute="top" constant="8" id="Rw0-xB-TCZ"/>
                             <constraint firstItem="7E4-tn-6ea" firstAttribute="top" secondItem="bUB-YM-zJ5" secondAttribute="top" constant="8" id="Vfg-Ay-QF5"/>
                             <constraint firstItem="0bA-1Q-05Z" firstAttribute="leading" secondItem="bUB-YM-zJ5" secondAttribute="leading" constant="8" id="Wcc-o3-JKg"/>
-                            <constraint firstAttribute="bottom" secondItem="ZSo-OV-0he" secondAttribute="bottom" constant="8" id="alw-Mp-kHA"/>
+                            <constraint firstAttribute="bottom" secondItem="ZSo-OV-0he" secondAttribute="bottom" constant="8" identifier="Thumbnail Container Bottom" id="alw-Mp-kHA"/>
                             <constraint firstItem="7E4-tn-6ea" firstAttribute="leading" secondItem="0bA-1Q-05Z" secondAttribute="trailing" constant="8" id="bDU-tG-ZCa"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0WU-QW-FhN" secondAttribute="trailing" constant="8" id="c6y-5o-mCq"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a1n-C0-Dbt" secondAttribute="trailing" constant="8" id="fxB-jl-kqw"/>
@@ -130,11 +130,11 @@
                 <color key="backgroundColor" red="0.82745098039999998" green="0.82745098039999998" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="fOy-gt-kNe" firstAttribute="top" secondItem="bUB-YM-zJ5" secondAttribute="bottom" id="2rh-DP-3Ug"/>
-                    <constraint firstItem="fOy-gt-kNe" firstAttribute="top" secondItem="bUB-YM-zJ5" secondAttribute="bottom" id="4eU-u7-ZBt"/>
-                    <constraint firstItem="bUB-YM-zJ5" firstAttribute="top" secondItem="gax-Pn-z7P" secondAttribute="top" constant="20" id="5X2-F9-6He"/>
+                    <constraint firstItem="fOy-gt-kNe" firstAttribute="top" secondItem="bUB-YM-zJ5" secondAttribute="bottom" identifier="Container Bottom" id="4eU-u7-ZBt"/>
+                    <constraint firstItem="bUB-YM-zJ5" firstAttribute="top" secondItem="gax-Pn-z7P" secondAttribute="top" constant="20" identifier="Container Top" id="5X2-F9-6He"/>
                     <constraint firstAttribute="trailing" secondItem="fOy-gt-kNe" secondAttribute="trailing" id="Lie-uz-NQT"/>
                     <constraint firstAttribute="trailing" secondItem="bUB-YM-zJ5" secondAttribute="trailing" id="dgC-dN-NUC"/>
-                    <constraint firstAttribute="bottom" secondItem="fOy-gt-kNe" secondAttribute="bottom" id="i48-Jn-KQO"/>
+                    <constraint firstAttribute="bottom" secondItem="fOy-gt-kNe" secondAttribute="bottom" identifier="ToolBar Bottom" id="i48-Jn-KQO"/>
                     <constraint firstItem="fOy-gt-kNe" firstAttribute="leading" secondItem="gax-Pn-z7P" secondAttribute="leading" id="veG-ah-sZc"/>
                     <constraint firstItem="bUB-YM-zJ5" firstAttribute="leading" secondItem="gax-Pn-z7P" secondAttribute="leading" id="xmH-ZQ-WMV"/>
                 </constraints>

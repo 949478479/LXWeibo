@@ -14,6 +14,7 @@
 /// @name 类扩展头文件
 ///------------------------------------------------------------------------------------------------
 
+#import "NSDate+LXExtension.h"
 #import "UIView+LXExtension.h"
 #import "UIImage+LXExtension.h"
 #import "UIColor+LXExtension.h"

@@ -304,18 +304,24 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
     NSUInteger row   = indexPath.row;
     NSUInteger count = self.rowHeightCache.count;
 
+    // 之前就存在的行.针对滚动中触发此方法的情况.
     if (row < count) {
         id rowHeightNumber = self.rowHeightCache[row];
-        if (rowHeightNumber != [NSNull null]) {
+        if (rowHeightNumber != [NSNull null]) {   // 插入最新微博时会使用 [NSNull null] 作为行高占位.
             return [rowHeightNumber doubleValue]; // 命中缓存.
         }
     }
 
-    CGFloat rowHeight = [self.statusTemplateCell rowHeightWithStatus:self.statuses[indexPath.row]
+    CGFloat rowHeight = [self.statusTemplateCell rowHeightWithStatus:self.statuses[row]
                                                          inTableView:tableView];
+
+    // 初次加载或者加载最新微博时,新数据是插入到数组前面的.因此直接替换占位的 [NSNull null].
     if (row < count) {
+        NSAssert(self.rowHeightCache[row] == [NSNull null], @"这必须是占位的 [NSNull null].");
         self.rowHeightCache[row] = @(rowHeight);
-    } else {
+    }
+    // 加载更多微博时新数据是拼接在数组后面的.因此行高数据拼接在后面.
+    else {
         [self.rowHeightCache addObject:@(rowHeight)];
     }
 

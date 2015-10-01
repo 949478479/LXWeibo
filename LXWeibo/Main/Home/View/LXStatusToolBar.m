@@ -1,5 +1,5 @@
 //
-//  LXToolBar.m
+//  LXStatusToolBar.m
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/9/29.
@@ -7,13 +7,13 @@
 //
 
 #import "LXStatus.h"
-#import "LXToolBar.h"
+#import "LXStatusToolBar.h"
 #import "LXUtilities.h"
 #import "XXNibBridge.h"
 
 static const NSUInteger kLXCountLimit = 10000;
 
-@interface LXToolBar () <XXNibBridge>
+@interface LXStatusToolBar () <XXNibBridge>
 
 @property (nonatomic, weak) IBOutlet UIButton *repostsButton;
 @property (nonatomic, weak) IBOutlet UIButton *commentsButton;
@@ -21,14 +21,7 @@ static const NSUInteger kLXCountLimit = 10000;
 
 @end
 
-@implementation LXToolBar
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-
-//    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
-}
+@implementation LXStatusToolBar
 
 #pragma mark - *** 公共方法 ***
 

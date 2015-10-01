@@ -1,5 +1,5 @@
 //
-//  LXToolBar.h
+//  LXStatusToolBar.h
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/9/29.
@@ -9,7 +9,7 @@
 @import UIKit;
 @class LXStatus;
 
-@interface LXToolBar : UIView
+@interface LXStatusToolBar : UIView
 
 - (void)configureWithStatus:(LXStatus *)status;
 

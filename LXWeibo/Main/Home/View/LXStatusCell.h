@@ -1,5 +1,5 @@
 //
-//  LXRetweetedStatusCell.h
+//  LXStatusCell.h
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/9/29.
@@ -9,9 +9,9 @@
 @import UIKit;
 @class LXStatus;
 
-@interface LXRetweetedStatusCell : UITableViewCell
+@interface LXStatusCell : UITableViewCell
 
-- (CGFloat)heightWithStatus:(LXStatus *)status inTableView:(UITableView *)tableView;
+- (CGFloat)rowHeightWithStatus:(LXStatus *)status inTableView:(UITableView *)tableView;
 
 - (void)configureWithStatus:(LXStatus *)status;
 

@@ -12,19 +12,17 @@
 #import "LXUtilities.h"
 #import "MJExtension.h"
 #import "AFNetworking.h"
+#import "LXStatusCell.h"
 #import "LXPopoverView.h"
 #import "LXOAuthInfoManager.h"
-#import "LXOriginalStatusCell.h"
-#import "LXRetweetedStatusCell.h"
 #import "LXHomeViewController.h"
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD+LXExtension.h"
 
-static NSString * const kLXOriginalStatusCellIdentifier  = @"LXOriginalStatusCell";
-static NSString * const kLXRetweetedStatusCellIdentifier = @"LXRetweetedStatusCell";
-static NSString * const kLXUserInfoURLString             = @"https://api.weibo.com/2/users/show.json";
-static NSString * const kLXHomeStatusURLString           = @"https://api.weibo.com/2/statuses/home_timeline.json";
-static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weibo.com/2/remind/unread_count.json";
+static NSString * const kLXStatusCellIdentifier = @"LXStatusCell";
+static NSString * const kLXUserInfoURLString    = @"https://api.weibo.com/2/users/show.json";
+static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/statuses/home_timeline.json";
+static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/remind/unread_count.json";
 
 @interface LXHomeViewController () <LXPopoverViewDelegate>
 
@@ -33,9 +31,8 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
 
 @property (nonatomic, strong) NSMutableArray<LXStatus *> *statuses;
 
-@property (nonatomic, strong) NSMutableArray        *rowHeightCache;
-@property (nonatomic, strong) LXOriginalStatusCell  *originalStatusTemplateCell;
-@property (nonatomic, strong) LXRetweetedStatusCell *retweetedStatusTemplateCell;
+@property (nonatomic, strong) NSMutableArray *rowHeightCache;
+@property (nonatomic, strong) LXStatusCell   *statusTemplateCell;
 
 @property (nonatomic, strong) dispatch_source_t timer;
 
@@ -55,20 +52,17 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
 
     [self.tableView.header beginRefreshing];
 
-//    __weak __typeof(self) weakSelf = self;
-//    self.timer = LXGCDTimer(60, 30, ^{
-//        [weakSelf setupUnreadCount];
-//    }, nil);
-//    dispatch_resume(self.timer);
+    __weak __typeof(self) weakSelf = self;
+    self.timer = LXGCDTimer(60, 30, ^{
+        [weakSelf setupUnreadCount];
+    }, nil);
+    dispatch_resume(self.timer);
 }
 
 - (void)registerNib
 {
-    [self.tableView registerNib:[LXOriginalStatusCell lx_nib]
-         forCellReuseIdentifier:kLXOriginalStatusCellIdentifier];
-
-    [self.tableView registerNib:[LXRetweetedStatusCell lx_nib]
-         forCellReuseIdentifier:kLXRetweetedStatusCellIdentifier];
+    [self.tableView registerNib:[LXStatusCell lx_nib]
+         forCellReuseIdentifier:kLXStatusCellIdentifier];
 }
 
 - (void)setupTitle
@@ -280,12 +274,8 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LXStatus *status = self.statuses[indexPath.row];
-    NSString *identifier = status.retweeted_status ?
-        kLXRetweetedStatusCellIdentifier : kLXOriginalStatusCellIdentifier;
-
-    id cell = [tableView dequeueReusableCellWithIdentifier:identifier
-                                              forIndexPath:indexPath];
+    LXStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:kLXStatusCellIdentifier
+                                                         forIndexPath:indexPath];
     [cell configureWithStatus:self.statuses[indexPath.row]];
 
     return cell;
@@ -293,20 +283,12 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
 
 #pragma mark - UITableViewDelegate
 
-- (LXOriginalStatusCell *)originalStatusTemplateCell
+- (LXStatusCell *)statusTemplateCell
 {
-    if (!_originalStatusTemplateCell) {
-        _originalStatusTemplateCell = [LXOriginalStatusCell lx_instantiateFromNib];
+    if (!_statusTemplateCell) {
+        _statusTemplateCell = [LXStatusCell lx_instantiateFromNib];
     }
-    return _originalStatusTemplateCell;
-}
-
-- (LXRetweetedStatusCell *)retweetedStatusTemplateCell
-{
-    if (!_retweetedStatusTemplateCell) {
-        _retweetedStatusTemplateCell = [LXRetweetedStatusCell lx_instantiateFromNib];
-    }
-    return _retweetedStatusTemplateCell;
+    return _statusTemplateCell;
 }
 
 - (NSMutableArray<NSNumber *> *)rowHeightCache
@@ -329,11 +311,8 @@ static NSString * const kLXUnreadCountURLString          = @"https://rm.api.weib
         }
     }
 
-    LXStatus *originalStatus  = self.statuses[indexPath.row];
-    LXStatus *retweetedStatus = originalStatus.retweeted_status;
-    id templateCell = retweetedStatus ? self.retweetedStatusTemplateCell : self.originalStatusTemplateCell;
-    CGFloat rowHeight = [templateCell heightWithStatus:self.statuses[indexPath.row]
-                                           inTableView:tableView];
+    CGFloat rowHeight = [self.statusTemplateCell rowHeightWithStatus:self.statuses[indexPath.row]
+                                                         inTableView:tableView];
     if (row < count) {
         self.rowHeightCache[row] = @(rowHeight);
     } else {

@@ -25,7 +25,14 @@
 
 - (void)tabBar:(LXTabBar *)tabBar didTappedComposeButton:(UIButton *)composeButton
 {
-    LXLog(@"加号按钮被点击!");
+    [self performSegueWithIdentifier:@"ModalComposeVC" sender:nil];
+}
+
+#pragma mark - Navigation
+
+- (IBAction)unwindForSegue:(UIStoryboardSegue *)unwindSegue
+{
+
 }
 
 @end

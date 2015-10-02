@@ -12,7 +12,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是占位文字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uix-CE-UAb">
-                    <rect key="frame" x="31" y="0.0" width="136" height="30"/>
+                    <rect key="frame" x="29" y="0.0" width="138" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -31,7 +32,7 @@
                 <constraint firstItem="Roz-YZ-hnc" firstAttribute="leading" secondItem="PB1-k0-CIb" secondAttribute="leading" constant="8" id="RUJ-KI-GN6"/>
                 <constraint firstItem="Roz-YZ-hnc" firstAttribute="centerY" secondItem="PB1-k0-CIb" secondAttribute="centerY" id="Shk-Sa-4L2"/>
                 <constraint firstItem="Roz-YZ-hnc" firstAttribute="top" secondItem="PB1-k0-CIb" secondAttribute="top" id="UxG-Oq-c1b"/>
-                <constraint firstItem="Uix-CE-UAb" firstAttribute="leading" secondItem="Roz-YZ-hnc" secondAttribute="trailing" constant="8" symbolic="YES" id="YAn-dz-Dk8"/>
+                <constraint firstItem="Uix-CE-UAb" firstAttribute="leading" secondItem="Roz-YZ-hnc" secondAttribute="trailing" constant="6" id="YAn-dz-Dk8"/>
                 <constraint firstItem="Uix-CE-UAb" firstAttribute="top" secondItem="PB1-k0-CIb" secondAttribute="top" id="aMm-wN-rEm"/>
                 <constraint firstAttribute="bottom" secondItem="Uix-CE-UAb" secondAttribute="bottom" id="iC5-Vu-ZpS"/>
             </constraints>
@@ -47,7 +48,7 @@
                 <outlet property="iconView" destination="Roz-YZ-hnc" id="e2D-Kh-kIt"/>
                 <outlet property="placeholderLabel" destination="Uix-CE-UAb" id="I7l-gl-Cvx"/>
             </connections>
-            <point key="canvasLocation" x="456.5" y="558"/>
+            <point key="canvasLocation" x="864.5" y="695"/>
         </view>
     </objects>
     <resources>

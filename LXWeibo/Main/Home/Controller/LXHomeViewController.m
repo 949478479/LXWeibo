@@ -210,6 +210,7 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
         label.textColor       = [UIColor whiteColor];
         label.textAlignment   = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor lx_colorWithHexString:@"FF7F00" alpha:0.9];
+        
         if (count > 0) {
             label.text = [NSString stringWithFormat:@"共有%lu条新的微博数据", count];
         } else {

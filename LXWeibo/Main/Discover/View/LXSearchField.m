@@ -42,6 +42,7 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
     LXPlaceholderView *placeholderView = [LXPlaceholderView lx_instantiateFromNib];
     {
         placeholderView.placeholderLabel.text = self.placeholder;
+        placeholderView.placeholderLabel.font = self.font;
         [self addSubview:placeholderView];
         self.placeholderView = placeholderView;
     }
@@ -80,7 +81,7 @@ static const NSTimeInterval kLXAnimationDuration = 0.25;
 
 - (CGRect)adjustRectForBounds:(CGRect)bounds
 {
-    CGFloat offsetX = self.placeholderView.placeholderLabel.lx_originX;
+    CGFloat offsetX = self.placeholderView.placeholderLabel.lx_originX - 1; // 往左偏 1 点效果更好看.
     bounds.origin.x   += offsetX; // 原点向右偏移到占位文字开始处.
     bounds.size.width -= offsetX; // 由于原点偏移,因此宽度需去掉偏移量,否则右侧会超出.
     return bounds;

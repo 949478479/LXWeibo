@@ -5,6 +5,34 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--发微博 View Controller-->
+        <scene sceneID="Zgh-hP-fuo">
+            <objects>
+                <viewController id="ecb-s8-U8q" userLabel="发微博 View Controller" customClass="LXComposeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6OH-79-PTC"/>
+                        <viewControllerLayoutGuide type="bottom" id="WRT-do-bb4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8v3-eW-Gjf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ysj-DB-UcS">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="1BU-Ec-3Of">
+                            <connections>
+                                <segue destination="VQU-16-tV2" kind="unwind" unwindAction="unwindForSegue:" id="BMp-Cz-kwo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="发表" id="ISQ-u1-kZf"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="36e-Mw-OSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VQU-16-tV2" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="82" y="-53"/>
+        </scene>
         <!--主 TabBar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -19,6 +47,7 @@
                         <segue destination="KKN-bG-531" kind="relationship" relationship="viewControllers" id="a8E-TG-rYI"/>
                         <segue destination="fhr-77-c4V" kind="relationship" relationship="viewControllers" id="rug-oL-kVP"/>
                         <segue destination="OsY-It-Z8K" kind="relationship" relationship="viewControllers" id="Sok-uH-tNZ"/>
+                        <segue destination="72Q-Ka-aYS" kind="modal" identifier="ModalComposeVC" id="XVk-JX-0lA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -228,11 +257,17 @@
                     <view key="view" contentMode="scaleToFill" id="gEQ-0D-Pdy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="请输入搜索内容" translatesAutoresizingMaskIntoConstraints="NO" id="b0D-ML-8Yh">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="J8X-R1-mJ4">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="searchbar_textfield_background" clearButtonMode="whileEditing" id="8bP-Zt-vcZ" customClass="LXSearchField">
+                        <textField key="titleView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="searchbar_textfield_background" clearButtonMode="whileEditing" id="8bP-Zt-vcZ" customClass="LXSearchField">
                             <rect key="frame" x="20" y="7" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -268,6 +303,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUv-2Y-MeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="518" y="252"/>
+        </scene>
+        <!--发微博 Navigation Controller-->
+        <scene sceneID="4yX-1J-YLk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="72Q-Ka-aYS" userLabel="发微博 Navigation Controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qor-ed-mOh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ecb-s8-U8q" kind="relationship" relationship="rootViewController" id="ODK-rZ-ukI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="avt-3d-PO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-301" y="-53"/>
         </scene>
     </scenes>
     <resources>

@@ -7,14 +7,23 @@
 //
 
 #import "LXUtilities.h"
+#import "AFNetworking.h"
 #import "LXOAuthInfoManager.h"
 #import "LXComposeViewController.h"
+#import "MBProgressHUD+LXExtension.h"
 
-@interface LXComposeViewController ()
+static NSString * const kSendStatusURLString = @"https://api.weibo.com/2/statuses/update.json";
+
+@interface LXComposeViewController () <UITextViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *sendButtonItem;
 
 @end
 
 @implementation LXComposeViewController
+
+#pragma mark - View 生命周期方法
 
 - (void)viewDidLoad
 {
@@ -22,6 +31,22 @@
 
     [self setupTitleView];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self.textView becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.textView resignFirstResponder];
+}
+
+#pragma mark - 设置标题
 
 - (void)setupTitleView
 {
@@ -42,6 +67,33 @@
     }
 
     self.navigationItem.titleView = titleLabel;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.sendButtonItem.enabled = textView.hasText;
+}
+
+#pragma mark - IBAction
+
+- (IBAction)sendButtonDidTap:(UIBarButtonItem *)sender
+{
+    NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
+                              @"status"       : self.textView.text, };
+
+    [[AFHTTPRequestOperationManager manager] POST:kSendStatusURLString
+                                       parameters:params
+                                          success:
+     ^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        [MBProgressHUD lx_showSuccess:@"发送成功"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD lx_showError:@"发送失败"];
+        LXLog(@"微博发送失败\n%@", error);
+    }];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

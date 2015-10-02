@@ -16,7 +16,30 @@
                     <view key="view" contentMode="scaleToFill" id="8v3-eW-Gjf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xyc-Wf-u8X" customClass="LXTextView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请输入微博内容..."/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="ecb-s8-U8q" id="84k-Rb-g3w"/>
+                                </connections>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="xyc-Wf-u8X" secondAttribute="bottom" id="B0v-yM-qcM"/>
+                            <constraint firstItem="xyc-Wf-u8X" firstAttribute="top" secondItem="8v3-eW-Gjf" secondAttribute="top" id="W0Z-u9-IVZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xyc-Wf-u8X" secondAttribute="trailing" id="nsk-wz-HvK"/>
+                            <constraint firstItem="xyc-Wf-u8X" firstAttribute="leading" secondItem="8v3-eW-Gjf" secondAttribute="leading" id="r3T-yz-RW9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ysj-DB-UcS">
                         <nil key="title"/>
@@ -25,8 +48,16 @@
                                 <segue destination="VQU-16-tV2" kind="unwind" unwindAction="unwindForSegue:" id="BMp-Cz-kwo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="发表" id="ISQ-u1-kZf"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="发表" id="ISQ-u1-kZf">
+                            <connections>
+                                <action selector="sendButtonDidTap:" destination="ecb-s8-U8q" id="eeB-WD-IpW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sendButtonItem" destination="ISQ-u1-kZf" id="k7g-gY-1Ev"/>
+                        <outlet property="textView" destination="xyc-Wf-u8X" id="8Ha-Rh-7wE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36e-Mw-OSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VQU-16-tV2" userLabel="Exit" sceneMemberID="exit"/>
@@ -257,12 +288,6 @@
                     <view key="view" contentMode="scaleToFill" id="gEQ-0D-Pdy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="请输入搜索内容" translatesAutoresizingMaskIntoConstraints="NO" id="b0D-ML-8Yh">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="J8X-R1-mJ4">
@@ -270,6 +295,7 @@
                         <textField key="titleView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="searchbar_textfield_background" clearButtonMode="whileEditing" id="8bP-Zt-vcZ" customClass="LXSearchField">
                             <rect key="frame" x="20" y="7" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                             <userDefinedRuntimeAttributes>

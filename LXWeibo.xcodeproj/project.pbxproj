@@ -48,6 +48,7 @@
 		18DE61871BB7D8D80048388C /* NewFeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DE61861BB7D8D80048388C /* NewFeature.storyboard */; settings = {ASSET_TAGS = (); }; };
 		18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DE61891BB7D9170048388C /* OAuth.storyboard */; settings = {ASSET_TAGS = (); }; };
 		18DE618D1BB7D9AA0048388C /* LXAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE618C1BB7D9AA0048388C /* LXAuthViewController.m */; settings = {ASSET_TAGS = (); }; };
+		18E3ECEE1BBE9A6A00FACEC8 /* LXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E3ECED1BBE9A6A00FACEC8 /* LXTextView.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F3D1BBCE21100442735 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F131BBCE21000442735 /* MJRefreshAutoFooter.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F3E1BBCE21100442735 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F151BBCE21000442735 /* MJRefreshBackFooter.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F3F1BBCE21100442735 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F171BBCE21000442735 /* MJRefreshComponent.m */; settings = {ASSET_TAGS = (); }; };
@@ -193,6 +194,8 @@
 		18DE61891BB7D9170048388C /* OAuth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OAuth.storyboard; sourceTree = "<group>"; };
 		18DE618B1BB7D9AA0048388C /* LXAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXAuthViewController.h; sourceTree = "<group>"; };
 		18DE618C1BB7D9AA0048388C /* LXAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXAuthViewController.m; sourceTree = "<group>"; };
+		18E3ECEC1BBE9A6A00FACEC8 /* LXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTextView.h; sourceTree = "<group>"; };
+		18E3ECED1BBE9A6A00FACEC8 /* LXTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTextView.m; sourceTree = "<group>"; };
 		18E61F121BBCE21000442735 /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		18E61F131BBCE21000442735 /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		18E61F141BBCE21000442735 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -911,6 +914,8 @@
 		18E61F5A1BBD806A00442735 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18E3ECEC1BBE9A6A00FACEC8 /* LXTextView.h */,
+				18E3ECED1BBE9A6A00FACEC8 /* LXTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1191,6 +1196,7 @@
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
 				18DE61781BB790720048388C /* UIButton+LXExtension.m in Sources */,
 				18D22D711BBADBC100745192 /* XXNibConvention.m in Sources */,
+				18E3ECEE1BBE9A6A00FACEC8 /* LXTextView.m in Sources */,
 				18EB24681BB8EA37009D9505 /* UIImageView+WebCache.m in Sources */,
 				18DE617E1BB790720048388C /* LXImagePicker.m in Sources */,
 				1889A0AE1BB394E500060A9A /* LXHomeViewController.m in Sources */,

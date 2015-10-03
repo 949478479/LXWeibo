@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
                             usingBlock:(void (^)(NSNotification *note))block;
 
 /**
- *  使用 @c [NSNotificationCenter defaultCenter] 注册通知观察者.
+ *  使用 @c [NSNotificationCenter defaultCenter] 注册通知观察者.(block 版)
  *
  *  @param name  通知名称.
  *  @param obj   通知发送者.
@@ -66,6 +66,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lx_addObserverForKeyboardShowAndHide:(id)observer
                              selectorForShow:(SEL)aSelectorForShow
                              selectorForHide:(SEL)aSelectorForHide;
+
+/**
+ *  使用 @c [NSNotificationCenter defaultCenter] 注册键盘 @c frame 改变的通知.
+ *
+ *  @param block    在主线程执行的回调 @c block.
+ */
++ (id <NSObject>)lx_addObserverForKeyboardWillChangeFrameNotificationWithBlock:(void (^)(NSNotification *note))block;
 
 ///------------------------------------------------------------------------------------------------
 /// @name 移除通知观察者

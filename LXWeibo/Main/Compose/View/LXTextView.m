@@ -84,12 +84,11 @@
         [NSLayoutConstraint deactivateConstraints:self.placeholderLabelConstraints];
     }
 
-    // 经过试验, textView.textContainerInset 默认为 {8, 0, 8, 0}. 然而实际上左右两边是有 5 点的距离的. 
+    // 经过试验, textView.textContainerInset 默认为 {8, 0, 8, 0}. 然而实际上左右两边是各有 5 点的距离的.
     NSDictionary *views   = @{ @"placeholderLabel" : self.placeholderLabel };
     NSDictionary *metrics = @{ @"top"    : @(self.textContainerInset.top),
                                @"bottom" : @(self.textContainerInset.bottom),
-                               @"left"   : @(self.textContainerInset.left + 5),
-                               @"right"  : @(self.textContainerInset.right + 5), };
+                               @"left"   : @(self.textContainerInset.left + 5), };
 
     NSMutableArray *constraints = [NSMutableArray new];
     {
@@ -98,11 +97,25 @@
                                                  options:0
                                                  metrics:metrics
                                                    views:views]];
+
+        /* 由于 UITextView 继承自 UIScrollView, 因此不能把两边间距都给约束,这将导致占位文字很长时只显示 1 行,
+         且 textView 可以水平滚动.而上下间距都给了约束是因为上下滚动是合理的. */
         [constraints addObjectsFromArray:
-         [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[placeholderLabel]-right-|"
+         [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[placeholderLabel]"
                                                  options:0
                                                  metrics:metrics
                                                    views:views]];
+
+        // 通过宽度约束限制 placeholderLabel 的宽度,而不是靠左右的间距约束.(不知道 VFL 如何创建这种约束.)
+        [constraints addObject:
+         [NSLayoutConstraint constraintWithItem:self.placeholderLabel
+                                      attribute:NSLayoutAttributeWidth
+                                      relatedBy:NSLayoutRelationEqual
+                                         toItem:self
+                                      attribute:NSLayoutAttributeWidth
+                                     multiplier:1
+                                       constant:-(self.textContainerInset.left + 5 +
+                                                  self.textContainerInset.right + 5)]];
     }
     [NSLayoutConstraint activateConstraints:constraints];
 

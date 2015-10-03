@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nS7-z2-IXo" customClass="LXComposeToolBar">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compose_toolbar_background" translatesAutoresizingMaskIntoConstraints="NO" id="6JW-K3-xwa">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-MJ-hdJ" userLabel="Camera Button">
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
+                    <state key="normal" image="compose_camerabutton_background"/>
+                    <state key="highlighted" image="compose_camerabutton_background_highlighted"/>
+                    <connections>
+                        <action selector="toolBarButtonDidTap:" destination="nS7-z2-IXo" eventType="touchUpInside" id="U3m-OK-Ino"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJr-TH-E4a" userLabel="Picture Button">
+                    <rect key="frame" x="64" y="0.0" width="64" height="44"/>
+                    <state key="normal" image="compose_toolbar_picture"/>
+                    <state key="highlighted" image="compose_toolbar_picture_highlighted"/>
+                    <connections>
+                        <action selector="toolBarButtonDidTap:" destination="nS7-z2-IXo" eventType="touchUpInside" id="4oU-Ov-vyF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xO1-SW-JqP" userLabel="Trend Button">
+                    <rect key="frame" x="192" y="0.0" width="64" height="44"/>
+                    <state key="normal" image="compose_trendbutton_background"/>
+                    <state key="highlighted" image="compose_trendbutton_background_highlighted"/>
+                    <connections>
+                        <action selector="toolBarButtonDidTap:" destination="nS7-z2-IXo" eventType="touchUpInside" id="6d5-Qb-b7j"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwJ-ZT-K8w" userLabel="Emoticon Button">
+                    <rect key="frame" x="256" y="0.0" width="64" height="44"/>
+                    <state key="normal" image="compose_emoticonbutton_background"/>
+                    <state key="highlighted" image="compose_emoticonbutton_background_highlighted"/>
+                    <connections>
+                        <action selector="toolBarButtonDidTap:" destination="nS7-z2-IXo" eventType="touchUpInside" id="SKF-qb-iXF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTy-gt-SRA" userLabel="Mention Button">
+                    <rect key="frame" x="128" y="0.0" width="64" height="44"/>
+                    <state key="normal" image="compose_mentionbutton_background"/>
+                    <state key="highlighted" image="compose_mentionbutton_background_highlighted"/>
+                    <connections>
+                        <action selector="toolBarButtonDidTap:" destination="nS7-z2-IXo" eventType="touchUpInside" id="5Gt-PW-fKO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="6JW-K3-xwa" firstAttribute="top" secondItem="nS7-z2-IXo" secondAttribute="top" id="0Vv-Md-JfY"/>
+                <constraint firstItem="xO1-SW-JqP" firstAttribute="top" secondItem="nS7-z2-IXo" secondAttribute="top" id="0lr-zY-Hzb"/>
+                <constraint firstAttribute="bottom" secondItem="xO1-SW-JqP" secondAttribute="bottom" id="3eH-Xh-EK9"/>
+                <constraint firstAttribute="bottom" secondItem="6JW-K3-xwa" secondAttribute="bottom" id="6XB-yD-Ecw"/>
+                <constraint firstItem="6JW-K3-xwa" firstAttribute="leading" secondItem="nS7-z2-IXo" secondAttribute="leading" id="6Xd-Zy-Qpc"/>
+                <constraint firstAttribute="trailing" secondItem="SwJ-ZT-K8w" secondAttribute="trailing" id="EYc-jf-8BL"/>
+                <constraint firstItem="7cT-MJ-hdJ" firstAttribute="leading" secondItem="nS7-z2-IXo" secondAttribute="leading" id="QIh-15-KaX"/>
+                <constraint firstItem="gJr-TH-E4a" firstAttribute="width" secondItem="7cT-MJ-hdJ" secondAttribute="width" id="RU3-8l-UyS"/>
+                <constraint firstItem="SwJ-ZT-K8w" firstAttribute="width" secondItem="7cT-MJ-hdJ" secondAttribute="width" id="SXT-x1-AGb"/>
+                <constraint firstItem="gJr-TH-E4a" firstAttribute="leading" secondItem="7cT-MJ-hdJ" secondAttribute="trailing" id="Z5T-ee-YQA"/>
+                <constraint firstItem="rTy-gt-SRA" firstAttribute="top" secondItem="nS7-z2-IXo" secondAttribute="top" id="ZJn-W3-sl6"/>
+                <constraint firstItem="SwJ-ZT-K8w" firstAttribute="leading" secondItem="xO1-SW-JqP" secondAttribute="trailing" id="Zd0-rK-wUi"/>
+                <constraint firstItem="7cT-MJ-hdJ" firstAttribute="top" secondItem="nS7-z2-IXo" secondAttribute="top" id="bgz-vl-0QQ"/>
+                <constraint firstItem="xO1-SW-JqP" firstAttribute="leading" secondItem="rTy-gt-SRA" secondAttribute="trailing" id="bof-dE-Zvq"/>
+                <constraint firstItem="xO1-SW-JqP" firstAttribute="width" secondItem="7cT-MJ-hdJ" secondAttribute="width" id="bx9-aE-UZl"/>
+                <constraint firstAttribute="bottom" secondItem="gJr-TH-E4a" secondAttribute="bottom" id="cIm-fw-5Q8"/>
+                <constraint firstItem="gJr-TH-E4a" firstAttribute="top" secondItem="nS7-z2-IXo" secondAttribute="top" id="gRB-ck-zdG"/>
+                <constraint firstAttribute="bottom" secondItem="7cT-MJ-hdJ" secondAttribute="bottom" id="nfw-2f-VvY"/>
+                <constraint firstAttribute="bottom" secondItem="SwJ-ZT-K8w" secondAttribute="bottom" id="o7W-05-Ey2"/>
+                <constraint firstItem="rTy-gt-SRA" firstAttribute="leading" secondItem="gJr-TH-E4a" secondAttribute="trailing" id="oT2-Wq-0f6"/>
+                <constraint firstItem="SwJ-ZT-K8w" firstAttribute="top" secondItem="nS7-z2-IXo" secondAttribute="top" id="op2-us-sEf"/>
+                <constraint firstAttribute="bottom" secondItem="rTy-gt-SRA" secondAttribute="bottom" id="taf-b0-W8t"/>
+                <constraint firstAttribute="trailing" secondItem="6JW-K3-xwa" secondAttribute="trailing" id="uaR-jn-SRQ"/>
+                <constraint firstAttribute="height" constant="44" id="yjZ-M3-Jwk"/>
+                <constraint firstItem="rTy-gt-SRA" firstAttribute="width" secondItem="7cT-MJ-hdJ" secondAttribute="width" id="yva-X9-xSC"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="1230" y="389"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="compose_camerabutton_background" width="24" height="24"/>
+        <image name="compose_camerabutton_background_highlighted" width="24" height="24"/>
+        <image name="compose_emoticonbutton_background" width="24" height="24"/>
+        <image name="compose_emoticonbutton_background_highlighted" width="24" height="24"/>
+        <image name="compose_mentionbutton_background" width="24" height="24"/>
+        <image name="compose_mentionbutton_background_highlighted" width="24" height="24"/>
+        <image name="compose_toolbar_background" width="1" height="44"/>
+        <image name="compose_toolbar_picture" width="24" height="24"/>
+        <image name="compose_toolbar_picture_highlighted" width="24" height="24"/>
+        <image name="compose_trendbutton_background" width="24" height="24"/>
+        <image name="compose_trendbutton_background_highlighted" width="24" height="24"/>
+    </resources>
+</document>

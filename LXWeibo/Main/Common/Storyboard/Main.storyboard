@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xyc-Wf-u8X" customClass="LXTextView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -32,11 +32,21 @@
                                     <outlet property="delegate" destination="ecb-s8-U8q" id="84k-Rb-g3w"/>
                                 </connections>
                             </textView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="HFv-fx-xOK" customClass="LXComposeToolBar">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ecb-s8-U8q" id="vwu-EU-yxO"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="xyc-Wf-u8X" secondAttribute="bottom" id="B0v-yM-qcM"/>
+                            <constraint firstItem="HFv-fx-xOK" firstAttribute="leading" secondItem="8v3-eW-Gjf" secondAttribute="leading" id="AhS-ay-7U7"/>
+                            <constraint firstAttribute="bottom" secondItem="HFv-fx-xOK" secondAttribute="bottom" id="Hbo-5i-lgb"/>
+                            <constraint firstItem="HFv-fx-xOK" firstAttribute="top" secondItem="xyc-Wf-u8X" secondAttribute="bottom" id="Rdy-ks-iCw"/>
                             <constraint firstItem="xyc-Wf-u8X" firstAttribute="top" secondItem="8v3-eW-Gjf" secondAttribute="top" id="W0Z-u9-IVZ"/>
+                            <constraint firstAttribute="trailing" secondItem="HFv-fx-xOK" secondAttribute="trailing" id="XEk-df-GMy"/>
                             <constraint firstAttribute="trailing" secondItem="xyc-Wf-u8X" secondAttribute="trailing" id="nsk-wz-HvK"/>
                             <constraint firstItem="xyc-Wf-u8X" firstAttribute="leading" secondItem="8v3-eW-Gjf" secondAttribute="leading" id="r3T-yz-RW9"/>
                         </constraints>
@@ -55,12 +65,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imagePicker" destination="TTk-qD-tpk" id="z8d-5o-tod"/>
                         <outlet property="sendButtonItem" destination="ISQ-u1-kZf" id="k7g-gY-1Ev"/>
                         <outlet property="textView" destination="xyc-Wf-u8X" id="8Ha-Rh-7wE"/>
+                        <outlet property="toolBar" destination="HFv-fx-xOK" id="Ltn-gT-bZf"/>
+                        <outlet property="toolBarBottomConstraint" destination="Hbo-5i-lgb" id="MqZ-az-0Al"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36e-Mw-OSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VQU-16-tV2" userLabel="Exit" sceneMemberID="exit"/>
+                <customObject id="TTk-qD-tpk" customClass="LXImagePicker"/>
             </objects>
             <point key="canvasLocation" x="82" y="-53"/>
         </scene>

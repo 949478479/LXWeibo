@@ -11,8 +11,11 @@
 
 @interface LXImagePicker () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (nonatomic, strong) LXImagePickCompletionHandler completionHandler;
-@property (nonatomic, strong) LXImagePickCancelHandler cancelHandler;
+@property (nonatomic, assign) BOOL isBlockMode;
+
+@property (nonatomic, strong) LXImagePickCompletionHandler    completionHandler;
+@property (nonatomic, strong) LXImagePickCancelHandler        cancelHandler;
+@property (nonatomic, strong) LXSourceTypeNotAvailableHandler notAvailableHandler;
 
 @end
 
@@ -36,7 +39,7 @@
         [UIAlertAction actionWithTitle:@"相册"
                                  style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
-                                   [self presentImagePickerControllerWithSourceType:
+                                   [self p_presentImagePickerControllerWithSourceType:
                                     UIImagePickerControllerSourceTypePhotoLibrary];
                                }];
 
@@ -44,7 +47,7 @@
         [UIAlertAction actionWithTitle:@"相机"
                                  style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
-                                   [self presentImagePickerControllerWithSourceType:
+                                   [self p_presentImagePickerControllerWithSourceType:
                                     UIImagePickerControllerSourceTypeCamera];
                                }];
 
@@ -62,21 +65,62 @@
 
 - (void)showActionSheetWithImagePickCompletionHandler:(LXImagePickCompletionHandler)completionHandler
                                         cancelHandler:(LXImagePickCancelHandler)cancelHandler
+                        sourceTypeNotAvailableHandler:(LXSourceTypeNotAvailableHandler)notAvailableHandler
 {
-    NSAssert(completionHandler, @"参数 completionHandler 不能为 nil.");
+    self.isBlockMode = YES;
 
-    self.completionHandler = completionHandler;
-    self.cancelHandler     = cancelHandler;
+    self.completionHandler   = completionHandler;
+    self.cancelHandler       = cancelHandler;
+    self.notAvailableHandler = notAvailableHandler;
 
     [self showActionSheet];
+}
+
+- (BOOL)presentImagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    return [self p_presentImagePickerControllerWithSourceType:sourceType];
+}
+
+- (BOOL)presentImagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+                                 completionHandler:(LXImagePickCompletionHandler)completionHandler
+                                     cancelHandler:(LXImagePickCancelHandler)cancelHandler
+{
+    self.isBlockMode = YES;
+
+    self.cancelHandler     = cancelHandler;
+    self.completionHandler = completionHandler;
+
+    return [self p_presentImagePickerControllerWithSourceType:sourceType];
 }
 
 #pragma mark - *** 私有方法 ***
 
 #pragma mark - 辅助方法
 
-- (void)presentImagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+- (BOOL)p_presentImagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType
 {
+    NSAssert((self.delegate && !self.isBlockMode) || (self.completionHandler && self.isBlockMode),
+             @"若不使用 block 则需设置 delegate.");
+
+    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
+
+        if (self.isBlockMode) {
+
+            if (self.notAvailableHandler) {
+                self.notAvailableHandler();
+            }
+
+            self.cancelHandler       = nil;
+            self.completionHandler   = nil;
+            self.notAvailableHandler = nil;
+
+        } else if ([self.delegate respondsToSelector:@selector(imagePickerSourceTypeNotAvailable:)]) {
+            [self.delegate imagePickerSourceTypeNotAvailable:self];
+        }
+
+        return NO;
+    }
+
     UIImagePickerController *ipc = [UIImagePickerController new];
     {
         ipc.delegate      = self;
@@ -85,6 +129,8 @@
     }
     
     [LXTopViewController() presentViewController:ipc animated:YES completion:nil];
+
+    return YES;
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -97,36 +143,40 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage   = info[UIImagePickerControllerEditedImage];
 
-    if (self.completionHandler)
-    {
+    if (self.isBlockMode) {
+
         self.completionHandler(originalImage, editedImage);
         
-        self.completionHandler = nil;
-        self.cancelHandler     = nil;
+        self.cancelHandler       = nil;
+        self.completionHandler   = nil;
+        self.notAvailableHandler = nil;
+
+        return;
     }
-    else if (self.delegate)
-    {
-        [self.delegate imagePicker:self
-     didFinishPickingOriginalImage:originalImage
-                       editedImage:editedImage];
-    }
+
+    [self.delegate imagePicker:self didFinishPickingOriginalImage:originalImage editedImage:editedImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
 
-    if (self.cancelHandler)
-    {
-        self.cancelHandler();
-    }
-    else if ([self.delegate respondsToSelector:@selector(imagePickerDidCancel:)])
-    {
-        [self.delegate imagePickerDidCancel:self];
+    if (self.isBlockMode) {
+
+        if (self.cancelHandler) {
+            self.cancelHandler();
+        }
+
+        self.cancelHandler       = nil;
+        self.completionHandler   = nil;
+        self.notAvailableHandler = nil;
+
+        return;
     }
 
-    self.completionHandler = nil;
-    self.cancelHandler     = nil;
+    if ([self.delegate respondsToSelector:@selector(imagePickerDidCancel:)]) {
+        [self.delegate imagePickerDidCancel:self];
+    }
 }
 
 @end

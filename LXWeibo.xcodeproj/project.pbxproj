@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180C5A701BBF9EA90040E5B1 /* LXComposeToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180C5A6F1BBF9EA90040E5B1 /* LXComposeToolBar.xib */; settings = {ASSET_TAGS = (); }; };
+		180C5A731BBFA1DE0040E5B1 /* LXComposeToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C5A721BBFA1DE0040E5B1 /* LXComposeToolBar.m */; settings = {ASSET_TAGS = (); }; };
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
@@ -118,6 +120,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180C5A6F1BBF9EA90040E5B1 /* LXComposeToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXComposeToolBar.xib; sourceTree = "<group>"; };
+		180C5A711BBFA1DE0040E5B1 /* LXComposeToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXComposeToolBar.h; sourceTree = "<group>"; };
+		180C5A721BBFA1DE0040E5B1 /* LXComposeToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXComposeToolBar.m; sourceTree = "<group>"; };
 		181A15101BB2927400D2A53D /* LXSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSearchField.h; sourceTree = "<group>"; };
 		181A15111BB2927400D2A53D /* LXSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSearchField.m; sourceTree = "<group>"; };
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
@@ -916,6 +921,9 @@
 			children = (
 				18E3ECEC1BBE9A6A00FACEC8 /* LXTextView.h */,
 				18E3ECED1BBE9A6A00FACEC8 /* LXTextView.m */,
+				180C5A711BBFA1DE0040E5B1 /* LXComposeToolBar.h */,
+				180C5A721BBFA1DE0040E5B1 /* LXComposeToolBar.m */,
+				180C5A6F1BBF9EA90040E5B1 /* LXComposeToolBar.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1129,6 +1137,7 @@
 				18D22D691BBAD0EB00745192 /* LXStatusToolBar.xib in Resources */,
 				18DE61731BB790720048388C /* MBProgressHUD.bundle in Resources */,
 				18F781301BBB90A700552BEC /* LXStatusCell.xib in Resources */,
+				180C5A701BBF9EA90040E5B1 /* LXComposeToolBar.xib in Resources */,
 				18E61F4B1BBCE21100442735 /* MJRefresh.bundle in Resources */,
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
 				18F7813A1BBC348B00552BEC /* LXStatusThumbnailContainerView.xib in Resources */,
@@ -1166,6 +1175,7 @@
 				18DE617B1BB790720048388C /* UIStoryboard+LXExtension.m in Sources */,
 				18F014831BB7E930005C47F7 /* MJPropertyKey.m in Sources */,
 				18F014651BB7E66A005C47F7 /* AFURLResponseSerialization.m in Sources */,
+				180C5A731BBFA1DE0040E5B1 /* LXComposeToolBar.m in Sources */,
 				18E61F421BBCE21100442735 /* MJRefreshAutoGifFooter.m in Sources */,
 				18EB24671BB8EA37009D9505 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18EB24341BB8E695009D9505 /* LXUser.m in Sources */,

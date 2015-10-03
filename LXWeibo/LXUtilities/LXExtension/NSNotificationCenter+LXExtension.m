@@ -60,6 +60,13 @@
                   object:nil];
 }
 
++ (id <NSObject>)lx_addObserverForKeyboardWillChangeFrameNotificationWithBlock:(void (^)(NSNotification *note))block
+{
+    return [self lx_addObserverForName:UIKeyboardWillChangeFrameNotification
+                                object:nil
+                            usingBlock:block];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - 移除通知

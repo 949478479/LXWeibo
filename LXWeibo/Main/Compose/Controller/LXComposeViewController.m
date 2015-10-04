@@ -10,21 +10,22 @@
 #import "AFNetworking.h"
 #import "LXImagePicker.h"
 #import "LXComposeToolBar.h"
+#import "LXComposeTextView.h"
 #import "LXOAuthInfoManager.h"
 #import "LXComposeViewController.h"
 #import "MBProgressHUD+LXExtension.h"
-#import "MBProgressHUD+LXExtension.h"
 
-static NSString * const kSendStatusURLString = @"https://api.weibo.com/2/statuses/update.json";
+static NSString * const kSendStatusWithImageURLString    = @"https://upload.api.weibo.com/2/statuses/upload.json";
+static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.com/2/statuses/update.json";
 
 @interface LXComposeViewController () <UITextViewDelegate, LXComposeToolBarDelegate>
 
 @property (nonatomic, weak) id keyboardObserver;
 
 @property (nonatomic, weak) IBOutlet UIView *toolBar;
-@property (nonatomic, weak) IBOutlet UITextView *textView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sendButtonItem;
 @property (nonatomic, weak) IBOutlet LXImagePicker *imagePicker;
+@property (nonatomic, weak) IBOutlet LXComposeTextView *textView;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *toolBarBottomConstraint;
 
@@ -109,6 +110,56 @@ static NSString * const kSendStatusURLString = @"https://api.weibo.com/2/statuse
          }];
 }
 
+#pragma mark - IBAction
+
+- (IBAction)sendButtonDidTap:(UIBarButtonItem *)sender
+{
+    self.textView.images.count > 0 ? [self sendStatusWithImage] : [self sendStatusWithoutImage];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)sendStatusWithoutImage
+{
+    NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
+                              @"status"       : self.textView.text, };
+
+    [[AFHTTPRequestOperationManager manager] POST:kSendStatusWithoutImageURLString
+                                       parameters:params
+                                          success:
+     ^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+         LXLog(@"文字微博发表成功!");
+         [MBProgressHUD lx_showSuccess:@"发表成功"];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         LXLog(@"文字微博发表失败!\n%@", error);
+         [MBProgressHUD lx_showError:@"发表失败"];
+     }];
+}
+
+- (void)sendStatusWithImage
+{
+    NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
+                              @"status"       : self.textView.text, };
+
+    __weak __typeof(self) weakSelf = self;
+    [[AFHTTPRequestOperationManager manager] POST:kSendStatusWithImageURLString
+                                       parameters:params
+                        constructingBodyWithBlock:
+     ^(id<AFMultipartFormData>  _Nonnull formData) {
+         NSData *data = UIImageJPEGRepresentation(weakSelf.textView.images.firstObject, 0);
+         [formData appendPartWithFileData:data name:@"pic" fileName:@"xxx.jpg" mimeType:@"image/jpeg"];
+     }
+                                          success:
+     ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+         LXLog(@"图片微博发表成功!");
+         [MBProgressHUD lx_showSuccess:@"发表成功"];
+     }
+                                          failure:
+     ^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+         LXLog(@"图片微博发表失败!\n%@", error);
+         [MBProgressHUD lx_showError:@"发表失败"];
+     }];
+}
+
 #pragma mark - LXComposeToolBarDelegate
 
 - (void)composeToolBar:(LXComposeToolBar *)composeToolBar
@@ -117,34 +168,12 @@ static NSString * const kSendStatusURLString = @"https://api.weibo.com/2/statuse
     switch (type) {
         case LXComposeToolBarButtonTypeCamera: {
             LXLog(@"LXComposeToolBar - 相机");
-
-            UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-            BOOL success = [self.imagePicker presentImagePickerControllerWithSourceType:sourceType
-                                                                      completionHandler:
-                            ^(UIImage * _Nonnull originalImage, UIImage * _Nullable editedImage) {
-                                LXLog(@"%@\n%@", originalImage, editedImage);
-                            } cancelHandler:^{
-                                LXLog(@"图片选择取消.");
-                            }];
-            if (!success) {
-                [MBProgressHUD lx_showError:@"相机不可用!"];
-            }
+            [self pickImageWithSourceType:UIImagePickerControllerSourceTypeCamera];
         } break;
 
         case LXComposeToolBarButtonTypePicture: {
             LXLog(@"LXComposeToolBar - 相册");
-
-            UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            BOOL success = [self.imagePicker presentImagePickerControllerWithSourceType:sourceType
-                                                                      completionHandler:
-                            ^(UIImage * _Nonnull originalImage, UIImage * _Nullable editedImage) {
-                                LXLog(@"%@\n%@", originalImage, editedImage);
-                            } cancelHandler:^{
-                                LXLog(@"图片选择取消.");
-                            }];
-            if (!success) {
-                [MBProgressHUD lx_showError:@"相册不可用!"];
-            }
+            [self pickImageWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         } break;
 
         case LXComposeToolBarButtonTypeMention: {
@@ -160,31 +189,29 @@ static NSString * const kSendStatusURLString = @"https://api.weibo.com/2/statuse
     }
 }
 
+- (void)pickImageWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    __weak __typeof(self) weakSelf = self;
+    BOOL success = [self.imagePicker presentImagePickerControllerWithSourceType:sourceType
+                                                              completionHandler:
+                    ^(UIImage * _Nonnull originalImage, UIImage * _Nullable editedImage) {
+                        LXLog(@"%@\n%@", originalImage, editedImage);
+                        [weakSelf.textView addImage:originalImage];
+                    } cancelHandler:^{
+                        LXLog(@"图片选择取消.");
+                    }];
+    if (!success) {
+        NSString *errorStr = (sourceType == UIImagePickerControllerSourceTypeCamera) ?
+            @"相机不可用!" : @"相册不可用!";
+        [MBProgressHUD lx_showError:errorStr];
+    }
+}
+
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
     self.sendButtonItem.enabled = textView.hasText;
-}
-
-#pragma mark - IBAction
-
-- (IBAction)sendButtonDidTap:(UIBarButtonItem *)sender
-{
-    NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                              @"status"       : self.textView.text, };
-
-    [[AFHTTPRequestOperationManager manager] POST:kSendStatusURLString
-                                       parameters:params
-                                          success:
-     ^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        [MBProgressHUD lx_showSuccess:@"发送成功"];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MBProgressHUD lx_showError:@"发送失败"];
-        LXLog(@"微博发送失败\n%@", error);
-    }];
-
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

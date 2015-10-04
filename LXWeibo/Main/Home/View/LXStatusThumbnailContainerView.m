@@ -10,6 +10,9 @@
 #import "LXStatusThumbnailView.h"
 #import "LXStatusThumbnailContainerView.h"
 
+const CGFloat kLXStatusThumbnailRows   = 3;
+const CGFloat kLXStatusThumbnailMargin = 8;
+
 @interface LXStatusThumbnailContainerView () <XXNibBridge>
 
 @property (nonatomic, readwrite, weak) IBOutlet NSLayoutConstraint *heightConstraint;
@@ -23,8 +26,7 @@
 - (void)hidenAndClearAllThumbnailViews
 {
     for (LXStatusThumbnailView *thumbnailView in self.thumbnailViews) {
-        thumbnailView.image  = nil;
-        thumbnailView.hidden = YES;
+        thumbnailView.image = nil;
     }
 }
 

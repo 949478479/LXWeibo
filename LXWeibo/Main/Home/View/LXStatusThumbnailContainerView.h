@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern const CGFloat kLXStatusThumbnailRows;
+extern const CGFloat kLXStatusThumbnailMargin;
+
 @interface LXStatusThumbnailContainerView : UIView
 
 @property (nonatomic, readonly, weak) NSLayoutConstraint *heightConstraint;

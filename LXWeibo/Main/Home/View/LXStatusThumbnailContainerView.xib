@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,65 +14,128 @@
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QPX-97-ReS" userLabel="Image View 0" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="height" multiplier="1:1" id="4gk-Gw-vb3"/>
                         <constraint firstAttribute="height" constant="76" id="7iX-fn-o3j"/>
                         <constraint firstAttribute="width" constant="76" id="mBD-ps-Yci"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="7iX-fn-o3j"/>
+                            <exclude reference="mBD-ps-Yci"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-Lq-bPY" userLabel="Image View 1" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="84" y="0.0" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="DC0-fb-cFx"/>
                         <constraint firstAttribute="width" constant="76" id="Lwz-PM-ZWF"/>
+                        <constraint firstAttribute="width" secondItem="QVQ-Lq-bPY" secondAttribute="height" multiplier="1:1" id="lsy-o5-rq2"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="DC0-fb-cFx"/>
+                            <exclude reference="Lwz-PM-ZWF"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OGn-XY-xAv" userLabel="Image View 2" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="168" y="0.0" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="Fb4-Yt-zpU"/>
+                        <constraint firstAttribute="width" secondItem="OGn-XY-xAv" secondAttribute="height" multiplier="1:1" id="Xm1-Sm-MEB"/>
                         <constraint firstAttribute="width" constant="76" id="a1K-NM-02S"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Fb4-Yt-zpU"/>
+                            <exclude reference="a1K-NM-02S"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hd6-LK-xc9" userLabel="Image View 3" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="0.0" y="84" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="8xU-i8-xWG"/>
                         <constraint firstAttribute="width" constant="76" id="9tx-g0-ltc"/>
+                        <constraint firstAttribute="width" secondItem="hd6-LK-xc9" secondAttribute="height" multiplier="1:1" id="KZj-og-wTd"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="8xU-i8-xWG"/>
+                            <exclude reference="9tx-g0-ltc"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-sT-DVF" userLabel="Image View 4" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="84" y="84" width="76" height="76"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="QzT-sT-DVF" secondAttribute="height" multiplier="1:1" id="6WQ-OM-2Je"/>
                         <constraint firstAttribute="height" constant="76" id="D22-b8-mC7"/>
                         <constraint firstAttribute="width" constant="76" id="fS0-9a-4hg"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="D22-b8-mC7"/>
+                            <exclude reference="fS0-9a-4hg"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-mP-k92" userLabel="Image View 5" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="168" y="84" width="76" height="76"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="P6a-mP-k92" secondAttribute="height" multiplier="1:1" id="9OK-Hy-pZ0"/>
                         <constraint firstAttribute="height" constant="76" id="PGD-YD-BjW"/>
                         <constraint firstAttribute="width" constant="76" id="q9X-rO-IUp"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="PGD-YD-BjW"/>
+                            <exclude reference="q9X-rO-IUp"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBW-vB-DhI" userLabel="Image View 6" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="0.0" y="168" width="76" height="76"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="IBW-vB-DhI" secondAttribute="height" multiplier="1:1" id="1cW-AM-FDr"/>
                         <constraint firstAttribute="height" constant="76" id="4vg-Yc-6do"/>
                         <constraint firstAttribute="width" constant="76" id="tRp-9E-cyN"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4vg-Yc-6do"/>
+                            <exclude reference="tRp-9E-cyN"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-iu-hHF" userLabel="Image View 7" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="84" y="168" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="76" id="62K-iS-b9j"/>
                         <constraint firstAttribute="height" constant="76" id="geu-eW-Z9F"/>
+                        <constraint firstAttribute="width" secondItem="Txp-iu-hHF" secondAttribute="height" multiplier="1:1" id="kec-Q8-Hdp"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="62K-iS-b9j"/>
+                            <exclude reference="geu-eW-Z9F"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Phi-WW-C65" userLabel="Image View 8" customClass="LXStatusThumbnailView">
                     <rect key="frame" x="168" y="168" width="76" height="76"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="TPA-Hy-jyP"/>
+                        <constraint firstAttribute="width" secondItem="Phi-WW-C65" secondAttribute="height" multiplier="1:1" id="Uzd-rg-dtX"/>
                         <constraint firstAttribute="width" constant="76" id="h06-9g-M03"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="TPA-Hy-jyP"/>
+                            <exclude reference="h06-9g-M03"/>
+                        </mask>
+                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -79,24 +143,35 @@
                 <constraint firstItem="hd6-LK-xc9" firstAttribute="leading" secondItem="932-z0-2bR" secondAttribute="leading" id="3d0-2H-j5n"/>
                 <constraint firstAttribute="height" priority="999" constant="244" identifier="Thumbnail Container Height" id="5oO-nP-zX3"/>
                 <constraint firstAttribute="bottom" secondItem="IBW-vB-DhI" secondAttribute="bottom" id="6b1-KJ-Es3"/>
+                <constraint firstAttribute="trailing" secondItem="P6a-mP-k92" secondAttribute="trailing" id="8m8-Pp-dYl"/>
+                <constraint firstItem="Phi-WW-C65" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="98E-oF-Njq"/>
+                <constraint firstItem="OGn-XY-xAv" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="9VH-Pv-QBX"/>
                 <constraint firstItem="QPX-97-ReS" firstAttribute="leading" secondItem="932-z0-2bR" secondAttribute="leading" id="CmC-nv-pw9"/>
+                <constraint firstItem="IBW-vB-DhI" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="Hbi-5V-97k"/>
                 <constraint firstAttribute="bottom" secondItem="Phi-WW-C65" secondAttribute="bottom" id="IUa-cT-qj1"/>
                 <constraint firstItem="QzT-sT-DVF" firstAttribute="leading" secondItem="hd6-LK-xc9" secondAttribute="trailing" constant="8" id="J1u-SS-ns1"/>
                 <constraint firstItem="P6a-mP-k92" firstAttribute="leading" secondItem="QzT-sT-DVF" secondAttribute="trailing" constant="8" id="Lbd-3T-rKF"/>
                 <constraint firstItem="hd6-LK-xc9" firstAttribute="top" secondItem="QPX-97-ReS" secondAttribute="bottom" constant="8" id="Pmv-g2-fuJ"/>
+                <constraint firstItem="P6a-mP-k92" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="Pwu-yf-VTi"/>
                 <constraint firstItem="IBW-vB-DhI" firstAttribute="top" secondItem="hd6-LK-xc9" secondAttribute="bottom" constant="8" id="QVo-O0-kls"/>
                 <constraint firstAttribute="bottom" secondItem="Txp-iu-hHF" secondAttribute="bottom" id="RPH-eb-hES"/>
+                <constraint firstItem="QVQ-Lq-bPY" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="SYp-tF-Dme"/>
                 <constraint firstItem="QVQ-Lq-bPY" firstAttribute="leading" secondItem="QPX-97-ReS" secondAttribute="trailing" constant="8" id="WW2-vE-gaO"/>
                 <constraint firstItem="Txp-iu-hHF" firstAttribute="leading" secondItem="IBW-vB-DhI" secondAttribute="trailing" constant="8" id="YbR-Th-mny"/>
                 <constraint firstItem="QPX-97-ReS" firstAttribute="top" secondItem="932-z0-2bR" secondAttribute="top" id="ZE8-C0-3Jl"/>
                 <constraint firstItem="Txp-iu-hHF" firstAttribute="top" secondItem="QzT-sT-DVF" secondAttribute="bottom" constant="8" id="cDs-nq-kD3"/>
                 <constraint firstItem="Phi-WW-C65" firstAttribute="top" secondItem="P6a-mP-k92" secondAttribute="bottom" constant="8" id="cld-Js-ZQa"/>
+                <constraint firstItem="QzT-sT-DVF" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="e7q-ZN-nTS"/>
                 <constraint firstItem="Phi-WW-C65" firstAttribute="leading" secondItem="Txp-iu-hHF" secondAttribute="trailing" constant="8" id="gsJ-pJ-CRI"/>
                 <constraint firstItem="P6a-mP-k92" firstAttribute="top" secondItem="OGn-XY-xAv" secondAttribute="bottom" constant="8" id="jbw-UT-5N8"/>
+                <constraint firstAttribute="trailing" secondItem="Phi-WW-C65" secondAttribute="trailing" id="jjc-5N-0QB"/>
+                <constraint firstAttribute="trailing" secondItem="OGn-XY-xAv" secondAttribute="trailing" id="kK6-Fg-3B8"/>
                 <constraint firstItem="OGn-XY-xAv" firstAttribute="top" secondItem="932-z0-2bR" secondAttribute="top" id="kaU-AX-arb"/>
+                <constraint firstItem="hd6-LK-xc9" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="mN1-8p-V0g"/>
                 <constraint firstItem="QVQ-Lq-bPY" firstAttribute="top" secondItem="932-z0-2bR" secondAttribute="top" id="nv7-vu-E0e"/>
                 <constraint firstItem="QzT-sT-DVF" firstAttribute="top" secondItem="QVQ-Lq-bPY" secondAttribute="bottom" constant="8" id="rZm-AS-3Fl"/>
                 <constraint firstItem="OGn-XY-xAv" firstAttribute="leading" secondItem="QVQ-Lq-bPY" secondAttribute="trailing" constant="8" id="xTQ-8i-Ban"/>
+                <constraint firstItem="Txp-iu-hHF" firstAttribute="width" secondItem="QPX-97-ReS" secondAttribute="width" id="yzo-Y8-AFp"/>
                 <constraint firstItem="IBW-vB-DhI" firstAttribute="leading" secondItem="932-z0-2bR" secondAttribute="leading" id="zMr-Lt-KSs"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -120,7 +195,7 @@
                 <outletCollection property="thumbnailViews" destination="Txp-iu-hHF" id="DRs-Qs-r6L"/>
                 <outletCollection property="thumbnailViews" destination="Phi-WW-C65" id="BY0-c3-bZo"/>
             </connections>
-            <point key="canvasLocation" x="488" y="436"/>
+            <point key="canvasLocation" x="702" y="407"/>
         </view>
     </objects>
 </document>

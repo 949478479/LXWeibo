@@ -22,13 +22,18 @@
 
 - (void)setImageWithPhoto:(LXPhoto *)photo placeholderImage:(UIImage *)placeholderImage
 {
-    self.hidden = NO;
-
     NSURL *url = [NSURL URLWithString:photo.thumbnail_pic];
 
     self.gifLogoView.hidden = ![url.pathExtension.lowercaseString isEqualToString:@"gif"];
 
     [self sd_setImageWithURL:url placeholderImage:placeholderImage];
+}
+
+- (void)setImage:(UIImage *)image
+{
+    self.hidden = !image;
+
+    [super setImage:image];
 }
 
 #pragma mark - *** 私有方法 ***
@@ -43,7 +48,7 @@
 - (void)configureGifLogoView
 {
     _gifLogoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timeline_image_gif"]];
-
+    _gifLogoView.hidden = YES;
     _gifLogoView.translatesAutoresizingMaskIntoConstraints = NO;
 
     [self addSubview:_gifLogoView];

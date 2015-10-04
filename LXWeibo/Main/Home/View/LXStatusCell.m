@@ -13,13 +13,6 @@
 #import "LXStatusAvatarView.h"
 #import "LXStatusThumbnailContainerView.h"
 
-/** 配图尺寸. */
-static const CGFloat kLXImageSize = 76;
-/** 子视图间的间距. */
-static const CGFloat kLXMargin = 8;
-/** 配图行数. */
-static const CGFloat kLXImageRows = 3;
-
 @interface LXStatusCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
@@ -37,6 +30,8 @@ static const CGFloat kLXImageRows = 3;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *statusContainerTopConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *mainTextLabelBottomConstraint;
 
+@property (nonatomic, assign) CGFloat imageSize;
+
 @end
 
 @implementation LXStatusCell
@@ -49,9 +44,12 @@ static const CGFloat kLXImageRows = 3;
 {
     [super awakeFromNib];
 
-    CGFloat maxWidth = CGRectGetWidth([UIScreen mainScreen].bounds) - 2 * kLXMargin;
+    CGFloat maxWidth = CGRectGetWidth([UIScreen mainScreen].bounds) - 2 * kLXStatusThumbnailMargin;
+
     self.subTextLabel.preferredMaxLayoutWidth  = maxWidth;
     self.mainTextLabel.preferredMaxLayoutWidth = maxWidth;
+
+    self.imageSize = (maxWidth - 2 * kLXStatusThumbnailMargin) / kLXStatusThumbnailRows;
 }
 
 #pragma mark - 根据配图行数调整高度约束
@@ -60,9 +58,9 @@ static const CGFloat kLXImageRows = 3;
 {
     if (row > 0) {
         // 有配图时将 mainTextLabel 和 thumbnailContainerView 的间距约束调整回 kLXMargin.
-        self.mainTextLabelBottomConstraint.constant = kLXMargin;
+        self.mainTextLabelBottomConstraint.constant = kLXStatusThumbnailMargin;
         // 调整 thumbnailContainerView 的高度约束.每行配图高 kLXImageSize, 行之间间距为 kLXMargin.即最多 3 行 2 间距.
-        self.thumbnailContainerView.heightConstraint.constant = row * kLXImageSize + (row - 1) * kLXMargin;
+        self.thumbnailContainerView.heightConstraint.constant = row * self.imageSize + (row - 1) * kLXStatusThumbnailMargin;
     } else {
         // 无配图时将 thumbnailContainerView 高度约束设置为 0, mainTextLabel 与 thumbnailContainerView
         // 的间距约束应调整为 0, 否则和父视图的底部距离就是 2 * kLXMargin 而不是 kLXMargin.
@@ -71,7 +69,7 @@ static const CGFloat kLXImageRows = 3;
     }
 
     // 是原创微博时将顶部和 subTextLabel 间的约束调整为 0, 因为 subTextLabel 此时高度近乎为 0.
-    self.statusContainerTopConstraint.constant = isOriginal ? -8 : kLXMargin;
+    self.statusContainerTopConstraint.constant = isOriginal ? -8 : kLXStatusThumbnailMargin;
 }
 
 #pragma mark - 设置 cell 内容
@@ -92,14 +90,14 @@ static const CGFloat kLXImageRows = 3;
         self.mainTextLabel.text = [NSString stringWithFormat:@"@%@：%@",
                                    retweetedStatus.user.name, retweetedStatus.text];
 
-        [self adjustConstraintForImageRows:ceil(status.retweeted_status.pic_urls.count / kLXImageRows)
+        [self adjustConstraintForImageRows:ceil(status.retweeted_status.pic_urls.count / kLXStatusThumbnailRows)
                        andIsOriginalStatus:NO];
     }
     else { // 这是原创微博.
         self.subTextLabel.text  = nil;
         self.mainTextLabel.text = status.text;
 
-        [self adjustConstraintForImageRows:ceil(status.pic_urls.count / kLXImageRows)
+        [self adjustConstraintForImageRows:ceil(status.pic_urls.count / kLXStatusThumbnailRows)
                        andIsOriginalStatus:YES];
     }
 }

@@ -1,26 +1,30 @@
 //
-//  LXTextView.m
+//  LXComposeTextView.m
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/10/2.
 //  Copyright © 2015年 apple. All rights reserved.
 //
 
-#import "LXComposeTextView.h"
 #import "LXUtilities.h"
+#import "LXComposeTextView.h"
 #import "LXStatusThumbnailContainerView.h"
 
-@interface LXTextView () 
+@interface LXComposeTextView () 
 
 @property (nonatomic, weak) id observer;
+
+@property (nonatomic, assign) CGSize textContentSize;
+
 @property (nonatomic, strong) UILabel *placeholderLabel;
 @property (nonatomic, strong) NSArray<NSLayoutConstraint *> *placeholderLabelConstraints;
+
 @property (nonatomic, strong) LXStatusThumbnailContainerView *thumbnailContainerView;
 @property (nonatomic, strong) NSLayoutConstraint *thumbnailContainerViewTopConstraint;
 
 @end
 
-@implementation LXTextView
+@implementation LXComposeTextView
 
 #pragma mark - Setter
 
@@ -50,8 +54,27 @@
 {
     [super setAttributedText:attributedText];
 
-    self.placeholderLabel.font   = self.font;    // 手动设置 attributedText 属性会改变字体.
-    self.placeholderLabel.hidden = self.hasText; // 手动设置 attributedText 属性不会触发通知.
+    // 手动设置 attributedText 属性不会触发通知,而且会改变文本内容和字体.
+    self.placeholderLabel.font   = self.font;
+    self.placeholderLabel.hidden = self.hasText;
+}
+
+- (void)setContentSize:(CGSize)contentSize
+{
+    /* UITextView 自己调用此方法时, contentSize.height 就是文本区域的实际高度,在此基础上加上
+     thumbnailContainerView 的高度和 8 点底部间距求得滚动范围. 文本内容行数变化,字体变化,均会触发此方法,因此 
+     thumbnailContainerView 位置会得到实时更新.在这里保存最新的文本高度,图片行数变化时利用该高度调用此方法.从而
+     不改变 thumbnailContainerViewTopConstraint 的值而只增大 contentSize.height, 为增加的照片行增加滚动范围. */
+    self.textContentSize = contentSize;
+    self.thumbnailContainerViewTopConstraint.constant = contentSize.height;
+
+    // 有配图时才有必要额外增加 8 点 contentSize.height 作为底部间距.
+    CGFloat heightConstraint = self.thumbnailContainerView.heightConstraint.constant;
+    if (heightConstraint > 0) {
+        contentSize.height += heightConstraint + self.layoutMargins.bottom;
+    }
+
+    [super setContentSize:contentSize];
 }
 
 #pragma mark - 初始配置
@@ -91,9 +114,10 @@
     }
 
     // 经过试验, textView.textContainerInset 默认为 {8, 0, 8, 0}. 然而实际上左右两边是各有 5 点的距离的.
+    const CGFloat kMargin = 5;
     NSDictionary *views   = @{ @"placeholderLabel" : self.placeholderLabel };
-    NSDictionary *metrics = @{ @"top"    : @(self.textContainerInset.top),
-                               @"left"   : @(self.textContainerInset.left + 5), };
+    NSDictionary *metrics = @{ @"top"  : @(self.textContainerInset.top),
+                               @"left" : @(self.textContainerInset.left + kMargin), };
 
     NSMutableArray *constraints = [NSMutableArray new];
     {
@@ -111,7 +135,7 @@
                                                  metrics:metrics
                                                    views:views]];
 
-        // 通过宽度约束限制 placeholderLabel 的宽度,而不是靠左右的间距约束.(不知道 VFL 如何创建这种约束.)
+        // 通过宽度约束限制 placeholderLabel 的宽度,而不是靠左右的间距约束.
         [constraints addObject:
          [NSLayoutConstraint constraintWithItem:self.placeholderLabel
                                       attribute:NSLayoutAttributeWidth
@@ -119,8 +143,8 @@
                                          toItem:self
                                       attribute:NSLayoutAttributeWidth
                                      multiplier:1
-                                       constant:-(self.textContainerInset.left + 5 +
-                                                  self.textContainerInset.right + 5)]];
+                                       constant:-(self.textContainerInset.left + kMargin +
+                                                  self.textContainerInset.right + kMargin)]];
     }
     [NSLayoutConstraint activateConstraints:constraints];
 
@@ -132,10 +156,30 @@
 - (void)configureThumbnailContainerView
 {
     self.thumbnailContainerView = [LXStatusThumbnailContainerView lx_instantiateFromNib];
+
     [self addSubview:self.thumbnailContainerView];
 
-    self.thumbnailContainerView.backgroundColor = [UIColor lx_randomColor];
+    [self updateThumbnailContainerViewConstraint];
+}
 
+- (void)updateThumbnailContainerViewConstraint
+{
+    // 设置图片容器与顶部的距离为文本区域高度,该高度即为 contentSize.height, 亦可通过下面这个式子计算所得.
+    CGFloat constant = ceil(self.font.lineHeight +
+                            self.textContainerInset.top +
+                            self.textContainerInset.bottom);
+
+    self.thumbnailContainerViewTopConstraint =
+        [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
+                                     attribute:NSLayoutAttributeTop
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self
+                                     attribute:NSLayoutAttributeTop
+                                    multiplier:1
+                                      constant:constant];
+    self.thumbnailContainerViewTopConstraint.active = YES;
+
+    // 水平居中.
     [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
                                  attribute:NSLayoutAttributeCenterX
                                  relatedBy:NSLayoutRelationEqual
@@ -144,23 +188,17 @@
                                 multiplier:1
                                   constant:0].active = YES;
 
+    // 宽度为 textView 宽度减去两侧各 8 点间距.
     [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
                                  attribute:NSLayoutAttributeWidth
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
                                  attribute:NSLayoutAttributeWidth
                                 multiplier:1
-                                  constant:-16].active = YES;
+                                  constant:-(self.layoutMargins.left + self.layoutMargins.right)].active = YES;
 
-    self.thumbnailContainerViewTopConstraint =
-        [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
-                                     attribute:NSLayoutAttributeTop
-                                     relatedBy:NSLayoutRelationEqual
-                                        toItem:self//.placeholderLabel
-                                     attribute:NSLayoutAttributeTop//NSLayoutAttributeBottom
-                                    multiplier:1
-                                      constant:self.font.lineHeight + 8 + 8];
-    self.thumbnailContainerViewTopConstraint.active = YES;
+    // 一开始没有图片,将高度设置为 0.
+    self.thumbnailContainerView.heightConstraint.constant = 0;
 }
 
 #pragma mark - 观察输入状态变化
@@ -180,14 +218,37 @@
                                          usingBlock:
          ^(NSNotification * _Nonnull note) {
              weakSelf.placeholderLabel.hidden = weakSelf.hasText;
-
-             CGFloat topConstraint = weakSelf.thumbnailContainerViewTopConstraint.constant;
-             CGFloat contentHeight = weakSelf.contentSize.height;
-             if (topConstraint != contentHeight) {
-                 weakSelf.thumbnailContainerViewTopConstraint.constant = contentHeight;
-             }
-             LXLogSize(weakSelf.contentSize);
          }];
+}
+
+#pragma mark - *** 公共方法 ***
+
+- (void)addImage:(UIImage *)image
+{
+    // 只是简单地挨个添加图片,没做太多细节处理.
+    CGFloat imageSize = (self.thumbnailContainerView.lx_width - 2 * kLXStatusThumbnailMargin)
+        / kLXStatusThumbnailRows;
+
+    [self.thumbnailContainerView.thumbnailViews enumerateObjectsUsingBlock:
+     ^(LXStatusThumbnailView * _Nonnull imageView, NSUInteger idx, BOOL * _Nonnull stop) {
+         if (!imageView.image) {
+             imageView.image = image;
+
+             NSUInteger rows = ceil((idx + 1) / kLXStatusThumbnailRows);
+             CGFloat height  = rows * imageSize + (rows - 1) * kLXStatusThumbnailMargin;
+             if (self.thumbnailContainerView.heightConstraint.constant != height) {
+                 self.thumbnailContainerView.heightConstraint.constant = height;
+                 self.contentSize = self.textContentSize; // 更新 contentSize.
+             }
+
+             *stop = YES;
+         }
+    }];
+}
+
+- (NSArray<UIImage *> *)images
+{
+    return [self.thumbnailContainerView.thumbnailViews valueForKey:@"image"];
 }
 
 @end

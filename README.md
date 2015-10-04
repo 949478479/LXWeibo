@@ -15,3 +15,5 @@
 - [微博 cell 处理](https://github.com/949478479/LXWeibo/blob/master/%E7%AC%94%E8%AE%B0/%E5%BE%AE%E5%8D%9A%20cell%20%E5%A4%84%E7%90%86.md)
 
 - [微博日期和来源格式化](https://github.com/949478479/LXWeibo/blob/master/%E7%AC%94%E8%AE%B0/%E5%BE%AE%E5%8D%9A%E6%97%A5%E6%9C%9F%E5%92%8C%E6%9D%A5%E6%BA%90%E6%A0%BC%E5%BC%8F%E5%8C%96.md)
+
+- [发微博界面处理](https://github.com/949478479/LXWeibo/blob/master/%E7%AC%94%E8%AE%B0/%E5%8F%91%E5%BE%AE%E5%8D%9A%E7%95%8C%E9%9D%A2%E5%A4%84%E7%90%86.md)

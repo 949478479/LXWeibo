@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXTextView : UITextView
+@interface LXComposeTextView : UITextView
 
 @property (nonatomic, copy)   IBInspectable NSString *placeholder;
 @property (nonatomic, strong) IBInspectable UIColor  *placeholderColor;

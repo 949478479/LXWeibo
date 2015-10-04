@@ -5,14 +5,18 @@
 //  Created by 从今以后 on 15/10/2.
 //  Copyright © 2015年 apple. All rights reserved.
 //
-#import "LXTextView.h"
+
+#import "LXComposeTextView.h"
 #import "LXUtilities.h"
+#import "LXStatusThumbnailContainerView.h"
 
 @interface LXTextView () 
 
 @property (nonatomic, weak) id observer;
 @property (nonatomic, strong) UILabel *placeholderLabel;
 @property (nonatomic, strong) NSArray<NSLayoutConstraint *> *placeholderLabelConstraints;
+@property (nonatomic, strong) LXStatusThumbnailContainerView *thumbnailContainerView;
+@property (nonatomic, strong) NSLayoutConstraint *thumbnailContainerViewTopConstraint;
 
 @end
 
@@ -55,10 +59,12 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-
+    
     [self observeTextDidChange];
 
     [self configurePlaceholderLabel];
+
+    [self configureThumbnailContainerView];
 }
 
 #pragma mark - 安装 Placeholder Label
@@ -87,19 +93,18 @@
     // 经过试验, textView.textContainerInset 默认为 {8, 0, 8, 0}. 然而实际上左右两边是各有 5 点的距离的.
     NSDictionary *views   = @{ @"placeholderLabel" : self.placeholderLabel };
     NSDictionary *metrics = @{ @"top"    : @(self.textContainerInset.top),
-                               @"bottom" : @(self.textContainerInset.bottom),
                                @"left"   : @(self.textContainerInset.left + 5), };
 
     NSMutableArray *constraints = [NSMutableArray new];
     {
         [constraints addObjectsFromArray:
-         [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[placeholderLabel]-bottom-|"
+         [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[placeholderLabel]"
                                                  options:0
                                                  metrics:metrics
                                                    views:views]];
 
         /* 由于 UITextView 继承自 UIScrollView, 因此不能把两边间距都给约束,这将导致占位文字很长时只显示 1 行,
-         且 textView 可以水平滚动.而上下间距都给了约束是因为上下滚动是合理的. */
+         且 textView 可以水平滚动. */
         [constraints addObjectsFromArray:
          [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[placeholderLabel]"
                                                  options:0
@@ -122,6 +127,42 @@
     self.placeholderLabelConstraints = constraints;
 }
 
+#pragma mark - 安装缩略图容器
+
+- (void)configureThumbnailContainerView
+{
+    self.thumbnailContainerView = [LXStatusThumbnailContainerView lx_instantiateFromNib];
+    [self addSubview:self.thumbnailContainerView];
+
+    self.thumbnailContainerView.backgroundColor = [UIColor lx_randomColor];
+
+    [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
+                                 attribute:NSLayoutAttributeCenterX
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeCenterX
+                                multiplier:1
+                                  constant:0].active = YES;
+
+    [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeWidth
+                                multiplier:1
+                                  constant:-16].active = YES;
+
+    self.thumbnailContainerViewTopConstraint =
+        [NSLayoutConstraint constraintWithItem:self.thumbnailContainerView
+                                     attribute:NSLayoutAttributeTop
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self//.placeholderLabel
+                                     attribute:NSLayoutAttributeTop//NSLayoutAttributeBottom
+                                    multiplier:1
+                                      constant:self.font.lineHeight + 8 + 8];
+    self.thumbnailContainerViewTopConstraint.active = YES;
+}
+
 #pragma mark - 观察输入状态变化
 
 - (void)dealloc
@@ -136,9 +177,17 @@
     self.observer =
         [NSNotificationCenter lx_addObserverForName:UITextViewTextDidChangeNotification
                                              object:self
-                                         usingBlock:^(NSNotification * _Nonnull note) {
-                                             weakSelf.placeholderLabel.hidden = weakSelf.hasText;
-                                         }];
+                                         usingBlock:
+         ^(NSNotification * _Nonnull note) {
+             weakSelf.placeholderLabel.hidden = weakSelf.hasText;
+
+             CGFloat topConstraint = weakSelf.thumbnailContainerViewTopConstraint.constant;
+             CGFloat contentHeight = weakSelf.contentSize.height;
+             if (topConstraint != contentHeight) {
+                 weakSelf.thumbnailContainerViewTopConstraint.constant = contentHeight;
+             }
+             LXLogSize(weakSelf.contentSize);
+         }];
 }
 
 @end

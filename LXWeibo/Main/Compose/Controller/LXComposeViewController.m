@@ -11,6 +11,7 @@
 #import "LXImagePicker.h"
 #import "LXComposeToolBar.h"
 #import "LXComposeTextView.h"
+#import "LXEmotionKeyboard.h"
 #import "LXOAuthInfoManager.h"
 #import "LXComposeViewController.h"
 #import "MBProgressHUD+LXExtension.h"
@@ -20,14 +21,14 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 
 @interface LXComposeViewController () <UITextViewDelegate, LXComposeToolBarDelegate>
 
-@property (nonatomic, weak) id keyboardObserver;
-
-@property (nonatomic, weak) IBOutlet UIView *toolBar;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *sendButtonItem;
-@property (nonatomic, weak) IBOutlet LXImagePicker *imagePicker;
-@property (nonatomic, weak) IBOutlet LXComposeTextView *textView;
-
+@property (nonatomic, weak) IBOutlet LXImagePicker      *imagePicker;
+@property (nonatomic, weak) IBOutlet LXComposeTextView  *textView;
+@property (nonatomic, weak) IBOutlet LXComposeToolBar   *keyboardToolBar;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem    *sendButtonItem;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *toolBarBottomConstraint;
+
+@property (nonatomic, weak) id keyboardObserver;
+@property (nonatomic, strong) LXEmotionKeyboard *emotionKeyboard;
 
 @end
 
@@ -110,7 +111,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
          }];
 }
 
-#pragma mark - IBAction
+#pragma mark - 发微博
 
 - (IBAction)sendButtonDidTap:(UIBarButtonItem *)sender
 {
@@ -160,7 +161,49 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
      }];
 }
 
-#pragma mark - LXComposeToolBarDelegate
+#pragma mark - 切换键盘|选取照片
+
+- (LXEmotionKeyboard *)emotionKeyboard
+{
+    if (!_emotionKeyboard) {
+        _emotionKeyboard = [LXEmotionKeyboard lx_instantiateFromNib];
+    }
+    return _emotionKeyboard;
+}
+
+- (void)switchKeyboard
+{
+    if (self.textView.inputView) { // 当前是自定义的表情键盘.
+        self.textView.inputView = nil;
+        self.keyboardToolBar.showKeyboardButton = NO;
+    } else { // 当前是系统键盘.
+        self.textView.inputView = self.emotionKeyboard;
+        self.keyboardToolBar.showKeyboardButton = YES;
+    }
+
+    [self.textView resignFirstResponder];
+    LXGCDDelay(0.25, ^{
+        [self.textView becomeFirstResponder];
+    });
+}
+
+- (void)pickImageWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    __weak __typeof(self) weakSelf = self;
+    BOOL success = [self.imagePicker presentImagePickerControllerWithSourceType:sourceType
+                                                              completionHandler:
+                    ^(UIImage * _Nonnull originalImage, UIImage * _Nullable editedImage) {
+                        LXLog(@"%@\n%@", originalImage, editedImage);
+                        [weakSelf.textView addImage:originalImage];
+                    } cancelHandler:^{
+                        LXLog(@"图片选择取消.");
+                    }];
+    if (!success) {
+        NSString *errorStr = (sourceType == UIImagePickerControllerSourceTypeCamera) ?
+        @"相机不可用!" : @"相册不可用!";
+        [MBProgressHUD lx_showError:errorStr];
+    }
+}
 
 - (void)composeToolBar:(LXComposeToolBar *)composeToolBar
   didTapButtonWithType:(LXComposeToolBarButtonType)type
@@ -185,29 +228,12 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
         } break;
         case LXComposeToolBarButtonTypeEmoticon: {
             LXLog(@"表情 按钮点击.");
+            [self switchKeyboard];
         } break;
     }
 }
 
-- (void)pickImageWithSourceType:(UIImagePickerControllerSourceType)sourceType
-{
-    __weak __typeof(self) weakSelf = self;
-    BOOL success = [self.imagePicker presentImagePickerControllerWithSourceType:sourceType
-                                                              completionHandler:
-                    ^(UIImage * _Nonnull originalImage, UIImage * _Nullable editedImage) {
-                        LXLog(@"%@\n%@", originalImage, editedImage);
-                        [weakSelf.textView addImage:originalImage];
-                    } cancelHandler:^{
-                        LXLog(@"图片选择取消.");
-                    }];
-    if (!success) {
-        NSString *errorStr = (sourceType == UIImagePickerControllerSourceTypeCamera) ?
-            @"相机不可用!" : @"相册不可用!";
-        [MBProgressHUD lx_showError:errorStr];
-    }
-}
-
-#pragma mark - UITextViewDelegate
+#pragma mark - 禁用/允许发表按钮
 
 - (void)textViewDidChange:(UITextView *)textView
 {

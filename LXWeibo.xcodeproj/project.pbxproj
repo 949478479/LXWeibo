@@ -12,6 +12,9 @@
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
+		184AF02C1BC26D7600C9C033 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */; settings = {ASSET_TAGS = (); }; };
+		185B6EDF1BC2BFAA008DD63D /* LXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */; settings = {ASSET_TAGS = (); }; };
+		185B6EE21BC2BFC6008DD63D /* CALayer+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B6EE11BC2BFC6008DD63D /* CALayer+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706DFA1BB23BDA00F12441 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		18706E011BB23BDA00F12441 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18706DFC1BB23BDA00F12441 /* main.m */; settings = {ASSET_TAGS = (); }; };
 		18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18706DFE1BB23BDA00F12441 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
@@ -23,6 +26,12 @@
 		1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C01BB3D85000060A9A /* LXTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0C91BB4096C00060A9A /* LXTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1889A0CC1BB40DE100060A9A /* LXTitleButton.m */; settings = {ASSET_TAGS = (); }; };
+		1899BF4B1BC1567700B1CD1E /* LXEmotionKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF4A1BC1567700B1CD1E /* LXEmotionKeyboard.m */; settings = {ASSET_TAGS = (); }; };
+		1899BF4E1BC156BF00B1CD1E /* LXEmotionKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1899BF4D1BC156BF00B1CD1E /* LXEmotionKeyboard.xib */; settings = {ASSET_TAGS = (); }; };
+		1899BF531BC1817B00B1CD1E /* EmotionIcons in Resources */ = {isa = PBXBuildFile; fileRef = 1899BF521BC1817B00B1CD1E /* EmotionIcons */; settings = {ASSET_TAGS = (); }; };
+		1899BF571BC181EE00B1CD1E /* LXEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF561BC181EE00B1CD1E /* LXEmotion.m */; settings = {ASSET_TAGS = (); }; };
+		1899BF5A1BC1826C00B1CD1E /* NSArray+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF591BC1826C00B1CD1E /* NSArray+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		1899BF5D1BC18D4300B1CD1E /* LXEmotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D511BBA1D3E00745192 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D561BBA6FB000745192 /* LXStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D541BBA6FB000745192 /* LXStatusCell.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D671BBAD0DF00745192 /* LXStatusToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D661BBAD0DF00745192 /* LXStatusToolBar.m */; settings = {ASSET_TAGS = (); }; };
@@ -128,6 +137,12 @@
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
 		181A15151BB2ADD500D2A53D /* LXPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPlaceholderView.h; sourceTree = "<group>"; };
 		181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPlaceholderView.m; sourceTree = "<group>"; };
+		184AF02A1BC26D7600C9C033 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
+		184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
+		185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageControl.h; sourceTree = "<group>"; };
+		185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageControl.m; sourceTree = "<group>"; };
+		185B6EE01BC2BFC6008DD63D /* CALayer+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+LXExtension.h"; sourceTree = "<group>"; };
+		185B6EE11BC2BFC6008DD63D /* CALayer+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LXExtension.m"; sourceTree = "<group>"; };
 		18706DC61BB23AE800F12441 /* LXWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18706DF91BB23BDA00F12441 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18706DFA1BB23BDA00F12441 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -149,6 +164,16 @@
 		1889A0C91BB4096C00060A9A /* LXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBarController.m; sourceTree = "<group>"; };
 		1889A0CB1BB40DE100060A9A /* LXTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXTitleButton.h; path = LXWeibo/Main/Home/View/LXTitleButton.h; sourceTree = SOURCE_ROOT; };
 		1889A0CC1BB40DE100060A9A /* LXTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXTitleButton.m; path = LXWeibo/Main/Home/View/LXTitleButton.m; sourceTree = SOURCE_ROOT; };
+		1899BF491BC1567700B1CD1E /* LXEmotionKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionKeyboard.h; sourceTree = "<group>"; };
+		1899BF4A1BC1567700B1CD1E /* LXEmotionKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionKeyboard.m; sourceTree = "<group>"; };
+		1899BF4D1BC156BF00B1CD1E /* LXEmotionKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXEmotionKeyboard.xib; sourceTree = "<group>"; };
+		1899BF521BC1817B00B1CD1E /* EmotionIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmotionIcons; sourceTree = "<group>"; };
+		1899BF551BC181EE00B1CD1E /* LXEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotion.h; sourceTree = "<group>"; };
+		1899BF561BC181EE00B1CD1E /* LXEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotion.m; sourceTree = "<group>"; };
+		1899BF581BC1826C00B1CD1E /* NSArray+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LXExtension.h"; sourceTree = "<group>"; };
+		1899BF591BC1826C00B1CD1E /* NSArray+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LXExtension.m"; sourceTree = "<group>"; };
+		1899BF5B1BC18D4300B1CD1E /* LXEmotionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionCell.h; sourceTree = "<group>"; };
+		1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionCell.m; sourceTree = "<group>"; };
 		18D22D501BBA1D3E00745192 /* LXPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhoto.h; sourceTree = "<group>"; };
 		18D22D511BBA1D3E00745192 /* LXPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhoto.m; sourceTree = "<group>"; };
 		18D22D531BBA6FB000745192 /* LXStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXStatusCell.h; path = LXWeibo/Main/Home/View/LXStatusCell.h; sourceTree = SOURCE_ROOT; };
@@ -536,6 +561,7 @@
 		18706DFD1BB23BDA00F12441 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1899BF521BC1817B00B1CD1E /* EmotionIcons */,
 				18706DFE1BB23BDA00F12441 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -648,6 +674,31 @@
 			name = TitleButton;
 			sourceTree = "<group>";
 		};
+		1899BF4C1BC1569C00B1CD1E /* EmotionKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1899BF491BC1567700B1CD1E /* LXEmotionKeyboard.h */,
+				1899BF4A1BC1567700B1CD1E /* LXEmotionKeyboard.m */,
+				1899BF4D1BC156BF00B1CD1E /* LXEmotionKeyboard.xib */,
+				1899BF5B1BC18D4300B1CD1E /* LXEmotionCell.h */,
+				1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */,
+				185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */,
+				185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */,
+			);
+			name = EmotionKeyboard;
+			sourceTree = "<group>";
+		};
+		1899BF541BC181C900B1CD1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				184AF02A1BC26D7600C9C033 /* NSString+Emoji.h */,
+				184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */,
+				1899BF551BC181EE00B1CD1E /* LXEmotion.h */,
+				1899BF561BC181EE00B1CD1E /* LXEmotion.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18D22D6A1BBAD0F300745192 /* ToolBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -714,8 +765,14 @@
 		18DE614F1BB790720048388C /* LXExtension */ = {
 			isa = PBXGroup;
 			children = (
+				185B6EE01BC2BFC6008DD63D /* CALayer+LXExtension.h */,
+				185B6EE11BC2BFC6008DD63D /* CALayer+LXExtension.m */,
 				18DE61501BB790720048388C /* DLIntrospection */,
 				18DE61531BB790720048388C /* MBProgressHUD+LXExtension */,
+				1899BF581BC1826C00B1CD1E /* NSArray+LXExtension.h */,
+				1899BF591BC1826C00B1CD1E /* NSArray+LXExtension.m */,
+				18E61F551BBD5E2100442735 /* NSDate+LXExtension.h */,
+				18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */,
 				18DE61571BB790720048388C /* NSNotificationCenter+LXExtension.h */,
 				18DE61581BB790720048388C /* NSNotificationCenter+LXExtension.m */,
 				18DE61591BB790720048388C /* NSObject+LXExtension.h */,
@@ -736,8 +793,6 @@
 				18DE61681BB790720048388C /* UITextField+LXExtension.m */,
 				18DE61691BB790720048388C /* UIView+LXExtension.h */,
 				18DE616A1BB790720048388C /* UIView+LXExtension.m */,
-				18E61F551BBD5E2100442735 /* NSDate+LXExtension.h */,
-				18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */,
 			);
 			path = LXExtension;
 			sourceTree = "<group>";
@@ -901,6 +956,7 @@
 		18E61F581BBD806A00442735 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				1899BF541BC181C900B1CD1E /* Model */,
 				18E61F591BBD806A00442735 /* Controller */,
 				18E61F5A1BBD806A00442735 /* View */,
 			);
@@ -924,6 +980,7 @@
 				180C5A711BBFA1DE0040E5B1 /* LXComposeToolBar.h */,
 				180C5A721BBFA1DE0040E5B1 /* LXComposeToolBar.m */,
 				180C5A6F1BBF9EA90040E5B1 /* LXComposeToolBar.xib */,
+				1899BF4C1BC1569C00B1CD1E /* EmotionKeyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1132,9 +1189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
+				1899BF531BC1817B00B1CD1E /* EmotionIcons in Resources */,
 				18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */,
 				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
 				18D22D691BBAD0EB00745192 /* LXStatusToolBar.xib in Resources */,
+				1899BF4E1BC156BF00B1CD1E /* LXEmotionKeyboard.xib in Resources */,
 				18DE61731BB790720048388C /* MBProgressHUD.bundle in Resources */,
 				18F781301BBB90A700552BEC /* LXStatusCell.xib in Resources */,
 				180C5A701BBF9EA90040E5B1 /* LXComposeToolBar.xib in Resources */,
@@ -1162,12 +1221,14 @@
 				18EB24601BB8EA37009D9505 /* SDWebImageDownloaderOperation.m in Sources */,
 				18EB24691BB8EA37009D9505 /* UIView+WebCacheOperation.m in Sources */,
 				18EB24631BB8EA37009D9505 /* UIButton+WebCache.m in Sources */,
+				184AF02C1BC26D7600C9C033 /* NSString+Emoji.m in Sources */,
 				18F0147F1BB7E930005C47F7 /* MJDictionaryCache.m in Sources */,
 				18F014811BB7E930005C47F7 /* MJFoundation.m in Sources */,
 				18E61F471BBCE21100442735 /* MJRefreshBackStateFooter.m in Sources */,
 				1889A0CD1BB40DE100060A9A /* LXTitleButton.m in Sources */,
 				1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */,
 				18EB245D1BB8EA37009D9505 /* SDWebImageCompat.m in Sources */,
+				185B6EE21BC2BFC6008DD63D /* CALayer+LXExtension.m in Sources */,
 				18EB245F1BB8EA37009D9505 /* SDWebImageDownloader.m in Sources */,
 				18EB245B1BB8EA37009D9505 /* NSData+ImageContentType.m in Sources */,
 				18F014891BB7E930005C47F7 /* NSString+MJExtension.m in Sources */,
@@ -1180,6 +1241,7 @@
 				18EB24671BB8EA37009D9505 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18EB24341BB8E695009D9505 /* LXUser.m in Sources */,
 				18E61F5D1BBD808900442735 /* LXComposeViewController.m in Sources */,
+				1899BF5D1BC18D4300B1CD1E /* LXEmotionCell.m in Sources */,
 				18E61F3D1BBCE21100442735 /* MJRefreshAutoFooter.m in Sources */,
 				18DE61801BB790720048388C /* LXUtilities.m in Sources */,
 				18DE617A1BB790720048388C /* UIImage+LXExtension.m in Sources */,
@@ -1189,12 +1251,14 @@
 				18DE618D1BB7D9AA0048388C /* LXAuthViewController.m in Sources */,
 				18F014901BB7F4AC005C47F7 /* LXOAuthInfoManager.m in Sources */,
 				18EB245E1BB8EA37009D9505 /* SDWebImageDecoder.m in Sources */,
+				1899BF571BC181EE00B1CD1E /* LXEmotion.m in Sources */,
 				18EB24611BB8EA37009D9505 /* SDWebImageManager.m in Sources */,
 				18DE617C1BB790720048388C /* UITextField+LXExtension.m in Sources */,
 				18E61F491BBCE21100442735 /* MJRefreshNormalHeader.m in Sources */,
 				18F781331BBC2C4E00552BEC /* LXStatusThumbnailView.m in Sources */,
 				18D22D671BBAD0DF00745192 /* LXStatusToolBar.m in Sources */,
 				18E61F4E1BBCE21100442735 /* UIScrollView+MJRefresh.m in Sources */,
+				1899BF5A1BC1826C00B1CD1E /* NSArray+LXExtension.m in Sources */,
 				18F0145E1BB7E66A005C47F7 /* AFHTTPRequestOperation.m in Sources */,
 				18E61F481BBCE21100442735 /* MJRefreshGifHeader.m in Sources */,
 				18F014861BB7E930005C47F7 /* NSObject+MJCoding.m in Sources */,
@@ -1214,6 +1278,7 @@
 				18F0145F1BB7E66A005C47F7 /* AFHTTPRequestOperationManager.m in Sources */,
 				18E61F441BBCE21100442735 /* MJRefreshAutoStateFooter.m in Sources */,
 				18DE61711BB790720048388C /* NSObject+DLIntrospection.m in Sources */,
+				185B6EDF1BC2BFAA008DD63D /* LXPageControl.m in Sources */,
 				18EB24641BB8EA37009D9505 /* UIImage+GIF.m in Sources */,
 				18EB24661BB8EA37009D9505 /* UIImage+WebP.m in Sources */,
 				18E61F4D1BBCE21100442735 /* UIScrollView+MJExtension.m in Sources */,
@@ -1230,6 +1295,7 @@
 				18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */,
 				18EB24651BB8EA37009D9505 /* UIImage+MultiFormat.m in Sources */,
 				18EB24371BB8E69F009D9505 /* LXStatus.m in Sources */,
+				1899BF4B1BC1567700B1CD1E /* LXEmotionKeyboard.m in Sources */,
 				18F0148D1BB7EADC005C47F7 /* LXOAuthInfo.m in Sources */,
 				18DE61761BB790720048388C /* NSString+LXExtension.m in Sources */,
 				18E61F4C1BBCE21100442735 /* MJRefreshConst.m in Sources */,

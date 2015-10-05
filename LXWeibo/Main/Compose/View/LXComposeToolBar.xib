@@ -84,6 +84,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="keyboardButton" destination="SwJ-ZT-K8w" id="efR-vr-gbr"/>
+            </connections>
             <point key="canvasLocation" x="1230" y="389"/>
         </view>
     </objects>

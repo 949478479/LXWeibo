@@ -65,7 +65,12 @@ AppDelegate * LXAppDelegate()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - 窗口和控制器
+#pragma mark - 屏幕|窗口|控制器
+
+CGSize LXScreenSize()
+{
+    return [UIScreen mainScreen].bounds.size;
+}
 
 UIWindow * LXKeyWindow()
 {

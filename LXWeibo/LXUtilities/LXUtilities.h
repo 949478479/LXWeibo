@@ -16,8 +16,10 @@
 
 #import "NSDate+LXExtension.h"
 #import "UIView+LXExtension.h"
+#import "CALayer+LXExtension.h"
 #import "UIImage+LXExtension.h"
 #import "UIColor+LXExtension.h"
+#import "NSArray+LXExtension.h"
 #import "UIButton+LXExtension.h"
 #import "NSObject+LXExtension.h"
 #import "NSString+LXExtension.h"
@@ -25,8 +27,8 @@
 #import "UIStoryboard+LXExtension.h"
 #import "NSUserDefaults+LXExtension.h"
 #import "NSNotificationCenter+LXExtension.h"
-//#import "MBProgressHUD+LXExtension.h"
 
+//#import "MBProgressHUD+LXExtension.h"
 //#import "LXImagePicker.h"
 //#import "LXMulticastDelegate.h"
 
@@ -62,8 +64,10 @@ BOOL LXDeviceIsPad();
 AppDelegate * LXAppDelegate();
 
 ///------------------------------------------------------------------------------------------------
-/// @name 窗口和控制器
+/// @name 屏幕|窗口|控制器
 ///------------------------------------------------------------------------------------------------
+
+CGSize LXScreenSize();
 
 UIWindow * LXKeyWindow();
 UIWindow * LXTopWindow();
@@ -220,5 +224,23 @@ return [self methodName]; \
 NSAssert(NO, @"使用单例方法直接获取单例,不要另行创建单例."); \
 return self; \
 }
+
+///------------------------------------------------------------------------------------------------
+/// @name 调试宏
+///------------------------------------------------------------------------------------------------
+
+#pragma mark - 调试宏
+
+#ifdef DEBUG
+
+#define LX_BENCHMARKING_BEGIN CFTimeInterval begin = CACurrentMediaTime();
+#define LX_BENCHMARKING_END   CFTimeInterval end   = CACurrentMediaTime(); printf("运行时间: %g 秒.\n", end - begin);
+
+#else
+
+#define LX_BENCHMARKING_BEGIN
+#define LX_BENCHMARKING_END
+
+#endif
 
 #endif

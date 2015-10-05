@@ -28,6 +28,8 @@ typedef NS_ENUM(NSUInteger, LXComposeToolBarButtonType) {
 
 @interface LXComposeToolBar : UIView
 
+@property (nonatomic, assign) BOOL showKeyboardButton;
+
 @property (nonatomic, weak) IBOutlet id<LXComposeToolBarDelegate> delegate;
 
 @end

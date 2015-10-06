@@ -126,10 +126,36 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (NSString *)statusText
+{
+    NSMutableString *statusText = [NSMutableString new];
+    {
+        NSAttributedString *attributedText = self.textView.attributedText;
+        {
+            [attributedText enumerateAttributesInRange:(NSRange){0, attributedText.length}
+                                               options:0
+                                            usingBlock:
+             ^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+
+                 NSTextAttachment *textAttachment = attrs[@"NSAttachment"];
+                 if (textAttachment) { // 图片表情.
+                     [statusText appendString:[textAttachment lx_valueForKey:@"emotionCHS"]];
+                 } else { // 文字或者 emoji 表情.
+                     [statusText appendString:[attributedText attributedSubstringFromRange:range].string];
+                 }
+             }];
+        }
+    }
+
+    LXLog(@"%@", statusText);
+
+    return statusText;
+}
+
 - (void)sendStatusWithoutImage
 {
     NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                              @"status"       : self.textView.text, };
+                              @"status"       : self.statusText, };
 
     [[AFHTTPRequestOperationManager manager] POST:kSendStatusWithoutImageURLString
                                        parameters:params
@@ -146,7 +172,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 - (void)sendStatusWithImage
 {
     NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                              @"status"       : self.textView.text, };
+                              @"status"       : self.statusText, };
 
     __weak __typeof(self) weakSelf = self;
     [[AFHTTPRequestOperationManager manager] POST:kSendStatusWithImageURLString
@@ -260,10 +286,47 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
     LXEmotion *emotion = notification.userInfo[LXEmotionKeyboardSelectedEmotionUserInfoKey];
 
     if (emotion.png) { // 图片表情.
-        [self.textView lx_insertEmotionAttributedStringWithImage:[UIImage imageNamed:emotion.png]];
+        [self insertEmotionAttributedStringWithEmotion:emotion];
     } else { // emoji 表情.
         [self.textView insertText:emotion.emoji];
     }
+}
+
+- (void)insertEmotionAttributedStringWithEmotion:(LXEmotion *)emotion
+{
+    UIFont *font = self.textView.font;
+    NSUInteger cursorLocation = self.textView.selectedRange.location; // 获取当前光标位置.
+
+    NSTextAttachment *textAttachment = [NSTextAttachment new];
+    {
+        UIImage *image = [UIImage imageNamed:emotion.png];
+
+        textAttachment.image = image;
+        [textAttachment lx_setValue:emotion.chs forKey:@"emotionCHS"];
+
+        // 设置图片高度为字体行高,宽度根据纵横比计算得出.默认 y 坐标会偏上,设置该值为 font.descender 即可水平对齐.
+        CGFloat lineHeight = font.lineHeight;
+        CGFloat radio = image.size.height / image.size.width;
+        textAttachment.bounds = CGRectMake(0, font.descender, lineHeight / radio, lineHeight);
+    }
+
+    NSAttributedString *imageAttributedString =
+    [NSAttributedString attributedStringWithAttachment:textAttachment];
+
+    NSMutableAttributedString *attributedString = self.textView.attributedText.mutableCopy;
+    {
+        // 插入到当前光标位置.
+        [attributedString insertAttributedString:imageAttributedString
+                                         atIndex:cursorLocation];
+
+        // 设置富文本会导致 textView 的 font 变为另一种富文本默认字体,因此需要专门指定字体为原先字体.
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:font
+                                 range:(NSRange){0,attributedString.length}];
+    }
+
+    self.textView.attributedText = attributedString;
+    self.textView.selectedRange  = NSMakeRange(cursorLocation + 1, 0); // 恢复光标位置到插入点后.
 }
 
 #pragma mark - 禁用/允许发表按钮

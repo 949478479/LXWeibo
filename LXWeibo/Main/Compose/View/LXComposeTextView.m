@@ -248,7 +248,16 @@
 
 - (NSArray<UIImage *> *)images
 {
-    return [self.thumbnailContainerView.thumbnailViews valueForKey:@"image"];
+    NSMutableArray *images = [NSMutableArray new];
+    for (UIImageView *imageView in self.thumbnailContainerView.thumbnailViews) {
+        UIImage *image = imageView.image;
+        if (image) {
+            [images addObject:image];
+        } else {
+            return images;
+        }
+    }
+    return images;
 }
 
 @end

@@ -112,4 +112,22 @@
     return [NSString stringWithFormat:@"<%@: %p>\n%@", self.class, self, varInfo];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 关联对象
+
+- (void)lx_setValue:(id)value forKey:(NSString *)key
+{
+    NSAssert(key.length, @"参数 key 为空字符串或 nil.");
+
+    objc_setAssociatedObject(self, NSSelectorFromString(key), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (id)lx_valueForKey:(NSString *)key
+{
+    NSAssert(key.length, @"参数 key 为空字符串或 nil.");
+    
+    return objc_getAssociatedObject(self, NSSelectorFromString(key));
+}
+
 @end

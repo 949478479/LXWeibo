@@ -23,6 +23,7 @@
 #import "UIButton+LXExtension.h"
 #import "NSObject+LXExtension.h"
 #import "NSString+LXExtension.h"
+#import "UITextView+LXExtension.h"
 #import "UITextField+LXExtension.h"
 #import "UIStoryboard+LXExtension.h"
 #import "NSUserDefaults+LXExtension.h"

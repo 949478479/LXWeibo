@@ -7,7 +7,16 @@
 //
 
 @import UIKit;
+@class LXEmotionKeyboard, LXEmotion;
+
+NS_ASSUME_NONNULL_BEGIN
+
+extern NSString * const LXEmotionKeyboardDidSelectEmotionNotification;
+extern NSString * const LXEmotionKeyboardDidDeleteEmotionNotification;
+extern NSString * const LXEmotionKeyboardSelectedEmotionUserInfoKey;
 
 @interface LXEmotionKeyboard : UIView
 
 @end
+
+NS_ASSUME_NONNULL_END

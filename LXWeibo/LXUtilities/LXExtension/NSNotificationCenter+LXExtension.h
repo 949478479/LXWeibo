@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param aName    通知名称.
  *  @param anObject 通知发送者.
  */
-+ (void)removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject;
++ (void)lx_removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject;
 
 ///------------------------------------------------------------------------------------------------
 /// @name 发送通知

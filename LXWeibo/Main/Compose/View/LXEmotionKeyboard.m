@@ -14,6 +14,10 @@
 #import "LXMagnifierView.h"
 #import "LXEmotionKeyboard.h"
 
+NSString * const LXEmotionKeyboardDidSelectEmotionNotification = @"LXEmotionKeyboardDidSelectEmotionNotification";
+NSString * const LXEmotionKeyboardDidDeleteEmotionNotification = @"LXEmotionKeyboardDidDeleteEmotionNotification";
+NSString * const LXEmotionKeyboardSelectedEmotionUserInfoKey   = @"LXEmotionKeyboardSelectedEmotionUserInfoKey";
+
 static const CGFloat kEmotionSize = 32;
 static const NSUInteger kEmotionSectionCount = 4;
 static const NSUInteger kEmotionCountPerPage = 20;
@@ -173,9 +177,12 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
         return cell;
     }
 
-    cell.emotionSize   = kEmotionSize;
-    cell.emotionMatrix = (LXEmotionMatrix){ kEmotionCountPerRow, kEmotionCountPerCol };
     cell.magnifierView = self.magnifierView;
+    cell.emotionLayoutInfo = (LXEmotionLayoutInfo){
+        kEmotionSize,
+        kEmotionCountPerRow,
+        kEmotionCountPerCol
+    };
 
     // indexPath.row 为当前表情页的索引, range 即为当前表情页的表情的索引范围.
     NSRange range = { indexPath.row * kEmotionCountPerPage, kEmotionCountPerPage };
@@ -213,5 +220,8 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
     }
     return _magnifierView;
 }
+
+#pragma mark - 代理
+
 
 @end

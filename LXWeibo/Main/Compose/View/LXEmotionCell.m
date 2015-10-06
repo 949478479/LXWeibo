@@ -11,6 +11,7 @@
 #import "LXEmotionCell.h"
 #import "LXMagnifierView.h"
 #import "LXEmotionButton.h"
+#import "LXEmotionKeyboard.h"
 
 @interface LXEmotionCell () {
     struct {
@@ -23,12 +24,12 @@
 
 #pragma mark - 添加按钮
 
-- (void)setEmotionMatrix:(LXEmotionMatrix)emotionMatrix
+- (void)setEmotionLayoutInfo:(LXEmotionLayoutInfo)emotionLayoutInfo
 {
-    _emotionMatrix = emotionMatrix;
+    _emotionLayoutInfo = emotionLayoutInfo;
     
-    NSUInteger rowCount = emotionMatrix.emotionCountPerCol;
-    NSUInteger colCount = emotionMatrix.emotionCountPerRow;
+    NSUInteger rowCount = emotionLayoutInfo.emotionCountPerCol;
+    NSUInteger colCount = emotionLayoutInfo.emotionCountPerRow;
 
     for (NSUInteger row = 0; row < rowCount; ++row) {
         for (NSUInteger col = 0; col < colCount; ++col) {
@@ -49,6 +50,10 @@
                                        options:0
                                        context:(__bridge void *)self];
                 }
+
+                [emotionButton addTarget:self
+                                  action:@selector(emotionButtonDidTap:)
+                        forControlEvents:UIControlEventTouchUpInside];
             }
             [self.contentView addSubview:emotionButton];
         }
@@ -73,9 +78,9 @@
 {
     [super layoutSubviews];
 
-    CGFloat emotionSize = self.emotionSize;
-    NSUInteger rowCount = self.emotionMatrix.emotionCountPerCol;
-    NSUInteger colCount = self.emotionMatrix.emotionCountPerRow;
+    CGFloat emotionSize = self.emotionLayoutInfo.emotionSize;
+    NSUInteger rowCount = self.emotionLayoutInfo.emotionCountPerCol;
+    NSUInteger colCount = self.emotionLayoutInfo.emotionCountPerRow;
 
     CGFloat marginH = (self.lx_width - colCount * emotionSize) / (colCount + 1);
     CGFloat marginV = (self.lx_height - rowCount * emotionSize) / (rowCount + 1);
@@ -111,6 +116,20 @@
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+#pragma mark - 监听按钮点击
+
+- (void)emotionButtonDidTap:(LXEmotionButton *)sender
+{
+    if (sender.isDeleteButton) {
+        [NSNotificationCenter lx_postNotificationName:LXEmotionKeyboardDidDeleteEmotionNotification
+                                               object:nil];
+    } else {
+        [NSNotificationCenter lx_postNotificationName:LXEmotionKeyboardDidSelectEmotionNotification
+                                               object:nil
+                                             userInfo:@{ LXEmotionKeyboardSelectedEmotionUserInfoKey : sender.emotion }];
     }
 }
 

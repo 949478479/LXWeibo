@@ -15,6 +15,7 @@
 		1838C5661BC393DC004139D7 /* LXMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C5651BC393DC004139D7 /* LXMagnifierView.m */; settings = {ASSET_TAGS = (); }; };
 		1838C5681BC393FD004139D7 /* LXMagnifierView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1838C5671BC393FD004139D7 /* LXMagnifierView.xib */; settings = {ASSET_TAGS = (); }; };
 		1838C56B1BC399F0004139D7 /* LXEmotionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C56A1BC399F0004139D7 /* LXEmotionButton.m */; settings = {ASSET_TAGS = (); }; };
+		1838C56E1BC3F3F4004139D7 /* UITextView+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C56D1BC3F3F4004139D7 /* UITextView+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		184AF02C1BC26D7600C9C033 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */; settings = {ASSET_TAGS = (); }; };
 		185B6EDF1BC2BFAA008DD63D /* LXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */; settings = {ASSET_TAGS = (); }; };
 		185B6EE21BC2BFC6008DD63D /* CALayer+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B6EE11BC2BFC6008DD63D /* CALayer+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
@@ -145,6 +146,8 @@
 		1838C5671BC393FD004139D7 /* LXMagnifierView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXMagnifierView.xib; sourceTree = "<group>"; };
 		1838C5691BC399F0004139D7 /* LXEmotionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionButton.h; sourceTree = "<group>"; };
 		1838C56A1BC399F0004139D7 /* LXEmotionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionButton.m; sourceTree = "<group>"; };
+		1838C56C1BC3F3F4004139D7 /* UITextView+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LXExtension.h"; sourceTree = "<group>"; };
+		1838C56D1BC3F3F4004139D7 /* UITextView+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LXExtension.m"; sourceTree = "<group>"; };
 		184AF02A1BC26D7600C9C033 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageControl.h; sourceTree = "<group>"; };
@@ -806,6 +809,8 @@
 				18DE61681BB790720048388C /* UITextField+LXExtension.m */,
 				18DE61691BB790720048388C /* UIView+LXExtension.h */,
 				18DE616A1BB790720048388C /* UIView+LXExtension.m */,
+				1838C56C1BC3F3F4004139D7 /* UITextView+LXExtension.h */,
+				1838C56D1BC3F3F4004139D7 /* UITextView+LXExtension.m */,
 			);
 			path = LXExtension;
 			sourceTree = "<group>";
@@ -1278,6 +1283,7 @@
 				18F014861BB7E930005C47F7 /* NSObject+MJCoding.m in Sources */,
 				18F014851BB7E930005C47F7 /* NSObject+MJClass.m in Sources */,
 				18706E3E1BB27A7200F12441 /* LXDiscoverViewController.m in Sources */,
+				1838C56E1BC3F3F4004139D7 /* UITextView+LXExtension.m in Sources */,
 				18F014801BB7E930005C47F7 /* MJExtensionConst.m in Sources */,
 				18F014631BB7E66A005C47F7 /* AFURLConnectionOperation.m in Sources */,
 				18DE61421BB775990048388C /* LXNewFeatureViewController.m in Sources */,

@@ -76,7 +76,7 @@
     [[self defaultCenter] removeObserver:observer];
 }
 
-+ (void)removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject
++ (void)lx_removeObserver:(id)observer name:(nullable NSString *)aName object:(nullable id)anObject
 {
     [[self defaultCenter] removeObserver:observer
                                     name:aName

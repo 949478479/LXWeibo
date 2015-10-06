@@ -12,14 +12,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef struct {
+    CGFloat    emotionSize;
     NSUInteger emotionCountPerRow;
     NSUInteger emotionCountPerCol;
-} LXEmotionMatrix;
+} LXEmotionLayoutInfo;
 
 @interface LXEmotionCell : UICollectionViewCell
 
-@property (nonatomic, assign) CGFloat emotionSize;
-@property (nonatomic, assign) LXEmotionMatrix emotionMatrix;
+@property (nonatomic, assign) LXEmotionLayoutInfo emotionLayoutInfo;
 
 @property (nonatomic, copy) NSArray<LXEmotion *> *emotions;
 

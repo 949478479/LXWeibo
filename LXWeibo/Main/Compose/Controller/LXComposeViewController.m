@@ -6,6 +6,7 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
+#import "LXEmotion.h"
 #import "LXUtilities.h"
 #import "AFNetworking.h"
 #import "LXImagePicker.h"
@@ -34,6 +35,17 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 
 @implementation LXComposeViewController
 
+- (void)dealloc
+{
+    LXLog(@"%@ delloc", self);
+
+    [NSNotificationCenter lx_removeObserver:self];
+    [NSNotificationCenter lx_removeObserver:_keyboardObserver];
+    [NSNotificationCenter lx_removeObserver:_textView
+                                       name:LXEmotionKeyboardDidDeleteEmotionNotification
+                                     object:nil];
+}
+
 #pragma mark - View 生命周期方法
 
 - (void)viewDidLoad
@@ -43,6 +55,8 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
     [self setupTitleView];
 
     [self observeKeyboardChangeFrame];
+
+    [self observeEmotionKeyboard];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,13 +97,6 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 }
 
 #pragma mark - 键盘弹出收回处理
-
-- (void)dealloc
-{
-    LXLog(@"%@ delloc", self);
-
-    [NSNotificationCenter lx_removeObserver:self];
-}
 
 - (void)observeKeyboardChangeFrame
 {
@@ -230,6 +237,32 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
             LXLog(@"表情 按钮点击.");
             [self switchKeyboard];
         } break;
+    }
+}
+
+#pragma mark - 表情输入|删除
+
+- (void)observeEmotionKeyboard
+{
+    [NSNotificationCenter lx_addObserver:self
+                                selector:@selector(emotionKeyboardSelectedEmotion:)
+                                    name:LXEmotionKeyboardDidSelectEmotionNotification
+                                  object:nil];
+
+    [NSNotificationCenter lx_addObserver:self.textView
+                                selector:@selector(deleteBackward)
+                                    name:LXEmotionKeyboardDidDeleteEmotionNotification
+                                  object:nil];
+}
+
+- (void)emotionKeyboardSelectedEmotion:(NSNotification *)notification
+{
+    LXEmotion *emotion = notification.userInfo[LXEmotionKeyboardSelectedEmotionUserInfoKey];
+
+    if (emotion.png) { // 图片表情.
+        [self.textView lx_insertEmotionAttributedStringWithImage:[UIImage imageNamed:emotion.png]];
+    } else { // emoji 表情.
+        [self.textView insertText:emotion.emoji];
     }
 }
 

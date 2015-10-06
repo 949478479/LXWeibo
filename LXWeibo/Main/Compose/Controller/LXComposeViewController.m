@@ -295,7 +295,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 - (void)insertEmotionAttributedStringWithEmotion:(LXEmotion *)emotion
 {
     UIFont *font = self.textView.font;
-    NSUInteger cursorLocation = self.textView.selectedRange.location; // 获取当前光标位置.
+    NSRange selectedRange = self.textView.selectedRange; // 获取当前选中范围.
 
     NSTextAttachment *textAttachment = [NSTextAttachment new];
     {
@@ -315,9 +315,9 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 
     NSMutableAttributedString *attributedString = self.textView.attributedText.mutableCopy;
     {
-        // 插入到当前光标位置.
-        [attributedString insertAttributedString:imageAttributedString
-                                         atIndex:cursorLocation];
+        // 插入到当前选中位置.
+        [attributedString replaceCharactersInRange:selectedRange
+                              withAttributedString:imageAttributedString];
 
         // 设置富文本会导致 textView 的 font 变为另一种富文本默认字体,因此需要专门指定字体为原先字体.
         [attributedString addAttribute:NSFontAttributeName
@@ -326,7 +326,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
     }
 
     self.textView.attributedText = attributedString;
-    self.textView.selectedRange  = NSMakeRange(cursorLocation + 1, 0); // 恢复光标位置到插入点后.
+    self.textView.selectedRange  = NSMakeRange(selectedRange.location + 1, 0); // 恢复光标到插入点后.
 }
 
 #pragma mark - 禁用/允许发表按钮

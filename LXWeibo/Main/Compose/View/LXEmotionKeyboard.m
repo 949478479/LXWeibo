@@ -18,7 +18,6 @@ NSString * const LXEmotionKeyboardDidSelectEmotionNotification = @"LXEmotionKeyb
 NSString * const LXEmotionKeyboardDidDeleteEmotionNotification = @"LXEmotionKeyboardDidDeleteEmotionNotification";
 NSString * const LXEmotionKeyboardSelectedEmotionUserInfoKey   = @"LXEmotionKeyboardSelectedEmotionUserInfoKey";
 
-static const CGFloat kEmotionSize = 32;
 static const NSUInteger kEmotionSectionCount = 4;
 static const NSUInteger kEmotionCountPerPage = 20;
 static const NSUInteger kEmotionCountPerRow  = 7;
@@ -178,11 +177,7 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
     }
 
     cell.magnifierView = self.magnifierView;
-    cell.emotionLayoutInfo = (LXEmotionLayoutInfo){
-        kEmotionSize,
-        kEmotionCountPerRow,
-        kEmotionCountPerCol
-    };
+    cell.emotionLayoutInfo = (LXEmotionLayoutInfo){ kEmotionCountPerRow, kEmotionCountPerCol };
 
     // indexPath.row 为当前表情页的索引, range 即为当前表情页的表情的索引范围.
     NSRange range = { indexPath.row * kEmotionCountPerPage, kEmotionCountPerPage };
@@ -220,8 +215,5 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
     }
     return _magnifierView;
 }
-
-#pragma mark - 代理
-
 
 @end

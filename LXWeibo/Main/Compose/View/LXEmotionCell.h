@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef struct {
-    CGFloat    emotionSize;
     NSUInteger emotionCountPerRow;
     NSUInteger emotionCountPerCol;
 } LXEmotionLayoutInfo;

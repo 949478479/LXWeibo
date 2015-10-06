@@ -12,7 +12,7 @@
 - (void)lx_insertEmotionAttributedStringWithImage:(UIImage *)emotion
 {
     UIFont *font = self.font;
-    NSUInteger cursorLocation = self.selectedRange.location; // 获取当前光标位置.
+    NSRange selectedRange = self.selectedRange; // 获取当前选中范围.
 
     NSTextAttachment *textAttachment = [NSTextAttachment new];
     {
@@ -29,9 +29,9 @@
 
     NSMutableAttributedString *attributedString = self.attributedText.mutableCopy;
     {
-        // 插入到当前光标位置.
-        [attributedString insertAttributedString:imageAttributedString
-                                         atIndex:cursorLocation];
+        // 插入到当前选中位置.
+        [attributedString replaceCharactersInRange:selectedRange
+                              withAttributedString:imageAttributedString];
 
         // 设置富文本会导致 textView 的 font 变为另一种富文本默认字体,因此需要专门指定字体为原先字体.
         [attributedString addAttribute:NSFontAttributeName
@@ -40,7 +40,7 @@
     }
 
     self.attributedText = attributedString;
-    self.selectedRange  = NSMakeRange(cursorLocation + 1, 0); // 恢复光标位置到插入点后.
+    self.selectedRange = NSMakeRange(selectedRange.location + 1, 0); // 恢复光标到插入点后.
 }
 
 @end

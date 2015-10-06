@@ -18,18 +18,20 @@
 
 @implementation LXMagnifierView
 
-- (void)setEmotion:(LXEmotion *)emotion
+- (void)showFromEmotionButton:(LXEmotionButton *)emotionButton
 {
-    _emotion = emotion;
+    CGPoint anchorPoint = [emotionButton.superview convertPoint:emotionButton.center
+                                                         toView:self.superview];
+    self.hidden = NO;
 
-    self.emotionButton.emotion = emotion;
+    self.emotionButton.emotion = emotionButton.emotion;
+    
+    self.center = CGPointMake(anchorPoint.x, anchorPoint.y - self.lx_height / 2);
 }
 
-- (void)setAnchorPoint:(CGPoint)anchorPoint
+- (void)hidden
 {
-    _anchorPoint = anchorPoint;
-
-    self.center = CGPointMake(anchorPoint.x, anchorPoint.y - self.lx_height / 2);
+    self.hidden = YES;
 }
 
 @end

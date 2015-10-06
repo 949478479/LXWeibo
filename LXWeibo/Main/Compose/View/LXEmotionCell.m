@@ -13,14 +13,73 @@
 #import "LXEmotionButton.h"
 #import "LXEmotionKeyboard.h"
 
-@interface LXEmotionCell () {
-    struct {
-        BOOL didTapEmotionButton;
-    } _delegateFlags;
-}
+static const CGFloat kMarginH = 20;
+static const CGFloat kMarginV = 20;
+
+@interface LXEmotionCell () 
+
+@property (nonatomic, strong) NSArray<LXEmotionButton *> *emotionButtons;
+
 @end
 
 @implementation LXEmotionCell
+
+#pragma mark - 初始化
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self configureLongPressGestureRecognizer];
+    }
+    return self;
+}
+
+#pragma mark - 长按手势处理
+
+- (void)configureLongPressGestureRecognizer
+{
+    SEL action = @selector(longPressGestureRecognizerHandle:);
+    UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:action];
+    [self addGestureRecognizer:gr];
+}
+
+- (void)longPressGestureRecognizerHandle:(UILongPressGestureRecognizer *)gr
+{
+    CGPoint location = [gr locationInView:self];
+    LXEmotionButton *emotionButton = [self emotionButtonWithTouchPoint:location];
+
+    switch (gr.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged: {
+            if (emotionButton) {
+                [self.magnifierView showFromEmotionButton:emotionButton];
+            }
+        } break;
+
+        default: {
+            if (emotionButton) {
+                [self emotionButtonDidTap:emotionButton];
+            }
+            [self.magnifierView hidden];
+        }
+    }
+}
+
+- (LXEmotionButton *)emotionButtonWithTouchPoint:(CGPoint)point
+{
+    if (!CGRectContainsPoint(self.bounds, point)) {
+        return nil;
+    }
+
+    for (LXEmotionButton *emotionButton in self.emotionButtons) {
+        if (CGRectContainsPoint(emotionButton.frame, point)) {
+            return emotionButton;
+        }
+    }
+    return nil;
+}
 
 #pragma mark - 添加按钮
 
@@ -31,6 +90,8 @@
     NSUInteger rowCount = emotionLayoutInfo.emotionCountPerCol;
     NSUInteger colCount = emotionLayoutInfo.emotionCountPerRow;
 
+    NSMutableArray *emotionButtons = [NSMutableArray new];
+
     for (NSUInteger row = 0; row < rowCount; ++row) {
         for (NSUInteger col = 0; col < colCount; ++col) {
 
@@ -40,21 +101,14 @@
                 if (row == rowCount - 1 && col == colCount - 1) {
                     emotionButton.isDeleteButton = YES;
                 } else {
-                    // 该字号下 emoji 表情大小比较适中.
-                    emotionButton.titleLabel.font = [UIFont systemFontOfSize:30];
-
-                    emotionButton.adjustsImageWhenHighlighted = NO;
-
-                    [emotionButton addObserver:self
-                                    forKeyPath:@"highlighted"
-                                       options:0
-                                       context:(__bridge void *)self];
+                    [emotionButtons addObject:emotionButton];
+                    emotionButton.titleLabel.font = [UIFont systemFontOfSize:30]; // emoji 表情大小.
                 }
-
                 [emotionButton addTarget:self
                                   action:@selector(emotionButtonDidTap:)
                         forControlEvents:UIControlEventTouchUpInside];
             }
+            self.emotionButtons = emotionButtons;
             [self.contentView addSubview:emotionButton];
         }
     }
@@ -78,12 +132,11 @@
 {
     [super layoutSubviews];
 
-    CGFloat emotionSize = self.emotionLayoutInfo.emotionSize;
     NSUInteger rowCount = self.emotionLayoutInfo.emotionCountPerCol;
     NSUInteger colCount = self.emotionLayoutInfo.emotionCountPerRow;
 
-    CGFloat marginH = (self.lx_width - colCount * emotionSize) / (colCount + 1);
-    CGFloat marginV = (self.lx_height - rowCount * emotionSize) / (rowCount + 1);
+    CGFloat width = (self.lx_width - 2 * kMarginH) / colCount;
+    CGFloat height = (self.lx_height - 2 * kMarginV) / rowCount;
 
     [self.contentView.subviews enumerateObjectsUsingBlock:
      ^(__kindof UIView * _Nonnull emotion, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -91,32 +144,8 @@
          NSUInteger row = idx / colCount;
          NSUInteger col = idx % colCount;
 
-         emotion.frame = CGRectMake(marginH + col * (emotionSize + marginH),
-                                    marginV + row * (emotionSize + marginV),
-                                    emotionSize,
-                                    emotionSize);
+         emotion.frame = CGRectMake(kMarginH + col * width, kMarginV + row * height, width, height);
     }];
-}
-
-#pragma mark - 监听表情按钮高亮变化
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if (context == (__bridge void *)self) {
-        if ([object isHighlighted]) {
-            self.magnifierView.hidden = NO;
-            self.magnifierView.emotion = [object emotion];
-            self.magnifierView.anchorPoint = [self convertPoint:[object center]
-                                                         toView:self.magnifierView.superview];
-        } else {
-            self.magnifierView.hidden = YES;
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
 }
 
 #pragma mark - 监听按钮点击
@@ -127,9 +156,10 @@
         [NSNotificationCenter lx_postNotificationName:LXEmotionKeyboardDidDeleteEmotionNotification
                                                object:nil];
     } else {
+        NSDictionary *userInfo = @{ LXEmotionKeyboardSelectedEmotionUserInfoKey : sender.emotion };
         [NSNotificationCenter lx_postNotificationName:LXEmotionKeyboardDidSelectEmotionNotification
                                                object:nil
-                                             userInfo:@{ LXEmotionKeyboardSelectedEmotionUserInfoKey : sender.emotion }];
+                                             userInfo:userInfo];
     }
 }
 

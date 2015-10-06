@@ -7,15 +7,15 @@
 //
 
 @import UIKit;
-@class LXEmotion;
+@class LXEmotionButton;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXMagnifierView : UIView
 
-@property (nonatomic, strong) LXEmotion *emotion;
+- (void)showFromEmotionButton:(LXEmotionButton *)emotionButton;
 
-@property (nonatomic, assign) CGPoint anchorPoint;
+- (void)hidden;
 
 @end
 

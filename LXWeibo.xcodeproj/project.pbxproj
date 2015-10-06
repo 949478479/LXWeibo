@@ -12,6 +12,9 @@
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
+		1838C5661BC393DC004139D7 /* LXMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C5651BC393DC004139D7 /* LXMagnifierView.m */; settings = {ASSET_TAGS = (); }; };
+		1838C5681BC393FD004139D7 /* LXMagnifierView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1838C5671BC393FD004139D7 /* LXMagnifierView.xib */; settings = {ASSET_TAGS = (); }; };
+		1838C56B1BC399F0004139D7 /* LXEmotionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C56A1BC399F0004139D7 /* LXEmotionButton.m */; settings = {ASSET_TAGS = (); }; };
 		184AF02C1BC26D7600C9C033 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */; settings = {ASSET_TAGS = (); }; };
 		185B6EDF1BC2BFAA008DD63D /* LXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */; settings = {ASSET_TAGS = (); }; };
 		185B6EE21BC2BFC6008DD63D /* CALayer+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185B6EE11BC2BFC6008DD63D /* CALayer+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
@@ -137,6 +140,11 @@
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
 		181A15151BB2ADD500D2A53D /* LXPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPlaceholderView.h; sourceTree = "<group>"; };
 		181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPlaceholderView.m; sourceTree = "<group>"; };
+		1838C5641BC393DB004139D7 /* LXMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMagnifierView.h; sourceTree = "<group>"; };
+		1838C5651BC393DC004139D7 /* LXMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMagnifierView.m; sourceTree = "<group>"; };
+		1838C5671BC393FD004139D7 /* LXMagnifierView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXMagnifierView.xib; sourceTree = "<group>"; };
+		1838C5691BC399F0004139D7 /* LXEmotionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionButton.h; sourceTree = "<group>"; };
+		1838C56A1BC399F0004139D7 /* LXEmotionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionButton.m; sourceTree = "<group>"; };
 		184AF02A1BC26D7600C9C033 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		184AF02B1BC26D7600C9C033 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageControl.h; sourceTree = "<group>"; };
@@ -680,10 +688,15 @@
 				1899BF491BC1567700B1CD1E /* LXEmotionKeyboard.h */,
 				1899BF4A1BC1567700B1CD1E /* LXEmotionKeyboard.m */,
 				1899BF4D1BC156BF00B1CD1E /* LXEmotionKeyboard.xib */,
+				1838C5691BC399F0004139D7 /* LXEmotionButton.h */,
+				1838C56A1BC399F0004139D7 /* LXEmotionButton.m */,
 				1899BF5B1BC18D4300B1CD1E /* LXEmotionCell.h */,
 				1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */,
 				185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */,
 				185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */,
+				1838C5641BC393DB004139D7 /* LXMagnifierView.h */,
+				1838C5651BC393DC004139D7 /* LXMagnifierView.m */,
+				1838C5671BC393FD004139D7 /* LXMagnifierView.xib */,
 			);
 			name = EmotionKeyboard;
 			sourceTree = "<group>";
@@ -1188,6 +1201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1838C5681BC393FD004139D7 /* LXMagnifierView.xib in Resources */,
 				18706E021BB23BDA00F12441 /* Assets.xcassets in Resources */,
 				1899BF531BC1817B00B1CD1E /* EmotionIcons in Resources */,
 				18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */,
@@ -1282,6 +1296,7 @@
 				18EB24641BB8EA37009D9505 /* UIImage+GIF.m in Sources */,
 				18EB24661BB8EA37009D9505 /* UIImage+WebP.m in Sources */,
 				18E61F4D1BBCE21100442735 /* UIScrollView+MJExtension.m in Sources */,
+				1838C5661BC393DC004139D7 /* LXMagnifierView.m in Sources */,
 				18E61F3E1BBCE21100442735 /* MJRefreshBackFooter.m in Sources */,
 				18F014881BB7E930005C47F7 /* NSObject+MJProperty.m in Sources */,
 				18DE61751BB790720048388C /* NSObject+LXExtension.m in Sources */,
@@ -1305,6 +1320,7 @@
 				18EB24621BB8EA37009D9505 /* SDWebImagePrefetcher.m in Sources */,
 				18E61F461BBCE21100442735 /* MJRefreshBackNormalFooter.m in Sources */,
 				18D22D561BBA6FB000745192 /* LXStatusCell.m in Sources */,
+				1838C56B1BC399F0004139D7 /* LXEmotionButton.m in Sources */,
 				18E61F3F1BBCE21100442735 /* MJRefreshComponent.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
 				18F781381BBC347900552BEC /* LXStatusThumbnailContainerView.m in Sources */,

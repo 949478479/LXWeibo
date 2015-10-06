@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "LXEmotionCell.h"
 #import "LXPageControl.h"
+#import "LXMagnifierView.h"
 #import "LXEmotionKeyboard.h"
 
 static const CGFloat kEmotionSize = 32;
@@ -33,6 +34,7 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 @property (nonatomic, weak) IBOutlet LXPageControl *pageControl;
 @property (nonatomic, weak) IBOutlet UICollectionView *emotionListView;
 @property (nonatomic, weak) IBOutlet UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic, weak) LXMagnifierView *magnifierView;
 
 @property (nonatomic, strong) NSArray<LXEmotion *> *defaultEmotionList;
 @property (nonatomic, strong) NSArray<LXEmotion *> *emojiEmotionList;
@@ -171,9 +173,9 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
         return cell;
     }
 
-    cell.emotionSize        = kEmotionSize;
-    cell.emotionCountPerRow = kEmotionCountPerRow;
-    cell.emotionCountPerCol = kEmotionCountPerCol;
+    cell.emotionSize   = kEmotionSize;
+    cell.emotionMatrix = (LXEmotionMatrix){ kEmotionCountPerRow, kEmotionCountPerCol };
+    cell.magnifierView = self.magnifierView;
 
     // indexPath.row 为当前表情页的索引, range 即为当前表情页的表情的索引范围.
     NSRange range = { indexPath.row * kEmotionCountPerPage, kEmotionCountPerPage };
@@ -198,6 +200,18 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 {
     self.pageControl.percent =
         scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.lx_width);
+}
+
+#pragma mark - 加载放大镜
+
+- (LXMagnifierView *)magnifierView
+{
+    if (!_magnifierView) {
+        LXMagnifierView *magnifierView = [LXMagnifierView lx_instantiateFromNib];
+        _magnifierView = magnifierView;
+        [self addSubview:magnifierView];
+    }
+    return _magnifierView;
 }
 
 @end

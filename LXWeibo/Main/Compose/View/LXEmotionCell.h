@@ -7,18 +7,23 @@
 //
 
 @import UIKit;
-@class LXEmotion;
+@class LXEmotion, LXMagnifierView;
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef struct {
+    NSUInteger emotionCountPerRow;
+    NSUInteger emotionCountPerCol;
+} LXEmotionMatrix;
 
 @interface LXEmotionCell : UICollectionViewCell
 
 @property (nonatomic, assign) CGFloat emotionSize;
-
-@property (nonatomic, assign) NSUInteger emotionCountPerRow;
-@property (nonatomic, assign) NSUInteger emotionCountPerCol;
+@property (nonatomic, assign) LXEmotionMatrix emotionMatrix;
 
 @property (nonatomic, copy) NSArray<LXEmotion *> *emotions;
+
+@property (nonatomic, weak) LXMagnifierView *magnifierView;
 
 @end
 

@@ -12,12 +12,15 @@
 #import "LXMagnifierView.h"
 #import "LXEmotionButton.h"
 #import "LXEmotionKeyboard.h"
+#import "LXRecentEmotionsManager.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 static const NSUInteger kEmotionCountPerRow = 7;
 static const NSUInteger kEmotionCountPerCol = 3;
 
-static const CGFloat kMarginH = 20;
-static const CGFloat kMarginV = 20;
+static const CGFloat kMarginH = 12;
+static const CGFloat kMarginV = 12;
 
 @interface LXEmotionPageCell () 
 
@@ -48,7 +51,7 @@ static const CGFloat kMarginV = 20;
     for (NSUInteger row = 0; row < kEmotionCountPerCol; ++row) {
         for (NSUInteger col = 0; col < kEmotionCountPerRow; ++col) {
 
-            LXEmotionButton *emotionButton = [LXEmotionButton buttonWithType:UIButtonTypeCustom];
+            LXEmotionButton *emotionButton = [LXEmotionButton buttonWithType:UIButtonTypeSystem];
             {
                 // 每个表情页最后一个按钮总是删除按钮.
                 if (row == kEmotionCountPerCol - 1 && col == kEmotionCountPerRow - 1) {
@@ -161,7 +164,11 @@ static const CGFloat kMarginV = 20;
         [NSNotificationCenter lx_postNotificationName:LXEmotionKeyboardDidSelectEmotionNotification
                                                object:nil
                                              userInfo:userInfo];
+        
+        [LXRecentEmotionsManager addEmotion:sender.emotion];
     }
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

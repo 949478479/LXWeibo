@@ -31,10 +31,21 @@ static const CGFloat kPageIndicatorHeight = 4;
     _percent = percent;
 
     self.currentPageIndicator.lx_originX =
-        percent * (kPageIndicatorWidth + kPageIndicatorMargin) * (self.countOfPages - 1);
+        percent * (kPageIndicatorWidth + kPageIndicatorMargin) * (_countOfPages - 1);
 }
 
-- (void)setCountOfPages:(NSInteger)countOfPages
+- (void)setHidesForSinglePage:(BOOL)hidesForSinglePage
+{
+    if (_hidesForSinglePage == hidesForSinglePage) {
+        return;
+    }
+
+    _hidesForSinglePage = hidesForSinglePage;
+
+    [self configurePageIndicator]; // 重新绘制小圆点.
+}
+
+- (void)setCountOfPages:(NSUInteger)countOfPages
 {
     if (_countOfPages == countOfPages) {
         return;
@@ -47,7 +58,7 @@ static const CGFloat kPageIndicatorHeight = 4;
     [self invalidateIntrinsicContentSize]; // 无效当前固有尺寸,重新布局.
 }
 
-- (void)setCurrentPage:(NSInteger)currentPage
+- (void)setCurrentPage:(NSUInteger)currentPage
 {
     if (_currentPage == currentPage) {
         return;
@@ -91,25 +102,29 @@ static const CGFloat kPageIndicatorHeight = 4;
 
 - (void)configurePageIndicator
 {
-    UIBezierPath *path = [UIBezierPath bezierPath];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
     {
-        // 根据绘制相应数量的椭圆形路径.为了方便计算,左右两端无间距,小圆点之间有间距.小圆点和整个控件高度相同.
-        for (NSInteger i = 0; i < _countOfPages; ++i) {
-            CGRect roundedRect = CGRectMake(i * (kPageIndicatorWidth + kPageIndicatorMargin),
-                                            0,
-                                            kPageIndicatorWidth,
-                                            kPageIndicatorHeight);
-            [path appendPath:[UIBezierPath bezierPathWithRoundedRect:roundedRect
-                                                        cornerRadius:kPageIndicatorHeight / 2]];
+        // countOfPages 大于 0 时才绘制小圆点.而 countOfPages == 1 且 hidesForSinglePage == YES 时不绘制.
+        if (_countOfPages > 0 && !(_countOfPages == 1 && _hidesForSinglePage)) {
+
+            CGMutablePathRef path = CGPathCreateMutable();
+
+            CGFloat delta = kPageIndicatorWidth + kPageIndicatorMargin;
+            CGFloat cornerRadius = kPageIndicatorHeight / 2;
+
+            // 根据绘制相应数量的椭圆形路径.为了方便计算,左右两端无间距,小圆点之间有间距.小圆点和整个控件高度相同.
+            for (NSUInteger i = 0; i < _countOfPages; ++i) {
+                CGRect roundedRect = CGRectMake(i * delta, 0, kPageIndicatorWidth, kPageIndicatorHeight);
+                CGPathAddRoundedRect(path, NULL, roundedRect, cornerRadius, cornerRadius);
+            }
+
+            maskLayer.path = path;
+
+            CGPathRelease(path);
         }
     }
 
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    {
-        maskLayer.path  = path.CGPath;
-        maskLayer.frame = self.layer.bounds;
-    }
-
+    // 无论是否绘制了小圆点都设置 mask, 否则 currentPageIndicator 会露出来.
     self.layer.mask = maskLayer;
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = LXScreenScale();
@@ -124,15 +139,18 @@ static const CGFloat kPageIndicatorHeight = 4;
     // frame 有变化时修正 currentPageIndicator 图层以及 mask 图层的位置.
     self.layer.mask.frame = self.bounds;
     self.currentPageIndicator.lx_origin = (CGPoint) {
-        self.currentPage * (kPageIndicatorWidth + kPageIndicatorMargin), 0
+        _currentPage * (kPageIndicatorWidth + kPageIndicatorMargin), 0
     };
 }
 
 - (CGSize)intrinsicContentSize
 {
-    // 提供固有尺寸给布局系统.
+    if (_countOfPages == 0) {
+        return CGSizeMake(0, kPageIndicatorHeight);
+    }
+    
     return (CGSize) {
-        self.countOfPages * kPageIndicatorWidth + (self.countOfPages - 1) * kPageIndicatorMargin,
+        _countOfPages * kPageIndicatorWidth + (_countOfPages - 1) * kPageIndicatorMargin,
         kPageIndicatorHeight
     };
 }

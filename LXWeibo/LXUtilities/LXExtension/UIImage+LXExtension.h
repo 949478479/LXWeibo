@@ -43,6 +43,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)lx_roundedImageWithBounds:(CGRect)bounds
                            borderWidth:(CGFloat)borderWidth
                            borderColor:(nullable UIColor *)borderColor;
+
+///------------------------------------------------------------------------------------------------
+/// @name 图片渲染
+///------------------------------------------------------------------------------------------------
+
+/**
+ *  使用 @c [UIImage imageNamed:] 创建 @c UIImageRenderingModeAlwaysOriginal 模式的 @c UIImage 实例.
+ */
++ (instancetype)lx_originalRenderingImageNamed:(NSString *)name;
+
 @end
 
 NS_ASSUME_NONNULL_END

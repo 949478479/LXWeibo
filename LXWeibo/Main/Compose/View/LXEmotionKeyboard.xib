@@ -83,7 +83,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="b9s-2w-svy" customClass="LXEmotionKeyboardCollectionView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="CGh-8M-dh9">
                         <size key="itemSize" width="50" height="50"/>
@@ -105,6 +105,7 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="currentColor">
                             <color key="value" red="0.90196078431372551" green="0.42352941176470588" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="hidesForSinglePage" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
@@ -120,7 +121,7 @@
                 <constraint firstAttribute="trailing" secondItem="b9s-2w-svy" secondAttribute="trailing" id="dai-wn-VTB"/>
                 <constraint firstAttribute="trailing" secondItem="co2-IN-x7f" secondAttribute="trailing" id="dwv-xe-VLC"/>
                 <constraint firstAttribute="bottom" secondItem="co2-IN-x7f" secondAttribute="bottom" id="fbb-ns-zAH"/>
-                <constraint firstItem="Bcv-dd-L1F" firstAttribute="top" secondItem="b9s-2w-svy" secondAttribute="bottom" constant="8" symbolic="YES" id="jkp-Ue-1gY"/>
+                <constraint firstItem="Bcv-dd-L1F" firstAttribute="top" secondItem="b9s-2w-svy" secondAttribute="bottom" id="jkp-Ue-1gY"/>
                 <constraint firstItem="b9s-2w-svy" firstAttribute="top" secondItem="2xo-du-wvd" secondAttribute="top" id="omi-0P-glS"/>
                 <constraint firstItem="co2-IN-x7f" firstAttribute="leading" secondItem="2xo-du-wvd" secondAttribute="leading" id="rC6-kg-4qu"/>
             </constraints>

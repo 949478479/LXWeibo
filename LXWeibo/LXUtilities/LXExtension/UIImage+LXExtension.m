@@ -115,4 +115,13 @@
     return image;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 图片渲染
+
++ (instancetype)lx_originalRenderingImageNamed:(NSString *)name
+{
+    return [[self imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
 @end

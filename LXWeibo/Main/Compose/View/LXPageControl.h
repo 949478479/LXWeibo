@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat percent;
 
-@property (nonatomic, assign) IBInspectable NSInteger currentPage;
-@property (nonatomic, assign) IBInspectable NSInteger countOfPages;
+@property (nonatomic, assign) IBInspectable BOOL hidesForSinglePage;
+
+@property (nonatomic, assign) IBInspectable NSUInteger currentPage;
+@property (nonatomic, assign) IBInspectable NSUInteger countOfPages;
 
 @property (nullable, nonatomic, strong) IBInspectable UIColor *pagesColor;
 @property (nullable, nonatomic, strong) IBInspectable UIColor *currentColor;

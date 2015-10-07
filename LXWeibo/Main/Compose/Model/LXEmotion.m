@@ -8,12 +8,18 @@
 
 #import "LXEmotion.h"
 #import "NSString+Emoji.h"
+#import "NSObject+MJCoding.h"
 
 @implementation LXEmotion
 
 - (NSString *)emoji
 {
-    return [NSString emojiWithStringCode:self.code];
+    if (_code) {
+        return [NSString emojiWithStringCode:_code];
+    }
+    return nil;
 }
+
+MJExtensionCodingImplementation
 
 @end

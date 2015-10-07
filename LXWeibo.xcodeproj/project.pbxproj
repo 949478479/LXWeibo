@@ -12,6 +12,7 @@
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
+		183509BC1BC518080075BF43 /* LXRecentEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509BB1BC518080075BF43 /* LXRecentEmotionsManager.m */; settings = {ASSET_TAGS = (); }; };
 		1838C5661BC393DC004139D7 /* LXMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C5651BC393DC004139D7 /* LXMagnifierView.m */; settings = {ASSET_TAGS = (); }; };
 		1838C5681BC393FD004139D7 /* LXMagnifierView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1838C5671BC393FD004139D7 /* LXMagnifierView.xib */; settings = {ASSET_TAGS = (); }; };
 		1838C56B1BC399F0004139D7 /* LXEmotionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838C56A1BC399F0004139D7 /* LXEmotionButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -141,6 +142,8 @@
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
 		181A15151BB2ADD500D2A53D /* LXPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPlaceholderView.h; sourceTree = "<group>"; };
 		181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPlaceholderView.m; sourceTree = "<group>"; };
+		183509BA1BC518080075BF43 /* LXRecentEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXRecentEmotionsManager.h; sourceTree = "<group>"; };
+		183509BB1BC518080075BF43 /* LXRecentEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRecentEmotionsManager.m; sourceTree = "<group>"; };
 		1838C5641BC393DB004139D7 /* LXMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMagnifierView.h; sourceTree = "<group>"; };
 		1838C5651BC393DC004139D7 /* LXMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMagnifierView.m; sourceTree = "<group>"; };
 		1838C5671BC393FD004139D7 /* LXMagnifierView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXMagnifierView.xib; sourceTree = "<group>"; };
@@ -700,6 +703,8 @@
 				1838C5671BC393FD004139D7 /* LXMagnifierView.xib */,
 				185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */,
 				185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */,
+				183509BA1BC518080075BF43 /* LXRecentEmotionsManager.h */,
+				183509BB1BC518080075BF43 /* LXRecentEmotionsManager.m */,
 			);
 			name = EmotionKeyboard;
 			sourceTree = "<group>";
@@ -1267,6 +1272,7 @@
 				18D22D701BBADBC100745192 /* XXNibBridge.m in Sources */,
 				18E61F4A1BBCE21100442735 /* MJRefreshStateHeader.m in Sources */,
 				18EB245A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m in Sources */,
+				183509BC1BC518080075BF43 /* LXRecentEmotionsManager.m in Sources */,
 				18DE618D1BB7D9AA0048388C /* LXAuthViewController.m in Sources */,
 				18F014901BB7F4AC005C47F7 /* LXOAuthInfoManager.m in Sources */,
 				18EB245E1BB8EA37009D9505 /* SDWebImageDecoder.m in Sources */,

@@ -13,6 +13,7 @@
 #import "LXPageControl.h"
 #import "LXMagnifierView.h"
 #import "LXEmotionKeyboard.h"
+#import "LXRecentEmotionsManager.h"
 
 NSString * const LXEmotionKeyboardDidSelectEmotionNotification = @"LXEmotionKeyboardDidSelectEmotionNotification";
 NSString * const LXEmotionKeyboardDidDeleteEmotionNotification = @"LXEmotionKeyboardDidDeleteEmotionNotification";
@@ -41,13 +42,14 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 @property (nonatomic, strong) NSArray<LXEmotion *> *defaultEmotionList;
 @property (nonatomic, strong) NSArray<LXEmotion *> *emojiEmotionList;
 @property (nonatomic, strong) NSArray<LXEmotion *> *lxhEmotionList;
-@property (nonatomic, strong) NSMutableArray<LXEmotion *> *recentlyEmotionList;
+@property (nonatomic, strong) NSArray<LXEmotion *> *recentEmotionList;
 
 @property (nonatomic, assign) LXEmotionType selectedEmotionType;
 
 @end
 
 @implementation LXEmotionKeyboard
+@dynamic recentEmotionList;
 
 #pragma mark - 初始配置
 
@@ -65,6 +67,11 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 }
 
 #pragma mark - 加载表情
+
+- (NSArray<LXEmotion *> *)recentEmotionList
+{
+    return [LXRecentEmotionsManager recentlyEmotions];
+}
 
 - (NSArray<LXEmotion *> *)defaultEmotionList
 {
@@ -109,7 +116,7 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 - (NSArray<LXEmotion *> *)emotionListWithEmotionType:(LXEmotionType)type
 {
     switch (type) {
-        case LXEmotionTypeRecently: return nil;
+        case LXEmotionTypeRecently: return self.recentEmotionList;
         case LXEmotionTypeDefault: return self.defaultEmotionList;
         case LXEmotionTypeEmoji: return self.emojiEmotionList;
         case LXEmotionTypeLXH: return self.lxhEmotionList;

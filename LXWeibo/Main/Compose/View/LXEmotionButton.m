@@ -14,13 +14,11 @@
 
 #pragma mark - 初始化
 
-- (instancetype)initWithFrame:(CGRect)frame
++ (instancetype)buttonWithType:(UIButtonType)buttonType
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.titleLabel.font = [UIFont systemFontOfSize:30]; // emoji 表情大小.
-    }
-    return self;
+    LXEmotionButton *button = [super buttonWithType:buttonType];
+    button.titleLabel.font = [UIFont systemFontOfSize:32]; // emoji 表情大小.
+    return button;
 }
 
 #pragma mark - Setter
@@ -32,7 +30,7 @@
     if (emotion) {
         if (emotion.png) {
             self.lx_normalTitle = nil;
-            self.lx_normalImage = [UIImage imageNamed:emotion.png];
+            self.lx_normalImage = [UIImage lx_originalRenderingImageNamed:emotion.png];
         } else {
             self.lx_normalImage = nil;
             self.lx_normalTitle = emotion.emoji;
@@ -48,8 +46,8 @@
     _isDeleteButton = isDeleteButton;
 
     if (isDeleteButton) {
-        self.lx_normalImage = [UIImage imageNamed:@"compose_emotion_delete"];
-        self.lx_highlightedImage = [UIImage imageNamed:@"compose_emotion_delete_highlighted"];
+        self.lx_normalImage = [UIImage lx_originalRenderingImageNamed:@"compose_emotion_delete"];
+        self.lx_highlightedImage = [UIImage lx_originalRenderingImageNamed:@"compose_emotion_delete_highlighted"];
     } else {
         self.lx_normalImage = nil;
         self.lx_highlightedImage = nil;

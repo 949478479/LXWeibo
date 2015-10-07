@@ -12,7 +12,6 @@
 
 @implementation LXRecentEmotionsManager
 
-static id sObserver = nil;
 static NSMutableArray<LXEmotion *> *sRecentlyEmotions = nil;
 
 static inline NSString * LXRecentEmotionsArchivePath()
@@ -22,14 +21,19 @@ static inline NSString * LXRecentEmotionsArchivePath()
 
 + (void)initialize
 {
+    sRecentlyEmotions = [NSKeyedUnarchiver unarchiveObjectWithFile:LXRecentEmotionsArchivePath()];
+    if (!sRecentlyEmotions) {
+        sRecentlyEmotions = [NSMutableArray new];
+    }
+
     // 程序进入后台时将最近表情数据写入沙盒.
-    sObserver = [NSNotificationCenter lx_addObserverForName:UIApplicationDidEnterBackgroundNotification
-                                                     object:nil
-                                                 usingBlock:
-                 ^(NSNotification * _Nonnull note) {
-                     [NSKeyedArchiver archiveRootObject:sRecentlyEmotions
-                                                 toFile:LXRecentEmotionsArchivePath()];
-                 }];
+    [NSNotificationCenter lx_addObserverForName:UIApplicationDidEnterBackgroundNotification
+                                         object:nil
+                                     usingBlock:
+     ^(NSNotification * _Nonnull note) {
+         [NSKeyedArchiver archiveRootObject:sRecentlyEmotions
+                                     toFile:LXRecentEmotionsArchivePath()];
+     }];
 }
 
 #pragma mark - *** 公共方法 ***
@@ -38,7 +42,7 @@ static inline NSString * LXRecentEmotionsArchivePath()
 {
     // 如果该表情之前添加过,移除.
     for (LXEmotion *emotion in sRecentlyEmotions) {
-        if ([emotion.chs isEqualToString:anEmotion.chs]) {
+        if ([emotion.chs isEqualToString:anEmotion.chs] || [emotion.code isEqualToString:anEmotion.code]) {
             [sRecentlyEmotions removeObject:emotion];
             break;
         }
@@ -50,14 +54,7 @@ static inline NSString * LXRecentEmotionsArchivePath()
 
 + (NSArray<LXEmotion *> *)recentlyEmotions
 {
-    if (!sRecentlyEmotions) {
-        sRecentlyEmotions = [NSKeyedUnarchiver unarchiveObjectWithFile:LXRecentEmotionsArchivePath()];
-        if (!sRecentlyEmotions) {
-            sRecentlyEmotions = [NSMutableArray new];
-        }
-    }
-
-    return sRecentlyEmotions.copy;
+    return sRecentlyEmotions;
 }
 
 @end

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 static const NSUInteger kEmotionCountPerRow = 7;
 static const NSUInteger kEmotionCountPerCol = 3;
 
+// 这是放大镜能完整显示在屏幕边缘的距离.
 static const CGFloat kMarginH = 12;
 static const CGFloat kMarginV = 12;
 
@@ -51,7 +52,7 @@ static const CGFloat kMarginV = 12;
     for (NSUInteger row = 0; row < kEmotionCountPerCol; ++row) {
         for (NSUInteger col = 0; col < kEmotionCountPerRow; ++col) {
 
-            LXEmotionButton *emotionButton = [LXEmotionButton buttonWithType:UIButtonTypeSystem];
+            LXEmotionButton *emotionButton = [LXEmotionButton new];
             {
                 // 每个表情页最后一个按钮总是删除按钮.
                 if (row == kEmotionCountPerCol - 1 && col == kEmotionCountPerRow - 1) {
@@ -124,10 +125,12 @@ static const CGFloat kMarginV = 12;
     NSUInteger emotionCount = emotions.count;
     NSUInteger emotionButtonCount = self.emotionButtons.count;
 
+    // 更新有表情的按钮的表情.
     for (NSUInteger idx = 0; idx < emotionCount; ++idx) {
         self.emotionButtons[idx].emotion = emotions[idx];
     }
 
+    // 清空没有表情的按钮的之前的表情.
     for (NSUInteger idx = emotionCount; idx < emotionButtonCount; ++idx) {
         self.emotionButtons[idx].emotion = nil;
     }
@@ -139,8 +142,20 @@ static const CGFloat kMarginV = 12;
 {
     [super layoutSubviews];
 
-    CGFloat width = (self.lx_width - 2 * kMarginH) / kEmotionCountPerRow;
-    CGFloat height = (self.lx_height - 2 * kMarginV) / kEmotionCountPerCol;
+    CGFloat emotionSize;
+    CGFloat marginH  = kMarginH;
+    CGFloat marginV  = kMarginV;
+    CGFloat emotionW = (self.lx_width - 2 * kMarginH) / kEmotionCountPerRow;
+    CGFloat emotionH = (self.lx_height - 2 * kMarginV) / kEmotionCountPerCol;
+
+    // 确保表情按钮是正方形,并且和父视图的左右间距不会小于 kMarginH, 上下间距不会小于 kMarginV.
+    if (emotionW > emotionH) {
+        emotionSize = emotionH;
+        marginH = (self.lx_width - kEmotionCountPerRow * emotionSize) / 2;
+    } else {
+        emotionSize = emotionW;
+        marginV = (self.lx_height - kEmotionCountPerCol * emotionSize) / 2;
+    }
 
     [self.contentView.subviews enumerateObjectsUsingBlock:
      ^(__kindof UIView * _Nonnull emotion, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -148,7 +163,10 @@ static const CGFloat kMarginV = 12;
          NSUInteger row = idx / kEmotionCountPerRow;
          NSUInteger col = idx % kEmotionCountPerRow;
 
-         emotion.frame = CGRectMake(kMarginH + col * width, kMarginV + row * height, width, height);
+         emotion.frame = CGRectMake(marginH + col * emotionSize,
+                                    marginV + row * emotionSize,
+                                    emotionSize,
+                                    emotionSize);
     }];
 }
 

@@ -74,11 +74,12 @@
 {
     NSString *name  = [LXOAuthInfoManager OAuthInfo].name;
     NSString *title = name ? [NSString stringWithFormat:@"发微博\n%@", name] : @"发微博";
-
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:title];
-    [attributedString addAttribute:NSFontAttributeName
-                             value:[UIFont systemFontOfSize:12]
-                             range:(NSRange){4,attributedString.length - 4}];
+    if (name) {
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:[UIFont systemFontOfSize:12]
+                                 range:(NSRange){4,attributedString.length - 4}];
+    }
 
     UILabel *titleLabel = [UILabel new];
     {

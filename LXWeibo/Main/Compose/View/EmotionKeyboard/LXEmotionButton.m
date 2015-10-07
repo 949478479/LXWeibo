@@ -14,11 +14,15 @@
 
 #pragma mark - 初始化
 
-+ (instancetype)buttonWithType:(UIButtonType)buttonType
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    LXEmotionButton *button = [super buttonWithType:buttonType];
-    button.titleLabel.font = [UIFont systemFontOfSize:32]; // emoji 表情大小.
-    return button;
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.adjustsImageWhenHighlighted = NO;
+        self.titleLabel.font = [UIFont systemFontOfSize:32]; // emoji 表情大小.
+        self.lx_highlightedBackgroundImage = [UIImage imageNamed:@"emotion_bg"];
+    }
+    return self;
 }
 
 #pragma mark - Setter
@@ -27,15 +31,17 @@
 {
     _emotion = emotion;
 
+    self.enabled = emotion ? YES : NO;
+
     if (emotion) {
-        if (emotion.png) {
+        if (emotion.png) { // 图片表情.
             self.lx_normalTitle = nil;
-            self.lx_normalImage = [UIImage lx_originalRenderingImageNamed:emotion.png];
-        } else {
+            self.lx_normalImage = [UIImage imageNamed:emotion.png];
+        } else { // emoji 表情.
             self.lx_normalImage = nil;
             self.lx_normalTitle = emotion.emoji;
         }
-    } else {
+    } else { // 没有表情,清空显示内容.
         self.lx_normalImage = nil;
         self.lx_normalTitle = nil;
     }
@@ -46,13 +52,13 @@
     _isDeleteButton = isDeleteButton;
 
     if (isDeleteButton) {
-        self.lx_normalImage = [UIImage lx_originalRenderingImageNamed:@"compose_emotion_delete"];
-        self.lx_highlightedImage = [UIImage lx_originalRenderingImageNamed:@"compose_emotion_delete_highlighted"];
+        self.lx_normalTitle = nil;
+        self.lx_normalImage = [UIImage imageNamed:@"compose_emotion_delete"];
+        self.lx_highlightedImage = [UIImage imageNamed:@"compose_emotion_delete_highlighted"];
     } else {
         self.lx_normalImage = nil;
         self.lx_highlightedImage = nil;
     }
-    self.lx_normalTitle = nil;
 }
 
 @end

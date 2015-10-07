@@ -20,6 +20,11 @@
     return nil;
 }
 
++ (NSArray *)ignoredCodingPropertyNames
+{
+    return @[@"emoji"]; // 这个属性是为了方便转换 emoji 表情用的,不要归档,否则会崩溃.
+}
+
 MJExtensionCodingImplementation
 
 @end

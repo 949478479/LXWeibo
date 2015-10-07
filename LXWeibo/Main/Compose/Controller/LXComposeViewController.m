@@ -8,17 +8,14 @@
 
 #import "LXEmotion.h"
 #import "LXUtilities.h"
-#import "AFNetworking.h"
 #import "LXImagePicker.h"
+#import "LXStatusManager.h"
 #import "LXComposeToolBar.h"
 #import "LXComposeTextView.h"
 #import "LXEmotionKeyboard.h"
 #import "LXOAuthInfoManager.h"
 #import "LXComposeViewController.h"
 #import "MBProgressHUD+LXExtension.h"
-
-static NSString * const kSendStatusWithImageURLString    = @"https://upload.api.weibo.com/2/statuses/upload.json";
-static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.com/2/statuses/update.json";
 
 @interface LXComposeViewController () <UITextViewDelegate, LXComposeToolBarDelegate>
 
@@ -41,9 +38,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 
     [NSNotificationCenter lx_removeObserver:self];
     [NSNotificationCenter lx_removeObserver:_keyboardObserver];
-    [NSNotificationCenter lx_removeObserver:_textView
-                                       name:LXEmotionKeyboardDidDeleteEmotionNotification
-                                     object:nil];
+    [NSNotificationCenter lx_removeObserver:_textView];
 }
 
 #pragma mark - View 生命周期方法
@@ -52,7 +47,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 {
     [super viewDidLoad];
 
-    [self setupTitleView];
+    [self configureTitleView];
 
     [self observeKeyboardChangeFrame];
 
@@ -75,7 +70,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 
 #pragma mark - 设置标题
 
-- (void)setupTitleView
+- (void)configureTitleView
 {
     NSString *name  = [LXOAuthInfoManager OAuthInfo].name;
     NSString *title = name ? [NSString stringWithFormat:@"发微博\n%@", name] : @"发微博";
@@ -154,44 +149,23 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
 
 - (void)sendStatusWithoutImage
 {
-    NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                              @"status"       : self.statusText, };
-
-    [[AFHTTPRequestOperationManager manager] POST:kSendStatusWithoutImageURLString
-                                       parameters:params
-                                          success:
-     ^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-         LXLog(@"文字微博发表成功!");
-         [MBProgressHUD lx_showSuccess:@"发表成功"];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         LXLog(@"文字微博发表失败!\n%@", error);
-         [MBProgressHUD lx_showError:@"发表失败"];
-     }];
+    [LXStatusManager sendStatus:self.statusText
+                   completion:^{
+                       [MBProgressHUD lx_showSuccess:@"发表成功"];
+                   } failure:^(NSError * _Nonnull error) {
+                       [MBProgressHUD lx_showError:@"发表失败"];
+                   }];
 }
 
 - (void)sendStatusWithImage
 {
-    NSDictionary *params = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                              @"status"       : self.statusText, };
-
-    __weak __typeof(self) weakSelf = self;
-    [[AFHTTPRequestOperationManager manager] POST:kSendStatusWithImageURLString
-                                       parameters:params
-                        constructingBodyWithBlock:
-     ^(id<AFMultipartFormData>  _Nonnull formData) {
-         NSData *data = UIImageJPEGRepresentation(weakSelf.textView.images.firstObject, 0);
-         [formData appendPartWithFileData:data name:@"pic" fileName:@"xxx.jpg" mimeType:@"image/jpeg"];
-     }
-                                          success:
-     ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-         LXLog(@"图片微博发表成功!");
-         [MBProgressHUD lx_showSuccess:@"发表成功"];
-     }
-                                          failure:
-     ^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"图片微博发表失败!\n%@", error);
-         [MBProgressHUD lx_showError:@"发表失败"];
-     }];
+    [LXStatusManager sendStatus:self.statusText
+                        image:self.textView.images.firstObject
+                   completion:^{
+                       [MBProgressHUD lx_showSuccess:@"发表成功"];
+                   } failure:^(NSError * _Nonnull error) {
+                       [MBProgressHUD lx_showError:@"发表失败"];
+                   }];
 }
 
 #pragma mark - 切换键盘|选取照片
@@ -290,6 +264,8 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
     } else { // emoji 表情.
         [self.textView insertText:emotion.emoji];
     }
+
+    self.sendButtonItem.enabled = self.textView.hasText;
 }
 
 - (void)insertEmotionAttributedStringWithEmotion:(LXEmotion *)emotion
@@ -329,7 +305,7 @@ static NSString * const kSendStatusWithoutImageURLString = @"https://api.weibo.c
     self.textView.selectedRange  = NSMakeRange(selectedRange.location + 1, 0); // 恢复光标到插入点后.
 }
 
-#pragma mark - 禁用/允许发表按钮
+#pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {

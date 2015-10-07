@@ -6,16 +6,11 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
+#import "LXConst.h"
 #import "LXUtilities.h"
-#import "AppDelegate.h"
-#import "LXOAuthInfo.h"
-#import "AFNetworking.h"
-#import "LXOAuthInfoManager.h"
+#import "LXStatusManager.h"
 #import "LXAuthViewController.h"
 #import "MBProgressHUD+LXExtension.h"
-
-static NSString * const kLXAuthorizeURLString   = @"https://api.weibo.com/oauth2/authorize?client_id=2547705806&redirect_uri=http://";
-static NSString * const kLXAccessTokenURLString = @"https://api.weibo.com/oauth2/access_token";
 
 @interface LXAuthViewController () <UIWebViewDelegate>
 
@@ -32,7 +27,7 @@ static NSString * const kLXAccessTokenURLString = @"https://api.weibo.com/oauth2
     [super viewDidLoad];
 
     [(UIWebView *)self.view loadRequest:
-     [NSURLRequest requestWithURL:[NSURL URLWithString:kLXAuthorizeURLString]]];
+     [NSURLRequest requestWithURL:[NSURL URLWithString:LXAuthorizeURL]]];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -97,38 +92,19 @@ static NSString * const kLXAccessTokenURLString = @"https://api.weibo.com/oauth2
 
 - (void)requestAccessToken
 {
-    NSAssert(self.code, @"code 为 nil.");
-
-    LXLog(@"正在授权...");
-
     [MBProgressHUD lx_showMessage:@"正在授权..."];
 
-    NSDictionary *parameters = @{ @"client_id"     : LXAppKey,
-                                  @"client_secret" : LXAppSecret,
-                                  @"grant_type"    : @"authorization_code",
-                                  @"code"          : self.code,
-                                  @"redirect_uri"  : @"http://", };
-
-    [[AFHTTPRequestOperationManager manager] POST:kLXAccessTokenURLString
-                                       parameters:parameters
-                                          success:
-     ^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-
-         LXLog(@"授权成功");
+    [LXStatusManager requestAccessTokenWithAuthorizationCode:self.code
+                                                completion:
+     ^(LXOAuthInfo * _Nonnull OAuthInfo) {
 
          [MBProgressHUD lx_hideHUD];
-
-         LXOAuthInfo *OAuthInfo = [LXOAuthInfo OAuthInfoWithDictionary:responseObject];
-         [LXOAuthInfoManager saveOAuthInfo:OAuthInfo];
-
          [UIStoryboard lx_showInitialVCWithStoryboardName:@"NewFeature"];
-         
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
+     } failure:^(NSError * _Nonnull error) {
+         
          [MBProgressHUD lx_hideHUD];
          [MBProgressHUD lx_showError:@"授权出错!"];
-
-         LXLog(@"授权出错 \n%@", error);
      }];
 }
 

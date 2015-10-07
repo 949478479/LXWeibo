@@ -10,95 +10,75 @@
 #import "LXStatus.h"
 #import "MJRefresh.h"
 #import "LXUtilities.h"
-#import "MJExtension.h"
-#import "AFNetworking.h"
 #import "LXStatusCell.h"
+#import "LXStatusManager.h"
 #import "LXPopoverView.h"
 #import "LXOAuthInfoManager.h"
 #import "LXHomeViewController.h"
-#import "UIImageView+WebCache.h"
 #import "MBProgressHUD+LXExtension.h"
 
-static NSString * const kLXStatusCellIdentifier = @"LXStatusCell";
-static NSString * const kLXUserInfoURLString    = @"https://api.weibo.com/2/users/show.json";
-static NSString * const kLXHomeStatusURLString  = @"https://api.weibo.com/2/statuses/home_timeline.json";
-static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/remind/unread_count.json";
+static NSString * const kStatusCellIdentifier = @"LXStatusCell";
 
 @interface LXHomeViewController () <LXPopoverViewDelegate>
+
+@property (nonatomic, strong) dispatch_source_t timer;
 
 @property (nonatomic, strong) LXPopoverView *popover;
 @property (nonatomic, weak) IBOutlet UIButton *titleButton;
 
-@property (nonatomic, strong) NSMutableArray<LXStatus *> *statuses;
-
+@property (nonatomic, strong) LXStatusCell *statusTemplateCell;
 @property (nonatomic, strong) NSMutableArray *rowHeightCache;
-@property (nonatomic, strong) LXStatusCell   *statusTemplateCell;
-
-@property (nonatomic, strong) dispatch_source_t timer;
+@property (nonatomic, strong) NSMutableArray<LXStatus *> *statuses;
 
 @end
 
 @implementation LXHomeViewController
 
+#pragma mark - 初始配置
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [self setupTitle];
-
-    [self setupRefreshControl];
-
     [self registerNib];
+    [self configureTitle];
+    [self configureTimer];
+    [self configureRefreshControl];
 
     [self.tableView.header beginRefreshing];
-
-    __weak __typeof(self) weakSelf = self;
-    self.timer = LXGCDTimer(60, 30, ^{
-        [weakSelf setupUnreadCount];
-    }, nil);
-    dispatch_resume(self.timer);
 }
 
 - (void)registerNib
 {
     [self.tableView registerNib:[LXStatusCell lx_nib]
-         forCellReuseIdentifier:kLXStatusCellIdentifier];
+         forCellReuseIdentifier:kStatusCellIdentifier];
 }
 
-- (void)setupTitle
+- (void)configureTitle
 {
     LXOAuthInfo *OAuthInfo = [LXOAuthInfoManager OAuthInfo];
 
     self.titleButton.lx_normalTitle = OAuthInfo.name ?: @"首页";
 
-    NSDictionary *parameters = @{ @"uid"          : OAuthInfo.uid,
-                                  @"access_token" : OAuthInfo.access_token, };
-
-    [[AFHTTPRequestOperationManager manager] GET:kLXUserInfoURLString
-                                      parameters:parameters
-                                         success:
-     ^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary * _Nonnull responseObject) {
-
-         LXLog(@"加载用户昵称请求完成!");
-
-         NSString *name = responseObject[@"name"];
-
-         NSAssert(name, @"返回 JSON 中获取的 name 为 nil.");
-
-         if (![OAuthInfo.name isEqualToString:name])
-         {
-             self.titleButton.lx_normalTitle = name;
-
-             [OAuthInfo setValue:name forKey:@"name"];
-             [LXOAuthInfoManager saveOAuthInfo:OAuthInfo];
-         }
-         
-     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"加载用户昵称请求出错\n%@", error);
-     }];
+    [LXStatusManager updateUserInfoWithCompletion:^(LXOAuthInfo * _Nonnull OAuthInfo) {
+        if (![OAuthInfo.name isEqualToString:self.titleButton.lx_normalTitle]) {
+            self.titleButton.lx_normalTitle = OAuthInfo.name;
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [MBProgressHUD lx_showError:@"网络不给力..."];
+    }];
 }
 
-- (void)setupRefreshControl
+- (void)configureTimer
+{
+    __weak __typeof(self) weakSelf = self;
+    self.timer = LXGCDTimer(60, 30, ^{
+        [weakSelf updateUnreadCount];
+    }, nil);
+    dispatch_resume(self.timer);
+}
+
+- (void)configureRefreshControl
 {
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
                                                              refreshingAction:@selector(loadNewStatuses)];
@@ -106,94 +86,65 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
                                                                  refreshingAction:@selector(loadMoreStatuses)];
 }
 
+#pragma mark - 加载微博数据
+
+- (void)loadNewStatuses
+{
+    [LXStatusManager loadNewStatusesSinceStatusID:self.statuses.firstObject.idstr
+                                       completion:
+     ^(NSArray<LXStatus *> * _Nonnull statuses) {
+
+         [self.tableView.header endRefreshing];
+         [self showNewStatusCount:statuses.count];
+
+         if (self.statuses.count > 0) {
+
+             NSInteger startIndex = 0;
+             NSInteger endIndex = statuses.count - 1;
+             NSMutableArray *indexPaths = [NSMutableArray new];
+
+             for (NSInteger row = startIndex; row <= endIndex; ++row) {
+                 [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
+                 [self.statuses insertObject:statuses[row] atIndex:row];
+                 [self.rowHeightCache insertObject:[NSNull null] atIndex:row];
+             }
+
+         } else {
+             self.statuses = statuses.mutableCopy;
+         }
+
+         [self.tableView reloadData];
+
+     } failure:^(NSError * _Nonnull error) {
+         [MBProgressHUD lx_showError:@"网络不给力..."];
+         [self.tableView.header endRefreshing];
+     }];
+}
+
 - (void)loadMoreStatuses
 {
-    NSString *maxID = self.statuses.lastObject.idstr;
-
-    NSAssert(maxID, @"maxID 为 nil.");
-
-    NSDictionary *parameters = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                                  @"max_id"       : @(maxID.longLongValue - 1), };
-
-    [[AFHTTPRequestOperationManager manager] GET:kLXHomeStatusURLString
-                                      parameters:parameters
-                                         success:
-     ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-
-         LXLog(@"加载更多微博请求完成!");
-
-         NSArray *statusDictionaries  = responseObject[@"statuses"];
-         NSMutableArray *moreStatuses = [LXStatus objectArrayWithKeyValuesArray:statusDictionaries];
+    [LXStatusManager loadMoreStatusesAfterStatusID:self.statuses.lastObject.idstr
+                                        completion:
+     ^(NSArray<LXStatus *> * _Nonnull statuses) {
 
          NSMutableArray *indexPaths = [NSMutableArray new];
          {
              NSInteger startIndex = self.statuses.count;
-             NSInteger endIndex   = startIndex + statusDictionaries.count - 1;
+             NSInteger endIndex = startIndex + statuses.count - 1;
              for (NSInteger row = startIndex; row <= endIndex; ++row) {
                  [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
              }
          }
 
-         [self.statuses addObjectsFromArray:moreStatuses];
+         [self.statuses addObjectsFromArray:statuses];
 
          [self.tableView.footer endRefreshing];
          [self.tableView insertRowsAtIndexPaths:indexPaths
                                withRowAnimation:UITableViewRowAnimationNone];
 
-     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"加载更多微博请求出错\n%@", error);
+     } failure:^(NSError * _Nonnull error) {
          [MBProgressHUD lx_showError:@"网络不给力..."];
          [self.tableView.footer endRefreshing];
-     }];
-}
-
-- (void)loadNewStatuses
-{
-    NSString *sinceID = self.statuses.firstObject.idstr;
-
-    NSDictionary *parameters = @{ @"access_token" : [LXOAuthInfoManager OAuthInfo].access_token,
-                                  @"since_id"     : sinceID ?: @"0", };
-
-    [[AFHTTPRequestOperationManager manager] GET:kLXHomeStatusURLString
-                                      parameters:parameters
-                                         success:
-     ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-
-         LXLog(@"加载最新微博请求完成!");
-
-         NSArray *statusDictionaries = responseObject[@"statuses"];
-
-         [self.tableView.header endRefreshing];
-         [self showNewStatusCount:statusDictionaries.count];
-
-         if (statusDictionaries.count == 0) {
-             return;
-         }
-
-         NSMutableArray *newStatuses = [LXStatus objectArrayWithKeyValuesArray:statusDictionaries];
-
-         if (self.statuses.count > 0) {
-
-             NSInteger startIndex = 0;
-             NSInteger endIndex   = statusDictionaries.count - 1;
-             NSMutableArray *indexPaths = [NSMutableArray new];
-
-             for (NSInteger row = startIndex; row <= endIndex; ++row) {
-                 [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
-                 [self.statuses insertObject:newStatuses[row] atIndex:row];
-                 [self.rowHeightCache insertObject:[NSNull null] atIndex:row];
-             }
-
-         } else {
-             self.statuses = newStatuses;
-         }
-
-         [self.tableView reloadData];
-
-     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"加载最新微博请求出错\n%@", error);
-         [MBProgressHUD lx_showError:@"网络不给力..."];
-         [self.tableView.header endRefreshing];
      }];
 }
 
@@ -241,29 +192,14 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
     }
 }
 
-- (void)setupUnreadCount
+- (void)updateUnreadCount
 {
-    LXOAuthInfo *OAuthInfo = [LXOAuthInfoManager OAuthInfo];
-
-    NSDictionary *parameters = @{ @"uid"          : OAuthInfo.uid,
-                                  @"access_token" : OAuthInfo.access_token, };
-
-    [[AFHTTPRequestOperationManager manager] GET:kLXUnreadCountURLString
-                                      parameters:parameters
-                                         success:
-     ^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-
-         NSString *unreadCount = [responseObject[@"status"] description];
-         LXLog(@"获取未读数完成! %@", unreadCount);
-         if ([unreadCount isEqualToString:@"0"]) {
-             unreadCount = nil;
-         }
-         self.navigationController.tabBarItem.badgeValue = unreadCount;
-         [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount.integerValue;
-
-     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-         LXLog(@"获取未读数出错\n%@", error);
-     }];
+    [LXStatusManager loadUnreadStatusCountWithCompletion:^(NSString * _Nullable unreadCount) {
+        self.navigationController.tabBarItem.badgeValue = unreadCount;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount.integerValue;
+    } failure:^(NSError * _Nonnull error) {
+        [MBProgressHUD lx_showError:@"网络不给力..."];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -275,7 +211,7 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LXStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:kLXStatusCellIdentifier
+    LXStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:kStatusCellIdentifier
                                                          forIndexPath:indexPath];
     [cell configureWithStatus:self.statuses[indexPath.row]];
 
@@ -329,7 +265,7 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
     return rowHeight;
 }
 
-#pragma mark - IBAction
+#pragma mark - 标题按钮交互
 
 - (IBAction)titleButtonDidTap:(UIButton *)sender
 {
@@ -355,8 +291,6 @@ static NSString * const kLXUnreadCountURLString = @"https://rm.api.weibo.com/2/r
         [self.popover presentFromView:self.titleButton];
     }
 }
-
-#pragma mark - LXPopoverViewDelegate
 
 - (void)popoverViewDidDismiss:(LXPopoverView *)popoverView
 {

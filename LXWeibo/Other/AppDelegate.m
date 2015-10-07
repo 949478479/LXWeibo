@@ -6,19 +6,14 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
+#import "LXConst.h"
 #import "LXUtilities.h"
 #import "AppDelegate.h"
 #import "LXOAuthInfoManager.h"
-#import "AFHTTPRequestOperationManager.h"
 
-NSString * const LXAppKey    = @"2547705806";
-NSString * const LXAppSecret = @"9eede02b85f083f300041d776a8c5118";
-
-NSString * const LXVersionString = @"LXVersionString";
-
-static const CGFloat kLXTabBarItemTitleFontSize    = 11;
-static const CGFloat kLXBarButtonItemTitleFontSize = 14;
-static const CGFloat kLXNavigationBarTitleFontSize = 18;
+static const CGFloat kTabBarItemTitleFontSize    = 11;
+static const CGFloat kBarButtonItemTitleFontSize = 14;
+static const CGFloat kNavigationBarTitleFontSize = 18;
 
 @interface AppDelegate ()
 
@@ -33,7 +28,7 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
 
     [self configureAppearance];
 
-    [self setupRootViewController];
+    [self configureRootViewController];
 
     return YES;
 }
@@ -45,26 +40,26 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
     UITabBarItem *tabBarItem = [UITabBarItem appearance];
     {
         NSDictionary *attributes = @{ NSFontAttributeName :
-                                          [UIFont systemFontOfSize:kLXTabBarItemTitleFontSize] };
+                                          [UIFont systemFontOfSize:kTabBarItemTitleFontSize] };
 
         [tabBarItem setTitleTextAttributes:attributes
                                   forState:UIControlStateNormal];
     }
 
-    UIBarButtonItem *barButtonItem  = [UIBarButtonItem appearance];
+    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
     {
         NSDictionary *attributes = @{ NSFontAttributeName :
-                                          [UIFont systemFontOfSize:kLXBarButtonItemTitleFontSize] };
+                                          [UIFont systemFontOfSize:kBarButtonItemTitleFontSize] };
 
         barButtonItem.tintColor = [UIColor lx_colorWithHexString:@"E66C0C"];
         [barButtonItem setTitleTextAttributes:attributes
                                      forState:UIControlStateNormal];
     }
 
-    UINavigationBar *navigationBar  = [UINavigationBar appearance];
+    UINavigationBar *navigationBar = [UINavigationBar appearance];
     {
         NSDictionary *attributes = @{ NSFontAttributeName :
-                                          [UIFont systemFontOfSize:kLXNavigationBarTitleFontSize] };
+                                          [UIFont systemFontOfSize:kNavigationBarTitleFontSize] };
 
         [navigationBar setTitleTextAttributes:attributes];
     }
@@ -75,7 +70,7 @@ static const CGFloat kLXNavigationBarTitleFontSize = 18;
 
 #pragma mark - 设置根控制器
 
-- (void)setupRootViewController
+- (void)configureRootViewController
 {
     if (![LXOAuthInfoManager OAuthInfo]) {
         [UIStoryboard lx_showInitialVCWithStoryboardName:@"OAuth"];

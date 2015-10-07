@@ -47,7 +47,7 @@
                                     <constraint firstItem="ZSo-OV-0he" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="QQp-li-a28"/>
                                     <constraint firstAttribute="trailing" secondItem="eNK-qj-OkT" secondAttribute="trailing" constant="8" id="WFi-C4-cUq"/>
                                     <constraint firstItem="eNK-qj-OkT" firstAttribute="leading" secondItem="EpW-JH-lCu" secondAttribute="leading" constant="8" id="dON-he-Fus"/>
-                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="top" secondItem="eNK-qj-OkT" secondAttribute="bottom" constant="8" identifier="MainLabel Bottom" id="wXg-Gv-ig3"/>
+                                    <constraint firstItem="ZSo-OV-0he" firstAttribute="top" secondItem="eNK-qj-OkT" secondAttribute="bottom" priority="999" constant="8" identifier="MainLabel Bottom" id="wXg-Gv-ig3"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="0bA-1Q-05Z" customClass="LXStatusAvatarView">

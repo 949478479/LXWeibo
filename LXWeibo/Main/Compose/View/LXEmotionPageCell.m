@@ -1,5 +1,5 @@
 //
-//  LXEmotionCell.m
+//  LXEmotionPageCell.m
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/10/5.
@@ -8,21 +8,24 @@
 
 #import "LXEmotion.h"
 #import "LXUtilities.h"
-#import "LXEmotionCell.h"
+#import "LXEmotionPageCell.h"
 #import "LXMagnifierView.h"
 #import "LXEmotionButton.h"
 #import "LXEmotionKeyboard.h"
 
+static const NSUInteger kEmotionCountPerRow = 7;
+static const NSUInteger kEmotionCountPerCol = 3;
+
 static const CGFloat kMarginH = 20;
 static const CGFloat kMarginV = 20;
 
-@interface LXEmotionCell () 
+@interface LXEmotionPageCell () 
 
 @property (nonatomic, strong) NSArray<LXEmotionButton *> *emotionButtons;
 
 @end
 
-@implementation LXEmotionCell
+@implementation LXEmotionPageCell
 
 #pragma mark - 初始化
 
@@ -30,9 +33,37 @@ static const CGFloat kMarginV = 20;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self configureEmotionButtons];
         [self configureLongPressGestureRecognizer];
     }
     return self;
+}
+
+#pragma mark - 添加按钮
+
+- (void)configureEmotionButtons
+{
+    NSMutableArray *emotionButtons = [NSMutableArray new];
+
+    for (NSUInteger row = 0; row < kEmotionCountPerCol; ++row) {
+        for (NSUInteger col = 0; col < kEmotionCountPerRow; ++col) {
+
+            LXEmotionButton *emotionButton = [LXEmotionButton buttonWithType:UIButtonTypeCustom];
+            {
+                // 每个表情页最后一个按钮总是删除按钮.
+                if (row == kEmotionCountPerCol - 1 && col == kEmotionCountPerRow - 1) {
+                    emotionButton.isDeleteButton = YES;
+                } else {
+                    [emotionButtons addObject:emotionButton];
+                }
+                [emotionButton addTarget:self
+                                  action:@selector(emotionButtonDidTap:)
+                        forControlEvents:UIControlEventTouchUpInside];
+            }
+            self.emotionButtons = emotionButtons;
+            [self.contentView addSubview:emotionButton];
+        }
+    }
 }
 
 #pragma mark - 长按手势处理
@@ -63,7 +94,7 @@ static const CGFloat kMarginV = 20;
                 [self emotionButtonDidTap:emotionButton];
             }
             [self.magnifierView hidden];
-        }
+        } break;
     }
 }
 
@@ -81,49 +112,22 @@ static const CGFloat kMarginV = 20;
     return nil;
 }
 
-#pragma mark - 添加按钮
-
-- (void)setEmotionLayoutInfo:(LXEmotionLayoutInfo)emotionLayoutInfo
-{
-    _emotionLayoutInfo = emotionLayoutInfo;
-    
-    NSUInteger rowCount = emotionLayoutInfo.emotionCountPerCol;
-    NSUInteger colCount = emotionLayoutInfo.emotionCountPerRow;
-
-    NSMutableArray *emotionButtons = [NSMutableArray new];
-
-    for (NSUInteger row = 0; row < rowCount; ++row) {
-        for (NSUInteger col = 0; col < colCount; ++col) {
-
-            LXEmotionButton *emotionButton = [LXEmotionButton buttonWithType:UIButtonTypeCustom];
-            {
-                // 每个表情页最后一个按钮总是删除按钮.
-                if (row == rowCount - 1 && col == colCount - 1) {
-                    emotionButton.isDeleteButton = YES;
-                } else {
-                    [emotionButtons addObject:emotionButton];
-                    emotionButton.titleLabel.font = [UIFont systemFontOfSize:30]; // emoji 表情大小.
-                }
-                [emotionButton addTarget:self
-                                  action:@selector(emotionButtonDidTap:)
-                        forControlEvents:UIControlEventTouchUpInside];
-            }
-            self.emotionButtons = emotionButtons;
-            [self.contentView addSubview:emotionButton];
-        }
-    }
-}
-
 #pragma mark - 加载表情图片
 
 - (void)setEmotions:(NSArray<LXEmotion *> *)emotions
 {
     _emotions = [emotions copy];
 
-    [emotions enumerateObjectsUsingBlock:
-     ^(LXEmotion * _Nonnull emotion, NSUInteger idx, BOOL * _Nonnull stop) {
-         [self.contentView.subviews[idx] setEmotion:emotion];
-    }];
+    NSUInteger emotionCount = emotions.count;
+    NSUInteger emotionButtonCount = self.emotionButtons.count;
+
+    for (NSUInteger idx = 0; idx < emotionCount; ++idx) {
+        self.emotionButtons[idx].emotion = emotions[idx];
+    }
+
+    for (NSUInteger idx = emotionCount; idx < emotionButtonCount; ++idx) {
+        self.emotionButtons[idx].emotion = nil;
+    }
 }
 
 #pragma mark - 布局
@@ -132,17 +136,14 @@ static const CGFloat kMarginV = 20;
 {
     [super layoutSubviews];
 
-    NSUInteger rowCount = self.emotionLayoutInfo.emotionCountPerCol;
-    NSUInteger colCount = self.emotionLayoutInfo.emotionCountPerRow;
-
-    CGFloat width = (self.lx_width - 2 * kMarginH) / colCount;
-    CGFloat height = (self.lx_height - 2 * kMarginV) / rowCount;
+    CGFloat width = (self.lx_width - 2 * kMarginH) / kEmotionCountPerRow;
+    CGFloat height = (self.lx_height - 2 * kMarginV) / kEmotionCountPerCol;
 
     [self.contentView.subviews enumerateObjectsUsingBlock:
      ^(__kindof UIView * _Nonnull emotion, NSUInteger idx, BOOL * _Nonnull stop) {
 
-         NSUInteger row = idx / colCount;
-         NSUInteger col = idx % colCount;
+         NSUInteger row = idx / kEmotionCountPerRow;
+         NSUInteger col = idx % kEmotionCountPerRow;
 
          emotion.frame = CGRectMake(kMarginH + col * width, kMarginV + row * height, width, height);
     }];

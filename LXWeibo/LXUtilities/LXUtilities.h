@@ -69,6 +69,7 @@ AppDelegate * LXAppDelegate();
 ///------------------------------------------------------------------------------------------------
 
 CGSize LXScreenSize();
+CGFloat LXScreenScale();
 
 UIWindow * LXKeyWindow();
 UIWindow * LXTopWindow();

@@ -1,5 +1,5 @@
 //
-//  LXEmotionCell.h
+//  LXEmotionPageCell.h
 //  LXWeibo
 //
 //  Created by 从今以后 on 15/10/5.
@@ -11,14 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef struct {
-    NSUInteger emotionCountPerRow;
-    NSUInteger emotionCountPerCol;
-} LXEmotionLayoutInfo;
-
-@interface LXEmotionCell : UICollectionViewCell
-
-@property (nonatomic, assign) LXEmotionLayoutInfo emotionLayoutInfo;
+@interface LXEmotionPageCell : UICollectionViewCell
 
 @property (nonatomic, copy) NSArray<LXEmotion *> *emotions;
 

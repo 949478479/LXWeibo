@@ -82,7 +82,7 @@
                         <constraint firstItem="Ofb-IZ-hD9" firstAttribute="leading" secondItem="ko5-8X-3Fm" secondAttribute="trailing" id="xfc-Zk-5bu"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="b9s-2w-svy">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="b9s-2w-svy" customClass="LXEmotionKeyboardCollectionView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="CGh-8M-dh9">
@@ -130,7 +130,7 @@
                 <outlet property="emotionListView" destination="b9s-2w-svy" id="iUz-v9-zTf"/>
                 <outlet property="flowLayout" destination="CGh-8M-dh9" id="8lU-MI-eB2"/>
                 <outlet property="pageControl" destination="Bcv-dd-L1F" id="xti-86-Pkk"/>
-                <outlet property="selectedButton" destination="Ofb-IZ-hD9" id="yyq-Hs-UlD"/>
+                <outlet property="selectedSectionButton" destination="Ofb-IZ-hD9" id="PHj-Tw-Iae"/>
             </connections>
             <point key="canvasLocation" x="416" y="262"/>
         </view>

@@ -35,7 +35,7 @@
 		1899BF531BC1817B00B1CD1E /* EmotionIcons in Resources */ = {isa = PBXBuildFile; fileRef = 1899BF521BC1817B00B1CD1E /* EmotionIcons */; settings = {ASSET_TAGS = (); }; };
 		1899BF571BC181EE00B1CD1E /* LXEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF561BC181EE00B1CD1E /* LXEmotion.m */; settings = {ASSET_TAGS = (); }; };
 		1899BF5A1BC1826C00B1CD1E /* NSArray+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF591BC1826C00B1CD1E /* NSArray+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		1899BF5D1BC18D4300B1CD1E /* LXEmotionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */; settings = {ASSET_TAGS = (); }; };
+		1899BF5D1BC18D4300B1CD1E /* LXEmotionPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1899BF5C1BC18D4300B1CD1E /* LXEmotionPageCell.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D521BBA1D3E00745192 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D511BBA1D3E00745192 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D561BBA6FB000745192 /* LXStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D541BBA6FB000745192 /* LXStatusCell.m */; settings = {ASSET_TAGS = (); }; };
 		18D22D671BBAD0DF00745192 /* LXStatusToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D22D661BBAD0DF00745192 /* LXStatusToolBar.m */; settings = {ASSET_TAGS = (); }; };
@@ -183,8 +183,8 @@
 		1899BF561BC181EE00B1CD1E /* LXEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotion.m; sourceTree = "<group>"; };
 		1899BF581BC1826C00B1CD1E /* NSArray+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LXExtension.h"; sourceTree = "<group>"; };
 		1899BF591BC1826C00B1CD1E /* NSArray+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LXExtension.m"; sourceTree = "<group>"; };
-		1899BF5B1BC18D4300B1CD1E /* LXEmotionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionCell.h; sourceTree = "<group>"; };
-		1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionCell.m; sourceTree = "<group>"; };
+		1899BF5B1BC18D4300B1CD1E /* LXEmotionPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionPageCell.h; sourceTree = "<group>"; };
+		1899BF5C1BC18D4300B1CD1E /* LXEmotionPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionPageCell.m; sourceTree = "<group>"; };
 		18D22D501BBA1D3E00745192 /* LXPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhoto.h; sourceTree = "<group>"; };
 		18D22D511BBA1D3E00745192 /* LXPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhoto.m; sourceTree = "<group>"; };
 		18D22D531BBA6FB000745192 /* LXStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXStatusCell.h; path = LXWeibo/Main/Home/View/LXStatusCell.h; sourceTree = SOURCE_ROOT; };
@@ -691,15 +691,15 @@
 				1899BF491BC1567700B1CD1E /* LXEmotionKeyboard.h */,
 				1899BF4A1BC1567700B1CD1E /* LXEmotionKeyboard.m */,
 				1899BF4D1BC156BF00B1CD1E /* LXEmotionKeyboard.xib */,
+				1899BF5B1BC18D4300B1CD1E /* LXEmotionPageCell.h */,
+				1899BF5C1BC18D4300B1CD1E /* LXEmotionPageCell.m */,
 				1838C5691BC399F0004139D7 /* LXEmotionButton.h */,
 				1838C56A1BC399F0004139D7 /* LXEmotionButton.m */,
-				1899BF5B1BC18D4300B1CD1E /* LXEmotionCell.h */,
-				1899BF5C1BC18D4300B1CD1E /* LXEmotionCell.m */,
-				185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */,
-				185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */,
 				1838C5641BC393DB004139D7 /* LXMagnifierView.h */,
 				1838C5651BC393DC004139D7 /* LXMagnifierView.m */,
 				1838C5671BC393FD004139D7 /* LXMagnifierView.xib */,
+				185B6EDD1BC2BFAA008DD63D /* LXPageControl.h */,
+				185B6EDE1BC2BFAA008DD63D /* LXPageControl.m */,
 			);
 			name = EmotionKeyboard;
 			sourceTree = "<group>";
@@ -1260,7 +1260,7 @@
 				18EB24671BB8EA37009D9505 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18EB24341BB8E695009D9505 /* LXUser.m in Sources */,
 				18E61F5D1BBD808900442735 /* LXComposeViewController.m in Sources */,
-				1899BF5D1BC18D4300B1CD1E /* LXEmotionCell.m in Sources */,
+				1899BF5D1BC18D4300B1CD1E /* LXEmotionPageCell.m in Sources */,
 				18E61F3D1BBCE21100442735 /* MJRefreshAutoFooter.m in Sources */,
 				18DE61801BB790720048388C /* LXUtilities.m in Sources */,
 				18DE617A1BB790720048388C /* UIImage+LXExtension.m in Sources */,

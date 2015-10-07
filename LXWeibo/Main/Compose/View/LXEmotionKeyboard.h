@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-@class LXEmotionKeyboard, LXEmotion;
 
 NS_ASSUME_NONNULL_BEGIN
 

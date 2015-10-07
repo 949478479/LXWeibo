@@ -72,6 +72,11 @@ CGSize LXScreenSize()
     return [UIScreen mainScreen].bounds.size;
 }
 
+CGFloat LXScreenScale()
+{
+    return [UIScreen mainScreen].scale;
+}
+
 UIWindow * LXKeyWindow()
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow ?: LXAppDelegate().window;

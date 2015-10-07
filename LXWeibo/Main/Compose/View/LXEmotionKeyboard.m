@@ -9,7 +9,7 @@
 #import "LXEmotion.h"
 #import "LXUtilities.h"
 #import "MJExtension.h"
-#import "LXEmotionCell.h"
+#import "LXEmotionPageCell.h"
 #import "LXPageControl.h"
 #import "LXMagnifierView.h"
 #import "LXEmotionKeyboard.h"
@@ -18,10 +18,9 @@ NSString * const LXEmotionKeyboardDidSelectEmotionNotification = @"LXEmotionKeyb
 NSString * const LXEmotionKeyboardDidDeleteEmotionNotification = @"LXEmotionKeyboardDidDeleteEmotionNotification";
 NSString * const LXEmotionKeyboardSelectedEmotionUserInfoKey   = @"LXEmotionKeyboardSelectedEmotionUserInfoKey";
 
-static const NSUInteger kEmotionSectionCount = 4;
 static const NSUInteger kEmotionCountPerPage = 20;
-static const NSUInteger kEmotionCountPerRow  = 7;
-static const NSUInteger kEmotionCountPerCol  = 3;
+
+static NSString * const kReuseIdentifier = @"LXEmotionPageCell";
 
 /** 表情类型,和表情分组按钮的 tag 绑定. */
 typedef NS_ENUM(NSUInteger, LXEmotionType) {
@@ -33,99 +32,62 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 
 @interface LXEmotionKeyboard () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UIButton *selectedButton;
+@property (nonatomic, weak) LXMagnifierView *magnifierView;
 @property (nonatomic, weak) IBOutlet LXPageControl *pageControl;
+@property (nonatomic, weak) IBOutlet UIButton *selectedSectionButton;
 @property (nonatomic, weak) IBOutlet UICollectionView *emotionListView;
 @property (nonatomic, weak) IBOutlet UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, weak) LXMagnifierView *magnifierView;
 
 @property (nonatomic, strong) NSArray<LXEmotion *> *defaultEmotionList;
 @property (nonatomic, strong) NSArray<LXEmotion *> *emojiEmotionList;
 @property (nonatomic, strong) NSArray<LXEmotion *> *lxhEmotionList;
 @property (nonatomic, strong) NSMutableArray<LXEmotion *> *recentlyEmotionList;
 
+@property (nonatomic, assign) LXEmotionType selectedEmotionType;
+
 @end
 
 @implementation LXEmotionKeyboard
 
-#pragma mark - 调整 cell 尺寸
+#pragma mark - 初始配置
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
 
+    self.selectedEmotionType = LXEmotionTypeDefault;
+    
     // 让 cell 和 emotionListView 一样大.
     self.flowLayout.itemSize = CGSizeMake(self.lx_width, self.emotionListView.lx_height);
-}
 
-#pragma mark - 注册重用标识符
-
-- (void)registerNibWithEmotions:(NSArray<LXEmotion *> *)emotions emotionType:(LXEmotionType)emotionType
-{
-    // 该表情的表情页数.
-    NSUInteger numberOfPages = (emotions.count + kEmotionCountPerPage - 1) / kEmotionCountPerPage;
-
-    // 每一页即是一个 cell, 为其注册唯一的标识符.
-    for (NSUInteger item = 0; item < numberOfPages; ++item) {
-        [self.emotionListView registerClass:[LXEmotionCell class]
-                 forCellWithReuseIdentifier:[self reuseIdentifierForItem:item inSection:emotionType]];
-    }
-}
-
-- (NSString *)reuseIdentifierForItem:(NSInteger)item inSection:(NSInteger)section
-{
-    // 每个 cell 对应一个唯一的标识符,取消重用,实现懒加载,避免重复加载图片.
-    return [NSString stringWithFormat:@"LXEmotionCell %ld-%ld", (long)section, (long)item];
+    [self.emotionListView registerClass:[LXEmotionPageCell class]
+             forCellWithReuseIdentifier:kReuseIdentifier];
 }
 
 #pragma mark - 加载表情
 
-- (NSArray<LXEmotion *> *)emotionsWithType:(LXEmotionType)emotionType
+- (NSArray<LXEmotion *> *)defaultEmotionList
 {
-    switch (emotionType) {
-        case LXEmotionTypeRecently: return nil;
-
-        case LXEmotionTypeDefault: {
-            if (!self.defaultEmotionList) {
-                self.defaultEmotionList =
-                    [LXEmotion objectArrayWithFilename:@"EmotionIcons/default/info.plist"];
-
-                [self registerNibWithEmotions:self.defaultEmotionList
-                                  emotionType:LXEmotionTypeDefault];
-            }
-            return self.defaultEmotionList;
-        }
-
-        case LXEmotionTypeEmoji: {
-            if (!self.emojiEmotionList) {
-                self.emojiEmotionList =
-                    [LXEmotion objectArrayWithFilename:@"EmotionIcons/emoji/info.plist"];
-
-                [self registerNibWithEmotions:self.emojiEmotionList
-                                  emotionType:LXEmotionTypeEmoji];
-            }
-            return self.emojiEmotionList;
-        }
-
-        case LXEmotionTypeLXH: {
-            if (!self.lxhEmotionList) {
-                self.lxhEmotionList =
-                    [LXEmotion objectArrayWithFilename:@"EmotionIcons/lxh/info.plist"];
-
-                [self registerNibWithEmotions:self.lxhEmotionList
-                                  emotionType:LXEmotionTypeLXH];
-            }
-            return self.lxhEmotionList;
-        }
+    if (!_defaultEmotionList) {
+        _defaultEmotionList = [LXEmotion objectArrayWithFilename:@"EmotionIcons/default/info.plist"];
     }
+    return _defaultEmotionList;
 }
 
-#pragma mark - 计算表情页数
-
-- (NSUInteger)numberOfPagesForSection:(NSInteger)section
+- (NSArray<LXEmotion *> *)emojiEmotionList
 {
-    NSUInteger numberOfEmotions = [self emotionsWithType:section].count;
-    return (numberOfEmotions + kEmotionCountPerPage - 1) / kEmotionCountPerPage;
+    if (!_emojiEmotionList) {
+        _emojiEmotionList = [LXEmotion objectArrayWithFilename:@"EmotionIcons/emoji/info.plist"];
+    }
+    return _emojiEmotionList;
+}
+
+- (NSArray<LXEmotion *> *)lxhEmotionList
+{
+    if (!_lxhEmotionList) {
+        _lxhEmotionList = [LXEmotion objectArrayWithFilename:@"EmotionIcons/lxh/info.plist"];
+    }
+    return _lxhEmotionList;
 }
 
 #pragma mark - 切换表情
@@ -134,65 +96,68 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 {
     // 禁用当前点击的按钮,解除之前按钮的禁用.
     sender.enabled = NO;
-    self.selectedButton.enabled = YES;
-    self.selectedButton = sender;
+    self.selectedSectionButton.enabled = YES;
+    self.selectedSectionButton = sender;
+    self.selectedEmotionType = sender.tag;
 
     [self.emotionListView reloadData]; // 刷新新分组的表情.
-
     [self.emotionListView scrollRectToVisible:self.bounds animated:NO]; // 滚动至第一页.
 }
 
-#pragma mark - UICollectionViewDataSource
+#pragma mark - 计算表情页信息
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSArray<LXEmotion *> *)emotionListWithEmotionType:(LXEmotionType)type
 {
-    return kEmotionSectionCount; // 返回表情分组数.
+    switch (type) {
+        case LXEmotionTypeRecently: return nil;
+        case LXEmotionTypeDefault: return self.defaultEmotionList;
+        case LXEmotionTypeEmoji: return self.emojiEmotionList;
+        case LXEmotionTypeLXH: return self.lxhEmotionList;
+    }
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section
+- (NSUInteger)numberOfPagesForEmotionType:(LXEmotionType)type
 {
-    // 只显示当前选中的表情分组,其他分组返回 0, 从而不会显示.
-    if (section == self.selectedButton.tag) {
-        // 该分组的 cell 数量即表情页数.
-        NSUInteger numberOfPages = [self numberOfPagesForSection:section];
-        self.pageControl.countOfPages = numberOfPages;
-        return numberOfPages;
-    }
-    return 0;
+    NSUInteger numberOfEmotions = [self emotionListWithEmotionType:type].count;
+    return (numberOfEmotions + kEmotionCountPerPage - 1) / kEmotionCountPerPage;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NSArray<LXEmotion *> *)subEmotionListForPage:(NSUInteger)page
 {
-    // 利用和 indexPath 绑定的 reuseIdentifier, 确保 cell 不会被重用,每个 cell 对应一个表情页.
-    NSString *reuseIdentifier = [self reuseIdentifierForItem:indexPath.item
-                                                   inSection:indexPath.section];
-
-    LXEmotionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                    forIndexPath:indexPath];
-
-    if (cell.emotions) { // 如果加载过了图片则直接返回,不要重复加载.
-        return cell;
-    }
-
-    cell.magnifierView = self.magnifierView;
-    cell.emotionLayoutInfo = (LXEmotionLayoutInfo){ kEmotionCountPerRow, kEmotionCountPerCol };
-
     // indexPath.row 为当前表情页的索引, range 即为当前表情页的表情的索引范围.
-    NSRange range = { indexPath.row * kEmotionCountPerPage, kEmotionCountPerPage };
+    NSRange range = { page * kEmotionCountPerPage, kEmotionCountPerPage };
 
     // 获取当前表情分组对应的表情模型数组.
-    NSArray<LXEmotion *> *emotions = [self emotionsWithType:indexPath.section];
+    NSArray<LXEmotion *> *emotions = [self emotionListWithEmotionType:self.selectedEmotionType];
 
     // 确保最后一页的表情不足一页时索引不会越界.
     if (range.location + kEmotionCountPerPage > emotions.count) {
         range.length = emotions.count - range.location;
     }
 
-    // 让该表情页加载表情图片,也只加载这一次.
-    cell.emotions = [emotions subarrayWithRange:range];
-    
+    return [emotions subarrayWithRange:range];
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section
+{
+    NSUInteger numberOfPages = [self numberOfPagesForEmotionType:self.selectedEmotionType];
+
+    self.pageControl.countOfPages = numberOfPages;
+
+    return numberOfPages;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LXEmotionPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier
+                                                                        forIndexPath:indexPath];
+    cell.magnifierView = self.magnifierView;
+    cell.emotions = [self subEmotionListForPage:indexPath.row];
+
     return cell;
 }
 
@@ -216,4 +181,13 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
     return _magnifierView;
 }
 
+@end
+
+@interface LXEmotionKeyboardCollectionView : UICollectionView
+@end
+@implementation LXEmotionKeyboardCollectionView
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view
+{
+    return YES;
+}
 @end

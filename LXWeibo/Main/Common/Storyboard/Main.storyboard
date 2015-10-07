@@ -39,10 +39,6 @@
                                     <outlet property="delegate" destination="ecb-s8-U8q" id="vwu-EU-yxO"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLn-Jo-4CB">
-                                <rect key="frame" x="49" y="164" width="86" height="32"/>
-                                <state key="normal" title="Button" image="d_haha.png"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -368,7 +364,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="d_haha.png" width="32" height="32"/>
         <image name="navigationbar_arrow_down" width="13" height="7"/>
         <image name="navigationbar_arrow_up" width="13" height="7"/>
         <image name="navigationbar_back" width="30" height="30"/>

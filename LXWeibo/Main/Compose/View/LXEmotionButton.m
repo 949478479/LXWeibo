@@ -12,14 +12,34 @@
 
 @implementation LXEmotionButton
 
+#pragma mark - 初始化
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.titleLabel.font = [UIFont systemFontOfSize:30]; // emoji 表情大小.
+    }
+    return self;
+}
+
+#pragma mark - Setter
+
 - (void)setEmotion:(LXEmotion *)emotion
 {
     _emotion = emotion;
 
-    if (emotion.png) {
-        self.lx_normalImage = [UIImage imageNamed:emotion.png];
+    if (emotion) {
+        if (emotion.png) {
+            self.lx_normalTitle = nil;
+            self.lx_normalImage = [UIImage imageNamed:emotion.png];
+        } else {
+            self.lx_normalImage = nil;
+            self.lx_normalTitle = emotion.emoji;
+        }
     } else {
-        self.lx_normalTitle = emotion.emoji;
+        self.lx_normalImage = nil;
+        self.lx_normalTitle = nil;
     }
 }
 
@@ -34,6 +54,7 @@
         self.lx_normalImage = nil;
         self.lx_highlightedImage = nil;
     }
+    self.lx_normalTitle = nil;
 }
 
 @end

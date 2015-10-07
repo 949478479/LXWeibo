@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXEmotionButton : UIButton
 
-@property (nonatomic, strong) LXEmotion *emotion;
+@property (nullable, nonatomic, strong) LXEmotion *emotion;
 
 @property (nonatomic, assign) BOOL isDeleteButton;
 

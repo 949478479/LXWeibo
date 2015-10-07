@@ -111,6 +111,8 @@ static const CGFloat kPageIndicatorHeight = 4;
     }
 
     self.layer.mask = maskLayer;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = LXScreenScale();
 }
 
 #pragma mark - 布局

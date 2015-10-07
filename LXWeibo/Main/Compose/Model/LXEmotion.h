@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *chs;
 /** 表情的 png 图片名. */
 @property (nonatomic, readonly, copy) NSString *png;
+
 /** emoji 表情的 16 进制编码. */
 @property (nullable, nonatomic, readonly, copy) NSString *code;
 /** emoji 表情. */

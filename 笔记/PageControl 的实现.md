@@ -1,4 +1,4 @@
-# PageControl 实现
+# PageControl 的实现
 
 ![](https://github.com/949478479/LXWeibo/blob/screenshot/PageControl.gif)
 

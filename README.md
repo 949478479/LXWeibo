@@ -22,4 +22,4 @@
 
 - [表情键盘的实现](https://github.com/949478479/LXWeibo/blob/master/%E7%AC%94%E8%AE%B0/%E8%A1%A8%E6%83%85%E9%94%AE%E7%9B%98%E7%9A%84%E5%AE%9E%E7%8E%B0.md) 
 
-- [表情输入与发送处理](https://github.com/949478479/LXWeibo/blob/master/%E7%AC%94%E8%AE%B0/%E8%A1%A8%E6%83%85%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86.md)
+- [表情输入与发送处理](https://github.com/949478479/LXWeibo/blob/master/%E7%AC%94%E8%AE%B0/%E8%A1%A8%E6%83%85%E8%BE%93%E5%85%A5%E4%B8%8E%E5%8F%91%E9%80%81%E5%A4%84%E7%90%86.md)

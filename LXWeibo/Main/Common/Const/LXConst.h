@@ -10,7 +10,7 @@
 
 extern NSString * const LXAppKey;
 extern NSString * const LXAppSecret;
-extern NSString * const LXVersionString;
+extern NSString * const LXAppVersionString;
 
 extern NSString * const LXAuthorizeURL;
 extern NSString * const LXAccessTokenURL;

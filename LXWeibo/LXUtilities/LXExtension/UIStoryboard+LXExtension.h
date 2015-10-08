@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param storyboardName @c storyboard 文件名称.
  */
-+ (void)lx_showInitialVCWithStoryboardName:(NSString *)storyboardName;
++ (void)lx_showInitialViewControllerWithStoryboardName:(NSString *)storyboardName;
 
 /**
  *  实例化指定的 @c storyboard 中对应 @c identifier 的控制器.
@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return 实例化的控制器实例.
  */
-+ (__kindof UIViewController *)lx_instantiateInitialVCWithStoryboardName:(NSString *)storyboardName
-                                                              identifier:(nullable NSString *)identifier;
++ (__kindof UIViewController *)lx_instantiateViewControllerWithStoryboardName:(NSString *)storyboardName
+                                                                   identifier:(nullable NSString *)identifier;
 @end
 
 NS_ASSUME_NONNULL_END

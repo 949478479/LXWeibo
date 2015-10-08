@@ -58,12 +58,12 @@ static NSString * const kLXNewFeatureCellIdentifier = @"NewFeatureCell";
     LXNewFeartureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kLXNewFeatureCellIdentifier
                                                                         forIndexPath:indexPath];
 
-    NSString *imageName = [NSString stringWithFormat:@"new_feature_%ld", indexPath.row + 1];
+    NSString *imageName = [NSString stringWithFormat:@"new_feature_%ld", (long)indexPath.row + 1];
 
     cell.imageView.image    = [UIImage imageNamed:imageName];
     cell.startButton.hidden = !(indexPath.row == kLXNumberOfItems - 1);
     cell.shareButton.hidden = !(indexPath.row == kLXNumberOfItems - 1);
-    
+
     return cell;
 }
 
@@ -90,10 +90,10 @@ static NSString * const kLXNewFeatureCellIdentifier = @"NewFeatureCell";
 
 - (IBAction)startButtonDidTap:(UIButton *)sender
 {
-    [NSUserDefaults lx_setObject:LXBundleShortVersionString() forKey:LXVersionString];
+    [NSUserDefaults lx_setObject:LXBundleShortVersionString() forKey:LXAppVersionString];
     [NSUserDefaults lx_synchronize];
 
-    [UIStoryboard lx_showInitialVCWithStoryboardName:@"Main"];
+    [UIStoryboard lx_showInitialViewControllerWithStoryboardName:@"Main"];
 }
 
 @end

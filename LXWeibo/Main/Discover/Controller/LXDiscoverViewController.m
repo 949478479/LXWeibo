@@ -26,4 +26,10 @@
     _searchField.lx_width = self.view.lx_width - 16;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [_searchField resignFirstResponder];
+    [super touchesBegan:touches withEvent:event];
+}
+
 @end

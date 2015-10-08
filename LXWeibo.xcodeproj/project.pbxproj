@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180B4F3E1BC6864000282463 /* LXKeyboardSpacingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B4F3D1BC6864000282463 /* LXKeyboardSpacingView.m */; settings = {ASSET_TAGS = (); }; };
+		180B4F861BC6C17800282463 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F851BC6C17800282463 /* Home.storyboard */; settings = {ASSET_TAGS = (); }; };
+		180B4F8B1BC6C48800282463 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8A1BC6C48800282463 /* Message.storyboard */; settings = {ASSET_TAGS = (); }; };
+		180B4F8D1BC6C50400282463 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8C1BC6C50400282463 /* Discover.storyboard */; settings = {ASSET_TAGS = (); }; };
+		180B4F901BC6C59200282463 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8F1BC6C59200282463 /* Profile.storyboard */; settings = {ASSET_TAGS = (); }; };
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
@@ -136,6 +141,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180B4F3C1BC6864000282463 /* LXKeyboardSpacingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXKeyboardSpacingView.h; sourceTree = "<group>"; };
+		180B4F3D1BC6864000282463 /* LXKeyboardSpacingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXKeyboardSpacingView.m; sourceTree = "<group>"; };
+		180B4F851BC6C17800282463 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		180B4F8A1BC6C48800282463 /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		180B4F8C1BC6C50400282463 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		180B4F8F1BC6C59200282463 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		181A15101BB2927400D2A53D /* LXSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSearchField.h; sourceTree = "<group>"; };
 		181A15111BB2927400D2A53D /* LXSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSearchField.m; sourceTree = "<group>"; };
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
@@ -392,6 +403,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180B4F841BC6C15E00282463 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				180B4F851BC6C17800282463 /* Home.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		180B4F871BC6C41400282463 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				180B4F8C1BC6C50400282463 /* Discover.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		180B4F881BC6C43700282463 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		180B4F891BC6C47B00282463 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				180B4F8A1BC6C48800282463 /* Message.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		180B4F8E1BC6C58700282463 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				180B4F8F1BC6C59200282463 /* Profile.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		181A15181BB2C2F900D2A53D /* SearchField */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,6 +635,7 @@
 		18706DE41BB23BDA00F12441 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F871BC6C41400282463 /* Storyboard */,
 				18706DE61BB23BDA00F12441 /* Controller */,
 				18706DE81BB23BDA00F12441 /* View */,
 			);
@@ -611,6 +662,7 @@
 		18706DEE1BB23BDA00F12441 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F891BC6C47B00282463 /* Storyboard */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -618,6 +670,7 @@
 		18706DF31BB23BDA00F12441 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F8E1BC6C58700282463 /* Storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -679,6 +732,7 @@
 		1889A0A71BB393C700060A9A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F841BC6C15E00282463 /* Storyboard */,
 				18EB24311BB8E67A009D9505 /* Model */,
 				1889A0AF1BB3A04100060A9A /* View */,
 				1889A0A81BB393C700060A9A /* Controller */,
@@ -780,6 +834,8 @@
 				18DE616C1BB790720048388C /* LXImagePicker.m */,
 				18DE616D1BB790720048388C /* LXMulticastDelegate.h */,
 				18DE616E1BB790720048388C /* LXMulticastDelegate.m */,
+				180B4F3C1BC6864000282463 /* LXKeyboardSpacingView.h */,
+				180B4F3D1BC6864000282463 /* LXKeyboardSpacingView.m */,
 				18DE616F1BB790720048388C /* LXUtilities.h */,
 				18DE61701BB790720048388C /* LXUtilities.m */,
 			);
@@ -973,6 +1029,7 @@
 		18E61F581BBD806A00442735 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F881BC6C43700282463 /* Storyboard */,
 				18E61F591BBD806A00442735 /* Controller */,
 				18E61F5A1BBD806A00442735 /* View */,
 			);
@@ -1183,6 +1240,9 @@
 				1899BF531BC1817B00B1CD1E /* EmotionIcons in Resources */,
 				18350A021BC562AD0075BF43 /* LXMagnifierView.xib in Resources */,
 				18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */,
+				180B4F901BC6C59200282463 /* Profile.storyboard in Resources */,
+				180B4F8D1BC6C50400282463 /* Discover.storyboard in Resources */,
+				180B4F861BC6C17800282463 /* Home.storyboard in Resources */,
 				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
 				18DE61731BB790720048388C /* MBProgressHUD.bundle in Resources */,
 				183509FF1BC562AD0075BF43 /* LXEmotionKeyboard.xib in Resources */,
@@ -1190,6 +1250,7 @@
 				181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */,
 				183509CE1BC561A20075BF43 /* LXStatusToolBar.xib in Resources */,
 				18DE61871BB7D8D80048388C /* NewFeature.storyboard in Resources */,
+				180B4F8B1BC6C48800282463 /* Message.storyboard in Resources */,
 				18350A061BC562AD0075BF43 /* LXComposeToolBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1242,6 +1303,7 @@
 				18F014901BB7F4AC005C47F7 /* LXOAuthInfoManager.m in Sources */,
 				18EB245E1BB8EA37009D9505 /* SDWebImageDecoder.m in Sources */,
 				183509FD1BC562AD0075BF43 /* LXEmotionButton.m in Sources */,
+				180B4F3E1BC6864000282463 /* LXKeyboardSpacingView.m in Sources */,
 				183509BF1BC548990075BF43 /* LXConst.m in Sources */,
 				18EB24611BB8EA37009D9505 /* SDWebImageManager.m in Sources */,
 				18DE617C1BB790720048388C /* UITextField+LXExtension.m in Sources */,

@@ -163,7 +163,7 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
         label.backgroundColor = [UIColor lx_colorWithHexString:@"FF7F00" alpha:0.9];
         
         if (count > 0) {
-            label.text = [NSString stringWithFormat:@"共有%lu条新的微博数据", count];
+            label.text = [NSString stringWithFormat:@"共有%lu条新的微博数据", (unsigned long)count];
         } else {
             label.text = @"没有新的微博数据,稍后再试~";
         }

@@ -99,7 +99,7 @@
      ^(LXOAuthInfo * _Nonnull OAuthInfo) {
 
          [MBProgressHUD lx_hideHUD];
-         [UIStoryboard lx_showInitialVCWithStoryboardName:@"NewFeature"];
+         [UIStoryboard lx_showInitialViewControllerWithStoryboardName:@"NewFeature"];
 
      } failure:^(NSError * _Nonnull error) {
          

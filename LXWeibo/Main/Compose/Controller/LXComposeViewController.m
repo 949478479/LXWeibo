@@ -23,9 +23,7 @@
 @property (nonatomic, weak) IBOutlet LXComposeTextView  *textView;
 @property (nonatomic, weak) IBOutlet LXComposeToolBar   *keyboardToolBar;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    *sendButtonItem;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *toolBarBottomConstraint;
 
-@property (nonatomic, weak) id keyboardObserver;
 @property (nonatomic, strong) LXEmotionKeyboard *emotionKeyboard;
 
 @end
@@ -37,7 +35,6 @@
     LXLog(@"%@ delloc", self);
 
     [NSNotificationCenter lx_removeObserver:self];
-    [NSNotificationCenter lx_removeObserver:_keyboardObserver];
     [NSNotificationCenter lx_removeObserver:_textView];
 }
 
@@ -48,8 +45,6 @@
     [super viewDidLoad];
 
     [self configureTitleView];
-
-    [self observeKeyboardChangeFrame];
 
     [self observeEmotionKeyboard];
 }
@@ -90,28 +85,6 @@
     }
 
     self.navigationItem.titleView = titleLabel;
-}
-
-#pragma mark - 键盘弹出收回处理
-
-- (void)observeKeyboardChangeFrame
-{
-    __weak __typeof(self) weakSelf = self;
-    self.keyboardObserver =
-        [NSNotificationCenter lx_addObserverForKeyboardWillChangeFrameNotificationWithBlock:
-         ^(NSNotification * _Nonnull note) {
-
-             NSDictionary *userInfo  = note.userInfo;
-             NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-             CGRect keyboardEndFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-
-             CGFloat constant = weakSelf.view.lx_height - CGRectGetMinY(keyboardEndFrame);
-             weakSelf.toolBarBottomConstraint.constant = constant;
-
-             [UIView animateWithDuration:duration animations:^{
-                 [weakSelf.view layoutIfNeeded];
-             }];
-         }];
 }
 
 #pragma mark - 发微博
@@ -190,7 +163,7 @@
     }
 
     [self.textView resignFirstResponder];
-    LXGCDDelay(0.25, ^{
+    LXGCDDelay(0.4, ^{ // 注销响应者动画为 0.4s.
         [self.textView becomeFirstResponder];
     });
 }

@@ -124,4 +124,26 @@
     return [[self imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
++ (instancetype)lx_imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius
+{
+    NSAssert(color, @"参数 color 为 nil.");
+    NSAssert(size.height > 0 && size.width > 0,
+             @"参数 size 的宽高必须大于 0. => %@", NSStringFromCGSize(size));
+    NSAssert(cornerRadius >= 0, @"参数 cornerRadius 不能为负数.");
+
+    CGColorRef cg_color = color.CGColor;
+
+    CGFloat alpha = CGColorGetAlpha(cg_color);
+
+    BOOL opaque = (alpha == 1.0 && cornerRadius == 0.0);
+
+    UIGraphicsBeginImageContextWithOptions(size, opaque, 0);
+
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), cg_color);
+
+    [[UIBezierPath bezierPathWithRoundedRect:(CGRect){.size = size} cornerRadius:cornerRadius] fill];
+
+    return UIGraphicsGetImageFromCurrentImageContext();
+}
+
 @end

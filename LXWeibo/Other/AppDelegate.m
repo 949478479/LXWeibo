@@ -11,10 +11,6 @@
 #import "AppDelegate.h"
 #import "LXOAuthInfoManager.h"
 
-static const CGFloat kTabBarItemTitleFontSize    = 11;
-static const CGFloat kBarButtonItemTitleFontSize = 14;
-static const CGFloat kNavigationBarTitleFontSize = 18;
-
 @interface AppDelegate ()
 
 @end
@@ -26,59 +22,22 @@ static const CGFloat kNavigationBarTitleFontSize = 18;
 {
     [self registerUserNotificationSettings];
 
-    [self configureAppearance];
-
-    [self configureRootViewController];
+    [self setupRootViewController];
 
     return YES;
 }
 
-#pragma mark - 配置主题
-
-- (void)configureAppearance
-{
-    UITabBarItem *tabBarItem = [UITabBarItem appearance];
-    {
-        NSDictionary *attributes = @{ NSFontAttributeName :
-                                          [UIFont systemFontOfSize:kTabBarItemTitleFontSize] };
-
-        [tabBarItem setTitleTextAttributes:attributes
-                                  forState:UIControlStateNormal];
-    }
-
-    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
-    {
-        NSDictionary *attributes = @{ NSFontAttributeName :
-                                          [UIFont systemFontOfSize:kBarButtonItemTitleFontSize] };
-
-        barButtonItem.tintColor = [UIColor lx_colorWithHexString:@"E66C0C"];
-        [barButtonItem setTitleTextAttributes:attributes
-                                     forState:UIControlStateNormal];
-    }
-
-    UINavigationBar *navigationBar = [UINavigationBar appearance];
-    {
-        NSDictionary *attributes = @{ NSFontAttributeName :
-                                          [UIFont systemFontOfSize:kNavigationBarTitleFontSize] };
-
-        [navigationBar setTitleTextAttributes:attributes];
-    }
-
-    UITabBar *tabBar = [UITabBar appearance];
-    tabBar.tintColor = barButtonItem.tintColor;
-}
-
 #pragma mark - 设置根控制器
 
-- (void)configureRootViewController
+- (void)setupRootViewController
 {
     if (![LXOAuthInfoManager OAuthInfo]) {
-        [UIStoryboard lx_showInitialVCWithStoryboardName:@"OAuth"];
+        [UIStoryboard lx_showInitialViewControllerWithStoryboardName:@"OAuth"];
         return;
     }
 
     NSString *currentVersionString = LXBundleShortVersionString();
-    NSString *sandboxVersionString = [NSUserDefaults lx_stringForKey:LXVersionString];
+    NSString *sandboxVersionString = [NSUserDefaults lx_stringForKey:LXAppVersionString];
 
     NSComparisonResult result = [sandboxVersionString compare:currentVersionString
                                                       options:NSNumericSearch];;
@@ -86,15 +45,16 @@ static const CGFloat kNavigationBarTitleFontSize = 18;
     NSString *storyboardName = (!sandboxVersionString || result == NSOrderedAscending) ?
         @"NewFeature" : @"Main";
 
-    [UIStoryboard lx_showInitialVCWithStoryboardName:storyboardName];
+    [UIStoryboard lx_showInitialViewControllerWithStoryboardName:storyboardName];
 }
 
 #pragma mark - 注册通知设置
 
 - (void)registerUserNotificationSettings
 {
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge
-                                                                             categories:nil];
+    UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge
+                                          categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 }
 

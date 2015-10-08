@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pAU-go-EP5">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--设置-->
+        <scene sceneID="JFu-p4-KfT">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="0JD-IG-Isf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k4J-oV-aeb"/>
+                        <viewControllerLayoutGuide type="bottom" id="XCf-mA-cj4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kwE-Rt-YtF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="设置" id="SRM-9d-LxO">
+                        <barButtonItem key="leftBarButtonItem" id="y45-RS-Hm1">
+                            <button key="customView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wJ7-gY-zVs">
+                                <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="navigationbar_back"/>
+                                <state key="highlighted" image="navigationbar_back_highlighted"/>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="Dhl-Qp-uhn">
+                            <button key="customView" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aeB-7N-JUU">
+                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="navigationbar_more"/>
+                                <state key="highlighted" image="navigationbar_more_highlighted"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YUv-UF-yc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1301" y="921"/>
+        </scene>
+        <!--我-->
+        <scene sceneID="C1d-Cy-OOP">
+            <objects>
+                <viewController id="s1g-BR-8xc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ERL-ZL-cLZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="K6n-J6-ueT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T40-fq-UNA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="我" id="RrL-we-AMD">
+                        <barButtonItem key="rightBarButtonItem" title="设置" id="LGb-NJ-rQ0">
+                            <connections>
+                                <segue destination="0JD-IG-Isf" kind="push" id="wBF-iX-JE6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmj-lk-ZCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="921"/>
+        </scene>
+        <!--我 Navigation Controller-->
+        <scene sceneID="Fze-9B-Bxm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pAU-go-EP5" userLabel="我 Navigation Controller" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我" image="tabbar_profile" selectedImage="tabbar_profile_selected" id="nYy-wP-V5i"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u7Q-Lm-pG0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="s1g-BR-8xc" kind="relationship" relationship="rootViewController" id="Vbr-0e-Ix9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pdc-td-loI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="518" y="921"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="navigationbar_back" width="30" height="30"/>
+        <image name="navigationbar_back_highlighted" width="30" height="30"/>
+        <image name="navigationbar_more" width="30" height="30"/>
+        <image name="navigationbar_more_highlighted" width="30" height="30"/>
+        <image name="tabbar_profile" width="30" height="30"/>
+        <image name="tabbar_profile_selected" width="30" height="30"/>
+    </resources>
+</document>

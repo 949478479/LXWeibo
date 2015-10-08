@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
                            borderColor:(nullable UIColor *)borderColor;
 
 ///------------------------------------------------------------------------------------------------
-/// @name 图片渲染
+/// @name 创建图片
 ///------------------------------------------------------------------------------------------------
 
 /**
@@ -53,6 +53,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)lx_originalRenderingImageNamed:(NSString *)name;
 
+/**
+ *  生成纯色图片.若 @c color 的 @c alpha 为 @c 1.0 且 @c cornerRadius 为 @c 0, 则图片是 @c opaque 的.
+ *
+ *  @param color        图片颜色.
+ *  @param size         图片尺寸.
+ *  @param cornerRadius 图片圆角.指定为 @c 0 则无圆角.
+ */
++ (instancetype)lx_imageWithColor:(UIColor *)color
+                             size:(CGSize)size
+                     cornerRadius:(CGFloat)cornerRadius;
 @end
 
 NS_ASSUME_NONNULL_END

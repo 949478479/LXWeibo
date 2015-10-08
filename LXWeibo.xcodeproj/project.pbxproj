@@ -12,6 +12,7 @@
 		180B4F8B1BC6C48800282463 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8A1BC6C48800282463 /* Message.storyboard */; settings = {ASSET_TAGS = (); }; };
 		180B4F8D1BC6C50400282463 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8C1BC6C50400282463 /* Discover.storyboard */; settings = {ASSET_TAGS = (); }; };
 		180B4F901BC6C59200282463 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8F1BC6C59200282463 /* Profile.storyboard */; settings = {ASSET_TAGS = (); }; };
+		180B4F941BC6CF5700282463 /* LXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B4F931BC6CF5700282463 /* LXPageControl.m */; settings = {ASSET_TAGS = (); }; };
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
@@ -34,7 +35,6 @@
 		18350A001BC562AD0075BF43 /* LXEmotionPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F01BC562AD0075BF43 /* LXEmotionPageCell.m */; settings = {ASSET_TAGS = (); }; };
 		18350A011BC562AD0075BF43 /* LXMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F21BC562AD0075BF43 /* LXMagnifierView.m */; settings = {ASSET_TAGS = (); }; };
 		18350A021BC562AD0075BF43 /* LXMagnifierView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183509F31BC562AD0075BF43 /* LXMagnifierView.xib */; settings = {ASSET_TAGS = (); }; };
-		18350A031BC562AD0075BF43 /* LXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F51BC562AD0075BF43 /* LXPageControl.m */; settings = {ASSET_TAGS = (); }; };
 		18350A041BC562AD0075BF43 /* LXRecentEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F71BC562AD0075BF43 /* LXRecentEmotionsManager.m */; settings = {ASSET_TAGS = (); }; };
 		18350A051BC562AD0075BF43 /* LXComposeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509FA1BC562AD0075BF43 /* LXComposeTextView.m */; settings = {ASSET_TAGS = (); }; };
 		18350A061BC562AD0075BF43 /* LXComposeToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183509FB1BC562AD0075BF43 /* LXComposeToolBar.xib */; settings = {ASSET_TAGS = (); }; };
@@ -147,6 +147,8 @@
 		180B4F8A1BC6C48800282463 /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		180B4F8C1BC6C50400282463 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		180B4F8F1BC6C59200282463 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		180B4F921BC6CF5700282463 /* LXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageControl.h; sourceTree = "<group>"; };
+		180B4F931BC6CF5700282463 /* LXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageControl.m; sourceTree = "<group>"; };
 		181A15101BB2927400D2A53D /* LXSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSearchField.h; sourceTree = "<group>"; };
 		181A15111BB2927400D2A53D /* LXSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSearchField.m; sourceTree = "<group>"; };
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
@@ -185,8 +187,6 @@
 		183509F11BC562AD0075BF43 /* LXMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMagnifierView.h; sourceTree = "<group>"; };
 		183509F21BC562AD0075BF43 /* LXMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMagnifierView.m; sourceTree = "<group>"; };
 		183509F31BC562AD0075BF43 /* LXMagnifierView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXMagnifierView.xib; sourceTree = "<group>"; };
-		183509F41BC562AD0075BF43 /* LXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageControl.h; sourceTree = "<group>"; };
-		183509F51BC562AD0075BF43 /* LXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageControl.m; sourceTree = "<group>"; };
 		183509F61BC562AD0075BF43 /* LXRecentEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXRecentEmotionsManager.h; sourceTree = "<group>"; };
 		183509F71BC562AD0075BF43 /* LXRecentEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRecentEmotionsManager.m; sourceTree = "<group>"; };
 		183509F91BC562AD0075BF43 /* LXComposeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXComposeTextView.h; sourceTree = "<group>"; };
@@ -442,6 +442,15 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		180B4F911BC6CF5700282463 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				180B4F921BC6CF5700282463 /* LXPageControl.h */,
+				180B4F931BC6CF5700282463 /* LXPageControl.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		181A15181BB2C2F900D2A53D /* SearchField */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,7 +558,6 @@
 		183509E91BC562AD0075BF43 /* EmotionKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				18350A0D1BC563380075BF43 /* Model */,
 				183509EA1BC562AD0075BF43 /* LXEmotionButton.h */,
 				183509EB1BC562AD0075BF43 /* LXEmotionButton.m */,
 				183509EC1BC562AD0075BF43 /* LXEmotionKeyboard.h */,
@@ -560,10 +568,10 @@
 				183509F11BC562AD0075BF43 /* LXMagnifierView.h */,
 				183509F21BC562AD0075BF43 /* LXMagnifierView.m */,
 				183509F31BC562AD0075BF43 /* LXMagnifierView.xib */,
-				183509F41BC562AD0075BF43 /* LXPageControl.h */,
-				183509F51BC562AD0075BF43 /* LXPageControl.m */,
 				183509F61BC562AD0075BF43 /* LXRecentEmotionsManager.h */,
 				183509F71BC562AD0075BF43 /* LXRecentEmotionsManager.m */,
+				18350A0D1BC563380075BF43 /* Model */,
+				180B4F911BC6CF5700282463 /* PageControl */,
 			);
 			path = EmotionKeyboard;
 			sourceTree = "<group>";
@@ -1274,6 +1282,7 @@
 				18EB24631BB8EA37009D9505 /* UIButton+WebCache.m in Sources */,
 				18F0147F1BB7E930005C47F7 /* MJDictionaryCache.m in Sources */,
 				18F014811BB7E930005C47F7 /* MJFoundation.m in Sources */,
+				180B4F941BC6CF5700282463 /* LXPageControl.m in Sources */,
 				183509FE1BC562AD0075BF43 /* LXEmotionKeyboard.m in Sources */,
 				18E61F471BBCE21100442735 /* MJRefreshBackStateFooter.m in Sources */,
 				1889A0C11BB3D85000060A9A /* LXTabBar.m in Sources */,
@@ -1341,7 +1350,6 @@
 				18E61F3E1BBCE21100442735 /* MJRefreshBackFooter.m in Sources */,
 				18F014881BB7E930005C47F7 /* NSObject+MJProperty.m in Sources */,
 				18DE61751BB790720048388C /* NSObject+LXExtension.m in Sources */,
-				18350A031BC562AD0075BF43 /* LXPageControl.m in Sources */,
 				18F014601BB7E66A005C47F7 /* AFHTTPSessionManager.m in Sources */,
 				1889A0CA1BB4096C00060A9A /* LXTabBarController.m in Sources */,
 				18DE61741BB790720048388C /* NSNotificationCenter+LXExtension.m in Sources */,

@@ -120,7 +120,7 @@ static const CGFloat kMarginV = 12;
 
 - (void)setEmotions:(NSArray<LXEmotion *> *)emotions
 {
-    _emotions = [emotions copy];
+    _emotions = emotions;
 
     NSUInteger emotionCount = emotions.count;
     NSUInteger emotionButtonCount = self.emotionButtons.count;

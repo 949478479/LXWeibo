@@ -260,8 +260,7 @@
         textAttachment.bounds = CGRectMake(0, font.descender, lineHeight / radio, lineHeight);
     }
 
-    NSAttributedString *imageAttributedString =
-    [NSAttributedString attributedStringWithAttachment:textAttachment];
+    NSAttributedString *imageAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
 
     NSMutableAttributedString *attributedString = self.textView.attributedText.mutableCopy;
     {

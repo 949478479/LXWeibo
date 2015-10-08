@@ -55,7 +55,7 @@ static const CGFloat kPageIndicatorHeight = 4;
 
     [self configurePageIndicator]; // 重新绘制小圆点.
 
-    [self invalidateIntrinsicContentSize]; // 无效当前固有尺寸,重新布局.
+    [self invalidateIntrinsicContentSize]; // 无效当前固有尺寸.
 }
 
 - (void)setCurrentPage:(NSUInteger)currentPage

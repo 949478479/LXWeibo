@@ -42,8 +42,8 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
 
     [self registerNib];
     [self configureTitle];
-    [self configureTimer];
-    [self configureRefreshControl];
+    [self setupTimer];
+    [self setupRefreshControl];
 
     [self.tableView.header beginRefreshing];
 }
@@ -69,7 +69,7 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
     }];
 }
 
-- (void)configureTimer
+- (void)setupTimer
 {
     __weak __typeof(self) weakSelf = self;
     self.timer = LXGCDTimer(60, 30, ^{
@@ -78,12 +78,15 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
     dispatch_resume(self.timer);
 }
 
-- (void)configureRefreshControl
+- (void)setupRefreshControl
 {
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
-                                                             refreshingAction:@selector(loadNewStatuses)];
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self
-                                                                 refreshingAction:@selector(loadMoreStatuses)];
+    self.tableView.header =
+        [MJRefreshNormalHeader headerWithRefreshingTarget:self
+                                         refreshingAction:@selector(loadNewStatuses)];
+    self.tableView.footer =
+        [MJRefreshBackNormalFooter footerWithRefreshingTarget:self
+                                             refreshingAction:@selector(loadMoreStatuses)];
+    self.tableView.footer.ignoredScrollViewContentInsetBottom = 20;
 }
 
 #pragma mark - 加载微博数据
@@ -96,6 +99,10 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
 
          [self.tableView.header endRefreshing];
          [self showNewStatusCount:statuses.count];
+
+         if (statuses.count == 0) {
+             return ;
+         }
 
          if (self.statuses.count > 0) {
 
@@ -111,6 +118,7 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
 
          } else {
              self.statuses = statuses.mutableCopy;
+             self.tableView.tableFooterView.hidden = NO;
          }
 
          [self.tableView reloadData];

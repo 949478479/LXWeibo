@@ -205,15 +205,19 @@ static NSDictionary *sSpecialAttributes = nil;
         NSAttributedString *subAttributedString = nil;
         if (part.isEmotion) { // 表情.
             LXEmotion *emotion = [LXEmotionsManager emotionWithCHS:part.text];
-            NSTextAttachment *textAttachment = [NSTextAttachment new];
-            {
-                textAttachment.image = [UIImage imageNamed:emotion.png];
-                textAttachment.bounds = CGRectMake(0,
-                                                   sStatusTextFont.descender,
-                                                   sStatusTextFont.lineHeight,
-                                                   sStatusTextFont.lineHeight);
+            if (!emotion) {
+                subAttributedString = [[NSAttributedString alloc] initWithString:part.text];
+            } else {
+                NSTextAttachment *textAttachment = [NSTextAttachment new];
+                {
+                    textAttachment.image = [UIImage imageNamed:emotion.png];
+                    textAttachment.bounds = CGRectMake(0,
+                                                       sStatusTextFont.descender,
+                                                       sStatusTextFont.lineHeight,
+                                                       sStatusTextFont.lineHeight);
+                }
+                subAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
             }
-            subAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
         } else if (part.isSpecial) { // @ #.
             subAttributedString = [[NSAttributedString alloc] initWithString:part.text
                                                                   attributes:sSpecialAttributes];

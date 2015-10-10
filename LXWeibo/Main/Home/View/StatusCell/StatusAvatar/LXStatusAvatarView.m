@@ -7,8 +7,13 @@
 //
 
 #import "LXUser.h"
+#import "LXUtilities.h"
 #import "LXStatusAvatarView.h"
 #import "UIImageView+WebCache.h"
+
+static UIImage *sPersonalVerifiedImage   = nil;
+static UIImage *sGrassrootVerifiedImage  = nil;
+static UIImage *sEnterpriseVerifiedImage = nil;
 
 @interface LXStatusAvatarView ()
 
@@ -26,17 +31,17 @@
 
     switch (user.verified_type) {
         case LXUserVerifiedTypePersonal:
-            image = [UIImage imageNamed:@"avatar_vip"];
+            image = LXPersonalVerifiedImage();
             break;
 
         case LXUserVerifiedGrassroot:
-            image = [UIImage imageNamed:@"avatar_grassroot"];
+            image = LXGrassrootVerifiedImage();
             break;
 
         case LXUserVerifiedOrgMedia:
         case LXUserVerifiedOrgWebsite:
         case LXUserVerifiedOrgEnterprice:
-            image = [UIImage imageNamed:@"avatar_enterprise_vip"];
+            image = LXEnterpriseVerifiedImage();
             break;
 
         default:
@@ -51,6 +56,45 @@
 }
 
 #pragma mark - *** 私有方法 ***
+
+#pragma mark - 缓存图片
+
++ (void)initialize
+{
+    [NSNotificationCenter lx_addObserverForName:UIApplicationDidReceiveMemoryWarningNotification
+                                         object:nil
+                                     usingBlock:^(NSNotification * _Nonnull note) {
+                                         sPersonalVerifiedImage   = nil;
+                                         sGrassrootVerifiedImage  = nil;
+                                         sEnterpriseVerifiedImage = nil;
+                                     }];
+}
+
+static inline UIImage * LXPersonalVerifiedImage()
+{
+    if (!sPersonalVerifiedImage) {
+        sPersonalVerifiedImage = [UIImage imageNamed:@"avatar_vip"];
+    }
+    return sPersonalVerifiedImage;
+}
+
+static inline UIImage * LXGrassrootVerifiedImage()
+{
+    if (!sGrassrootVerifiedImage) {
+        sGrassrootVerifiedImage = [UIImage imageNamed:@"avatar_grassroot"];
+    }
+    return sGrassrootVerifiedImage;
+}
+
+static inline UIImage * LXEnterpriseVerifiedImage()
+{
+    if (!sEnterpriseVerifiedImage) {
+        sEnterpriseVerifiedImage = [UIImage imageNamed:@"avatar_enterprise_vip"];
+    }
+    return sEnterpriseVerifiedImage;
+}
+
+#pragma mark - 配置等级 logo
 
 - (void)awakeFromNib
 {
@@ -68,17 +112,14 @@
     [self addSubview:_verifiedLogoView];
 
     NSDictionary *views = NSDictionaryOfVariableBindings(_verifiedLogoView);
-
-    [NSLayoutConstraint activateConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_verifiedLogoView(17)]-(-8)-|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
-    [NSLayoutConstraint activateConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_verifiedLogoView(17)]-(-8)-|"
-                                             options:0
-                                             metrics:nil
-                                               views:views]];
+    NSString *visualFormats[] = { @"V:[_verifiedLogoView(17)]-(-8)-|", @"H:[_verifiedLogoView(17)]-(-8)-|" };
+    for (NSUInteger i = 0; i < 2; ++i) {
+        [NSLayoutConstraint activateConstraints:
+         [NSLayoutConstraint constraintsWithVisualFormat:visualFormats[i]
+                                                 options:0
+                                                 metrics:nil
+                                                   views:views]];
+    }
 }
 
 @end

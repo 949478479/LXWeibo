@@ -36,7 +36,51 @@
 
 @implementation LXStatusCell
 
+static UIColor *sVipNameColor = nil;
+static UIColor *sNoVipNameColor = nil;
+
+static UIImage *sPlaceholderImage = nil;
+static UIImage *sAvatarDefaultImage = nil;
+
+static UIColor *sOriginalStatusBackgroundColor = nil;
+static UIColor *sRetweetedStatusBackgroundColor = nil;
+
 #pragma mark - *** 私有方法 ***
+
++ (void)initialize
+{
+    sVipNameColor = [UIColor orangeColor];
+    sNoVipNameColor = [UIColor blackColor];
+
+    sAvatarDefaultImage = [UIImage imageNamed:@"avatar_default"];
+    sPlaceholderImage = [UIImage imageNamed:@"timeline_image_placeholder"];
+
+    sOriginalStatusBackgroundColor = [UIColor whiteColor];
+    sRetweetedStatusBackgroundColor = [UIColor lx_colorWithHexString:@"F5F5F5"];
+
+    [NSNotificationCenter lx_addObserverForName:UIApplicationDidReceiveMemoryWarningNotification
+                                         object:nil
+                                     usingBlock:^(NSNotification * _Nonnull note) {
+                                         sPlaceholderImage   = nil;
+                                         sAvatarDefaultImage = nil;
+                                     }];
+}
+
+static inline UIImage * LXAvatarDefaultImage()
+{
+    if (!sAvatarDefaultImage) {
+        sAvatarDefaultImage = [UIImage imageNamed:@"avatar_default"];
+    }
+    return sAvatarDefaultImage;
+}
+
+static inline UIImage * LXPlaceholderImage()
+{
+    if (!sPlaceholderImage) {
+        sPlaceholderImage = [UIImage imageNamed:@"timeline_image_placeholder"];
+    }
+    return sPlaceholderImage;
+}
 
 #pragma mark - 设置 label 最大宽度
 
@@ -86,16 +130,15 @@
     LXStatus *retweetedStatus = status.retweeted_status;
 
     if (retweetedStatus) { // 这是转发微博.
-        self.subTextLabel.text  = status.text;
-        self.mainTextLabel.text = [NSString stringWithFormat:@"@%@：%@",
-                                   retweetedStatus.user.name, retweetedStatus.text];
+        self.subTextLabel.attributedText  = status.attributedText;
+        self.mainTextLabel.attributedText = retweetedStatus.attributedText;
 
         [self adjustConstraintForImageRows:ceil(status.retweeted_status.pic_urls.count / kLXStatusThumbnailRows)
                        andIsOriginalStatus:NO];
     }
     else { // 这是原创微博.
-        self.subTextLabel.text  = nil;
-        self.mainTextLabel.text = status.text;
+        self.subTextLabel.attributedText  = nil;
+        self.mainTextLabel.attributedText = status.attributedText;
 
         [self adjustConstraintForImageRows:ceil(status.pic_urls.count / kLXStatusThumbnailRows)
                        andIsOriginalStatus:YES];
@@ -104,15 +147,12 @@
 
 - (void)setupBackgroundColorForIsOriginalStatus:(BOOL)isOriginal
 {
-    UIColor *bgColor = nil;
     if (isOriginal) {
-        bgColor = [UIColor whiteColor];
-        self.mainTextLabel.backgroundColor = bgColor;
-        self.statusContainerView.backgroundColor = bgColor;
+        self.mainTextLabel.backgroundColor = sOriginalStatusBackgroundColor;
+        self.statusContainerView.backgroundColor = sOriginalStatusBackgroundColor;
     } else {
-        bgColor = [UIColor lx_colorWithHexString:@"F5F5F5"];
-        self.mainTextLabel.backgroundColor = bgColor; // UILabel 的背景色清空拖性能.
-        self.statusContainerView.backgroundColor = bgColor;
+        self.mainTextLabel.backgroundColor = sRetweetedStatusBackgroundColor; // UILabel 的背景色清空拖性能.
+        self.statusContainerView.backgroundColor = sRetweetedStatusBackgroundColor;
     }
 }
 
@@ -120,7 +160,7 @@
 {
      LXUser *user = status.user;
 
-    [self.avatarView setImageWithUser:user placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [self.avatarView setImageWithUser:user placeholderImage:LXAvatarDefaultImage()];
 
     // 根据是否是 vip 设置 nameLabel 的字体颜色,决定是否显示 vip 图标,并设置对应具体等级的图标.
     if (user.isVip) {
@@ -132,11 +172,11 @@
 
         self.vipView.image       = [UIImage imageNamed:imageName];
         self.vipView.hidden      = NO;
-        self.nameLabel.textColor = [UIColor orangeColor];
+        self.nameLabel.textColor = sVipNameColor;
 
     } else {
         self.vipView.hidden      = YES;
-        self.nameLabel.textColor = [UIColor blackColor];
+        self.nameLabel.textColor = sNoVipNameColor;
     }
 }
 
@@ -146,7 +186,7 @@
     for (NSUInteger i = 0; i < picCount; ++i) {
         LXStatusThumbnailView *thumbnailView = self.thumbnailContainerView.thumbnailViews[i];
         [thumbnailView setImageWithPhoto:photos[i]
-                        placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+                        placeholderImage:LXPlaceholderImage()];
     }
 }
 

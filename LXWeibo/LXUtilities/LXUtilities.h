@@ -27,6 +27,7 @@
 #import "UITextField+LXExtension.h"
 #import "UIStoryboard+LXExtension.h"
 #import "NSUserDefaults+LXExtension.h"
+#import "NSAttributedString+LXExtension.h"
 #import "NSNotificationCenter+LXExtension.h"
 
 //#import "MBProgressHUD+LXExtension.h"

@@ -8,7 +8,9 @@
 
 #import "LXConst.h"
 #import "LXStatus.h"
+#import "LXUtilities.h"
 #import "RegexKitLite.h"
+#import "LXStatusTextLink.h"
 #import "LXStatusTextPart.h"
 #import "LXEmotionsManager.h"
 
@@ -140,8 +142,8 @@ static inline NSDateFormatter * LXOtherDayInThisYearFormatter()
 
 #pragma mark - 图文混排处理
 
-// @ #话题# [表情]
-static NSString * const kRegexPattern = @"@[\\w-_]+|#[\\w]+#|\\[\\w+\\]";
+// @ #话题# [表情] HTTP
+static NSString * const kRegexPattern = @"@[\\w-_]+|#[\\w]+#|\\[\\w+\\]|(https?)://(?:(\\S+?)(?::(\\S+?))?@)?([a-zA-Z0-9\\-.]+)(?::(\\d+))?((?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?";
 static UIFont *sStatusTextFont = nil;
 static NSDictionary *sSpecialAttributes = nil;
 
@@ -200,35 +202,55 @@ static NSDictionary *sSpecialAttributes = nil;
 
 - (NSAttributedString *)attributedTextWithText:(NSString *)text
 {
+    NSMutableArray *links = [NSMutableArray new];
     NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
-    for (LXStatusTextPart *part in [self statusTextPartsWithText:text]) {
-        NSAttributedString *subAttributedString = nil;
-        if (part.isEmotion) { // 表情.
-            LXEmotion *emotion = [LXEmotionsManager emotionWithCHS:part.text];
-            if (!emotion) {
-                subAttributedString = [[NSAttributedString alloc] initWithString:part.text];
-            } else {
-                NSTextAttachment *textAttachment = [NSTextAttachment new];
-                {
-                    textAttachment.image = [UIImage imageNamed:emotion.png];
-                    textAttachment.bounds = CGRectMake(0,
-                                                       sStatusTextFont.descender,
-                                                       sStatusTextFont.lineHeight,
-                                                       sStatusTextFont.lineHeight);
+    {
+        for (LXStatusTextPart *part in [self statusTextPartsWithText:text]) {
+
+            NSAttributedString *subAttributedString = nil;
+            {
+                if (part.isEmotion) { // 表情.
+                    LXEmotion *emotion = [LXEmotionsManager emotionWithCHS:part.text];
+                    if (!emotion) {
+                        subAttributedString = [[NSAttributedString alloc] initWithString:part.text];
+                    } else {
+                        NSTextAttachment *textAttachment = [NSTextAttachment new];
+                        {
+                            textAttachment.image = [UIImage imageNamed:emotion.png];
+                            textAttachment.bounds = CGRectMake(0,
+                                                               sStatusTextFont.descender,
+                                                               sStatusTextFont.lineHeight,
+                                                               sStatusTextFont.lineHeight);
+                        }
+                        subAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+                    }
+                } else if (part.isSpecial) { // @ #.
+                    LXStatusTextLink *link = [LXStatusTextLink new];
+                    {
+                        link.text  = part.text;
+                        link.range = NSMakeRange(attributedString.length, part.text.length);
+                    }
+                    [links addObject:link];
+
+                    subAttributedString = [[NSAttributedString alloc] initWithString:part.text
+                                                                          attributes:sSpecialAttributes];
+                } else { // 普通文本内容.
+                    subAttributedString = [[NSAttributedString alloc] initWithString:part.text];
                 }
-                subAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
             }
-        } else if (part.isSpecial) { // @ #.
-            subAttributedString = [[NSAttributedString alloc] initWithString:part.text
-                                                                  attributes:sSpecialAttributes];
-        } else { // 普通文本内容.
-            subAttributedString = [[NSAttributedString alloc] initWithString:part.text];
+            
+            [attributedString appendAttributedString:subAttributedString];
         }
-        [attributedString appendAttributedString:subAttributedString];
     }
+
+    NSRange range = { 0, attributedString.length };
+
     [attributedString addAttribute:NSFontAttributeName
                              value:sStatusTextFont
-                             range:(NSRange){0,attributedString.length}];
+                             range:range];
+
+    [attributedString addAttribute:@"links" value:links range:NSMakeRange(0, 1)]; // 绑定链接数组.
+
     return attributedString;
 }
 

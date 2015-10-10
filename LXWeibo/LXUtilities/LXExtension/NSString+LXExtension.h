@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name 文本范围
 ///------------------------------------------------------------------------------------------------
 
-- (CGRect)lx_boundingRectWithSize:(CGSize)size font:(UIFont *)font;
+- (CGSize)lx_sizeWithBoundingSize:(CGSize)size font:(UIFont *)font;
 
 ///------------------------------------------------------------------------------------------------
 /// @name 表单验证

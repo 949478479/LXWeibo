@@ -18,8 +18,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *sourceLabel;
-@property (nonatomic, weak) IBOutlet UILabel *subTextLabel;
-@property (nonatomic, weak) IBOutlet UILabel *mainTextLabel;
+@property (nonatomic, weak) IBOutlet UITextView *subTextView;
+@property (nonatomic, weak) IBOutlet UITextView *mainTextView;
 @property (nonatomic, weak) IBOutlet UIImageView *vipView;
 @property (nonatomic, weak) IBOutlet LXStatusToolBar *toolBar;
 @property (nonatomic, weak) IBOutlet LXStatusAvatarView *avatarView;
@@ -29,6 +29,9 @@
 @property (nonatomic, weak) IBOutlet LXStatusThumbnailContainerView *thumbnailContainerView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *statusContainerTopConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *mainTextLabelBottomConstraint;
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *subTextViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *mainTextViewHeightConstraint;
 
 @property (nonatomic, assign) CGFloat imageSize;
 
@@ -45,10 +48,16 @@ static UIImage *sAvatarDefaultImage = nil;
 static UIColor *sOriginalStatusBackgroundColor = nil;
 static UIColor *sRetweetedStatusBackgroundColor = nil;
 
+static CGFloat kMaxWidth;
+
 #pragma mark - *** 私有方法 ***
+
+#pragma mark - 缓存 UIImage 和 UIColor
 
 + (void)initialize
 {
+    kMaxWidth = LXScreenSize().width - 2 * kLXStatusThumbnailMargin;
+
     sVipNameColor = [UIColor orangeColor];
     sNoVipNameColor = [UIColor blackColor];
 
@@ -88,12 +97,11 @@ static inline UIImage * LXPlaceholderImage()
 {
     [super awakeFromNib];
 
-    CGFloat maxWidth = CGRectGetWidth([UIScreen mainScreen].bounds) - 2 * kLXStatusThumbnailMargin;
+    UIEdgeInsets textContainerInset  = UIEdgeInsetsMake(0, -5, 0, -5);
+    _subTextView.textContainerInset  = textContainerInset;
+    _mainTextView.textContainerInset = textContainerInset;
 
-    self.subTextLabel.preferredMaxLayoutWidth  = maxWidth;
-    self.mainTextLabel.preferredMaxLayoutWidth = maxWidth;
-
-    self.imageSize = (maxWidth - 2 * kLXStatusThumbnailMargin) / kLXStatusThumbnailRows;
+    self.imageSize = (kMaxWidth - 2 * kLXStatusThumbnailMargin) / kLXStatusThumbnailRows;
 }
 
 #pragma mark - 根据配图行数调整高度约束
@@ -102,43 +110,60 @@ static inline UIImage * LXPlaceholderImage()
 {
     if (row > 0) {
         // 有配图时将 mainTextLabel 和 thumbnailContainerView 的间距约束调整回 kLXMargin.
-        self.mainTextLabelBottomConstraint.constant = kLXStatusThumbnailMargin;
+        _mainTextLabelBottomConstraint.constant = kLXStatusThumbnailMargin;
         // 调整 thumbnailContainerView 的高度约束.每行配图高 kLXImageSize, 行之间间距为 kLXMargin.即最多 3 行 2 间距.
-        self.thumbnailContainerView.heightConstraint.constant = row * self.imageSize + (row - 1) * kLXStatusThumbnailMargin;
+        _thumbnailContainerView.heightConstraint.constant = row * _imageSize + (row - 1) * kLXStatusThumbnailMargin;
     } else {
         // 无配图时将 thumbnailContainerView 高度约束设置为 0, mainTextLabel 与 thumbnailContainerView
         // 的间距约束应调整为 0, 否则和父视图的底部距离就是 2 * kLXMargin 而不是 kLXMargin.
-        self.mainTextLabelBottomConstraint.constant = 0;
-        self.thumbnailContainerView.heightConstraint.constant = 0;
+        _mainTextLabelBottomConstraint.constant = 0;
+        _thumbnailContainerView.heightConstraint.constant = 0;
     }
 
     // 是原创微博时将顶部和 subTextLabel 间的约束调整为 0, 因为 subTextLabel 此时高度近乎为 0.
-    self.statusContainerTopConstraint.constant = isOriginal ? -8 : kLXStatusThumbnailMargin;
+    _statusContainerTopConstraint.constant = isOriginal ? -8 : kLXStatusThumbnailMargin;
 }
 
 #pragma mark - 设置 cell 内容
 
 - (void)setupLabelContentAndAdjustConstraintWithStatus:(LXStatus *)status
 {
-    // 有标识符说明不是模板 cell, 设置显示文本.模板 cell 计算行高的时候没必要设置这些单行 label 的内容.
-    if (self.reuseIdentifier) {
-        self.nameLabel.text   = status.user.name;
-        self.timeLabel.text   = status.created_at;
-        self.sourceLabel.text = status.source;
-    }
-
     LXStatus *retweetedStatus = status.retweeted_status;
 
+    // 有标识符说明不是模板 cell, 设置显示文本.模板 cell 计算行高的时候没必要设置这些单行 label 的内容.
+    if (self.reuseIdentifier) {
+        
+        _nameLabel.text   = status.user.name;
+        _timeLabel.text   = status.created_at;
+        _sourceLabel.text = status.source;
+
+        if (retweetedStatus) { // 这是转发微博.
+            _subTextView.attributedText = status.attributedText;
+            _mainTextView.attributedText = retweetedStatus.attributedText;
+        } else { // 这是原创微博.
+            _subTextView.attributedText = nil;
+            _mainTextView.attributedText = status.attributedText;
+        }
+    }
+
+    CGSize boundingSize = { kMaxWidth, CGFLOAT_MAX };
+
     if (retweetedStatus) { // 这是转发微博.
-        self.subTextLabel.attributedText  = status.attributedText;
-        self.mainTextLabel.attributedText = retweetedStatus.attributedText;
+
+        _subTextViewHeightConstraint.constant =
+            [status.attributedText lx_sizeWithBoundingSize:boundingSize].height;
+
+        _mainTextViewHeightConstraint.constant =
+            [retweetedStatus.attributedText lx_sizeWithBoundingSize:boundingSize].height;
 
         [self adjustConstraintForImageRows:ceil(status.retweeted_status.pic_urls.count / kLXStatusThumbnailRows)
                        andIsOriginalStatus:NO];
     }
     else { // 这是原创微博.
-        self.subTextLabel.attributedText  = nil;
-        self.mainTextLabel.attributedText = status.attributedText;
+
+        _subTextViewHeightConstraint.constant = 0;
+        _mainTextViewHeightConstraint.constant =
+            [status.attributedText lx_sizeWithBoundingSize:boundingSize].height;
 
         [self adjustConstraintForImageRows:ceil(status.pic_urls.count / kLXStatusThumbnailRows)
                        andIsOriginalStatus:YES];
@@ -148,11 +173,11 @@ static inline UIImage * LXPlaceholderImage()
 - (void)setupBackgroundColorForIsOriginalStatus:(BOOL)isOriginal
 {
     if (isOriginal) {
-        self.mainTextLabel.backgroundColor = sOriginalStatusBackgroundColor;
-        self.statusContainerView.backgroundColor = sOriginalStatusBackgroundColor;
+        _mainTextView.backgroundColor = sOriginalStatusBackgroundColor;
+        _statusContainerView.backgroundColor = sOriginalStatusBackgroundColor;
     } else {
-        self.mainTextLabel.backgroundColor = sRetweetedStatusBackgroundColor; // UILabel 的背景色清空拖性能.
-        self.statusContainerView.backgroundColor = sRetweetedStatusBackgroundColor;
+        _mainTextView.backgroundColor = sRetweetedStatusBackgroundColor; // UILabel 的背景色清空拖性能.
+        _statusContainerView.backgroundColor = sRetweetedStatusBackgroundColor;
     }
 }
 
@@ -160,7 +185,7 @@ static inline UIImage * LXPlaceholderImage()
 {
      LXUser *user = status.user;
 
-    [self.avatarView setImageWithUser:user placeholderImage:LXAvatarDefaultImage()];
+    [_avatarView setImageWithUser:user placeholderImage:LXAvatarDefaultImage()];
 
     // 根据是否是 vip 设置 nameLabel 的字体颜色,决定是否显示 vip 图标,并设置对应具体等级的图标.
     if (user.isVip) {
@@ -170,13 +195,13 @@ static inline UIImage * LXPlaceholderImage()
         NSString *imageName = [NSString stringWithFormat:@"common_icon_membership_level%lu",
                                (unsigned long)mbrank];
 
-        self.vipView.image       = [UIImage imageNamed:imageName];
-        self.vipView.hidden      = NO;
-        self.nameLabel.textColor = sVipNameColor;
+        _vipView.image       = [UIImage imageNamed:imageName];
+        _vipView.hidden      = NO;
+        _nameLabel.textColor = sVipNameColor;
 
     } else {
-        self.vipView.hidden      = YES;
-        self.nameLabel.textColor = sNoVipNameColor;
+        _vipView.hidden      = YES;
+        _nameLabel.textColor = sNoVipNameColor;
     }
 }
 
@@ -184,7 +209,7 @@ static inline UIImage * LXPlaceholderImage()
 {
     NSUInteger picCount = photos.count;
     for (NSUInteger i = 0; i < picCount; ++i) {
-        LXStatusThumbnailView *thumbnailView = self.thumbnailContainerView.thumbnailViews[i];
+        LXStatusThumbnailView *thumbnailView = _thumbnailContainerView.thumbnailViews[i];
         [thumbnailView setImageWithPhoto:photos[i]
                         placeholderImage:LXPlaceholderImage()];
     }
@@ -196,7 +221,7 @@ static inline UIImage * LXPlaceholderImage()
 {
     [super prepareForReuse];
 
-    [self.thumbnailContainerView hidenAndClearAllThumbnailViews];
+    [_thumbnailContainerView hidenAndClearAllThumbnailViews];
 }
 
 #pragma mark - *** 公共方法 ***

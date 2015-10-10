@@ -23,16 +23,15 @@
 
 #pragma mark - 文本范围
 
-- (CGRect)lx_boundingRectWithSize:(CGSize)size font:(UIFont *)font
+- (CGSize)lx_sizeWithBoundingSize:(CGSize)size font:(UIFont *)font
 {
     NSAssert(font, @"参数 font 为 nil.");
     NSAssert(size.width && size.height, @"参数 size 的宽高必须大于 0. => %@", NSStringFromCGSize(size));
 
-    CGRect rect = [self boundingRectWithSize:size
-                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{ NSFontAttributeName : font }
-                                     context:nil];
-    return CGRectIntegral(rect);
+    return CGRectIntegral([self boundingRectWithSize:size
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{ NSFontAttributeName : font }
+                                             context:nil]).size;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

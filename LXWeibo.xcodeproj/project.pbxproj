@@ -101,6 +101,9 @@
 		18E61F4F1BBCE21100442735 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F3C1BBCE21100442735 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F571BBD5E2100442735 /* NSDate+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
 		18E61F5D1BBD808900442735 /* LXComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E61F5C1BBD808900442735 /* LXComposeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		18E8D8AE1BC909DF00354848 /* NSAttributedString+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D8AD1BC909DF00354848 /* NSAttributedString+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18E8D8B11BC9144700354848 /* LXStatusTextLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D8B01BC9144700354848 /* LXStatusTextLink.m */; settings = {ASSET_TAGS = (); }; };
+		18E8D8B81BC9402100354848 /* LXStatusTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8D8B71BC9402100354848 /* LXStatusTextView.m */; settings = {ASSET_TAGS = (); }; };
 		18EB24341BB8E695009D9505 /* LXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB24331BB8E695009D9505 /* LXUser.m */; settings = {ASSET_TAGS = (); }; };
 		18EB24371BB8E69F009D9505 /* LXStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB24361BB8E69F009D9505 /* LXStatus.m */; settings = {ASSET_TAGS = (); }; };
 		18EB245A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB243A1BB8EA37009D9505 /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
@@ -315,6 +318,12 @@
 		18E61F561BBD5E2100442735 /* NSDate+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LXExtension.m"; sourceTree = "<group>"; };
 		18E61F5B1BBD808900442735 /* LXComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXComposeViewController.h; sourceTree = "<group>"; };
 		18E61F5C1BBD808900442735 /* LXComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXComposeViewController.m; sourceTree = "<group>"; };
+		18E8D8AC1BC909DF00354848 /* NSAttributedString+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+LXExtension.h"; sourceTree = "<group>"; };
+		18E8D8AD1BC909DF00354848 /* NSAttributedString+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+LXExtension.m"; sourceTree = "<group>"; };
+		18E8D8AF1BC9144700354848 /* LXStatusTextLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStatusTextLink.h; sourceTree = "<group>"; };
+		18E8D8B01BC9144700354848 /* LXStatusTextLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStatusTextLink.m; sourceTree = "<group>"; };
+		18E8D8B61BC9402100354848 /* LXStatusTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStatusTextView.h; sourceTree = "<group>"; };
+		18E8D8B71BC9402100354848 /* LXStatusTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStatusTextView.m; sourceTree = "<group>"; };
 		18EB24321BB8E695009D9505 /* LXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUser.h; sourceTree = "<group>"; };
 		18EB24331BB8E695009D9505 /* LXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXUser.m; sourceTree = "<group>"; };
 		18EB24351BB8E69F009D9505 /* LXStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStatus.h; sourceTree = "<group>"; };
@@ -538,6 +547,7 @@
 				183509D61BC5623A0075BF43 /* LXStatusCell.xib */,
 				183509D71BC5623A0075BF43 /* StatusAvatar */,
 				183509DA1BC5623A0075BF43 /* StatusThumbnail */,
+				18E8D8B51BC9402100354848 /* StatusTextView */,
 			);
 			name = StatusCell;
 			path = LXWeibo/Main/Home/View/StatusCell;
@@ -893,6 +903,8 @@
 				18DE61601BB790720048388C /* UIButton+LXExtension.m */,
 				18DE61611BB790720048388C /* UIColor+LXExtension.h */,
 				18DE61621BB790720048388C /* UIColor+LXExtension.m */,
+				18E8D8AC1BC909DF00354848 /* NSAttributedString+LXExtension.h */,
+				18E8D8AD1BC909DF00354848 /* NSAttributedString+LXExtension.m */,
 				18DE61631BB790720048388C /* UIImage+LXExtension.h */,
 				18DE61641BB790720048388C /* UIImage+LXExtension.m */,
 				18DE61651BB790720048388C /* UIStoryboard+LXExtension.h */,
@@ -1083,6 +1095,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18E8D8B51BC9402100354848 /* StatusTextView */ = {
+			isa = PBXGroup;
+			children = (
+				18E8D8B61BC9402100354848 /* LXStatusTextView.h */,
+				18E8D8B71BC9402100354848 /* LXStatusTextView.m */,
+			);
+			path = StatusTextView;
+			sourceTree = "<group>";
+		};
 		18EB24311BB8E67A009D9505 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1090,6 +1111,8 @@
 				18EB24331BB8E695009D9505 /* LXUser.m */,
 				180B4F9B1BC7641000282463 /* LXStatusTextPart.h */,
 				180B4F9C1BC7641000282463 /* LXStatusTextPart.m */,
+				18E8D8AF1BC9144700354848 /* LXStatusTextLink.h */,
+				18E8D8B01BC9144700354848 /* LXStatusTextLink.m */,
 				18EB24351BB8E69F009D9505 /* LXStatus.h */,
 				18EB24361BB8E69F009D9505 /* LXStatus.m */,
 				18D22D501BBA1D3E00745192 /* LXPhoto.h */,
@@ -1313,9 +1336,11 @@
 				185B6EE21BC2BFC6008DD63D /* CALayer+LXExtension.m in Sources */,
 				18EB245F1BB8EA37009D9505 /* SDWebImageDownloader.m in Sources */,
 				18EB245B1BB8EA37009D9505 /* NSData+ImageContentType.m in Sources */,
+				18E8D8B81BC9402100354848 /* LXStatusTextView.m in Sources */,
 				18F014891BB7E930005C47F7 /* NSString+MJExtension.m in Sources */,
 				18350A041BC562AD0075BF43 /* LXEmotionsManager.m in Sources */,
 				18E61F411BBCE21100442735 /* MJRefreshHeader.m in Sources */,
+				18E8D8B11BC9144700354848 /* LXStatusTextLink.m in Sources */,
 				18DE617B1BB790720048388C /* UIStoryboard+LXExtension.m in Sources */,
 				18F014831BB7E930005C47F7 /* MJPropertyKey.m in Sources */,
 				18F014651BB7E66A005C47F7 /* AFURLResponseSerialization.m in Sources */,
@@ -1338,6 +1363,7 @@
 				180B4F3E1BC6864000282463 /* LXKeyboardSpacingView.m in Sources */,
 				183509BF1BC548990075BF43 /* LXConst.m in Sources */,
 				18EB24611BB8EA37009D9505 /* SDWebImageManager.m in Sources */,
+				18E8D8AE1BC909DF00354848 /* NSAttributedString+LXExtension.m in Sources */,
 				18DE617C1BB790720048388C /* UITextField+LXExtension.m in Sources */,
 				18350A011BC562AD0075BF43 /* LXMagnifierView.m in Sources */,
 				18E61F491BBCE21100442735 /* MJRefreshNormalHeader.m in Sources */,

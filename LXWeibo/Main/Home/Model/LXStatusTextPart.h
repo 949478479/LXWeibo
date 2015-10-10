@@ -12,11 +12,12 @@
 
 /** 文字的内容. */
 @property (nonatomic, copy) NSString *text;
-/** 文字的范围 */
+/** 文字的范围. */
 @property (nonatomic, assign) NSRange range;
-/** 是否为特殊文字 */
+
+/** 是否为特殊文字. */
 @property (nonatomic, assign) BOOL isSpecial;
-/** 是否为表情 */
+/** 是否为表情. */
 @property (nonatomic, assign) BOOL isEmotion;
 
 @end

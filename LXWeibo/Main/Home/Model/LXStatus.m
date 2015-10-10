@@ -6,12 +6,17 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
+#import "LXConst.h"
 #import "LXStatus.h"
+#import "RegexKitLite.h"
+#import "LXStatusTextPart.h"
+#import "LXEmotionsManager.h"
 
 @implementation LXStatus
 
-@synthesize source     = _source;
-@synthesize created_at = _created_at;
+@synthesize source         = _source;
+@synthesize created_at     = _created_at;
+@synthesize attributedText = _attributedText;
 
 + (NSDictionary *)objectClassInArray
 {
@@ -131,6 +136,116 @@ static inline NSDateFormatter * LXOtherDayInThisYearFormatter()
             }
         }
     }
+}
+
+#pragma mark - 图文混排处理
+
+// @ #话题# [表情]
+static NSString * const kRegexPattern = @"@[\\w-_]+|#[\\w]+#|\\[\\w+\\]";
+static UIFont *sStatusTextFont = nil;
+static NSDictionary *sSpecialAttributes = nil;
+
++ (void)initialize
+{
+    sSpecialAttributes = @{ NSForegroundColorAttributeName : [UIColor blueColor] };
+    sStatusTextFont = [UIFont systemFontOfSize:LXStatusTextFontSize];
+}
+
+- (NSMutableArray<LXStatusTextPart *> *)statusTextPartsWithText:(NSString *)text
+{
+    NSMutableArray<LXStatusTextPart *> *parts = [NSMutableArray new];
+
+    // 匹配特殊字段.
+    [text enumerateStringsMatchedByRegex:kRegexPattern
+                              usingBlock:^(NSInteger captureCount,
+                                           NSString *const __unsafe_unretained *capturedStrings,
+                                           const NSRange *capturedRanges,
+                                           volatile BOOL *const stop) {
+                                  NSAssert((*capturedRanges).length > 0, @"尼玛长度能为0?");
+                                  LXStatusTextPart *part = [LXStatusTextPart new];
+                                  {
+                                      part.text  = *capturedStrings;
+                                      part.range = *capturedRanges;
+                                      part.isEmotion = [*capturedStrings hasPrefix:@"["];
+                                      part.isSpecial = YES;
+                                  }
+                                  [parts addObject:part];
+                              }];
+
+    // 用特殊字段分割微博文本,即匹配普通文本字段.
+    [text enumerateStringsSeparatedByRegex:kRegexPattern
+                                usingBlock:^(NSInteger captureCount,
+                                             NSString *const __unsafe_unretained *capturedStrings,
+                                             const NSRange *capturedRanges,
+                                             volatile BOOL *const stop) {
+                                    if ((*capturedRanges).length == 0) {
+                                        return ;
+                                    }
+                                    LXStatusTextPart *part = [LXStatusTextPart new];
+                                    {
+                                        part.text  = *capturedStrings;
+                                        part.range = *capturedRanges;
+                                    }
+                                    [parts addObject:part];
+                                }];
+
+    // 按照 location 排序字段,即还原其原本的顺序.
+    [parts sortUsingComparator:^NSComparisonResult(LXStatusTextPart * _Nonnull obj1,
+                                                   LXStatusTextPart * _Nonnull obj2) {
+        return obj1.range.location < obj2.range.location ? NSOrderedAscending : NSOrderedDescending;
+    }];
+
+    return parts;
+}
+
+- (NSAttributedString *)attributedTextWithText:(NSString *)text
+{
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    for (LXStatusTextPart *part in [self statusTextPartsWithText:text]) {
+        NSAttributedString *subAttributedString = nil;
+        if (part.isEmotion) { // 表情.
+            LXEmotion *emotion = [LXEmotionsManager emotionWithCHS:part.text];
+            NSTextAttachment *textAttachment = [NSTextAttachment new];
+            {
+                textAttachment.image = [UIImage imageNamed:emotion.png];
+                textAttachment.bounds = CGRectMake(0,
+                                                   sStatusTextFont.descender,
+                                                   sStatusTextFont.lineHeight,
+                                                   sStatusTextFont.lineHeight);
+            }
+            subAttributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        } else if (part.isSpecial) { // @ #.
+            subAttributedString = [[NSAttributedString alloc] initWithString:part.text
+                                                                  attributes:sSpecialAttributes];
+        } else { // 普通文本内容.
+            subAttributedString = [[NSAttributedString alloc] initWithString:part.text];
+        }
+        [attributedString appendAttributedString:subAttributedString];
+    }
+    [attributedString addAttribute:NSFontAttributeName
+                             value:sStatusTextFont
+                             range:(NSRange){0,attributedString.length}];
+    return attributedString;
+}
+
+- (void)setRetweeted_status:(LXStatus * _Nullable)retweeted_status
+{
+    _retweeted_status = retweeted_status;
+
+    [_retweeted_status setValue:@(YES) forKey:@"retweeted"];
+}
+
+- (NSAttributedString *)attributedText
+{
+    if (!_attributedText) {
+        if (_retweeted) { // 该微博是转发微博.
+            NSString *text = [NSString stringWithFormat:@"@%@：%@", _user.name, _text];
+            _attributedText = [self attributedTextWithText:text];
+        } else { // 该微博是原创微博.
+            _attributedText = [self attributedTextWithText:_text];
+        }
+    }
+    return _attributedText;
 }
 
 @end

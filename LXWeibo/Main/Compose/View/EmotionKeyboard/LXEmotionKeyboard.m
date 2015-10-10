@@ -13,7 +13,7 @@
 #import "LXPageControl.h"
 #import "LXMagnifierView.h"
 #import "LXEmotionKeyboard.h"
-#import "LXRecentEmotionsManager.h"
+#import "LXEmotionsManager.h"
 
 NSString * const LXEmotionKeyboardDidSelectEmotionNotification = @"LXEmotionKeyboardDidSelectEmotionNotification";
 NSString * const LXEmotionKeyboardDidDeleteEmotionNotification = @"LXEmotionKeyboardDidDeleteEmotionNotification";
@@ -39,17 +39,11 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 @property (nonatomic, weak) IBOutlet UICollectionView *emotionListView;
 @property (nonatomic, weak) IBOutlet UICollectionViewFlowLayout *flowLayout;
 
-@property (nonatomic, strong) NSArray<LXEmotion *> *defaultEmotionList;
-@property (nonatomic, strong) NSArray<LXEmotion *> *emojiEmotionList;
-@property (nonatomic, strong) NSArray<LXEmotion *> *lxhEmotionList;
-@property (nonatomic, strong) NSArray<LXEmotion *> *recentEmotionList;
-
 @property (nonatomic, assign) LXEmotionType selectedEmotionType;
 
 @end
 
 @implementation LXEmotionKeyboard
-@dynamic recentEmotionList;
 
 #pragma mark - 初始配置
 
@@ -68,33 +62,14 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 
 #pragma mark - 加载表情
 
-- (NSArray<LXEmotion *> *)recentEmotionList
+- (NSArray<LXEmotion *> *)emotionListWithEmotionType:(LXEmotionType)type
 {
-    return [LXRecentEmotionsManager recentlyEmotions];
-}
-
-- (NSArray<LXEmotion *> *)defaultEmotionList
-{
-    if (!_defaultEmotionList) {
-        _defaultEmotionList = [LXEmotion objectArrayWithFilename:@"EmotionIcons/default/info.plist"];
+    switch (type) {
+        case LXEmotionTypeRecently: return [LXEmotionsManager recentEmotions];
+        case LXEmotionTypeDefault: return [LXEmotionsManager defaultEmotionList];
+        case LXEmotionTypeEmoji: return [LXEmotionsManager emojiEmotionList];
+        case LXEmotionTypeLXH: return [LXEmotionsManager lxhEmotionList];
     }
-    return _defaultEmotionList;
-}
-
-- (NSArray<LXEmotion *> *)emojiEmotionList
-{
-    if (!_emojiEmotionList) {
-        _emojiEmotionList = [LXEmotion objectArrayWithFilename:@"EmotionIcons/emoji/info.plist"];
-    }
-    return _emojiEmotionList;
-}
-
-- (NSArray<LXEmotion *> *)lxhEmotionList
-{
-    if (!_lxhEmotionList) {
-        _lxhEmotionList = [LXEmotion objectArrayWithFilename:@"EmotionIcons/lxh/info.plist"];
-    }
-    return _lxhEmotionList;
 }
 
 #pragma mark - 切换表情
@@ -112,16 +87,6 @@ typedef NS_ENUM(NSUInteger, LXEmotionType) {
 }
 
 #pragma mark - 计算表情页信息
-
-- (NSArray<LXEmotion *> *)emotionListWithEmotionType:(LXEmotionType)type
-{
-    switch (type) {
-        case LXEmotionTypeRecently: return self.recentEmotionList;
-        case LXEmotionTypeDefault: return self.defaultEmotionList;
-        case LXEmotionTypeEmoji: return self.emojiEmotionList;
-        case LXEmotionTypeLXH: return self.lxhEmotionList;
-    }
-}
 
 - (NSUInteger)numberOfPagesForEmotionType:(LXEmotionType)type
 {

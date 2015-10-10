@@ -13,6 +13,9 @@
 		180B4F8D1BC6C50400282463 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8C1BC6C50400282463 /* Discover.storyboard */; settings = {ASSET_TAGS = (); }; };
 		180B4F901BC6C59200282463 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180B4F8F1BC6C59200282463 /* Profile.storyboard */; settings = {ASSET_TAGS = (); }; };
 		180B4F941BC6CF5700282463 /* LXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B4F931BC6CF5700282463 /* LXPageControl.m */; settings = {ASSET_TAGS = (); }; };
+		180B4F981BC75E5100282463 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B4F971BC75E5100282463 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		180B4F9A1BC75FCF00282463 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180B4F991BC75FCF00282463 /* libicucore.tbd */; };
+		180B4F9D1BC7641000282463 /* LXStatusTextPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B4F9C1BC7641000282463 /* LXStatusTextPart.m */; settings = {ASSET_TAGS = (); }; };
 		181A15121BB2927400D2A53D /* LXSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15111BB2927400D2A53D /* LXSearchField.m */; settings = {ASSET_TAGS = (); }; };
 		181A15141BB2929400D2A53D /* LXPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A15131BB2929400D2A53D /* LXPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A15161BB2ADD500D2A53D /* LXPlaceholderView.m */; settings = {ASSET_TAGS = (); }; };
@@ -35,7 +38,7 @@
 		18350A001BC562AD0075BF43 /* LXEmotionPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F01BC562AD0075BF43 /* LXEmotionPageCell.m */; settings = {ASSET_TAGS = (); }; };
 		18350A011BC562AD0075BF43 /* LXMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F21BC562AD0075BF43 /* LXMagnifierView.m */; settings = {ASSET_TAGS = (); }; };
 		18350A021BC562AD0075BF43 /* LXMagnifierView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183509F31BC562AD0075BF43 /* LXMagnifierView.xib */; settings = {ASSET_TAGS = (); }; };
-		18350A041BC562AD0075BF43 /* LXRecentEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F71BC562AD0075BF43 /* LXRecentEmotionsManager.m */; settings = {ASSET_TAGS = (); }; };
+		18350A041BC562AD0075BF43 /* LXEmotionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509F71BC562AD0075BF43 /* LXEmotionsManager.m */; settings = {ASSET_TAGS = (); }; };
 		18350A051BC562AD0075BF43 /* LXComposeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183509FA1BC562AD0075BF43 /* LXComposeTextView.m */; settings = {ASSET_TAGS = (); }; };
 		18350A061BC562AD0075BF43 /* LXComposeToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183509FB1BC562AD0075BF43 /* LXComposeToolBar.xib */; settings = {ASSET_TAGS = (); }; };
 		18350A121BC563380075BF43 /* LXEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18350A0F1BC563380075BF43 /* LXEmotion.m */; settings = {ASSET_TAGS = (); }; };
@@ -149,6 +152,11 @@
 		180B4F8F1BC6C59200282463 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		180B4F921BC6CF5700282463 /* LXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageControl.h; sourceTree = "<group>"; };
 		180B4F931BC6CF5700282463 /* LXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageControl.m; sourceTree = "<group>"; };
+		180B4F961BC75E5100282463 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		180B4F971BC75E5100282463 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		180B4F991BC75FCF00282463 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		180B4F9B1BC7641000282463 /* LXStatusTextPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStatusTextPart.h; sourceTree = "<group>"; };
+		180B4F9C1BC7641000282463 /* LXStatusTextPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStatusTextPart.m; sourceTree = "<group>"; };
 		181A15101BB2927400D2A53D /* LXSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSearchField.h; sourceTree = "<group>"; };
 		181A15111BB2927400D2A53D /* LXSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSearchField.m; sourceTree = "<group>"; };
 		181A15131BB2929400D2A53D /* LXPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXPlaceholderView.xib; sourceTree = "<group>"; };
@@ -187,8 +195,8 @@
 		183509F11BC562AD0075BF43 /* LXMagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMagnifierView.h; sourceTree = "<group>"; };
 		183509F21BC562AD0075BF43 /* LXMagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMagnifierView.m; sourceTree = "<group>"; };
 		183509F31BC562AD0075BF43 /* LXMagnifierView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXMagnifierView.xib; sourceTree = "<group>"; };
-		183509F61BC562AD0075BF43 /* LXRecentEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXRecentEmotionsManager.h; sourceTree = "<group>"; };
-		183509F71BC562AD0075BF43 /* LXRecentEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRecentEmotionsManager.m; sourceTree = "<group>"; };
+		183509F61BC562AD0075BF43 /* LXEmotionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXEmotionsManager.h; sourceTree = "<group>"; };
+		183509F71BC562AD0075BF43 /* LXEmotionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXEmotionsManager.m; sourceTree = "<group>"; };
 		183509F91BC562AD0075BF43 /* LXComposeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXComposeTextView.h; sourceTree = "<group>"; };
 		183509FA1BC562AD0075BF43 /* LXComposeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXComposeTextView.m; sourceTree = "<group>"; };
 		183509FB1BC562AD0075BF43 /* LXComposeToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXComposeToolBar.xib; sourceTree = "<group>"; };
@@ -397,6 +405,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180B4F9A1BC75FCF00282463 /* libicucore.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +458,15 @@
 				180B4F931BC6CF5700282463 /* LXPageControl.m */,
 			);
 			path = PageControl;
+			sourceTree = "<group>";
+		};
+		180B4F951BC75E5100282463 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				180B4F961BC75E5100282463 /* RegexKitLite.h */,
+				180B4F971BC75E5100282463 /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		181A15181BB2C2F900D2A53D /* SearchField */ = {
@@ -568,8 +586,8 @@
 				183509F11BC562AD0075BF43 /* LXMagnifierView.h */,
 				183509F21BC562AD0075BF43 /* LXMagnifierView.m */,
 				183509F31BC562AD0075BF43 /* LXMagnifierView.xib */,
-				183509F61BC562AD0075BF43 /* LXRecentEmotionsManager.h */,
-				183509F71BC562AD0075BF43 /* LXRecentEmotionsManager.m */,
+				183509F61BC562AD0075BF43 /* LXEmotionsManager.h */,
+				183509F71BC562AD0075BF43 /* LXEmotionsManager.m */,
 				18350A0D1BC563380075BF43 /* Model */,
 				180B4F911BC6CF5700282463 /* PageControl */,
 			);
@@ -600,6 +618,7 @@
 		18706DBD1BB23AE800F12441 = {
 			isa = PBXGroup;
 			children = (
+				180B4F991BC75FCF00282463 /* libicucore.tbd */,
 				18706DC81BB23AE800F12441 /* LXWeibo */,
 				18706DC71BB23AE800F12441 /* Products */,
 			);
@@ -718,6 +737,7 @@
 		18706E371BB24B1100F12441 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F951BC75E5100282463 /* RegexKitLite */,
 				18E61F101BBCE21000442735 /* MJRefresh */,
 				18D22D6B1BBADBC100745192 /* XXNibBridge */,
 				18EB24381BB8EA37009D9505 /* SDWebImage */,
@@ -1068,6 +1088,8 @@
 			children = (
 				18EB24321BB8E695009D9505 /* LXUser.h */,
 				18EB24331BB8E695009D9505 /* LXUser.m */,
+				180B4F9B1BC7641000282463 /* LXStatusTextPart.h */,
+				180B4F9C1BC7641000282463 /* LXStatusTextPart.m */,
 				18EB24351BB8E69F009D9505 /* LXStatus.h */,
 				18EB24361BB8E69F009D9505 /* LXStatus.m */,
 				18D22D501BBA1D3E00745192 /* LXPhoto.h */,
@@ -1274,6 +1296,7 @@
 				18DE617F1BB790720048388C /* LXMulticastDelegate.m in Sources */,
 				18DE617D1BB790720048388C /* UIView+LXExtension.m in Sources */,
 				18DE61791BB790720048388C /* UIColor+LXExtension.m in Sources */,
+				180B4F9D1BC7641000282463 /* LXStatusTextPart.m in Sources */,
 				18DE61721BB790720048388C /* MBProgressHUD+LXExtension.m in Sources */,
 				18E61F431BBCE21100442735 /* MJRefreshAutoNormalFooter.m in Sources */,
 				18F014841BB7E930005C47F7 /* MJPropertyType.m in Sources */,
@@ -1291,7 +1314,7 @@
 				18EB245F1BB8EA37009D9505 /* SDWebImageDownloader.m in Sources */,
 				18EB245B1BB8EA37009D9505 /* NSData+ImageContentType.m in Sources */,
 				18F014891BB7E930005C47F7 /* NSString+MJExtension.m in Sources */,
-				18350A041BC562AD0075BF43 /* LXRecentEmotionsManager.m in Sources */,
+				18350A041BC562AD0075BF43 /* LXEmotionsManager.m in Sources */,
 				18E61F411BBCE21100442735 /* MJRefreshHeader.m in Sources */,
 				18DE617B1BB790720048388C /* UIStoryboard+LXExtension.m in Sources */,
 				18F014831BB7E930005C47F7 /* MJPropertyKey.m in Sources */,
@@ -1372,6 +1395,7 @@
 				18E61F3F1BBCE21100442735 /* MJRefreshComponent.m in Sources */,
 				18706DFF1BB23BDA00F12441 /* AppDelegate.m in Sources */,
 				183509E31BC5623A0075BF43 /* LXStatusThumbnailContainerView.m in Sources */,
+				180B4F981BC75E5100282463 /* RegexKitLite.m in Sources */,
 				181A15171BB2ADD500D2A53D /* LXPlaceholderView.m in Sources */,
 				18F014611BB7E66A005C47F7 /* AFNetworkReachabilityManager.m in Sources */,
 				18E61F401BBCE21100442735 /* MJRefreshFooter.m in Sources */,

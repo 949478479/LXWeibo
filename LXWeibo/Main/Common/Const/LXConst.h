@@ -6,7 +6,7 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
-@class NSString;
+@import UIKit;
 
 extern NSString * const LXAppKey;
 extern NSString * const LXAppSecret;
@@ -21,3 +21,5 @@ extern NSString * const LXUnreadCountURL;
 
 extern NSString * const LXSendStatusWithImageURL;
 extern NSString * const LXSendStatusWithoutImageURL;
+
+extern const CGFloat LXStatusTextFontSize;

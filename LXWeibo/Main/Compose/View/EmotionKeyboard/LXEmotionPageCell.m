@@ -12,7 +12,7 @@
 #import "LXMagnifierView.h"
 #import "LXEmotionButton.h"
 #import "LXEmotionKeyboard.h"
-#import "LXRecentEmotionsManager.h"
+#import "LXEmotionsManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -183,7 +183,7 @@ static const CGFloat kMarginV = 12;
                                                object:nil
                                              userInfo:userInfo];
         
-        [LXRecentEmotionsManager addEmotion:sender.emotion];
+        [LXEmotionsManager addEmotionToRecentList:sender.emotion];
     }
 }
 

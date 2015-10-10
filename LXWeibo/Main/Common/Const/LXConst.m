@@ -6,7 +6,7 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
-@import Foundation;
+#import "LXConst.h"
 
 NSString * const LXAppVersionString = @"LXAppVersionString";
 
@@ -22,3 +22,5 @@ NSString * const LXUnreadCountURL = @"https://rm.api.weibo.com/2/remind/unread_c
 
 NSString * const LXSendStatusWithImageURL = @"https://upload.api.weibo.com/2/statuses/upload.json";
 NSString * const LXSendStatusWithoutImageURL = @"https://api.weibo.com/2/statuses/update.json";
+
+const CGFloat LXStatusTextFontSize = 14;

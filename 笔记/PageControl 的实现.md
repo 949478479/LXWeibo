@@ -61,22 +61,25 @@
 
     // 无论是否绘制了小圆点都设置 mask, 否则 currentPageIndicator 会露出来.
     self.layer.mask = maskLayer;
-    self.layer.shouldRasterize = YES;
-    self.layer.rasterizationScale = LXScreenScale();
 }
 ```
 
 当`countOfPages`为`1`且`hidesForSinglePage`开启时,`maskLayer`的`path`未赋值,而其本身也没有设置颜色,这样将其设置成`mask`时,整个`LXPageControl`将变为透明,达到隐藏的目的.而`countOfPages`为`0`时也不会绘制`path`,因此`LXPageControl`同样是透明的.
 
-另外由于设置`mask`会引起离屏渲染,因此开启了`shouldRasterize`来缓存,提升一些渲染性能.
+另外,由于设置`mask`会引起离屏渲染,因此开启了`shouldRasterize`来缓存,提升一些渲染性能.
 
+```objective-c
+self.layer.shouldRasterize = YES;
+self.layer.rasterizationScale = LXScreenScale();
+```
+    
 使用时,通过实时改变`percent`属性来移动`currentPageIndicator`图层的位置,让其在各个小洞之间穿梭.
 
 由于图层的隐式动画,直接修改`currentPage`来移动`currentPageIndicator`效果也不错.
 
 #### 其他细节
 
-为了布局方便,提供了`intrinsicContentSize`,其高度为固定值,宽度根据`countOfPages`计算,这样只需设置位置约束就可以了:
+为了布局方便,提供了`intrinsicContentSize`,其高度为固定值,宽度根据`countOfPages`计算,这样只需设置位置约束就可以了.同时还重写了`sizeThatFits:`,这样就可以用`sizeToFit`方法来快速设置大小了.
 
 ```objective-c
 - (CGSize)intrinsicContentSize
@@ -90,20 +93,27 @@
         kPageIndicatorHeight
     };
 }
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return [self intrinsicContentSize];
+}
 ```
 
 当`LXPageControl`的`frame`变化时,需要调整`mask`以及`currentPageIndicator`:
 
 ```objective-c
-- (void)layoutSubviews
+- (void)setFrame:(CGRect)frame
 {
-    [super layoutSubviews];
+    if (!CGRectEqualToRect(self.frame, frame)) {
+        [super setFrame:frame];
 
-    // frame 有变化时修正 currentPageIndicator 图层以及 mask 图层的位置.
-    self.layer.mask.frame = self.bounds;
-    self.currentPageIndicator.lx_origin = (CGPoint) {
-        _currentPage * (kPageIndicatorWidth + kPageIndicatorMargin), 0
-    };
+        // frame 有变化时修正 currentPageIndicator 图层以及 mask 图层的位置.
+        self.layer.mask.frame = self.bounds;
+        self.currentPageIndicator.lx_origin = (CGPoint) {
+            _currentPage * (kPageIndicatorWidth + kPageIndicatorMargin), 0
+        };
+    }
 }
 ```
 

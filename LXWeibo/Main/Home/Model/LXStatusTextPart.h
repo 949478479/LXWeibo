@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LXStatusTextPart : NSObject
 
 /** 文字的内容. */
@@ -21,3 +23,5 @@
 @property (nonatomic, assign) BOOL isEmotion;
 
 @end
+
+NS_ASSUME_NONNULL_END

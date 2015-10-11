@@ -26,6 +26,7 @@
 #import "UITextView+LXExtension.h"
 #import "UITextField+LXExtension.h"
 #import "UIStoryboard+LXExtension.h"
+#import "NSDictionary+LXExtension.h"
 #import "NSUserDefaults+LXExtension.h"
 #import "NSAttributedString+LXExtension.h"
 #import "NSNotificationCenter+LXExtension.h"

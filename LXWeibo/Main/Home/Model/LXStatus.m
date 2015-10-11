@@ -243,13 +243,11 @@ static NSDictionary *sSpecialAttributes = nil;
         }
     }
 
-    NSRange range = { 0, attributedString.length };
-
     [attributedString addAttribute:NSFontAttributeName
                              value:sStatusTextFont
-                             range:range];
+                             range:(NSRange){ 0, attributedString.length }];
 
-    [attributedString addAttribute:@"links" value:links range:NSMakeRange(0, 1)]; // 绑定链接数组.
+    [attributedString addAttribute:@"links" value:links range:(NSRange){0, 1}]; // 绑定链接数组.
 
     return attributedString;
 }

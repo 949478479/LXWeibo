@@ -9,6 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/** @c NSObject 的直接子类采纳此协议将会覆盖 @c [NSObject description] 方法,在默认实现上附带实例变量名和值. */
+@protocol LXDescription <NSObject>
+@end
+
 @interface NSObject (LXExtension)
 
 ///------------------------------------------------------------------------------------------------
@@ -29,9 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lx_printMethods;
 /** 打印查看类/实例方法. */
 - (void)lx_printMethods;
-
-/** 附带实例变量和值的调试信息. */
-- (NSString *)lx_description;
 
 ///------------------------------------------------------------------------------------------------
 /// @name 获取属性和实例变量名数组

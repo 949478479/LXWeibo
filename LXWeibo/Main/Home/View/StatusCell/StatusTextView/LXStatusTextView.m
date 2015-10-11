@@ -89,21 +89,16 @@ static const NSInteger kLinkBackgroundTag = 233;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self showLinkBackgroundViewWithLink:_touchedLink];
-
-    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self removelinkBackgroundView];
-
-    [super touchesEnded:touches withEvent:event];
 }
+
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self removelinkBackgroundView];
-
-    [super touchesCancelled:touches withEvent:event];
 }
 
 #pragma mark - 添加|移除高亮背景

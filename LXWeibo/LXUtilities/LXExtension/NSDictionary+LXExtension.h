@@ -1,7 +1,7 @@
 //
-//  NSArray+LXExtension.h
+//  NSDictionary+LXExtension.h
 //
-//  Created by 从今以后 on 15/10/4.
+//  Created by 从今以后 on 15/10/10.
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (LXExtension)
+@interface NSDictionary (LXExtension)
 
 ///------------------------------------------------------------------------------------------------
 /// @name 常用方法
@@ -17,21 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)lx_isEmpty;
 
-/**
- *  根据相关资源在 mainBundle 中的路径创建数组.路径须带拓展名.
- */
-+ (nullable instancetype)lx_arrayWithResourcePath:(NSString *)path;
-
 ///------------------------------------------------------------------------------------------------
 /// @name 函数式便捷方法
 ///------------------------------------------------------------------------------------------------
 
-- (instancetype)lx_filter:(BOOL (^)(id obj))filter;
+- (NSArray *)lx_map:(id _Nullable (^)(id key, id obj))map;
 
-- (instancetype)lx_map:(id _Nullable (^)(id obj))map;
+- (instancetype)lx_filter:(BOOL (^)(id key, id obj))filter;
 
 - (nullable id)lx_reduceWithInitial:(nullable id)initial
-                            combine:(id _Nullable (^)(id _Nullable current, id obj))combine;
+                            combine:(id _Nullable (^)(id _Nullable current, id key, id obj))combine;
 @end
 
 NS_ASSUME_NONNULL_END

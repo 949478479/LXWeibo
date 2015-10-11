@@ -6,10 +6,23 @@
 //
 
 @import ObjectiveC.runtime;
+#import "LXUtilities.h"
 #import "NSObject+LXExtension.h"
 #import "NSObject+DLIntrospection.h"
 
 @implementation NSObject (LXExtension)
+
+#pragma mark - 方法交换
+
+#ifdef DEBUG
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        LXMethodSwizzling(self, @selector(description), @selector(lx_description));
+    });
+}
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,14 +116,24 @@
 
 #pragma mark - 调试
 
+#ifdef DEBUG
 - (NSString *)lx_description
 {
+    if (![self conformsToProtocol:@protocol(LXDescription)]) {
+        return [self lx_description];
+    }
+
     NSMutableDictionary *varInfo = [NSMutableDictionary new];
     for (NSString *varName in self.lx_variables) {
-        varInfo[varName] = [self valueForKey:varName] ?: [NSNull null];
+        id value = [self valueForKey:varName] ?: @"nil";
+        if ([value class] == objc_lookUpClass("__NSCFBoolean")) { // 私有类,仅仅在 debug 模式下用用.
+            value = [value boolValue] ? @"YES" : @"NO";
+        }
+        varInfo[varName] = value;
     }
     return [NSString stringWithFormat:@"<%@: %p>\n%@", self.class, self, varInfo];
 }
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

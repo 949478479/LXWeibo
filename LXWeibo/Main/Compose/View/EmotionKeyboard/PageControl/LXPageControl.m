@@ -24,7 +24,7 @@ static const CGFloat kPageIndicatorHeight = 4;
 
 #pragma mark - *** 公共方法 ***
 
-#pragma mark - 设置指示器
+#pragma mark - 设置页码
 
 - (void)setPercent:(CGFloat)percent
 {
@@ -87,6 +87,32 @@ static const CGFloat kPageIndicatorHeight = 4;
 
 #pragma mark - *** 私有方法 *** 
 
+#pragma mark - 初始化
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit
+{
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = LXScreenScale();
+}
+
 #pragma mark - 配置指示器
 
 - (CALayer *)currentPageIndicator
@@ -126,21 +152,21 @@ static const CGFloat kPageIndicatorHeight = 4;
 
     // 无论是否绘制了小圆点都设置 mask, 否则 currentPageIndicator 会露出来.
     self.layer.mask = maskLayer;
-    self.layer.shouldRasterize = YES;
-    self.layer.rasterizationScale = LXScreenScale();
 }
 
 #pragma mark - 布局
 
-- (void)layoutSubviews
+- (void)setFrame:(CGRect)frame
 {
-    [super layoutSubviews];
+    if (!CGRectEqualToRect(self.frame, frame)) {
+        [super setFrame:frame];
 
-    // frame 有变化时修正 currentPageIndicator 图层以及 mask 图层的位置.
-    self.layer.mask.frame = self.bounds;
-    self.currentPageIndicator.lx_origin = (CGPoint) {
-        _currentPage * (kPageIndicatorWidth + kPageIndicatorMargin), 0
-    };
+        // frame 有变化时修正 currentPageIndicator 图层以及 mask 图层的位置.
+        self.layer.mask.frame = self.bounds;
+        self.currentPageIndicator.lx_origin = (CGPoint) {
+            _currentPage * (kPageIndicatorWidth + kPageIndicatorMargin), 0
+        };
+    }
 }
 
 - (CGSize)intrinsicContentSize
@@ -153,6 +179,11 @@ static const CGFloat kPageIndicatorHeight = 4;
         _countOfPages * kPageIndicatorWidth + (_countOfPages - 1) * kPageIndicatorMargin,
         kPageIndicatorHeight
     };
+}
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return [self intrinsicContentSize];
 }
 
 @end

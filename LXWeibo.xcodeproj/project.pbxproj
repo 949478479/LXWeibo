@@ -475,6 +475,7 @@
 		180B4F951BC75E5100282463 /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
+				180B4F991BC75FCF00282463 /* libicucore.tbd */,
 				180B4F961BC75E5100282463 /* RegexKitLite.h */,
 				180B4F971BC75E5100282463 /* RegexKitLite.m */,
 			);
@@ -631,7 +632,6 @@
 		18706DBD1BB23AE800F12441 = {
 			isa = PBXGroup;
 			children = (
-				180B4F991BC75FCF00282463 /* libicucore.tbd */,
 				18706DC81BB23AE800F12441 /* LXWeibo */,
 				18706DC71BB23AE800F12441 /* Products */,
 			);

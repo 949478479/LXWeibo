@@ -23,7 +23,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="我是原创微博内容" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="37J-uC-Ua7" customClass="LXStatusTextView">
                                         <rect key="frame" x="8" y="8" width="304" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="Pf3-1L-nfa"/>
+                                            <constraint firstAttribute="height" priority="999" constant="33" id="Pf3-1L-nfa"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -84,7 +84,7 @@
                                 <rect key="frame" x="8" y="66" width="304" height="33"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="RbC-W4-X56"/>
+                                    <constraint firstAttribute="height" priority="999" constant="33" id="RbC-W4-X56"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

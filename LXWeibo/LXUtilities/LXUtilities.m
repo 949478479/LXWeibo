@@ -1,6 +1,5 @@
 //
 //  LXUtilities.m
-//  LXWeChat
 //
 //  Created by 从今以后 on 15/9/12.
 //  Copyright © 2015年 从今以后. All rights reserved.
@@ -35,14 +34,29 @@ NSString * LXDocumentDirectory()
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 }
 
+NSString * LXDocumentDirectoryByAppendingPathComponent(NSString *pathComponent)
+{
+    return [LXDocumentDirectory() stringByAppendingPathComponent:pathComponent];
+}
+
 NSString * LXLibraryDirectory()
 {
     return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
 }
 
+NSString * LXLibraryDirectoryByAppendingPathComponent(NSString *pathComponent)
+{
+    return [LXLibraryDirectory() stringByAppendingPathComponent:pathComponent];
+}
+
 NSString * LXCachesDirectory()
 {
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+}
+
+NSString * LXCachesDirectoryByAppendingPathComponent(NSString *pathComponent)
+{
+    return [LXCachesDirectory() stringByAppendingPathComponent:pathComponent];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

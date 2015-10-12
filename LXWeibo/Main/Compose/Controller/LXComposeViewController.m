@@ -15,7 +15,7 @@
 #import "LXEmotionKeyboard.h"
 #import "LXOAuthInfoManager.h"
 #import "LXComposeViewController.h"
-#import "MBProgressHUD+LXExtension.h"
+#import "MBProgressHUD+LXAdditions.h"
 
 @interface LXComposeViewController () <UITextViewDelegate, LXComposeToolBarDelegate>
 

@@ -15,7 +15,7 @@
 #import "LXPopoverView.h"
 #import "LXOAuthInfoManager.h"
 #import "LXHomeViewController.h"
-#import "MBProgressHUD+LXExtension.h"
+#import "MBProgressHUD+LXAdditions.h"
 
 static NSString * const kStatusCellIdentifier = @"LXStatusCell";
 
@@ -277,15 +277,15 @@ static NSString * const kStatusCellIdentifier = @"LXStatusCell";
 
 - (IBAction)titleButtonDidTap:(UIButton *)sender
 {
-    if (sender.isSelected)
-    {
+    if (sender.isSelected) {
+        
         sender.selected = NO;
 
         [self.popover dismiss];
         self.popover = nil;
-    }
-    else
-    {
+
+    } else {
+
         sender.selected = YES;
         
         UITableViewController *contentVC = [UITableViewController new];

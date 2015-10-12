@@ -10,7 +10,7 @@
 #import "LXUtilities.h"
 #import "LXStatusManager.h"
 #import "LXAuthViewController.h"
-#import "MBProgressHUD+LXExtension.h"
+#import "MBProgressHUD+LXAdditions.h"
 
 @interface LXAuthViewController () <UIWebViewDelegate>
 

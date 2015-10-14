@@ -7,13 +7,15 @@
 //
 
 @import UIKit;
-@class LXPhoto;
+@class LXStatusPhoto;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXStatusThumbnailView : UIImageView
 
-- (void)setImageWithPhoto:(LXPhoto *)photo placeholderImage:(UIImage *)placeholderImage;
+@property (nonatomic, readonly, strong) LXStatusPhoto *statusPhoto;
+
+- (void)setImageWithPhoto:(LXStatusPhoto *)photo placeholderImage:(UIImage *)placeholderImage;
 
 @end
 

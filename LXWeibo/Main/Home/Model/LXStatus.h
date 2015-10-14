@@ -8,7 +8,7 @@
 
 @import UIKit;
 #import "LXUser.h"
-#import "LXPhoto.h"
+#import "LXStatusPhoto.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**	微博信息内容 (高亮显示特殊文字,显示表情). */
 @property (nonatomic, readonly, copy) NSAttributedString *attributedText;
 /** 微博配图数组. */
-@property (nonatomic, readonly, copy) NSArray<LXPhoto *> *pic_urls;
+@property (nonatomic, readonly, copy) NSArray<LXStatusPhoto *> *pic_urls;
 
 /** 是否是转发微博 */
 @property (nonatomic, readonly, assign, getter=isRetweeted) BOOL retweeted;

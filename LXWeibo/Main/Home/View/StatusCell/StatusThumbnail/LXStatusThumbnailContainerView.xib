@@ -139,6 +139,7 @@
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="hd6-LK-xc9" firstAttribute="leading" secondItem="932-z0-2bR" secondAttribute="leading" id="3d0-2H-j5n"/>
                 <constraint firstAttribute="height" priority="999" constant="244" identifier="Thumbnail Container Height" id="5oO-nP-zX3"/>
@@ -194,8 +195,14 @@
                 <outletCollection property="thumbnailViews" destination="IBW-vB-DhI" id="sOe-UH-5s8"/>
                 <outletCollection property="thumbnailViews" destination="Txp-iu-hHF" id="DRs-Qs-r6L"/>
                 <outletCollection property="thumbnailViews" destination="Phi-WW-C65" id="BY0-c3-bZo"/>
+                <outletCollection property="gestureRecognizers" destination="wva-lD-U4p" appends="YES" id="cW0-Gj-jAV"/>
             </connections>
             <point key="canvasLocation" x="702" y="407"/>
         </view>
+        <tapGestureRecognizer id="wva-lD-U4p">
+            <connections>
+                <action selector="tapGestureRecognizer:" destination="932-z0-2bR" id="xid-OA-Trg"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

@@ -1,129 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--发微博 View Controller-->
-        <scene sceneID="Zgh-hP-fuo">
-            <objects>
-                <viewController id="ecb-s8-U8q" userLabel="发微博 View Controller" customClass="LXComposeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6OH-79-PTC"/>
-                        <viewControllerLayoutGuide type="bottom" id="WRT-do-bb4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8v3-eW-Gjf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xyc-Wf-u8X" customClass="LXComposeTextView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="分享新鲜事..."/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="ecb-s8-U8q" id="84k-Rb-g3w"/>
-                                </connections>
-                            </textView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="HFv-fx-xOK" customClass="LXComposeToolBar">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <color key="backgroundColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="ecb-s8-U8q" id="vwu-EU-yxO"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muA-pF-yD8" customClass="LXKeyboardSpacingView">
-                                <rect key="frame" x="0.0" y="568" width="320" height="0.0"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="BhG-qP-wR3"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="heightConstraint" destination="BhG-qP-wR3" id="8uA-Qc-BvX"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="muA-pF-yD8" secondAttribute="trailing" id="448-uk-0Ws"/>
-                            <constraint firstAttribute="bottom" secondItem="muA-pF-yD8" secondAttribute="bottom" id="8WT-LS-wlo"/>
-                            <constraint firstItem="HFv-fx-xOK" firstAttribute="leading" secondItem="8v3-eW-Gjf" secondAttribute="leading" id="AhS-ay-7U7"/>
-                            <constraint firstItem="muA-pF-yD8" firstAttribute="leading" secondItem="8v3-eW-Gjf" secondAttribute="leading" id="HPy-F8-VDs"/>
-                            <constraint firstItem="HFv-fx-xOK" firstAttribute="top" secondItem="xyc-Wf-u8X" secondAttribute="bottom" id="Rdy-ks-iCw"/>
-                            <constraint firstItem="xyc-Wf-u8X" firstAttribute="top" secondItem="8v3-eW-Gjf" secondAttribute="top" id="W0Z-u9-IVZ"/>
-                            <constraint firstAttribute="trailing" secondItem="HFv-fx-xOK" secondAttribute="trailing" id="XEk-df-GMy"/>
-                            <constraint firstItem="muA-pF-yD8" firstAttribute="top" secondItem="HFv-fx-xOK" secondAttribute="bottom" id="ema-A5-XvM"/>
-                            <constraint firstAttribute="trailing" secondItem="xyc-Wf-u8X" secondAttribute="trailing" id="nsk-wz-HvK"/>
-                            <constraint firstItem="xyc-Wf-u8X" firstAttribute="leading" secondItem="8v3-eW-Gjf" secondAttribute="leading" id="r3T-yz-RW9"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="ysj-DB-UcS">
-                        <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="取消" id="1BU-Ec-3Of">
-                            <connections>
-                                <segue destination="VQU-16-tV2" kind="unwind" unwindAction="unwindForSegue:" id="BMp-Cz-kwo"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="发表" id="ISQ-u1-kZf">
-                            <connections>
-                                <action selector="sendButtonDidTap:" destination="ecb-s8-U8q" id="eeB-WD-IpW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="imagePicker" destination="TTk-qD-tpk" id="z8d-5o-tod"/>
-                        <outlet property="keyboardToolBar" destination="HFv-fx-xOK" id="qSF-b7-MeC"/>
-                        <outlet property="sendButtonItem" destination="ISQ-u1-kZf" id="k7g-gY-1Ev"/>
-                        <outlet property="textView" destination="xyc-Wf-u8X" id="8Ha-Rh-7wE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="36e-Mw-OSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="VQU-16-tV2" userLabel="Exit" sceneMemberID="exit"/>
-                <customObject id="TTk-qD-tpk" customClass="LXImagePicker"/>
-            </objects>
-            <point key="canvasLocation" x="82" y="-53"/>
-        </scene>
         <!--主 TabBar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" userLabel="主 TabBar Controller" customClass="LXTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" backgroundImage="tabbar_background" id="W28-zg-YXA" customClass="LXTabBar">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
                     <connections>
-                        <segue destination="72Q-Ka-aYS" kind="modal" identifier="ModalComposeVC" id="XVk-JX-0lA"/>
+                        <segue destination="jjG-E5-C4B" kind="relationship" relationship="viewControllers" id="c0T-Ra-wAw"/>
+                        <segue destination="UFW-oF-S0K" kind="relationship" relationship="viewControllers" id="dzT-hR-tmI"/>
+                        <segue destination="m5n-2c-vGI" kind="relationship" relationship="viewControllers" id="6Sq-8Z-pZX"/>
+                        <segue destination="He8-XS-cxJ" kind="relationship" relationship="viewControllers" id="CHZ-bm-lMH"/>
+                        <segue destination="ZtZ-hh-KQ0" kind="presentation" identifier="ModalComposeVC" id="UXC-1G-bxm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-681" y="-53"/>
+            <point key="canvasLocation" x="-1276.875" y="-55.985915492957744"/>
         </scene>
-        <!--发微博 Navigation Controller-->
-        <scene sceneID="4yX-1J-YLk">
+        <!--Home-->
+        <scene sceneID="aQK-Bs-EyK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="72Q-Ka-aYS" userLabel="发微博 Navigation Controller" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qor-ed-mOh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ecb-s8-U8q" kind="relationship" relationship="rootViewController" id="ODK-rZ-ukI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="avt-3d-PO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Home" id="jjG-E5-C4B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="NKZ-Ev-CEi"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y12-F3-sx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-301" y="-53"/>
+            <point key="canvasLocation" x="-965.5" y="-326"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="twp-zX-o8M">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Message" id="UFW-oF-S0K" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="JTI-ib-fdq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e3g-Po-Llk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-956.5" y="-187"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="HCC-Me-MoZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" id="m5n-2c-vGI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="GRL-ES-dh6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oi9-76-Q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-957" y="51"/>
+        </scene>
+        <!--Compose-->
+        <scene sceneID="Zwf-3y-4aH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Compose" id="ZtZ-hh-KQ0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUJ-q3-92G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-952" y="-56"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="rWx-Or-fbe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="He8-XS-cxJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="jaM-rE-GMI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kad-JY-vd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-963" y="214"/>
         </scene>
     </scenes>
     <resources>

@@ -6,7 +6,7 @@
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
-#import "LXPhoto.h"
+#import "LXStatusPhoto.h"
 #import "LXUtilities.h"
 #import "UIImageView+WebCache.h"
 #import "LXStatusThumbnailView.h"
@@ -15,7 +15,7 @@ static UIImage *sGifLogoImage = nil;
 
 @interface LXStatusThumbnailView ()
 
-@property (nonatomic, readwrite, strong) UIImageView *gifLogoView;
+@property (nonatomic, strong) UIImageView *gifLogoView;
 
 @end
 
@@ -23,8 +23,10 @@ static UIImage *sGifLogoImage = nil;
 
 #pragma mark - *** 公共方法 ***
 
-- (void)setImageWithPhoto:(LXPhoto *)photo placeholderImage:(UIImage *)placeholderImage
+- (void)setImageWithPhoto:(LXStatusPhoto *)photo placeholderImage:(UIImage *)placeholderImage
 {
+    _statusPhoto = photo;
+    
     NSURL *url = [NSURL URLWithString:photo.thumbnail_pic];
 
     self.gifLogoView.hidden = ![url.pathExtension.lowercaseString isEqualToString:@"gif"];

@@ -15,38 +15,38 @@
 
 - (void)setLx_size:(CGSize)lx_size
 {
-    CGRect bounds = self.bounds;
-    bounds.size   = lx_size;
-    self.bounds   = bounds;
+    CGRect frame = self.frame;
+    frame.size   = lx_size;
+    self.frame   = frame;
 }
 
 - (CGSize)lx_size
 {
-    return self.bounds.size;
+    return self.frame.size;
 }
 
 - (void)setLx_width:(CGFloat)lx_width
 {
-    CGRect bounds     = self.bounds;
-    bounds.size.width = lx_width;
-    self.bounds       = bounds;
+    CGRect frame     = self.frame;
+    frame.size.width = lx_width;
+    self.frame       = frame;
 }
 
 - (CGFloat)lx_width
 {
-    return CGRectGetWidth(self.bounds);
+    return CGRectGetWidth(self.frame);
 }
 
 - (void)setLx_height:(CGFloat)lx_height
 {
-    CGRect bounds      = self.bounds;
-    bounds.size.height = lx_height;
-    self.bounds        = bounds;
+    CGRect frame      = self.frame;
+    frame.size.height = lx_height;
+    self.frame        = frame;
 }
 
 - (CGFloat)lx_height
 {
-    return CGRectGetHeight(self.bounds);
+    return CGRectGetHeight(self.frame);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,12 +154,12 @@
 
 + (UINib *)lx_nib
 {
-    return [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil];
+    return [UINib nibWithNibName:NSStringFromClass(self) bundle:nil];
 }
 
 + (NSString *)lx_nibName
 {
-    return NSStringFromClass([self class]);
+    return NSStringFromClass(self);
 }
 
 + (instancetype)lx_instantiateFromNib
@@ -172,7 +172,7 @@
 {
     NSArray *views = [[self lx_nib] instantiateWithOwner:ownerOrNil options:optionsOrNil];
     for (UIView *view in views) {
-        if ([view isMemberOfClass:[self class]]) {
+        if ([view isMemberOfClass:self]) {
             return view;
         }
     }
@@ -188,10 +188,17 @@
 {
     UIResponder *nextResponder = [self nextResponder];
 
+/* 该方法的目的是获取视图控制器,所以只要是 UIViewController 子类就应该认为成立.
+   注释的条件是查找 UIViewController 子类但不是 UINavigationController 或 UITabBarController 子类的控制器.
+
     while (nextResponder &&
            (![nextResponder isKindOfClass:[UIViewController class]] ||
-           [nextResponder isKindOfClass:[UINavigationController class]]))
-    {
+           [nextResponder isKindOfClass:[UINavigationController class]] ||
+            [nextResponder isKindOfClass:[UITabBarController class]])) {
+        nextResponder = nextResponder.nextResponder;
+    }
+*/
+    while (nextResponder && ![nextResponder isKindOfClass:[UIViewController class]]) {
         nextResponder = nextResponder.nextResponder;
     }
 
@@ -202,12 +209,22 @@
 {
     UIResponder *nextResponder = [self nextResponder];
 
-    while (nextResponder && ![nextResponder isKindOfClass:[UINavigationController class]])
-    {
+    while (nextResponder && ![nextResponder isKindOfClass:[UINavigationController class]]) {
         nextResponder = nextResponder.nextResponder;
     }
 
     return (UINavigationController *)nextResponder;
+}
+
+- (nullable __kindof UITabBarController *)lx_tabBarController
+{
+    UIResponder *nextResponder = [self nextResponder];
+
+    while (nextResponder && ![nextResponder isKindOfClass:[UITabBarController class]]) {
+        nextResponder = nextResponder.nextResponder;
+    }
+
+    return (UITabBarController *)nextResponder;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

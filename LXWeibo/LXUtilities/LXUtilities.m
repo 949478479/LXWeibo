@@ -117,6 +117,11 @@ UIViewController * LXTopViewController()
     return topVC ?: rootVC;
 }
 
+UIViewController * LXRootViewController()
+{
+    return LXKeyWindow().rootViewController;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - GCD

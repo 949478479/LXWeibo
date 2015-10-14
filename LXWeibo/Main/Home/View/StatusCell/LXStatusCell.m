@@ -205,7 +205,7 @@ static inline UIImage * LXPlaceholderImage()
     }
 }
 
-- (void)setupThumbnailWithPhotos:(NSArray<LXPhoto *> *)photos
+- (void)setupThumbnailWithPhotos:(NSArray<LXStatusPhoto *> *)photos
 {
     NSUInteger picCount = photos.count;
     for (NSUInteger i = 0; i < picCount; ++i) {

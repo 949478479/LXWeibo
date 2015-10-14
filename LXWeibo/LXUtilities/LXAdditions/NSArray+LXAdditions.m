@@ -26,17 +26,22 @@
 
 #pragma mark - 函数式便捷方法
 
-- (instancetype)lx_map:(id _Nullable (^)(id _Nonnull))map
+- (__kindof instancetype)lx_map:(id _Nullable (^)(id _Nonnull, BOOL * _Nonnull))map
 {
+    NSMutableArray *array = [NSMutableArray new];
+
     if (self.count == 0) {
-        return self;
+        return array;
     }
 
-    NSMutableArray *array = [NSMutableArray new];
+    BOOL stop;
     for (id obj in self) {
-        id result = map(obj);
+        id result = map(obj, &stop);
         if (result) {
             [array addObject:result];
+        }
+        if (stop) {
+            return array;
         }
     }
     return array; // 出于性能考虑就不 copy 了.
@@ -44,11 +49,12 @@
 
 - (instancetype)lx_filter:(BOOL (^)(id _Nonnull))filter
 {
+    NSMutableArray *array = [NSMutableArray new];
+
     if (self.count == 0) {
-        return self;
+        return array;
     }
 
-    NSMutableArray *array = [NSMutableArray new];
     for (id obj in self) {
         if (filter(obj)) {
             [array addObject:obj];

@@ -1,6 +1,5 @@
 //
 //  CALayer+LXAdditions.m
-//  这到底是个什么鬼
 //
 //  Created by 从今以后 on 15/10/5.
 //  Copyright © 2015年 apple. All rights reserved.
@@ -16,38 +15,38 @@
 
 - (void)setLx_size:(CGSize)lx_size
 {
-    CGRect bounds = self.bounds;
-    bounds.size   = lx_size;
-    self.bounds   = bounds;
+    CGRect frame = self.frame;
+    frame.size   = lx_size;
+    self.frame   = frame;
 }
 
 - (CGSize)lx_size
 {
-    return self.bounds.size;
+    return self.frame.size;
 }
 
 - (void)setLx_width:(CGFloat)lx_width
 {
-    CGRect bounds     = self.bounds;
-    bounds.size.width = lx_width;
-    self.bounds       = bounds;
+    CGRect frame     = self.frame;
+    frame.size.width = lx_width;
+    self.frame       = frame;
 }
 
 - (CGFloat)lx_width
 {
-    return CGRectGetWidth(self.bounds);
+    return CGRectGetWidth(self.frame);
 }
 
 - (void)setLx_height:(CGFloat)lx_height
 {
-    CGRect bounds      = self.bounds;
-    bounds.size.height = lx_height;
-    self.bounds        = bounds;
+    CGRect frame      = self.frame;
+    frame.size.height = lx_height;
+    self.frame        = frame;
 }
 
 - (CGFloat)lx_height
 {
-    return CGRectGetHeight(self.bounds);
+    return CGRectGetHeight(self.frame);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

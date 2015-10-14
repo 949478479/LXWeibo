@@ -108,12 +108,13 @@ static FMDatabase *sDatabase = nil;
          NSString *name = responseObject[@"name"];
          NSAssert(name, @"返回 JSON 中获取的 name 为 nil.");
 
-         completion(OAuthInfo);
-
          if (![OAuthInfo.name isEqualToString:name]) {
              [OAuthInfo setValue:name forKey:@"name"];
              [LXOAuthInfoManager saveOAuthInfo:OAuthInfo];
          }
+         
+         completion(OAuthInfo);
+
      } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
 
          LXLog(@"加载用户昵称请求出错\n%@", error);

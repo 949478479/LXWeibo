@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>UIMainStoryboardFile</key>
-	<string>OAuth</string>
+	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

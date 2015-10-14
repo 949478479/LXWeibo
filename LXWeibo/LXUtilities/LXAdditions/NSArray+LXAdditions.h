@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (LXAdditions)
+@interface NSArray<ObjectType> (LXAdditions)
 
 ///------------------------------------------------------------------------------------------------
 /// @name 常用方法
@@ -26,12 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name 函数式便捷方法
 ///------------------------------------------------------------------------------------------------
 
-- (instancetype)lx_filter:(BOOL (^)(id obj))filter;
+- (instancetype)lx_filter:(BOOL (^)(ObjectType obj))filter;
 
-- (instancetype)lx_map:(id _Nullable (^)(id obj))map;
+- (__kindof instancetype)lx_map:(id _Nullable (^)(ObjectType obj, BOOL *stop))map;
 
 - (nullable id)lx_reduceWithInitial:(nullable id)initial
-                            combine:(id _Nullable (^)(id _Nullable current, id obj))combine;
+                            combine:(id _Nullable (^)(id _Nullable current, id ObjectType))combine;
 @end
 
 NS_ASSUME_NONNULL_END

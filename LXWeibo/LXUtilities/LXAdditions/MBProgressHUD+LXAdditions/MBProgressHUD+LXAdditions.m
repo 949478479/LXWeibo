@@ -1,6 +1,5 @@
 //
 //  MBProgressHUD+LXAdditions.m
-//  LXWeChat
 //
 //  Created by 从今以后 on 15/9/12.
 //  Copyright © 2015年 从今以后. All rights reserved.
@@ -113,15 +112,39 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#pragma mark - 显示进度条 HUD
+
++ (MBProgressHUD *)lx_showProgressHUDToView:(UIView *)view text:(NSString *)text
+{
+    NSAssert(view, @"参数 view 为 nil.");
+
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
+
+    hud.removeFromSuperViewOnHide = YES;
+    
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+
+    hud.labelText = text;
+
+    [view addSubview:hud];
+
+    [hud show:YES];
+
+    return hud;
+}
+
++ (MBProgressHUD *)lx_showProgressHUDWithText:(NSString *)text
+{
+    return [self lx_showProgressHUDToView:LXKeyWindow() text:text];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - 隐藏 HUD
 
 + (void)lx_hideHUD
 {
-    UIWindow *keyWindow = LXKeyWindow();
-
-    NSAssert(keyWindow, @"主窗口为 nil.");
-
-    [self hideHUDForView:keyWindow animated:YES];
+    [self hideHUDForView:LXKeyWindow() animated:YES];
 }
 
 + (void)lx_hideHUDForView:(UIView *)view

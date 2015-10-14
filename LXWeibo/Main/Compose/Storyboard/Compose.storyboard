@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JCN-Bv-bLg">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--发微博 View Controller-->
+        <scene sceneID="g6c-QL-eiN">
+            <objects>
+                <viewController id="uRm-IG-hzh" userLabel="发微博 View Controller" customClass="LXComposeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PfD-o7-kfJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="rJK-CI-jpg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4mB-BH-9is">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oIT-hl-Kf3" customClass="LXComposeTextView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="分享新鲜事..."/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="uRm-IG-hzh" id="PNl-GP-lME"/>
+                                </connections>
+                            </textView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="3Op-dh-52T" customClass="LXComposeToolBar">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uRm-IG-hzh" id="s98-jN-ErP"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v81-6b-SJr" customClass="LXKeyboardSpacingView">
+                                <rect key="frame" x="0.0" y="568" width="320" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="CNX-GC-Keh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="heightConstraint" destination="CNX-GC-Keh" id="tWK-MR-g6G"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Op-dh-52T" firstAttribute="top" secondItem="oIT-hl-Kf3" secondAttribute="bottom" id="HAb-qf-sAd"/>
+                            <constraint firstAttribute="bottom" secondItem="v81-6b-SJr" secondAttribute="bottom" id="Jnb-zL-5F5"/>
+                            <constraint firstAttribute="trailing" secondItem="3Op-dh-52T" secondAttribute="trailing" id="NQf-n5-Rtv"/>
+                            <constraint firstItem="oIT-hl-Kf3" firstAttribute="leading" secondItem="4mB-BH-9is" secondAttribute="leading" id="PDv-5b-xxC"/>
+                            <constraint firstAttribute="trailing" secondItem="v81-6b-SJr" secondAttribute="trailing" id="WDg-zD-dKN"/>
+                            <constraint firstItem="oIT-hl-Kf3" firstAttribute="top" secondItem="4mB-BH-9is" secondAttribute="top" id="ZcR-XF-u96"/>
+                            <constraint firstAttribute="trailing" secondItem="oIT-hl-Kf3" secondAttribute="trailing" id="axz-Wc-84p"/>
+                            <constraint firstItem="v81-6b-SJr" firstAttribute="top" secondItem="3Op-dh-52T" secondAttribute="bottom" id="cNw-qE-PZd"/>
+                            <constraint firstItem="v81-6b-SJr" firstAttribute="leading" secondItem="4mB-BH-9is" secondAttribute="leading" id="o7c-4R-GIK"/>
+                            <constraint firstItem="3Op-dh-52T" firstAttribute="leading" secondItem="4mB-BH-9is" secondAttribute="leading" id="qlB-K0-y4Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zel-Ym-gEp">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="I0d-de-JAh">
+                            <connections>
+                                <segue destination="mOd-9w-MKq" kind="unwind" unwindAction="dismissComposeVCForSegue:" id="rmu-D0-6cN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="发表" id="lnc-SD-aHd">
+                            <connections>
+                                <action selector="sendButtonDidTap:" destination="uRm-IG-hzh" id="ISA-Z0-DVm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imagePicker" destination="RVE-UI-b9g" id="VBR-7Q-1mz"/>
+                        <outlet property="keyboardToolBar" destination="3Op-dh-52T" id="wzt-KR-zau"/>
+                        <outlet property="sendButtonItem" destination="lnc-SD-aHd" id="YWn-HK-152"/>
+                        <outlet property="textView" destination="oIT-hl-Kf3" id="V9G-Ij-hmR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bcs-5l-KBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="mOd-9w-MKq" userLabel="Exit" sceneMemberID="exit"/>
+                <customObject id="RVE-UI-b9g" customClass="LXImagePicker"/>
+            </objects>
+            <point key="canvasLocation" x="-437" y="-56"/>
+        </scene>
+        <!--发微博 Navigation Controller-->
+        <scene sceneID="9nD-fH-ebB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JCN-Bv-bLg" userLabel="发微博 Navigation Controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qiW-Mz-s7I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uRm-IG-hzh" kind="relationship" relationship="rootViewController" id="l29-Wa-Y13"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fy2-Pk-0dv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-855" y="-56"/>
+        </scene>
+    </scenes>
+</document>

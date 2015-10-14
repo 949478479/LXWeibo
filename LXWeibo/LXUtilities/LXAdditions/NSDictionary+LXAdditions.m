@@ -40,11 +40,12 @@
 
 - (instancetype)lx_filter:(BOOL (^)(id _Nonnull, id _Nonnull))filter
 {
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+
     if (self.count == 0) {
-        return self;
+        return dict;
     }
 
-    NSMutableDictionary *dict = [NSMutableDictionary new];
     [self enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key,
                                               id _Nonnull obj,
                                               BOOL * _Nonnull stop) {

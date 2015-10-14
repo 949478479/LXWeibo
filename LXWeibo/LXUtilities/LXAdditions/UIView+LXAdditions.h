@@ -77,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable __kindof UINavigationController *)lx_navigationController;
 
 /**
+ *  获取视图所属的选项卡控制器,即响应链上最近的 @c UITabBarController.
+ */
+- (nullable __kindof UITabBarController *)lx_tabBarController;
+
+/**
  *  执行晃动动画.
  */
 - (void)lx_shakeAnimation;

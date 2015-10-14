@@ -81,6 +81,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)lx_showError:(nullable NSString *)error toView:(UIView *)view;
 
+/**
+ *  将 HUD 添加到主窗口,持续显示.环形进度条样式,无蒙版.需手动设置 @c progress 属性以及手动隐藏.
+ *
+ *  @param text 提示信息.
+ *
+ *  @return HUD 实例.
+ */
++ (MBProgressHUD *)lx_showProgressHUDWithText:(nullable NSString *)text;
+
+/**
+ *  将 HUD 添加到指定视图,持续显示.环形进度条样式,无蒙版.需手动设置 @c progress 属性以及手动隐藏.
+ *
+ *  @param view 添加 HUD 的视图.
+ *  @param text 提示信息.
+ *
+ *  @return HUD 实例.
+ */
++ (MBProgressHUD *)lx_showProgressHUDToView:(UIView *)view text:(nullable NSString *)text;
+
 ///------------------------------------------------------------------------------------------------
 /// @name 隐藏 HUD
 ///------------------------------------------------------------------------------------------------

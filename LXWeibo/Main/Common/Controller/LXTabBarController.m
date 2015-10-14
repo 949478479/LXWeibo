@@ -26,28 +26,7 @@ static const CGFloat kNavigationBarTitleFontSize = 18;
 {
     [super viewDidLoad];
 
-    [self setupChildrenVC];
     [self configureAppearance];
-}
-
-- (void)setupChildrenVC
-{
-    UINavigationController *homeNav =
-        [UIStoryboard lx_instantiateViewControllerWithStoryboardName:@"Home"
-                                                          identifier:nil];
-    UINavigationController *messageNav =
-        [UIStoryboard lx_instantiateViewControllerWithStoryboardName:@"Message"
-                                                          identifier:nil];
-
-    UINavigationController *discoverNav =
-        [UIStoryboard lx_instantiateViewControllerWithStoryboardName:@"Discover"
-                                                          identifier:nil];
-
-    UINavigationController *profileNav =
-        [UIStoryboard lx_instantiateViewControllerWithStoryboardName:@"Profile"
-                                                          identifier:nil];
-
-    self.viewControllers = @[homeNav, messageNav, discoverNav, profileNav];
 }
 
 - (void)configureAppearance
@@ -92,6 +71,6 @@ static const CGFloat kNavigationBarTitleFontSize = 18;
 
 #pragma mark - Navigation
 
-- (IBAction)unwindForSegue:(UIStoryboardSegue *)unwindSegue { }
+- (IBAction)dismissComposeVCForSegue:(UIStoryboardSegue *)unwindSegue { }
 
 @end

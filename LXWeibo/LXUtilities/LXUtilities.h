@@ -27,6 +27,7 @@
 #import "NSDictionary+LXAdditions.h"
 #import "NSFileManager+LXAdditions.h"
 #import "NSUserDefaults+LXAdditions.h"
+#import "UIViewController+LXAdditions.h"
 #import "NSAttributedString+LXAdditions.h"
 #import "NSNotificationCenter+LXAdditions.h"
 
@@ -79,6 +80,7 @@ UIWindow * LXKeyWindow();
 UIWindow * LXTopWindow();
 
 UIViewController * LXTopViewController();
+UIViewController * LXRootViewController();
 
 ///------------------------------------------------------------------------------------------------
 /// @name GCD

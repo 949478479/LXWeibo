@@ -22,7 +22,7 @@
 
 + (NSDictionary *)objectClassInArray
 {
-    return @{ @"pic_urls" : [LXPhoto class] };
+    return @{ @"pic_urls" : [LXStatusPhoto class] };
 }
 
 #pragma mark - 微博来源处理

@@ -9,24 +9,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSDictionary (LXAdditions)
-
-///------------------------------------------------------------------------------------------------
-/// @name 常用方法
-///------------------------------------------------------------------------------------------------
-
-- (BOOL)lx_isEmpty;
+@interface NSDictionary<KeyType, ObjectType> (LXAdditions)
 
 ///------------------------------------------------------------------------------------------------
 /// @name 函数式便捷方法
 ///------------------------------------------------------------------------------------------------
 
-- (NSArray *)lx_map:(id _Nullable (^)(id key, id obj))map;
+- (NSArray *)lx_map:(id _Nullable (^)(KeyType key, ObjectType obj))map;
 
-- (instancetype)lx_filter:(BOOL (^)(id key, id obj))filter;
+- (instancetype)lx_filter:(BOOL (^)(KeyType key, ObjectType obj))filter;
 
 - (nullable id)lx_reduceWithInitial:(nullable id)initial
-                            combine:(id _Nullable (^)(id _Nullable current, id key, id obj))combine;
+                            combine:(id _Nullable (^)(id _Nullable current, KeyType key, ObjectType obj))combine;
 @end
 
 NS_ASSUME_NONNULL_END

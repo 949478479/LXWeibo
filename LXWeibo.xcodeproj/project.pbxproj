@@ -61,9 +61,9 @@
 		18DE618A1BB7D9170048388C /* OAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DE61891BB7D9170048388C /* OAuth.storyboard */; settings = {ASSET_TAGS = (); }; };
 		18DE618D1BB7D9AA0048388C /* LXAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE618C1BB7D9AA0048388C /* LXAuthViewController.m */; settings = {ASSET_TAGS = (); }; };
 		18E2821B1BCD98D900C44296 /* LXPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E282151BCD98D900C44296 /* LXPhoto.m */; settings = {ASSET_TAGS = (); }; };
-		18E2821C1BCD98D900C44296 /* LXPhotoBrower.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E282161BCD98D900C44296 /* LXPhotoBrower.storyboard */; settings = {ASSET_TAGS = (); }; };
-		18E2821D1BCD98D900C44296 /* LXPhotoBrowerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E282181BCD98D900C44296 /* LXPhotoBrowerCell.m */; settings = {ASSET_TAGS = (); }; };
-		18E2821E1BCD98D900C44296 /* LXPhotoBrowerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2821A1BCD98D900C44296 /* LXPhotoBrowerController.m */; settings = {ASSET_TAGS = (); }; };
+		18E2821C1BCD98D900C44296 /* LXPhotoBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E282161BCD98D900C44296 /* LXPhotoBrowser.storyboard */; settings = {ASSET_TAGS = (); }; };
+		18E2821D1BCD98D900C44296 /* LXPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E282181BCD98D900C44296 /* LXPhotoBrowserCell.m */; settings = {ASSET_TAGS = (); }; };
+		18E2821E1BCD98D900C44296 /* LXPhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2821A1BCD98D900C44296 /* LXPhotoBrowserController.m */; settings = {ASSET_TAGS = (); }; };
 		18E282A41BCD99BE00C44296 /* CALayer+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E282711BCD99BE00C44296 /* CALayer+LXAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		18E282A51BCD99BE00C44296 /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E282741BCD99BE00C44296 /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
 		18E282A61BCD99BE00C44296 /* MBProgressHUD+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E282771BCD99BE00C44296 /* MBProgressHUD+LXAdditions.m */; settings = {ASSET_TAGS = (); }; };
@@ -254,11 +254,11 @@
 		18DE618C1BB7D9AA0048388C /* LXAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXAuthViewController.m; sourceTree = "<group>"; };
 		18E282141BCD98D900C44296 /* LXPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhoto.h; sourceTree = "<group>"; };
 		18E282151BCD98D900C44296 /* LXPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhoto.m; sourceTree = "<group>"; };
-		18E282161BCD98D900C44296 /* LXPhotoBrower.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LXPhotoBrower.storyboard; sourceTree = "<group>"; };
-		18E282171BCD98D900C44296 /* LXPhotoBrowerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhotoBrowerCell.h; sourceTree = "<group>"; };
-		18E282181BCD98D900C44296 /* LXPhotoBrowerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhotoBrowerCell.m; sourceTree = "<group>"; };
-		18E282191BCD98D900C44296 /* LXPhotoBrowerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhotoBrowerController.h; sourceTree = "<group>"; };
-		18E2821A1BCD98D900C44296 /* LXPhotoBrowerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhotoBrowerController.m; sourceTree = "<group>"; };
+		18E282161BCD98D900C44296 /* LXPhotoBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LXPhotoBrowser.storyboard; sourceTree = "<group>"; };
+		18E282171BCD98D900C44296 /* LXPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhotoBrowserCell.h; sourceTree = "<group>"; };
+		18E282181BCD98D900C44296 /* LXPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhotoBrowserCell.m; sourceTree = "<group>"; };
+		18E282191BCD98D900C44296 /* LXPhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhotoBrowserController.h; sourceTree = "<group>"; };
+		18E2821A1BCD98D900C44296 /* LXPhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhotoBrowserController.m; sourceTree = "<group>"; };
 		18E282701BCD99BE00C44296 /* CALayer+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+LXAdditions.h"; sourceTree = "<group>"; };
 		18E282711BCD99BE00C44296 /* CALayer+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LXAdditions.m"; sourceTree = "<group>"; };
 		18E282731BCD99BE00C44296 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
@@ -832,7 +832,7 @@
 		1889A0AF1BB3A04100060A9A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18E282131BCD98D900C44296 /* PhotoBrower */,
+				18E282131BCD98D900C44296 /* LXPhotoBrowser */,
 				183509C91BC561A20075BF43 /* StatusToolBar */,
 				183509C51BC561730075BF43 /* PopoverView */,
 				183509CF1BC561C90075BF43 /* TitleButton */,
@@ -941,18 +941,18 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		18E282131BCD98D900C44296 /* PhotoBrower */ = {
+		18E282131BCD98D900C44296 /* LXPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				18E282161BCD98D900C44296 /* LXPhotoBrower.storyboard */,
+				18E282161BCD98D900C44296 /* LXPhotoBrowser.storyboard */,
 				18E282141BCD98D900C44296 /* LXPhoto.h */,
 				18E282151BCD98D900C44296 /* LXPhoto.m */,
-				18E282171BCD98D900C44296 /* LXPhotoBrowerCell.h */,
-				18E282181BCD98D900C44296 /* LXPhotoBrowerCell.m */,
-				18E282191BCD98D900C44296 /* LXPhotoBrowerController.h */,
-				18E2821A1BCD98D900C44296 /* LXPhotoBrowerController.m */,
+				18E282171BCD98D900C44296 /* LXPhotoBrowserCell.h */,
+				18E282181BCD98D900C44296 /* LXPhotoBrowserCell.m */,
+				18E282191BCD98D900C44296 /* LXPhotoBrowserController.h */,
+				18E2821A1BCD98D900C44296 /* LXPhotoBrowserController.m */,
 			);
-			path = PhotoBrower;
+			path = LXPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		18E2826E1BCD99BE00C44296 /* LXUtilities */ = {
@@ -1400,7 +1400,7 @@
 				180B4F861BC6C17800282463 /* Home.storyboard in Resources */,
 				1836BA801BCEDF9300885EF2 /* Compose.storyboard in Resources */,
 				1889A0BD1BB3D82400060A9A /* Main.storyboard in Resources */,
-				18E2821C1BCD98D900C44296 /* LXPhotoBrower.storyboard in Resources */,
+				18E2821C1BCD98D900C44296 /* LXPhotoBrowser.storyboard in Resources */,
 				183509FF1BC562AD0075BF43 /* LXEmotionKeyboard.xib in Resources */,
 				18E282A71BCD99BE00C44296 /* MBProgressHUD.bundle in Resources */,
 				18E61F4B1BBCE21100442735 /* MJRefresh.bundle in Resources */,
@@ -1442,7 +1442,7 @@
 				18EB245D1BB8EA37009D9505 /* SDWebImageCompat.m in Sources */,
 				18EB245F1BB8EA37009D9505 /* SDWebImageDownloader.m in Sources */,
 				18EB245B1BB8EA37009D9505 /* NSData+ImageContentType.m in Sources */,
-				18E2821D1BCD98D900C44296 /* LXPhotoBrowerCell.m in Sources */,
+				18E2821D1BCD98D900C44296 /* LXPhotoBrowserCell.m in Sources */,
 				18E8D8B81BC9402100354848 /* LXStatusTextView.m in Sources */,
 				18E282BB1BCD99BE00C44296 /* LXMulticastDelegate.m in Sources */,
 				18E70B831BCC18BA007DF790 /* LXSettingViewController.m in Sources */,
@@ -1495,7 +1495,7 @@
 				183509D21BC561C90075BF43 /* LXTitleButton.m in Sources */,
 				18DE61421BB775990048388C /* LXNewFeatureViewController.m in Sources */,
 				18706E3B1BB24B1100F12441 /* MBProgressHUD.m in Sources */,
-				18E2821E1BCD98D900C44296 /* LXPhotoBrowerController.m in Sources */,
+				18E2821E1BCD98D900C44296 /* LXPhotoBrowserController.m in Sources */,
 				18D22D711BBADBC100745192 /* XXNibConvention.m in Sources */,
 				18E282B31BCD99BE00C44296 /* UIImage+LXAdditions.m in Sources */,
 				18EB24681BB8EA37009D9505 /* UIImageView+WebCache.m in Sources */,

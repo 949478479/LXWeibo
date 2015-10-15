@@ -174,7 +174,7 @@ static FMDatabase *sDatabase = nil;
     NSArray *statuses = [self cachedStatusesWithSinceID:since_id accessToken:access_token];
 
     // 从缓存加载到微博.
-    if (!statuses.lx_isEmpty) {
+    if (statuses.count > 0) {
         LXLog(@"从缓存加载最新微博请求完成!");
         completion(statuses);
         return;
@@ -190,7 +190,7 @@ static FMDatabase *sDatabase = nil;
 
          NSArray *statusJSONs = responseObject[@"statuses"];
 
-         if (statusJSONs.lx_isEmpty) {
+         if (statusJSONs.count == 0) {
              completion(@[]);
              return;
          }
@@ -223,7 +223,7 @@ static FMDatabase *sDatabase = nil;
     NSArray *statuses = [self cachedStatusesWithMaxID:max_id accessToken:access_token];
 
     // 从缓存加载到微博.
-    if (!statuses.lx_isEmpty) {
+    if (statuses.count > 0) {
         LXLog(@"从缓存加载更多微博请求完成!");
         completion(statuses);
         return;

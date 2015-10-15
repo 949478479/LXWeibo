@@ -10,7 +10,7 @@
 #import "XXNibBridge.h"
 #import "LXStatusPhoto.h"
 #import "LXStatusThumbnailView.h"
-#import "LXPhotoBrowerController.h"
+#import "LXPhotoBrowserController.h"
 #import "LXStatusThumbnailContainerView.h"
 
 const CGFloat kLXStatusThumbnailRows   = 3;
@@ -44,13 +44,13 @@ const CGFloat kLXStatusThumbnailMargin = 8;
     [_thumbnailViews enumerateObjectsUsingBlock:^(LXStatusThumbnailView * _Nonnull obj,
                                                   NSUInteger idx,
                                                   BOOL * _Nonnull stop) {
-        // 找出被点击的 LXStatusThumbnailView.
-        if (!CGRectContainsPoint(obj.frame, touchPoint)) {
+        // 找出被点击且有图的 LXStatusThumbnailView.
+        if (!obj.image || !CGRectContainsPoint(obj.frame, touchPoint)) {
             return ;
         }
 
         // 弹出图片浏览器.
-        LXPhotoBrowerController *photoBrower = [LXPhotoBrowerController photoBrower];
+        LXPhotoBrowserController *photoBrower = [LXPhotoBrowserController photoBrower];
         photoBrower.currentPhotoIndex = idx;
         photoBrower.photos = [_thumbnailViews lx_map:^id _Nullable(LXStatusThumbnailView * _Nonnull obj,
                                                                    BOOL * _Nonnull stop) {

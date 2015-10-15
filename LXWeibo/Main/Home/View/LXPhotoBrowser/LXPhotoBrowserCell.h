@@ -1,5 +1,5 @@
 //
-//  LXPhotoBrowerCell.h
+//  LXPhotoBrowserCell.h
 //
 //  Created by 从今以后 on 15/10/13.
 //  Copyright © 2015年 apple. All rights reserved.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXPhotoBrowerCell : UICollectionViewCell
+@interface LXPhotoBrowserCell : UICollectionViewCell
 
 @property (nonatomic, readonly, weak) UIImageView  *imageView;
 @property (nonatomic, readonly, weak) UIScrollView *scrollView;

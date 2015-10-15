@@ -10,13 +10,6 @@
 
 @implementation NSDictionary (LXAdditions)
 
-#pragma mark - 常用方法
-
-- (BOOL)lx_isEmpty
-{
-    return self.count == 0;
-}
-
 #pragma mark - 函数式便捷方法
 
 - (NSArray *)lx_map:(id _Nullable (^)(id _Nonnull, id _Nonnull))map

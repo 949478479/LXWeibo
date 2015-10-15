@@ -1,5 +1,5 @@
 //
-//  LXPhotoBrowerController.h
+//  LXPhotoBrowserController.h
 //
 //  Created by 从今以后 on 15/10/13.
 //  Copyright © 2015年 apple. All rights reserved.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXPhotoBrowerController : UIViewController
+@interface LXPhotoBrowserController : UIViewController
 
 @property (nonatomic, assign) NSUInteger currentPhotoIndex;
 

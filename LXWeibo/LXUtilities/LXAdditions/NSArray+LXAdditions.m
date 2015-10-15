@@ -12,11 +12,6 @@
 
 #pragma mark - 常用方法
 
-- (BOOL)lx_isEmpty
-{
-    return self.count == 0;
-}
-
 + (instancetype)lx_arrayWithResourcePath:(NSString *)path
 {
     NSAssert(path.length, @"参数 path 为空字符串或 nil.");

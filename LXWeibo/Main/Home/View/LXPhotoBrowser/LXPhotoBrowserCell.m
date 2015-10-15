@@ -1,5 +1,5 @@
 //
-//  LXPhotoBrowerCell.m
+//  LXPhotoBrowserCell.m
 //
 //  Created by 从今以后 on 15/10/13.
 //  Copyright © 2015年 apple. All rights reserved.
@@ -7,16 +7,16 @@
 
 #import "LXPhoto.h"
 #import "LXUtilities.h"
-#import "LXPhotoBrowerCell.h"
+#import "LXPhotoBrowserCell.h"
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD+LXAdditions.h"
 
-@interface LXPhotoBrowerCell () <UIScrollViewDelegate>
+@interface LXPhotoBrowserCell () <UIScrollViewDelegate>
 @property (nonatomic, readwrite, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, readwrite, weak) IBOutlet UIScrollView *scrollView;
 @end
 
-@implementation LXPhotoBrowerCell
+@implementation LXPhotoBrowserCell
 
 - (void)dealloc
 {

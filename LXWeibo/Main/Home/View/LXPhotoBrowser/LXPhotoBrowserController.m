@@ -1,5 +1,5 @@
 //
-//  LXPhotoBrowerController.m
+//  LXPhotoBrowserController.m
 //
 //  Created by 从今以后 on 15/10/13.
 //  Copyright © 2015年 apple. All rights reserved.
@@ -7,38 +7,45 @@
 
 #import "LXPhoto.h"
 #import "LXUtilities.h"
-#import "SDWebImageManager.h"
-#import "LXPhotoBrowerCell.h"
-#import "LXPhotoBrowerController.h"
+#import "LXPhotoBrowserCell.h"
+#import "SDWebImagePrefetcher.h"
+#import "LXPhotoBrowserController.h"
 #import "MBProgressHUD+LXAdditions.h"
 
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 
 static const CGFloat kPagePadding = 20;
 static const NSTimeInterval kAnimatoinDuration = 0.5; // 试验发现这个数是 modal 动画的时间.
-static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
+static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
-@interface LXPhotoBrowerController ()
+@interface LXPhotoBrowserController ()
+
 @property (nonatomic, weak) IBOutlet UILabel *indexLabel;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, weak) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
 @property (nonatomic, weak) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
+
+@property (nonatomic, assign) BOOL shouldReshowStatusBar;
+
 @end
 
-@implementation LXPhotoBrowerController
+@implementation LXPhotoBrowserController
 
 - (void)dealloc
 {
-    LXLog(@"delloc");
+    [[SDWebImagePrefetcher sharedImagePrefetcher] cancelPrefetching];
 }
 
 #pragma mark - 初始化
 
 + (instancetype)photoBrower
 {
-    return [UIStoryboard lx_instantiateViewControllerWithStoryboardName:@"LXPhotoBrower"
-                                                             identifier:nil];
+    LXPhotoBrowserController *photoBrowser =
+        [UIStoryboard lx_instantiateViewControllerWithStoryboardName:@"LXPhotoBrowser"
+                                                          identifier:nil];
+    return photoBrowser;
 }
 
 #pragma mark - present/dismiss 动画
@@ -55,6 +62,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
     [keyWindow addSubview:fadeView];
 
     UIImageView *sourceImageView = [_photos[_currentPhotoIndex] sourceImageView];
+    NSAssert(sourceImageView, @"sourceImageView 不能为 nil.");
     sourceImageView.hidden = YES;
 
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:sourceImageView.image];
@@ -80,6 +88,8 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
         [fadeView removeFromSuperview];
         [tempImageView removeFromSuperview];
     }];
+
+    [self hideStatusBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -93,6 +103,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
     [keyWindow addSubview:fadeView];
 
     UIImageView *sourceImageView = [_photos[_currentPhotoIndex] sourceImageView];
+    NSAssert(sourceImageView, @"sourceImageView 不能为 nil.");
     sourceImageView.hidden = YES;
 
     UIImageView *cellImageView = [self.collectionView.visibleCells[0] imageView];
@@ -114,6 +125,30 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
         [fadeView removeFromSuperview];
         [tempImageView removeFromSuperview];
     }];
+
+    if (_shouldReshowStatusBar) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                withAnimation:UIStatusBarAnimationFade];
+    }
+}
+
+#pragma mark - 隐藏状态栏
+
+- (void)hideStatusBar
+{
+    NSNumber *boolNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:
+                            @"UIViewControllerBasedStatusBarAppearance"];
+    // 状态栏由 UIApplication 控制,且当前可见,那么需要隐藏状态栏.
+    if (boolNumber && !boolNumber.boolValue && ![UIApplication sharedApplication].statusBarHidden) {
+        _shouldReshowStatusBar = YES; // dismiss 后需要重新显示状态栏.
+        [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                                withAnimation:UIStatusBarAnimationFade];
+    }
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES; // 状态栏由控制器控制,则直接隐藏即可.
 }
 
 #pragma mark - 基本设置
@@ -125,20 +160,18 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
     [_singleTapGestureRecognizer requireGestureRecognizerToFail:_doubleTapGestureRecognizer];
 
     _indexLabel.hidden = _photos.count < 2;
+    // 空四个格是为了能让标签两边留有一定空隙.
     _indexLabel.text = [NSString stringWithFormat:@"%lu/%lu    ",
                         (unsigned long)_currentPhotoIndex + 1, (unsigned long)_photos.count];
 
-
-    _flowLayout.itemSize = self.view.lx_size;
+    /* 此时子视图的布局尚未完成, collectionView 还是 IB 中的尺寸,并非屏幕尺寸.因此需更新下尺寸,
+     否则直接设置 itemSize 会警告超出 collectionView 尺寸而无效. */
+    _collectionView.frame = self.view.bounds;
+    _flowLayout.itemSize  = self.view.lx_size;
     _collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentPhotoIndex inSection:0]
                             atScrollPosition:UICollectionViewScrollPositionNone
                                     animated:NO];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return NO;
 }
 
 #pragma mark - 手势处理
@@ -150,7 +183,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
 
 - (IBAction)doubleTapHandle:(UITapGestureRecognizer *)sender
 {
-    LXPhotoBrowerCell *cell  = _collectionView.visibleCells[0];
+    LXPhotoBrowserCell *cell  = _collectionView.visibleCells[0];
     UIImageView *imageView   = cell.imageView;
     UIScrollView *scrollView = cell.scrollView;
 
@@ -193,7 +226,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    LXPhotoBrowerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+    LXPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
                                                                         forIndexPath:indexPath];
 
     __weak __typeof(self) weakSelf = self;
@@ -206,25 +239,24 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowerCell";
 
 - (void)loadAdjacentImageAtIndex:(NSUInteger)index
 {
-    void(^downloadImageWithURL)(NSURL *) = ^(NSURL *url) {
-        [[SDWebImageManager sharedManager] downloadImageWithURL:url
-                                                        options:(SDWebImageOptions)0
-                                                       progress:nil
-                                                      completed:^(UIImage *image,
-                                                                  NSError *error,
-                                                                  SDImageCacheType cacheType,
-                                                                  BOOL finished,
-                                                                  NSURL *imageURL) {
-                                                          // 该 block 参数不能为 nil.
-                                                      }];
-    };
+    NSMutableArray *urls = [NSMutableArray new];
 
     if (index < _photos.count - 1) {
-        downloadImageWithURL([_photos[index + 1] originalImageURL]);
+        NSURL *url = [_photos[index + 1] originalImageURL];
+        if (url) {
+            [urls addObject:url];
+        }
     }
 
     if (index > 1) {
-        downloadImageWithURL([_photos[index - 1] originalImageURL]);
+        NSURL *url = [_photos[index - 1] originalImageURL];
+        if (url) {
+            [urls addObject:url];
+        }
+    }
+
+    if (urls.count > 0) {
+        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:urls];
     }
 }
 

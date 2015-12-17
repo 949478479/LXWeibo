@@ -30,11 +30,12 @@
     [MBProgressHUD hideHUDForView:self animated:NO]; // 隐藏可能存在的前一次添加的 hud
     __weak __block MBProgressHUD *hud = nil;
 
-    NSURL *url = [photo originalImageURL];
-    if (url) {
+    NSURL *originalImageURL = [photo originalImageURL];
+    UIImage *sourceImage = [photo sourceImageView].image;
+    if (originalImageURL) {
         __weak __typeof(self) weakSelf = self;
-        [_imageView sd_setImageWithURL:url
-                      placeholderImage:[photo sourceImageView].image
+        [_imageView sd_setImageWithURL:originalImageURL
+                      placeholderImage:sourceImage
                                options:(SDWebImageOptions)0
                               progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                   if (!hud) {
@@ -42,16 +43,16 @@
                                   }
                                   hud.progress = (float)receivedSize / expectedSize;
                               }
-                             completed:^(UIImage *image, NSError *error,
-                                         SDImageCacheType cacheType,
-                                         NSURL *imageURL) {
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                  [hud hide:YES];
-                                 [weakSelf.imageView sizeToFit];
-                                 [weakSelf adjustZoomScale];
+                                 if (image) {
+                                     [weakSelf.imageView sizeToFit];
+                                     [weakSelf adjustZoomScale];
+                                 }
                                  if (completion) completion();
                              }];
     } else {
-        _imageView.image = [photo sourceImageView].image;
+        _imageView.image = sourceImage;
     }
 
     [_imageView sizeToFit];
@@ -62,10 +63,8 @@
 
 - (void)adjustZoomScale
 {
-    // 重置缩放变换，否则设置尺寸会受到缩放影响
+    // 重置缩放变换，否则设置尺寸会受到缩放影响。另外这会更新 contentSize。
     _scrollView.zoomScale = _scrollView.minimumZoomScale = 1.0;
-
-    _scrollView.contentSize = _imageView.image.size;
 
     // 让最小缩放系数下图片宽度和屏幕相同
     CGFloat zoomScale = LXScreenSize().width / _scrollView.contentSize.width;
@@ -74,7 +73,7 @@
     if (zoomScale >= 1.0) {
         // zoomScale >= 1.0 说明图片太小，在放大的情况下才能填充。
         // 此时图片已放大至最大，并且无法缩小。为了能触发弹簧效果，需确保 maximumZoomScale > minimumZoomScale。
-        _scrollView.maximumZoomScale = zoomScale + CGFLOAT_MIN;
+        _scrollView.maximumZoomScale = zoomScale + 0.000001;
     } else {
         // zoomScale < 1.0 说明图片比较大，需缩小或者原图尺寸才能填充。
         _scrollView.maximumZoomScale = 1.0;

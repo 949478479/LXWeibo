@@ -219,7 +219,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LXPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                        forIndexPath:indexPath];
+                                                                         forIndexPath:indexPath];
 
     __weak __typeof(self) weakSelf = self;
     [cell configureWithPhoto:_photos[indexPath.row] completion:^{

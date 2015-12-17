@@ -13,22 +13,18 @@
 #import "MBProgressHUD+LXAdditions.h"
 
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 
 static const CGFloat kPagePadding = 20;
-static const NSTimeInterval kAnimatoinDuration = 0.5; // 试验发现这个数是 modal 动画的时间.
+static const NSTimeInterval kAnimationDuration = 0.5; // 试验发现这个数是 modal 动画的时间.
 static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
 @interface LXPhotoBrowserController ()
-
-@property (nonatomic, weak) IBOutlet UILabel *indexLabel;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, weak) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
-@property (nonatomic, weak) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
-
-@property (nonatomic, assign) BOOL shouldReshowStatusBar;
-
+@property (nonatomic) BOOL shouldReshowStatusBar;
+@property (nonatomic) IBOutlet UILabel *indexLabel;
+@property (nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
+@property (nonatomic) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
 @end
 
 @implementation LXPhotoBrowserController
@@ -38,7 +34,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
     [[SDWebImagePrefetcher sharedImagePrefetcher] cancelPrefetching];
 }
 
-#pragma mark - 初始化
+#pragma mark 初始化
 
 + (instancetype)photoBrower
 {
@@ -48,7 +44,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
     return photoBrowser;
 }
 
-#pragma mark - present/dismiss 动画
+#pragma mark present/dismiss 动画
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -79,7 +75,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
     self.view.hidden = YES;
 
-    [UIView animateWithDuration:kAnimatoinDuration animations:^{
+    [UIView animateWithDuration:kAnimationDuration animations:^{
         fadeView.alpha = 1.0;
         tempImageView.frame = endFrame;
     } completion:^(BOOL finished) {
@@ -117,7 +113,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
     self.view.hidden = YES;
 
-    [UIView animateWithDuration:kAnimatoinDuration animations:^{
+    [UIView animateWithDuration:kAnimationDuration animations:^{
         fadeView.alpha = 0;
         tempImageView.frame = [sourceImageView convertRect:sourceImageView.bounds toView:keyWindow];
     } completion:^(BOOL finished) {
@@ -132,7 +128,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
     }
 }
 
-#pragma mark - 隐藏状态栏
+#pragma mark 隐藏状态栏
 
 - (void)hideStatusBar
 {
@@ -151,7 +147,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
     return YES; // 状态栏由控制器控制,则直接隐藏即可.
 }
 
-#pragma mark - 基本设置
+#pragma mark 基本设置
 
 - (void)viewDidLoad
 {
@@ -174,7 +170,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
                                     animated:NO];
 }
 
-#pragma mark - 手势处理
+#pragma mark 手势处理
 
 - (IBAction)singleTapHandle:(UITapGestureRecognizer *)sender
 {
@@ -183,7 +179,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
 - (IBAction)doubleTapHandle:(UITapGestureRecognizer *)sender
 {
-    LXPhotoBrowserCell *cell  = _collectionView.visibleCells[0];
+    LXPhotoBrowserCell *cell = _collectionView.visibleCells[0];
     UIImageView *imageView   = cell.imageView;
     UIScrollView *scrollView = cell.scrollView;
 
@@ -196,7 +192,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
     }
 }
 
-#pragma mark - 保存图片
+#pragma mark 保存图片
 
 - (IBAction)saveButtonTapHandle:(UIButton *)sender
 {
@@ -208,14 +204,10 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
-    if (error) {
-        [MBProgressHUD lx_showError:@"保存失败"];
-    } else {
-        [MBProgressHUD lx_showSuccess:@"保存成功"];
-    }
+    error ? [MBProgressHUD lx_showError:@"保存失败"] : [MBProgressHUD lx_showSuccess:@"保存成功"];
 }
 
-#pragma mark - 加载图片
+#pragma mark 加载图片
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section
@@ -260,7 +252,7 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
     }
 }
 
-#pragma mark - 分页处理
+#pragma mark 分页处理
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity

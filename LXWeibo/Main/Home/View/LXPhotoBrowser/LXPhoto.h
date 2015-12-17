@@ -10,12 +10,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol LXPhoto <NSObject>
-@property (nullable, nonatomic, strong) NSURL *originalImageURL;
-@property (nonatomic, strong) UIImageView *sourceImageView;
+@property (nonatomic) UIImageView *sourceImageView;
+@property (nullable, nonatomic) NSURL *originalImageURL;
 @end
 
 @interface LXPhoto : NSObject <LXPhoto>
-
 @end
 
 NS_ASSUME_NONNULL_END

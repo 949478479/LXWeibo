@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXPhotoBrowserCell : UICollectionViewCell
 
-@property (nonatomic, readonly, weak) UIImageView  *imageView;
-@property (nonatomic, readonly, weak) UIScrollView *scrollView;
+@property (nonatomic, readonly) UIImageView  *imageView;
+@property (nonatomic, readonly) UIScrollView *scrollView;
 
 - (void)configureWithPhoto:(id<LXPhoto>)photo completion:(nullable void (^)(void))completion;
 

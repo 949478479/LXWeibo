@@ -8,6 +8,6 @@
 #import "LXPhoto.h"
 
 @implementation LXPhoto
-@synthesize sourceImageView = _sourceImageView;
-@synthesize originalImageURL = _originalImageURL;
+@synthesize sourceImageView;
+@synthesize originalImageURL;
 @end

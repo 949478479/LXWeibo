@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CN5-LU-K9b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CN5-LU-K9b">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Photo Browser Controller-->
@@ -41,10 +41,10 @@
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="NcA-SE-4Uo" secondAttribute="bottom" placeholder="YES" id="aK5-gj-Azm"/>
-                                                        <constraint firstItem="NcA-SE-4Uo" firstAttribute="leading" secondItem="Jlv-ne-KgN" secondAttribute="leading" placeholder="YES" id="dt9-sc-t4R"/>
-                                                        <constraint firstItem="NcA-SE-4Uo" firstAttribute="top" secondItem="Jlv-ne-KgN" secondAttribute="top" placeholder="YES" id="iLm-xh-KU9"/>
-                                                        <constraint firstAttribute="trailing" secondItem="NcA-SE-4Uo" secondAttribute="trailing" placeholder="YES" id="jLD-6c-YqA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NcA-SE-4Uo" secondAttribute="bottom" id="aK5-gj-Azm"/>
+                                                        <constraint firstItem="NcA-SE-4Uo" firstAttribute="leading" secondItem="Jlv-ne-KgN" secondAttribute="leading" id="dt9-sc-t4R"/>
+                                                        <constraint firstItem="NcA-SE-4Uo" firstAttribute="top" secondItem="Jlv-ne-KgN" secondAttribute="top" id="iLm-xh-KU9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NcA-SE-4Uo" secondAttribute="trailing" id="jLD-6c-YqA"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="delegate" destination="SLi-1z-oDD" id="Q2b-6M-LNJ"/>

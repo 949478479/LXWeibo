@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXPhotoBrowserController : UIViewController
 
-@property (nonatomic, assign) NSUInteger currentPhotoIndex;
+@property (nonatomic) NSUInteger currentPhotoIndex;
 
 @property (nonatomic, copy) NSArray<id<LXPhoto>> *photos;
 

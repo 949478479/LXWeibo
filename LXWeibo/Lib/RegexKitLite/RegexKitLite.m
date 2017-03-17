@@ -966,7 +966,7 @@ exitNow:
   rkl_dtrace_addLookupFlag(lookupResultFlags, RKLErrorLookupFlag); 
   if(cachedRegex != NULL) { rkl_dtrace_utf16ConversionCache(lookupResultFlags, cachedRegex->setToString, cachedRegex->setToRange.location, cachedRegex->setToRange.length, cachedRegex->setToLength); }
 #endif // _RKL_DTRACE_ENABLED
-  if(cachedRegex != NULL) { cachedRegex->buffer = NULL; cachedRegex->setToRange = NSNotFoundRange; cachedRegex->lastFindRange = NSNotFoundRange; cachedRegex->lastMatchRange = NSNotFoundRange; }
+  if((RKLCachedRegex * _Nullable)cachedRegex) { cachedRegex->buffer = NULL; cachedRegex->setToRange = NSNotFoundRange; cachedRegex->lastFindRange = NSNotFoundRange; cachedRegex->lastMatchRange = NSNotFoundRange; }
   return(0UL);
 }
 
@@ -1005,7 +1005,10 @@ static RKLCachedRegex *rkl_getCachedRegexSetToString(NSString *regexString, RKLR
     RKLCDelayedAssert(cachedRegex->setToString != NULL, exception, exitNow);
     cachedRegex->setToUniChar         = CFStringGetCharactersPtr(cachedRegex->setToString);
     cachedRegex->setToNeedsConversion = (cachedRegex->setToUniChar == NULL) ? 1U : 0U;
-    cachedRegex->setToIsImmutable     = (rkl_CFStringIsMutable(cachedRegex->setToString) == YES) ? 0U : 1U; // If RKL_FAST_MUTABLE_CHECK is not defined then setToIsImmutable will always be set to '0', or in other words mutable..
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunreachable-code"
+	  cachedRegex->setToIsImmutable     = rkl_CFStringIsMutable(cachedRegex->setToString) ? 0U : 1U; // If RKL_FAST_MUTABLE_CHECK is not defined then setToIsImmutable will always be set to '0', or in other words mutable..
+#pragma clang diagnostic pop
     cachedRegex->setToHash            = CFHash((CFTypeRef)cachedRegex->setToString);
     cachedRegex->setToRange           = NSNotFoundRange;
     cachedRegex->setToLength          = matchLength;
@@ -1196,7 +1199,7 @@ static void rkl_handleDelayedAssert(id self, SEL _cmd, id exception) {
     else {
       id functionString = [exception objectForKey:@"function"], fileString = [exception objectForKey:@"file"], descriptionString = [exception objectForKey:@"description"], lineNumber = [exception objectForKey:@"line"];
       RKLCHardAbortAssert((functionString != NULL) && (fileString != NULL) && (descriptionString != NULL) && (lineNumber != NULL));
-      [[NSAssertionHandler currentHandler] handleFailureInFunction:functionString file:fileString lineNumber:(NSInteger)[lineNumber longValue] description:descriptionString];
+      [[NSAssertionHandler currentHandler] handleFailureInFunction:functionString file:fileString lineNumber:(NSInteger)[lineNumber longValue] description:@"%@", descriptionString];
     }
   }
 }
@@ -1863,7 +1866,10 @@ exitNow:
   if((buffer.uniChar = (UniChar *)CFStringGetCharactersPtr(buffer.string)) == NULL) {
     rkl_dtrace_addLookupFlag(lookupResultFlags, RKLConversionRequiredLookupFlag);
     if(RKL_EXPECTED((buffer.uniChar = (RKL_STRONG_REF UniChar * RKL_GC_VOLATILE)rkl_realloc((RKL_STRONG_REF void ** RKL_GC_VOLATILE)&buffer.uniChar, ((size_t)buffer.length * sizeof(UniChar)), 0UL)) == NULL, 0L)) { goto errorExit; } // Resize the buffer.
-    needToFreeBufferUniChar = rkl_collectingEnabled() ? 0U : 1U;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunreachable-code"
+	  needToFreeBufferUniChar = rkl_collectingEnabled() ? 0U : 1U;
+#pragma clang diagnostic pop
     CFStringGetCharacters(buffer.string, CFMakeRange(0L, buffer.length), (UniChar *)buffer.uniChar); // Convert to a UTF16 string.
   }
 

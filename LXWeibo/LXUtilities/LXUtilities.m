@@ -74,7 +74,7 @@ BOOL LXDeviceIsPad()
 
 AppDelegate * LXAppDelegate()
 {
-    return [UIApplication sharedApplication].delegate;
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

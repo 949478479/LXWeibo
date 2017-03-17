@@ -87,7 +87,7 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
 }
 
 #pragma mark - 属性白名单配置
-+ (void)setupAllowedPropertyNames:(MJAllowedPropertyNames)allowedPropertyNames;
++ (void)setupAllowedPropertyNames:(MJAllowedPropertyNames)allowedPropertyNames
 {
     [self setupBlockReturnValue:allowedPropertyNames key:&MJAllowedPropertyNamesKey];
 }

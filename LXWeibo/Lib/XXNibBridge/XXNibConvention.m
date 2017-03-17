@@ -28,7 +28,12 @@
 #pragma mark - XXNibConvention
 
 + (NSString *)nibid {
-    return NSStringFromClass(self);
+    NSString *className = NSStringFromClass(self);
+    if ([className rangeOfString:@"."].location != NSNotFound) {
+        // Swift class name contains module name
+        return [className componentsSeparatedByString:@"."].lastObject;
+    }
+    return className;
 }
 
 + (UINib *)nib {

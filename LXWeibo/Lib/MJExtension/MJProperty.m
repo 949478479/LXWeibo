@@ -108,7 +108,7 @@
             /** 解析索引 **/
             // 元素
             NSArray *cmps = [[indexKey stringByReplacingOccurrencesOfString:@"[" withString:@""] componentsSeparatedByString:@"]"];
-            for (NSInteger i = 0; i<cmps.count - 1; i++) {
+            for (NSUInteger i = 0; i<cmps.count - 1; i++) {
                 MJPropertyKey *subPropertyKey = [[MJPropertyKey alloc] init];
                 subPropertyKey.type = MJPropertyKeyTypeArray;
                 subPropertyKey.name = cmps[i];

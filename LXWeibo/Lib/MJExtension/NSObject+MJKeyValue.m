@@ -382,7 +382,7 @@ static NSNumberFormatter *numberFormatter_;
                         
                         if ([tempInnerContainer isKindOfClass:[NSMutableArray class]]) {
                             int index = nextPropertyKey.name.intValue;
-                            while ([tempInnerContainer count] < index + 1) {
+                            while ([tempInnerContainer count] < (NSUInteger)index + 1) {
                                 [tempInnerContainer addObject:[NSNull null]];
                             }
                         }

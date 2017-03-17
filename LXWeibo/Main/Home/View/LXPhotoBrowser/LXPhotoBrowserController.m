@@ -19,7 +19,6 @@ static const NSTimeInterval kAnimationDuration = 0.5; // 试验发现这个数�
 static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
 
 @interface LXPhotoBrowserController ()
-@property (nonatomic) BOOL shouldReshowStatusBar;
 @property (nonatomic) IBOutlet UILabel *indexLabel;
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
@@ -84,8 +83,6 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
         [fadeView removeFromSuperview];
         [tempImageView removeFromSuperview];
     }];
-
-    [self hideStatusBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -121,30 +118,6 @@ static NSString * const reuseIdentifier = @"LXPhotoBrowserCell";
         [fadeView removeFromSuperview];
         [tempImageView removeFromSuperview];
     }];
-
-    if (_shouldReshowStatusBar) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                                withAnimation:UIStatusBarAnimationFade];
-    }
-}
-
-#pragma mark 隐藏状态栏
-
-- (void)hideStatusBar
-{
-    NSNumber *boolNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:
-                            @"UIViewControllerBasedStatusBarAppearance"];
-    // 状态栏由 UIApplication 控制,且当前可见,那么需要隐藏状态栏.
-    if (boolNumber && !boolNumber.boolValue && ![UIApplication sharedApplication].statusBarHidden) {
-        _shouldReshowStatusBar = YES; // dismiss 后需要重新显示状态栏.
-        [[UIApplication sharedApplication] setStatusBarHidden:YES
-                                                withAnimation:UIStatusBarAnimationFade];
-    }
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES; // 状态栏由控制器控制,则直接隐藏即可.
 }
 
 #pragma mark 基本设置

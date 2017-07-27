@@ -28,7 +28,7 @@ typedef enum {
 } MJRefreshState;
 
 /** 进入刷新状态的回调 */
-typedef void (^MJRefreshComponentRefreshingBlock)();
+typedef void (^MJRefreshComponentRefreshingBlock)(void);
 
 /** 刷新控件的基类 */
 @interface MJRefreshComponent : UIView

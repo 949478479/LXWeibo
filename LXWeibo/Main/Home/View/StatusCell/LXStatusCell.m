@@ -189,9 +189,7 @@ static inline UIImage * LXPlaceholderImage()
 
     // 根据是否是 vip 设置 nameLabel 的字体颜色,决定是否显示 vip 图标,并设置对应具体等级的图标.
     if (user.isVip) {
-
         NSUInteger mbrank = user.mbrank;
-        NSAssert(mbrank >= 1 && mbrank <= 6, @"会员等级不正确 %lu", mbrank);
         NSString *imageName = [NSString stringWithFormat:@"common_icon_membership_level%lu",
                                (unsigned long)mbrank];
 

@@ -108,7 +108,7 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
     return [self totalObjectsWithSelector:@selector(allowedCodingPropertyNames) key:&MJAllowedCodingPropertyNamesKey];
 }
 #pragma mark - block和方法处理:存储block的返回值
-+ (void)setupBlockReturnValue:(id (^)())block key:(const char *)key
++ (void)setupBlockReturnValue:(id (^)(void))block key:(const char *)key
 {
     if (block) {
         objc_setAssociatedObject(self, key, block(), OBJC_ASSOCIATION_RETAIN_NONATOMIC);

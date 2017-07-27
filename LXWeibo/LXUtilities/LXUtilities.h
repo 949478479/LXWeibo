@@ -41,46 +41,46 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name 版本号
 ///------------------------------------------------------------------------------------------------
 
-NSString * LXBundleVersionString();
-NSString * LXBundleShortVersionString();
+NSString * LXBundleVersionString(void);
+NSString * LXBundleShortVersionString(void);
 
 ///------------------------------------------------------------------------------------------------
 /// @name 沙盒路径
 ///------------------------------------------------------------------------------------------------
 
-NSString * LXDocumentDirectory();
+NSString * LXDocumentDirectory(void);
 NSString * LXDocumentDirectoryByAppendingPathComponent(NSString *pathComponent);
 
-NSString * LXLibraryDirectory();
+NSString * LXLibraryDirectory(void);
 NSString * LXLibraryDirectoryByAppendingPathComponent(NSString *pathComponent);
 
-NSString * LXCachesDirectory();
+NSString * LXCachesDirectory(void);
 NSString * LXCachesDirectoryByAppendingPathComponent(NSString *pathComponent);
 
 ///------------------------------------------------------------------------------------------------
 /// @name 设备信息
 ///------------------------------------------------------------------------------------------------
 
-BOOL LXDeviceIsPad();
+BOOL LXDeviceIsPad(void);
 
 ///------------------------------------------------------------------------------------------------
 /// @name AppDelegate
 ///------------------------------------------------------------------------------------------------
 
-AppDelegate * LXAppDelegate();
+AppDelegate * LXAppDelegate(void);
 
 ///------------------------------------------------------------------------------------------------
 /// @name 屏幕|窗口|控制器
 ///------------------------------------------------------------------------------------------------
 
-CGSize LXScreenSize();
-CGFloat LXScreenScale();
+CGSize LXScreenSize(void);
+CGFloat LXScreenScale(void);
 
-UIWindow * LXKeyWindow();
-UIWindow * LXTopWindow();
+UIWindow * LXKeyWindow(void);
+UIWindow * LXTopWindow(void);
 
-UIViewController * LXTopViewController();
-UIViewController * LXRootViewController();
+UIViewController * LXTopViewController(void);
+UIViewController * LvoidXRootViewController(void);
 
 ///------------------------------------------------------------------------------------------------
 /// @name GCD

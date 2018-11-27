@@ -52,7 +52,7 @@ const CGFloat kLXStatusThumbnailMargin = 8;
         // 弹出图片浏览器.
         LXPhotoBrowserController *photoBrower = [LXPhotoBrowserController photoBrower];
         photoBrower.currentPhotoIndex = idx;
-        photoBrower.photos = [_thumbnailViews lx_map:^id _Nullable(LXStatusThumbnailView * _Nonnull obj,
+        photoBrower.photos = [self->_thumbnailViews lx_map:^id _Nullable(LXStatusThumbnailView * _Nonnull obj,
                                                                    BOOL * _Nonnull stop) {
             UIImage *image = obj.image;
 
